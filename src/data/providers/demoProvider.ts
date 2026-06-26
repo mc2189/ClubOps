@@ -10,6 +10,7 @@ import { demoStaff } from "@/data/demo/staff";
 import { demoFundraising } from "@/data/demo/fundraising";
 import { demoReports } from "@/data/demo/reports";
 import { demoAuditEvents } from "@/data/demo/audit";
+import { demoDashboardData } from "@/data/demo/dashboard";
 
 async function simulateDelay<T>(data: T): Promise<T> {
   return data;
@@ -19,16 +20,18 @@ export const demoProvider: ClubOpsDataProvider = {
   async getDashboardStats() {
     return simulateDelay({
       activeMembers: demoMembers.filter((m) => m.status === "active").length,
-      sessionsThisWeek: 4,
-      outstandingFees: 320.0,
-      giftAidEligible: demoGiftAid
-        .filter((g) => g.status === "active")
-        .reduce((sum, g) => sum + g.amountEligible, 0),
+      sessionsThisWeek: demoDashboardData.attendance.sessionsThisWeek,
+      outstandingFees: demoDashboardData.finance.unpaidFees * 45.71,
+      giftAidEligible: demoDashboardData.giftAid.estimatedClaim,
       upcomingEvents: demoCalendarEvents.filter(
         (e) => new Date(e.date) >= new Date("2026-06-26"),
       ).length,
       recentCommunications: demoCommunications.filter((c) => c.status === "sent").length,
     });
+  },
+
+  async getDashboardData() {
+    return simulateDelay(demoDashboardData);
   },
 
   async getMembers() {

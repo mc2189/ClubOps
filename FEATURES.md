@@ -5,6 +5,9 @@
 - [x] Next.js + TypeScript + Tailwind CSS project scaffold
 - [x] Dashboard layout with sidebar navigation and top bar
 - [x] Demo mode banner ("Demo Mode — fake data only")
+- [x] **v0.1.0 Dashboard** — today's tasks, club health scores, finance/attendance/Gift Aid snapshots, fundraising progress, quick actions, recent activity
+- [x] **Demo mode page** (`/demo`) explaining fake data and simulated integrations
+- [x] Dashboard components: TaskCard, HealthScoreCard, ProgressCard, RecentActivityList, QuickActionCard
 - [x] Placeholder pages for all 13 modules
 - [x] Data provider interface and demo provider
 - [x] Fake demo data for all modules

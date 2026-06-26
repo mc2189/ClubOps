@@ -1,6 +1,6 @@
 # ClubOps — Roadmap
 
-## Phase 0 — Foundation (current)
+## Phase 0 — Foundation
 
 **Status: Complete**
 
@@ -9,8 +9,9 @@
 - Demo data provider
 - Placeholder pages for all modules
 - Documentation and deployment readiness
+- **v0.1.0 Dashboard** — tasks, health scores, snapshots, quick actions, demo mode page
 
-## Phase 1 — Core CRUD
+## Phase 1 — Core CRUD (current)
 
 - Member management (add, edit, archive, search)
 - Session and attendance register

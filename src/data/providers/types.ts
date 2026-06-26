@@ -116,8 +116,83 @@ export interface DashboardStats {
   recentCommunications: number;
 }
 
+export type TaskPriority = "high" | "medium" | "low";
+
+export interface DashboardTask {
+  id: string;
+  title: string;
+  description: string;
+  priority: TaskPriority;
+  href?: string;
+  category: string;
+}
+
+export type HealthStatus = "good" | "attention" | "critical";
+
+export interface ClubHealthMetric {
+  id: string;
+  label: string;
+  score: number;
+  status: HealthStatus;
+  summary: string;
+}
+
+export interface FinanceSnapshot {
+  paymentsNeedReview: number;
+  unpaidFees: number;
+  monthlyIncome: number;
+  monthlyExpenses: number;
+  netPosition: number;
+}
+
+export interface AttendanceSnapshot {
+  sessionsThisWeek: number;
+  averageAttendanceRate: number;
+  absentWithoutNotice: number;
+  nextSession: string;
+}
+
+export interface GiftAidSnapshot {
+  estimatedClaim: number;
+  declarationsReturned: number;
+  activeDeclarations: number;
+}
+
+export interface FundraisingProgressItem {
+  id: string;
+  name: string;
+  raised: number;
+  target: number;
+}
+
+export interface QuickAction {
+  id: string;
+  label: string;
+  description: string;
+  href: string;
+}
+
+export interface DashboardHighlights {
+  upcomingEvent: string;
+  complianceAlert: string;
+  documentsWaiting: number;
+}
+
+export interface DashboardData {
+  tasks: DashboardTask[];
+  healthMetrics: ClubHealthMetric[];
+  finance: FinanceSnapshot;
+  attendance: AttendanceSnapshot;
+  giftAid: GiftAidSnapshot;
+  fundraising: FundraisingProgressItem[];
+  recentActivity: AuditEvent[];
+  quickActions: QuickAction[];
+  highlights: DashboardHighlights;
+}
+
 export interface ClubOpsDataProvider {
   getDashboardStats(): Promise<DashboardStats>;
+  getDashboardData(): Promise<DashboardData>;
   getMembers(): Promise<Member[]>;
   getAttendanceRecords(): Promise<AttendanceRecord[]>;
   getFinanceTransactions(): Promise<FinanceTransaction[]>;

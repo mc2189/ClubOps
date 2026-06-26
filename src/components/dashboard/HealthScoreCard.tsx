@@ -1,0 +1,49 @@
+import { cn } from "@/lib/utils";
+import type { ClubHealthMetric, HealthStatus } from "@/data/providers/types";
+
+const statusColors: Record<HealthStatus, { bar: string; text: string; bg: string }> = {
+  good: { bar: "bg-green-500", text: "text-green-700", bg: "bg-green-50" },
+  attention: { bar: "bg-amber-500", text: "text-amber-700", bg: "bg-amber-50" },
+  critical: { bar: "bg-red-500", text: "text-red-700", bg: "bg-red-50" },
+};
+
+const statusLabels: Record<HealthStatus, string> = {
+  good: "Good",
+  attention: "Needs attention",
+  critical: "Critical",
+};
+
+interface HealthScoreCardProps {
+  metric: ClubHealthMetric;
+}
+
+export function HealthScoreCard({ metric }: HealthScoreCardProps) {
+  const colors = statusColors[metric.status];
+
+  return (
+    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="flex items-center justify-between">
+        <p className="text-sm font-semibold text-slate-900">{metric.label}</p>
+        <span className={cn("rounded-full px-2 py-0.5 text-xs font-medium", colors.bg, colors.text)}>
+          {statusLabels[metric.status]}
+        </span>
+      </div>
+      <div className="mt-3 flex items-end gap-2">
+        <span className="text-2xl font-bold text-slate-900">{metric.score}</span>
+        <span className="mb-1 text-xs text-slate-400">/ 100</span>
+      </div>
+      <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-slate-100">
+        <div
+          className={cn("h-full rounded-full transition-all", colors.bar)}
+          style={{ width: `${metric.score}%` }}
+          role="progressbar"
+          aria-valuenow={metric.score}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label={`${metric.label} health score`}
+        />
+      </div>
+      <p className="mt-2 text-xs text-slate-500">{metric.summary}</p>
+    </div>
+  );
+}
