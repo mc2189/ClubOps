@@ -11,6 +11,7 @@ import type {
   ReportsAuditPageData,
 } from "@/data/providers/types";
 import type { ReportSummary } from "@/data/providers/types";
+import { DEMO_OUTSTANDING_FEE_COUNT } from "@/data/demo/fees";
 
 export const demoAuditLog: AuditEvent[] = [
   { id: "aud-001", timestamp: "2026-06-26T09:15:00Z", actor: "Demo Admin", action: "view", resource: "members", module: "Members", details: "Viewed member list", affectedRecord: "All members", riskLevel: "normal", status: "recorded", linkedHref: "/members" },
@@ -72,7 +73,7 @@ export const demoFinancePack: FinancePackData = {
   outgoingsThisMonth: 1975,
   outgoingsThisYear: 11800,
   netPosition: 2400,
-  unpaidFees: 4,
+  unpaidFees: DEMO_OUTSTANDING_FEE_COUNT,
   matchedTransactions: 9,
   unmatchedTransactions: 3,
   possibleDonations: 2,
@@ -121,12 +122,12 @@ export const demoMemberPack: MemberPackData = {
   missingConsent: 1,
   medicalFlags: 2,
   attendanceConcerns: 1,
-  unpaidFees: 4,
+  unpaidFees: DEMO_OUTSTANDING_FEE_COUNT,
   documentsMissing: 8,
 };
 
 export const demoClubHealthSummary: ClubHealthMetric[] = [
-  { id: "health-finance", label: "Finance", score: 78, status: "attention", summary: "4 unpaid fees and 4 payments to review", suggestedAction: "Review bank import matches", linkedModule: "Finance", linkedHref: "/finance/import/review" },
+  { id: "health-finance", label: "Finance", score: 78, status: "attention", summary: `${DEMO_OUTSTANDING_FEE_COUNT} unpaid fees and 4 payments to review`, suggestedAction: "Review bank import matches", linkedModule: "Finance", linkedHref: "/finance/import/review" },
   { id: "health-attendance", label: "Attendance", score: 92, status: "good", summary: "92% average attendance this month", suggestedAction: "Follow up repeated absences", linkedModule: "Attendance", linkedHref: "/attendance/reports" },
   { id: "health-giftaid", label: "Gift Aid", score: 65, status: "attention", summary: "3 missing declarations, £187 reclaim possible", suggestedAction: "Send declaration requests", linkedModule: "Gift Aid", linkedHref: "/gift-aid" },
   { id: "health-comms", label: "Communications", score: 85, status: "good", summary: "2 replies needing review", suggestedAction: "Review inbox responses", linkedModule: "Communications", linkedHref: "/communications/inbox" },

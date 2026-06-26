@@ -2,6 +2,25 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.0.2] — 2026-06-26
+
+### Fixed
+
+- **Communications composer** — removed `useSearchParams` Suspense hang; search params passed from server page
+- Compose presets load immediately: Gift Aid, unpaid fees, sponsorship request
+- Gift Aid preset still selects group, template, form and shows preview
+- Outstanding fee count derived from fee records (`DEMO_OUTSTANDING_FEE_COUNT = 4`) across dashboard, calendar, reports and communications group
+- Member finance statuses aligned with fee records (Riley Chen and Avery Singh → overdue)
+- Fundraising sponsorship links use `preset=sponsorship-request` for consistent group + template selection
+
+### Changed
+
+- Compose example recipients labelled “demo only”
+- Form labels added for accessibility on compose fields
+- `FEATURES.md` rewritten — demo-implemented modules marked complete; live-only items separated
+- `DEMO_QA_CHECKLIST.md` expanded with final pre-share Vercel checklist and compose preset tests
+- Documentation updated for v1.0.2 public demo readiness
+
 ## [1.0.1] — 2026-06-26
 
 ### Changed

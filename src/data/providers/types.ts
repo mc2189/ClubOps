@@ -1,5 +1,5 @@
 export type MemberStatus = "active" | "inactive" | "archived";
-export type FinanceStatus = "paid" | "unpaid" | "partial" | "n/a";
+export type FinanceStatus = "paid" | "unpaid" | "partial" | "overdue" | "n/a";
 export type GiftAidStatus = "declared" | "missing" | "expired" | "n/a";
 export type ConsentStatus = "complete" | "partial" | "missing";
 export type EmergencyContactCompleteness = "complete" | "partial" | "missing";

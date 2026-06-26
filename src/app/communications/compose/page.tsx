@@ -1,10 +1,17 @@
-import { Suspense } from "react";
+import type { ComposeClientProps } from "@/components/communications/ComposeClient";
 import { ComposeClient } from "@/components/communications/ComposeClient";
 
-export default function ComposePage() {
-  return (
-    <Suspense fallback={<p className="p-4 text-sm text-slate-500">Loading composer…</p>}>
-      <ComposeClient />
-    </Suspense>
-  );
+export default async function ComposePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ preset?: string; template?: string; group?: string }>;
+}) {
+  const params = await searchParams;
+  const props: ComposeClientProps = {
+    preset: params.preset ?? null,
+    templateParam: params.template ?? null,
+    groupParam: params.group ?? null,
+  };
+
+  return <ComposeClient {...props} />;
 }

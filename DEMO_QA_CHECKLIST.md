@@ -1,6 +1,23 @@
-# ClubOps — Demo QA Checklist (v1.0.1)
+# ClubOps — Demo QA Checklist (v1.0.2)
 
 Use this before sharing the Vercel demo link with a club secretary, treasurer or committee member.
+
+## Final pre-share checklist (run on live Vercel URL)
+
+Complete these on the **production demo URL** (not localhost):
+
+- [ ] Open live Vercel URL — loads over HTTPS with demo banner visible
+- [ ] Follow `/demo-script` steps 1–10 without broken links
+- [ ] **Communications compose** — `/communications/compose` loads fully (not stuck on loading)
+- [ ] **Gift Aid compose preset** — `/communications/compose?preset=gift-aid` selects group, template, form and shows preview
+- [ ] **Unpaid fees preset** — `/communications/compose?preset=unpaid-fees` loads fee reminder template
+- [ ] **Finance import review** — `/finance/import/review` shows match review demo
+- [ ] **Attendance register** — mark Present/Absent on a session register
+- [ ] **Reports export centre** — `/reports/export-centre` generates demo pack (no real file)
+- [ ] Confirm demo banner visible on every page visited
+- [ ] Confirm no real uploads, emails, banking, payments or HMRC actions occur
+- [ ] Refresh page — session-only changes reset
+- [ ] Explain: **not production software** — live use needs auth, RBAC, secure DB, secure storage and audit controls
 
 ## Route checklist
 
@@ -39,6 +56,15 @@ Follow `/demo-script` steps 1–10 in order:
 - [ ] Step 9 — Fundraising business CRM
 - [ ] Step 10 — Export Centre demo pack generation
 
+## Communications compose presets
+
+- [ ] `/communications/compose` — blank compose loads immediately
+- [ ] `/communications/compose?preset=gift-aid` — group, template, form pre-selected; preview visible
+- [ ] `/communications/compose?preset=unpaid-fees` — unpaid fees group and fee reminder template
+- [ ] `/communications/compose?preset=sponsorship-request` — business follow-up group and sponsorship template
+- [ ] `/communications/compose?template=tpl-competition` — competition template loads
+- [ ] Simulated send shows success message; no real email sent
+
 ## Mobile checklist
 
 Test on phone or narrow browser window (~375px):
@@ -63,15 +89,6 @@ Test on phone or narrow browser window (~375px):
 - [ ] Finance import shows “Demo only — no real bank data”
 - [ ] Gift Aid shows compliance warnings (no HMRC submission)
 - [ ] Refresh resets session-only changes
-
-## Pre-send-to-club checklist
-
-- [ ] Run through demo script once without errors
-- [ ] Confirm Vercel URL loads over HTTPS
-- [ ] Confirm demo banner and `/demo` safety page are accurate
-- [ ] Explain this is **not production software**
-- [ ] Explain live use needs authentication, RBAC, secure database, secure storage, data protection policy and production audit controls
-- [ ] Have `/demo-script` open in a second tab for reference
 
 ## Build verification (before deploy)
 

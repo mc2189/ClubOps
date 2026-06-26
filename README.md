@@ -19,13 +19,13 @@ Open [http://localhost:3000](http://localhost:3000) — the app redirects to the
 
 ## Demo mode
 
-**v1.0.1 is a polished demo, not production software.**
+**v1.0.2 is a polished public demo, not production software.**
 
 This application runs in permanent demo mode with **fake data only**. A banner is displayed at the top of every page:
 
 > Demo mode — fake data only · refresh resets session changes
 
-No real member, financial or safeguarding data is used. The live version would require authentication, RBAC, secure database, secure storage, data protection policies and production-grade audit controls.
+No real member, financial or safeguarding data is used. Live use requires authentication, RBAC, a secure database, secure file storage, production audit logging and data protection controls.
 
 See [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) before sharing the public demo link.
 

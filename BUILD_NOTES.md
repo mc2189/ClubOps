@@ -1,5 +1,29 @@
 # ClubOps — Build Notes
 
+## Iteration 12 — v1.0.2 Final Demo Readiness Fixes (2026-06-26)
+
+### What was built
+
+- Fixed Communications compose loading (server-passed search params, no Suspense stall)
+- Compose preset support: gift-aid, unpaid-fees, sponsorship-request
+- Single source of truth for outstanding fee count in `fees.ts`
+- Member finance status alignment with fee records
+- FEATURES.md documentation tidy and expanded QA checklist
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+- **v1.1.0** — Authentication and RBAC foundation for live mode
+
+---
+
 ## Iteration 11 — v1.0.1 Demo QA & Presentation Polish (2026-06-26)
 
 ### What was built

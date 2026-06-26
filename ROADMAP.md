@@ -2,7 +2,7 @@
 
 ## Phase 0 — Foundation
 
-**Status: Complete (v1.0.1 demo polish)**
+**Status: Complete (v1.0.2 demo readiness)**
 
 - Project scaffold and tooling
 - Dashboard layout shell
@@ -11,10 +11,11 @@
 - Documentation and deployment readiness
 - **v1.0.0** — Reports, Audit, Export Centre and demo script
 - **v1.0.1** — Demo QA, link check and presentation polish
+- **v1.0.2** — Final demo readiness fixes (composer, data consistency)
 
 ## Phase 1 — Core CRUD
 
-**Status: Complete (demo)**
+**Status: Complete (demo) — ready for v1.1.0 RBAC**
 
 - [x] Member management
 - [x] Session and attendance register

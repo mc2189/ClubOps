@@ -10,6 +10,7 @@ import type {
   DashboardHighlights,
 } from "@/data/providers/types";
 import { demoAuditEvents } from "@/data/demo/audit";
+import { DEMO_OUTSTANDING_FEE_COUNT } from "@/data/demo/fees";
 
 export const demoDashboardTasks: DashboardTask[] = [
   {
@@ -30,7 +31,7 @@ export const demoDashboardTasks: DashboardTask[] = [
   },
   {
     id: "task-003",
-    title: "4 unpaid fees",
+    title: `${DEMO_OUTSTANDING_FEE_COUNT} unpaid fees`,
     description: "Membership fees overdue for June term.",
     priority: "medium",
     href: "/finance/fees",
@@ -68,7 +69,7 @@ export const demoHealthMetrics: ClubHealthMetric[] = [
     label: "Finance",
     score: 78,
     status: "attention",
-    summary: "4 unpaid fees and 4 payments to review",
+    summary: `${DEMO_OUTSTANDING_FEE_COUNT} unpaid fees and 4 payments to review`,
     suggestedAction: "Review bank import matches",
     linkedModule: "Finance",
     linkedHref: "/finance/import/review",
@@ -127,7 +128,7 @@ export const demoHealthMetrics: ClubHealthMetric[] = [
 
 export const demoFinanceSnapshot: FinanceSnapshot = {
   paymentsNeedReview: 4,
-  unpaidFees: 4,
+  unpaidFees: DEMO_OUTSTANDING_FEE_COUNT,
   monthlyIncome: 3340.0,
   monthlyExpenses: 1145.5,
   netPosition: 2194.5,

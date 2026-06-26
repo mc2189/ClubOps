@@ -53,6 +53,11 @@ export const UNPAID_FEES_COMPOSE_PRESET = {
   templateId: "tpl-fee-reminder",
 };
 
+export const SPONSORSHIP_COMPOSE_PRESET = {
+  groupId: "grp-business-followup",
+  templateId: "tpl-sponsorship",
+};
+
 export const inboxStatusLabel = {
   "auto-filed": "Auto-filed",
   "needs-review": "Needs review",

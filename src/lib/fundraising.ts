@@ -22,10 +22,10 @@ export const fundraisingSubNav = [
 ];
 
 export const COMMUNICATIONS_LINKS = {
-  sponsorshipRequest: "/communications/compose?template=tpl-sponsorship",
+  sponsorshipRequest: "/communications/compose?preset=sponsorship-request",
   thankYou: "/communications/compose?template=tpl-announcement",
   campaignUpdate: "/communications/compose?template=tpl-fundraising",
-  renewalReminder: "/communications/compose?template=tpl-sponsorship",
+  renewalReminder: "/communications/compose?preset=sponsorship-request",
   giftAidRequest: "/communications/compose?preset=gift-aid",
 };
 

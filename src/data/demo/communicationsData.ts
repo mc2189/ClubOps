@@ -9,6 +9,7 @@ import type {
   CommunicationsPageData,
 } from "@/data/providers/types";
 import type { Communication } from "@/data/providers/types";
+import { DEMO_OUTSTANDING_FEE_COUNT } from "@/data/demo/fees";
 
 export const demoRecipientGroups: RecipientGroup[] = [
   { id: "grp-all-parents", name: "All parents", description: "Every parent/carer on file", recipientCount: 9, sourceModule: "Members", exampleRecipients: ["Sarah Thompson", "Chris Reeves", "Wei Chen"], lastContacted: "2026-06-20" },
@@ -19,7 +20,7 @@ export const demoRecipientGroups: RecipientGroup[] = [
   { id: "grp-tuesday-rec", name: "Tuesday Recreational class", description: "Recreational — Tuesday group", recipientCount: 3, sourceModule: "Members", exampleRecipients: ["Alex Thompson", "Riley Chen"] },
   { id: "grp-coaches", name: "Coaches", description: "All coaching staff", recipientCount: 4, sourceModule: "Staff", exampleRecipients: ["Morgan Ellis", "Jamie Hart"] },
   { id: "grp-committee", name: "Committee", description: "Club committee members", recipientCount: 5, sourceModule: "Settings", exampleRecipients: ["Demo Admin", "Demo Treasurer"] },
-  { id: "grp-unpaid-fees", name: "Parents with unpaid fees", description: "Members with outstanding fees", recipientCount: 3, sourceModule: "Finance", exampleRecipients: ["Wei Chen", "Anna Fletcher", "Fiona Walsh"], lastContacted: "2026-06-25" },
+  { id: "grp-unpaid-fees", name: "Parents with unpaid fees", description: "Members with outstanding fees (overdue, unpaid or partial)", recipientCount: DEMO_OUTSTANDING_FEE_COUNT, sourceModule: "Finance", exampleRecipients: ["Wei Chen", "Anna Fletcher", "Raj Singh", "Fiona Walsh"], lastContacted: "2026-06-25" },
   { id: "grp-missing-giftaid", name: "Parents missing Gift Aid declarations", description: "No valid Gift Aid declaration on file", recipientCount: 3, sourceModule: "Gift Aid", exampleRecipients: ["Wei Chen", "Anna Fletcher", "Raj Singh"] },
   { id: "grp-incomplete-emergency", name: "Incomplete emergency contact", description: "Missing or partial emergency contact details", recipientCount: 2, sourceModule: "Members", exampleRecipients: ["Wei Chen", "Raj Singh"] },
   { id: "grp-medical-update", name: "Medical update needed", description: "Members flagged for medical/contact review", recipientCount: 2, sourceModule: "Members", exampleRecipients: ["Jordan Reeves", "Riley Chen"] },

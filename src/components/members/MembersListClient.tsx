@@ -42,6 +42,7 @@ function FinanceBadge({ profile }: { profile: MemberProfile }) {
   const map = {
     paid: { label: "Paid", variant: "success" as const },
     unpaid: { label: "Unpaid", variant: "danger" as const },
+    overdue: { label: "Overdue", variant: "danger" as const },
     partial: { label: "Partial", variant: "warning" as const },
     "n/a": { label: "N/A", variant: "default" as const },
   };

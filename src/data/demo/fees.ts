@@ -101,3 +101,10 @@ export const demoFeeRecords: FeeRecord[] = [
     status: "waived",
   },
 ];
+
+/** Members with outstanding balances — used for dashboard and communications counts */
+export const demoOutstandingFeeRecords = demoFeeRecords.filter(
+  (f) => f.amountOutstanding > 0 && f.status !== "waived" && f.status !== "paid",
+);
+
+export const DEMO_OUTSTANDING_FEE_COUNT = demoOutstandingFeeRecords.length;

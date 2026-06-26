@@ -1,4 +1,5 @@
 import type { CalendarItem, CalendarPageData, AutomationHint } from "@/data/providers/types";
+import { DEMO_OUTSTANDING_FEE_COUNT } from "@/data/demo/fees";
 
 export const demoCalendarItems: CalendarItem[] = [
   {
@@ -64,7 +65,7 @@ export const demoCalendarItems: CalendarItem[] = [
     location: "—",
     type: "payment-due",
     module: "Finance",
-    description: "4 members with outstanding fees",
+    description: `${DEMO_OUTSTANDING_FEE_COUNT} members with outstanding fees`,
   },
   {
     id: "cal-007",

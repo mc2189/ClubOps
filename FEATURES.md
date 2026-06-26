@@ -1,8 +1,17 @@
 # ClubOps — Features
 
-ClubOps v1.0.1 is a **polished end-to-end demo** suitable for showing to club secretaries, treasurers and committee members. It is not production software and must not be used with real data.
+ClubOps v1.0.2 is a **polished public demo** suitable for showing to club secretaries, treasurers and committee members. It is **not production software** and must not be used with real data.
 
-## v1.0.1 — Demo QA polish (current)
+Live deployment requires authentication, RBAC, a secure database, secure file storage, production audit logging and data protection controls.
+
+## v1.0.2 — Final demo readiness (current)
+
+- [x] Communications composer loads reliably (no stuck “Loading composer…”)
+- [x] Compose presets: Gift Aid, unpaid fees, sponsorship request
+- [x] Outstanding fee counts aligned across dashboard, finance, communications and reports
+- [x] Documentation and QA checklist updated for pre-share testing
+
+## v1.0.1 — Demo QA polish
 
 - [x] Full route review and link accuracy
 - [x] Demo script aligned with current app
@@ -10,108 +19,109 @@ ClubOps v1.0.1 is a **polished end-to-end demo** suitable for showing to club se
 - [x] Empty states and mobile layout polish
 - [x] `DEMO_QA_CHECKLIST.md` for pre-share testing
 
-## v1.0.0 — Complete (demo)
+## v1.0.0 — Complete demo foundation
 
-- [x] All core modules implemented with demo data
-- [x] Reports dashboard and export packs
-- [x] Audit log with cross-module activity
-- [x] Export Centre (simulated Full Club Admin Pack)
-- [x] Demo script for presentations
+- [x] All core modules with demo data
+- [x] Reports, Audit, Export Centre and demo script
 - [x] GitHub → Vercel auto-deploy
 
-## Planned features
+---
+
+## Demo implemented (v1.0.x)
 
 ### Members
 - [x] Member list with search and filters
 - [x] Member profile with tabs (Overview, Parents/Carers, Medical, Attendance, Finance, Documents, Notes, Audit)
-- [x] Add / edit / archive demo flows (local state)
+- [x] Add / edit / archive demo flows (session-only state)
 - [x] Parent/guardian linking on profile
 - [x] Medical and emergency contact fields with sensitive data warnings
-- [ ] Member export
-- [ ] Persistent storage (live provider)
 
 ### Attendance
 - [x] Attendance dashboard with today's sessions and alerts
-- [x] Session/class selector with 6 demo sessions
-- [x] Mobile-friendly register marking (Present, Absent, Late, Left Early, Trial)
-- [x] Mark all present and save register (demo state)
-- [x] Attendance reports (by class, by member, absences, incomplete registers)
-- [ ] Attendance export (PDF/CSV)
-- [ ] Persistent storage (live provider)
+- [x] Session/class selector with demo sessions
+- [x] Mobile-friendly register marking
+- [x] Mark all present and save register (session-only)
+- [x] Attendance reports
 
 ### Calendar
-- [x] Multi-module agenda view (sessions, competitions, finance, staff, Gift Aid, fundraising)
+- [x] Multi-module agenda view
 - [x] Static automation/suggested action hints
-- [ ] Month/week/day grid views
-- [ ] Recurring session support
-- [ ] Event creation and editing
-- [ ] iCal export
 
 ### Finance
-- [x] Treasurer dashboard with income, outgoings, and fee summary
+- [x] Treasurer dashboard with income, outgoings and fee summary
 - [x] Fee tracking linked to members (paid, unpaid, partial, overdue, waived)
 - [x] Bank import demo flow (CSV + PDF placeholder)
 - [x] Auto-match with confidence scores and review screen
-- [x] Expenses page with categories and receipt status
+- [x] Expenses with categories and receipt status
 - [x] Finance reports and export placeholders
-- [ ] Real file export (PDF/CSV)
-- [ ] Persistent storage (live provider)
 
 ### Gift Aid
 - [x] Gift Aid dashboard with declaration and eligibility stats
-- [x] Declarations page with parent/carer records and demo actions
-- [x] Eligible donations split (fees, donations, raffle, business, grants, review)
+- [x] Declarations page with demo actions
+- [x] Eligible donations split by category with compliance warnings
 - [x] Review workflow for uncertain items
 - [x] Claim export placeholder with compliance checklist
-- [x] Gift Aid rules page with plain-English compliance warnings
-- [x] Declaration request preview (Communications placeholder)
-- [ ] HMRC integration (not planned for demo)
-- [ ] Real declaration storage (live provider)
+- [x] Gift Aid rules page
+- [x] Declaration request via Communications compose preset
 
 ### Communications
-- [ ] Email template builder
-- [ ] Group/segment targeting
-- [ ] Send history and delivery status
-- [ ] Notice board for members
+- [x] Compose with templates, groups and form attachments
+- [x] Gift Aid, unpaid fees and sponsorship compose presets
+- [x] Simulated send and draft (no real email)
+- [x] Templates, groups, forms, inbox, history and routing rules pages
+- [x] Form response inbox with auto-matching demo
 
 ### Documents
-- [ ] File upload with defensive handling
-- [ ] Category and tag management
-- [ ] Version history
-- [ ] Soft-delete / archive
+- [x] Documents dashboard with upload, assignment, scanned notes, missing, archive
+- [x] Sensitivity labels and demo upload/assign flows (session-only)
+- [x] Soft-archive demo
 
 ### Staff & Volunteers
-- [ ] DBS check tracking and expiry alerts
-- [ ] Qualification records
-- [ ] Safeguarding training log
-- [ ] Role assignment
+- [x] Staff dashboard with rota, qualifications, wages, venues, outgoings, alerts
+- [x] DBS and qualification tracking with expiry alerts
+- [x] Session wage prep (not payroll)
+- [x] Staff profile pages
 
 ### Fundraising
-- [ ] Campaign creation and tracking
-- [ ] Donation recording
-- [ ] Progress visualisation
-- [ ] Gift Aid linkage
+- [x] Campaigns, donors, businesses, sponsorships, donations, follow-ups, reports
+- [x] Business CRM with demo pledge/donation actions
+- [x] Gift Aid eligibility guidance on donations
+- [x] Communications links for sponsorship and thank-you messages
 
-### Reports
-- [ ] Pre-built report templates
-- [ ] Custom date range filtering
-- [ ] PDF/CSV export
-- [ ] Scheduled report generation
+### Reports & Audit
+- [x] Reports dashboard with sensitivity labels
+- [x] Finance, Committee, Gift Aid and Member packs
+- [x] Export Centre with simulated Full Club Admin Pack
+- [x] Audit overview, activity feed and security guidance
+- [x] Cross-module audit log
 
-### Audit Log
-- [ ] Automatic audit event creation on all data changes
-- [ ] Filter by actor, action, resource, date
-- [ ] Export for compliance review
+### Settings & Demo
+- [x] Settings page with demo mode guidance
+- [x] Demo mode info page (`/demo`)
+- [x] Demo script walkthrough (`/demo-script`)
 
-### Settings
-- [ ] Club profile configuration
-- [ ] Role-based access control (RBAC)
-- [ ] User management
-- [ ] Demo/live mode toggle
+---
+
+## Live mode only (not in demo)
 
 ### Platform
 - [ ] Authentication (email/password or OAuth)
-- [ ] Live data provider implementation
-- [ ] Database integration
-- [ ] Mobile-responsive refinements
-- [ ] Accessibility audit (WCAG 2.1 AA)
+- [ ] Role-based access control (RBAC)
+- [ ] Live data provider with secure database
+- [ ] Secure file storage with defensive upload handling
+- [ ] Production audit logging (tamper-resistant)
+- [ ] Real PDF/CSV exports
+- [ ] HMRC Gift Aid integration
+- [ ] Real email delivery
+- [ ] Real bank / Open Banking connections
+- [ ] Real payment processing
+- [ ] Persistent storage across sessions
+- [ ] Demo/live mode toggle
+- [ ] User management and club profile configuration
+
+### Enhancements (post-live)
+- [ ] Calendar month/week grid views and iCal export
+- [ ] Recurring sessions and event editing
+- [ ] Scheduled report generation
+- [ ] WCAG 2.1 AA accessibility audit
+- [ ] Member export and advanced reporting

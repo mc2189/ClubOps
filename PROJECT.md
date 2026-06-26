@@ -43,6 +43,6 @@ UI Page → dataProvider.getX() → demoProvider (now) / liveProvider (future)
 
 All data access goes through `ClubOpsDataProvider` interface defined in `src/data/providers/types.ts`.
 
-## v1.0.1 status
+## v1.0.2 status
 
-ClubOps v1.0.1 is a **polished public demo**. It must not be used with real member, staff or financial data. Live deployment requires authentication, RBAC, a secure database, secure file storage, a data protection policy and production-grade audit controls.
+ClubOps v1.0.2 is a **polished public demo** ready for committee presentations. It must not be used with real member, staff or financial data. The next phase (v1.1.0) adds authentication and RBAC for live mode.

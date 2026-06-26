@@ -168,7 +168,7 @@ export const demoMemberProfiles: MemberProfile[] = [
     hasMedicalFlag: true,
     consentStatus: "partial",
     giftAidStatus: "missing",
-    finance: { status: "unpaid", outstandingAmount: 45.0 },
+    finance: { status: "overdue", outstandingAmount: 45.0 },
     attendance: { percentage: 75, sessionsAttended: 15, sessionsTotal: 20 },
     documents: [
       { id: "doc-m05", title: "Allergy Action Plan", category: "Medical", uploadedDate: "2024-01-15" },
@@ -236,7 +236,7 @@ export const demoMemberProfiles: MemberProfile[] = [
     hasMedicalFlag: false,
     consentStatus: "missing",
     giftAidStatus: "missing",
-    finance: { status: "unpaid", outstandingAmount: 90.0 },
+    finance: { status: "overdue", outstandingAmount: 90.0 },
     attendance: { percentage: 85, sessionsAttended: 17, sessionsTotal: 20 },
     documents: [],
     notes: [],

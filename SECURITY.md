@@ -41,11 +41,12 @@
   - Store outside web root
   - Generate audit events on upload/delete
 
-## Audit and exports (v1.0.1 demo)
+## Audit and exports (v1.0.2 demo)
 
 - Audit events in demo mode are **simulated** and reset on page refresh.
 - Report exports do **not** generate real files in demo mode.
-- Session-only UI changes (registers, inbox status, alerts) reset on refresh.
+- Session-only UI changes (registers, inbox status, alerts, compose drafts) reset on refresh.
+- Communications compose uses simulated send only — no real email delivery.
 - Use [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) before sharing the public demo URL.
 - In live mode:
   - Audit logs must be **tamper-resistant** and retained

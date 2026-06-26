@@ -56,10 +56,11 @@ When connecting live data in the future, secrets must be configured in the Verce
 
 ## 6. Demo safety checklist
 
-Before sharing the public URL, complete [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md).
+Before sharing the public URL, complete [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) — including the **final pre-share checklist** on the live Vercel URL.
 
 Minimum checks:
 
+- [ ] Communications compose loads without getting stuck (test Gift Aid preset)
 - [ ] Demo banner is visible on all pages
 - [ ] All data is fake (no real member/financial/safeguarding data)
 - [ ] `/demo-script` walkthrough completes without broken links
