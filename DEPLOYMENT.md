@@ -47,7 +47,7 @@ git push -u origin main
 - **Preview**: Feature branches get preview deployment URLs automatically.
 - The demo URL can be shared safely with committee members — all data is fake.
 - No environment variables are required for the demo.
-- **v1.2.0:** Architecture blueprint docs ship with the repo; settings pages at `/settings/live-readiness` etc. No database or auth is deployed.
+- **v1.3.0:** Auth/stack decision pack ships in repo; still no env vars on public demo.
 
 ## 5. Environment variables
 

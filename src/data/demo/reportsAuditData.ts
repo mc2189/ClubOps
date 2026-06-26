@@ -174,6 +174,18 @@ export const demoScriptOptionalSteps: DemoScriptStep[] = [
     emphasis: "Blueprint only — no database or real auth in this release.",
     optional: true,
   },
+  {
+    step: 0,
+    title: "Optional — Auth & live stack decision (v1.3.0)",
+    href: "/settings/auth-decision",
+    secondaryHref: "/settings/recommended-stack",
+    secondaryLinkLabel: "Recommended stack",
+    whatToClick: "Open Auth decision pack → skim stack options. Open Recommended stack for provisional Supabase recommendation.",
+    whatToSay: "Before we build live mode, we compare auth and database options. Our provisional recommendation is Supabase for auth, Postgres, row-level security and file storage — on a separate private deployment. The public demo stays fake data forever.",
+    problemSolved: "Committee understands we are choosing foundations carefully, not rushing into real data.",
+    emphasis: "Decision pack only — no auth packages, database or keys added yet.",
+    optional: true,
+  },
 ];
 
 export const demoReportsAuditPageData: ReportsAuditPageData = {

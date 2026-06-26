@@ -15,6 +15,7 @@ UI summary: `/settings/production-roadmap`
 | Demo script and QA checklist | Done |
 | RBAC preview (client-side, v1.1.0) | Done |
 | Architecture blueprint (v1.2.0) | Done |
+| Auth/stack decision pack (v1.3.0) | Done |
 
 **Risks:** Accidentally loading real data into demo deployment.
 
@@ -28,13 +29,14 @@ UI summary: `/settings/production-roadmap`
 
 | Deliverable | Notes |
 |-------------|-------|
-| Auth provider choice | Email/magic link/SSO — document decision |
-| Database + migrations | PostgreSQL or similar recommended |
+| Auth provider choice | **Provisional: Supabase Auth** — see AUTH_DECISION_PACK.md |
+| Database + migrations | **Provisional: Supabase Postgres** + RLS |
+| File storage | **Provisional: Supabase Storage** private buckets |
 | `liveProvider` skeleton | Read path for one module |
 | Server actions/API with auth checks | Every mutation authorised server-side |
-| Environment separation | Demo vs live deployments |
+| Environment separation | Demo vs live Vercel projects; no keys on public demo |
 
-**Dependencies:** Stable `ClubOpsDataProvider` contract (v1.2.0).
+**Dependencies:** Stable `ClubOpsDataProvider` contract (v1.2.0); stack decision (v1.3.0).
 
 **Risks:** Treating client RBAC preview as real security.
 
@@ -120,8 +122,9 @@ UI summary: `/settings/production-roadmap`
 ## Recommended build order
 
 1. Freeze provider contract (v1.2.0)
-2. Choose auth strategy
-3. Database schema v1 from DATA_MODEL.md
+2. **Approve auth/stack decision (v1.3.0 — provisional Supabase)**
+3. Choose auth strategy — see AUTH_IMPLEMENTATION_PLAN.md
+4. Database schema v1 from DATA_MODEL.md
 4. Server-side RBAC middleware
 5. `liveProvider` read path (members first)
 6. `liveProvider` write path + audit
@@ -140,7 +143,7 @@ See `/settings/production-roadmap` for risk-if-skipped notes.
 
 ## What not to do
 
-- Do not add Supabase/Firebase/Prisma/Neon until explicitly planned
+- Do not add Supabase/Clerk/Auth.js/Firebase **SDK packages** until Stage 2 implementation iteration
 - Do not wire `liveProvider` to public demo
 - Do not store real data in demo JSON files
 - Do not skip audit for "quick" live launch

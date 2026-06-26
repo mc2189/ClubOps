@@ -1,5 +1,37 @@
 # ClubOps — Build Notes
 
+## Iteration 15 — v1.3.0 Auth & Live Stack Decision Pack (2026-06-26)
+
+### What was built
+
+- Auth decision, live stack matrix, implementation options and recommended stack settings pages
+- Stack comparison data and 1–5 decision matrix with justifications
+- Provisional Supabase recommendation (not implemented)
+- Eight decision/evaluation markdown documents
+- Safety warnings component; links from Settings, Security, Live readiness, Production roadmap, demo script
+
+### New routes
+
+- `/settings/auth-decision`
+- `/settings/live-stack`
+- `/settings/implementation-options`
+- `/settings/recommended-stack`
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+- Committee approval of provisional Supabase stack
+- Stage 2: Supabase project (live only), SDK add, auth + liveProvider members read path on private deploy
+
+---
+
 ## Iteration 14 — v1.2.0 Live-Ready Data Architecture Blueprint (2026-06-26)
 
 ### What was built

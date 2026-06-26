@@ -75,6 +75,12 @@ export function LiveReadinessClient() {
       </Card>
 
       <div className="mt-6 flex flex-wrap gap-3 text-sm">
+        <Link href="/settings/auth-decision" className="font-medium text-indigo-600 hover:underline">
+          Auth decision pack (v1.3.0) →
+        </Link>
+        <Link href="/settings/recommended-stack" className="font-medium text-indigo-600 hover:underline">
+          Recommended stack →
+        </Link>
         <Link href="/settings/production-roadmap" className="font-medium text-indigo-600 hover:underline">
           Production roadmap →
         </Link>

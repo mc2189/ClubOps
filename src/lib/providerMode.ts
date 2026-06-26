@@ -8,6 +8,9 @@ export type ProviderMode = "demo" | "live";
 /** Active provider mode. Public Vercel demo must remain "demo". */
 export const PROVIDER_MODE: ProviderMode = "demo";
 
+/** Provisional live stack (not implemented): Supabase Auth + Postgres + RLS + Storage on private deploy. */
+export const PROVISIONAL_LIVE_STACK = "supabase" as const;
+
 export const isDemoMode = (): boolean => PROVIDER_MODE === "demo";
 
 /** Human-readable label for settings UI */

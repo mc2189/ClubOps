@@ -43,6 +43,12 @@ UI Page → dataProvider.getX() → demoProvider (now) / liveProvider (future)
 
 All data access goes through `ClubOpsDataProvider` interface defined in `src/data/providers/types.ts`.
 
+## v1.3.0 status
+
+ClubOps v1.3.0 adds an **auth and live stack decision pack** comparing Supabase, Clerk, Auth.js, Firebase and custom auth. **Provisional recommendation: Supabase Auth + Postgres + RLS + Storage** on a private live deployment. No SDK packages, env vars, or real auth implemented. Public demo unchanged.
+
+Decision pages: `/settings/auth-decision`, `/settings/live-stack`, `/settings/implementation-options`, `/settings/recommended-stack`.
+
 ## v1.2.0 status
 
 ClubOps v1.2.0 adds a **live-ready data architecture blueprint** — documentation and settings UI for moving from demo to live without messy rewrites. **No database, auth, or live integrations are added.** Demo Mode remains permanent.
@@ -55,4 +61,4 @@ Technical docs: ARCHITECTURE.md, DATA_MODEL.md, LIVE_MODE_PLAN.md, PROVIDER_CONT
 
 ClubOps v1.1.0 adds **demo role switching and RBAC preview** — a presentation tool showing how secretary, treasurer, coach and welfare roles would restrict access in live mode. This is **not real authentication** and does not protect real data. The demo remains publicly accessible without login.
 
-The next phase after v1.2.0 is Stage 2 of the migration plan: real authentication, database, and server-side authorisation for live mode.
+The next phase after v1.3.0 is Stage 2 implementation: create Supabase project (live only), add SDK in a future iteration, implement server-side auth and liveProvider read path — on a **private** deployment only.

@@ -2,6 +2,34 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.3.0] — 2026-06-26
+
+### Added
+
+- **v1.3.0 Auth and live stack decision pack**
+- Settings pages: `/settings/auth-decision`, `/settings/live-stack`, `/settings/implementation-options`, `/settings/recommended-stack`
+- Stack decision data (`src/data/demo/stackDecisionData.ts`) — options, decision matrix, Supabase plan, safety warnings
+- `StackDecisionSafetyNotice` component
+- Docs: AUTH_DECISION_PACK.md, LIVE_STACK_OPTIONS.md, RECOMMENDED_LIVE_STACK.md, AUTH_IMPLEMENTATION_PLAN.md
+- Vendor evaluations: SUPABASE_EVALUATION.md, CLERK_EVALUATION.md, AUTHJS_EVALUATION.md, FIREBASE_EVALUATION.md
+- Provisional recommendation: Supabase Auth + Postgres + RLS + Storage (not implemented)
+- Optional demo script step for auth/stack decision
+- `PROVISIONAL_LIVE_STACK` constant in providerMode.ts
+
+### Changed
+
+- Settings overview, Security, Live readiness, Production roadmap link to decision pack pages
+- Settings sub-nav extended
+- liveProvider.stub.ts and providers/index.ts comments reference Supabase provisional stack
+- ARCHITECTURE, LIVE_MODE_PLAN, SECURITY_LIVE_REQUIREMENTS, MIGRATION_PLAN, ROADMAP, README, PROJECT, FEATURES, BUILD_NOTES, DEPLOYMENT, DEMO_QA_CHECKLIST updated
+
+### Not included (by design)
+
+- No auth SDK packages (Supabase, Clerk, Auth.js, Firebase)
+- No environment variables, secrets, database, or real authentication
+- `PROVIDER_MODE` remains `"demo"`; liveProvider not wired
+- Demo behaviour unchanged except new settings links and docs
+
 ## [1.2.0] — 2026-06-26
 
 ### Added

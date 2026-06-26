@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
@@ -81,6 +82,18 @@ export function ProductionRoadmapClient() {
           ))}
         </div>
       </section>
+
+      <div className="mt-8 flex flex-wrap gap-3 text-sm">
+        <Link href="/settings/auth-decision" className="font-medium text-indigo-600 hover:underline">
+          Auth decision pack (v1.3.0) →
+        </Link>
+        <Link href="/settings/recommended-stack" className="font-medium text-indigo-600 hover:underline">
+          Recommended stack →
+        </Link>
+        <Link href="/settings/live-readiness" className="font-medium text-indigo-600 hover:underline">
+          Live readiness →
+        </Link>
+      </div>
     </>
   );
 }

@@ -73,6 +73,28 @@ export default function SettingsPage() {
         </Card>
 
         <Card>
+          <h3 className="text-base font-semibold text-slate-900">Auth & live stack (v1.3.0)</h3>
+          <p className="mt-2 text-sm text-slate-600">
+            Compare Supabase, Clerk, Auth.js and Firebase before implementing live mode — decision
+            pack only, no real auth yet.
+          </p>
+          <div className="mt-3 flex flex-col gap-2 text-sm">
+            <Link href="/settings/auth-decision" className="font-medium text-indigo-600 hover:underline">
+              Auth decision pack →
+            </Link>
+            <Link href="/settings/live-stack" className="font-medium text-indigo-600 hover:underline">
+              Live stack matrix →
+            </Link>
+            <Link href="/settings/recommended-stack" className="font-medium text-indigo-600 hover:underline">
+              Recommended stack →
+            </Link>
+            <Link href="/settings/implementation-options" className="font-medium text-indigo-600 hover:underline">
+              Implementation options →
+            </Link>
+          </div>
+        </Card>
+
+        <Card>
           <h3 className="text-base font-semibold text-slate-900">Live-ready architecture (v1.2.0)</h3>
           <p className="mt-2 text-sm text-slate-600">
             Blueprint for moving from demo to live — data model, providers, security and migration

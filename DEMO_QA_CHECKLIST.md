@@ -1,4 +1,4 @@
-# ClubOps — Demo QA Checklist (v1.2.0)
+# ClubOps — Demo QA Checklist (v1.3.0)
 
 Use this before sharing the Vercel demo link with a club secretary, treasurer or committee member.
 
@@ -17,6 +17,7 @@ Complete these on the **production demo URL** (not localhost):
 - [ ] Switch demo roles and verify permission preview messages (Coach on Finance, Treasurer on Gift Aid)
 - [ ] Open `/settings/permissions` matrix
 - [ ] **Architecture blueprint (v1.2.0)** — `/settings/live-readiness` loads checklist; `/settings/data-architecture` shows entities
+- [ ] **Auth/stack decision (v1.3.0)** — `/settings/auth-decision` and `/settings/recommended-stack` load; confirm “not implemented yet” warnings
 - [ ] Confirm no real uploads, emails, banking, payments or HMRC actions occur
 - [ ] Refresh page — session-only changes reset
 - [ ] Explain: **not production software** — live use needs auth, RBAC, secure DB, secure storage and audit controls
@@ -40,6 +41,7 @@ Confirm each sidebar link loads without error:
 - [ ] `/demo-script`
 - [ ] `/settings`
 - [ ] `/settings/live-readiness`, `/settings/data-architecture`, `/settings/provider-model`, `/settings/production-roadmap` (v1.2.0)
+- [ ] `/settings/auth-decision`, `/settings/live-stack`, `/settings/implementation-options`, `/settings/recommended-stack` (v1.3.0)
 - [ ] `/demo` (from banner link)
 
 Spot-check sub-navigation within Finance, Gift Aid, Communications, Documents, Staff, Fundraising, Reports and Audit.

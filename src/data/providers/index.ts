@@ -7,7 +7,8 @@ import { isDemoMode } from "@/lib/providerMode";
  * ClubOps data provider entry point.
  *
  * - Public demo (permanent): demoProvider — fake data from src/data/demo/
- * - Future live deployment: liveProvider — secure DB, auth, server-side RBAC
+ * - Future live deployment: liveProvider — provisional target: Supabase (Auth + Postgres + RLS + Storage)
+ *   on a private Vercel deployment only. See RECOMMENDED_LIVE_STACK.md and AUTH_IMPLEMENTATION_PLAN.md.
  *
  * UI pages must use dataProvider only — never import demo data files directly.
  *

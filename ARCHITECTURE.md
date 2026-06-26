@@ -17,9 +17,9 @@ ClubOps is a **demo-first, live-ready** club management application. The public 
      │  (active now)   │        │  (future stub)  │
      └────────┬────────┘        └────────┬────────┘
               ▼                           ▼
-     src/data/demo/*              Database + auth +
-     fake JSON/TS data            secure storage +
-                                  server-side RBAC
+     src/data/demo/*              Supabase (provisional):
+     fake JSON/TS data            Auth + Postgres + RLS +
+                                  Storage + server RBAC
 ```
 
 ## Core principle
@@ -85,7 +85,7 @@ When live mode is built:
 - **Live deployment** — separate private deployment; real auth; `liveProvider` only after security review.
 - Never mix real data into the demo deployment.
 
-## UI blueprint pages (v1.2.0)
+## UI blueprint pages (v1.2.0 + v1.3.0)
 
 Non-technical and technical audiences can review:
 
@@ -93,6 +93,20 @@ Non-technical and technical audiences can review:
 - `/settings/data-architecture` — entities and classifications
 - `/settings/provider-model` — demo vs live providers
 - `/settings/production-roadmap` — staged build order
+- `/settings/auth-decision` — auth/stack comparison (v1.3.0)
+- `/settings/live-stack` — decision matrix scores
+- `/settings/implementation-options` — Clerk, Auth.js, Firebase alternatives
+- `/settings/recommended-stack` — provisional Supabase recommendation
+
+## Provisional live stack (v1.3.0 — not implemented)
+
+See [RECOMMENDED_LIVE_STACK.md](./RECOMMENDED_LIVE_STACK.md):
+
+- **Vercel** — hosting (separate live project)
+- **Supabase Auth + Postgres + RLS + Storage** — live data layer target for `liveProvider`
+- **demoProvider** — permanent public demo
+
+No SDK packages or env vars added in v1.3.0.
 
 ## Related documents
 
@@ -100,7 +114,8 @@ Non-technical and technical audiences can review:
 - [PROVIDER_CONTRACTS.md](./PROVIDER_CONTRACTS.md) — provider interface
 - [LIVE_MODE_PLAN.md](./LIVE_MODE_PLAN.md) — live mode strategy
 - [MIGRATION_PLAN.md](./MIGRATION_PLAN.md) — staged migration
-- [SECURITY_LIVE_REQUIREMENTS.md](./SECURITY_LIVE_REQUIREMENTS.md) — production security
+- [AUTH_DECISION_PACK.md](./AUTH_DECISION_PACK.md) — auth/stack decision pack (v1.3.0)
+- [RECOMMENDED_LIVE_STACK.md](./RECOMMENDED_LIVE_STACK.md) — provisional Supabase stack
 
 ## Developer rules
 

@@ -19,6 +19,8 @@ Open [http://localhost:3000](http://localhost:3000) — the app redirects to the
 
 ## Demo mode
 
+**v1.3.0 adds auth and live stack decision pack — still demo only, no SDKs or env vars.**
+
 **v1.2.0 adds live-ready data architecture blueprint — still demo only, no database.**
 
 **v1.1.0 adds demo role switching and RBAC preview — not real authentication.**
@@ -38,7 +40,14 @@ See [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) before sharing the public dem
 - [SECURITY_LIVE_REQUIREMENTS.md](./SECURITY_LIVE_REQUIREMENTS.md) — production security checklist
 - [MIGRATION_PLAN.md](./MIGRATION_PLAN.md) — staged migration stages 1–6
 
-Settings UI: `/settings/live-readiness`, `/settings/data-architecture`, `/settings/provider-model`, `/settings/production-roadmap`
+Settings UI: `/settings/live-readiness`, `/settings/data-architecture`, `/settings/provider-model`, `/settings/production-roadmap`, `/settings/auth-decision`, `/settings/live-stack`, `/settings/recommended-stack`
+
+## Auth & stack decision (v1.3.0)
+
+- [AUTH_DECISION_PACK.md](./AUTH_DECISION_PACK.md) — compare Supabase, Clerk, Auth.js, Firebase
+- [LIVE_STACK_OPTIONS.md](./LIVE_STACK_OPTIONS.md) — decision matrix
+- [RECOMMENDED_LIVE_STACK.md](./RECOMMENDED_LIVE_STACK.md) — provisional Supabase recommendation
+- [AUTH_IMPLEMENTATION_PLAN.md](./AUTH_IMPLEMENTATION_PLAN.md) — future implementation steps
 
 ## Project structure
 

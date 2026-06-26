@@ -4,17 +4,16 @@
  * Do not use this provider in production or with real data.
  * The public demo must always use demoProvider from index.ts.
  *
- * When implementing live mode:
- * 1. Add authentication and server-side session validation
- * 2. Enforce RBAC on every method — never trust client role switcher
- * 3. Use a relational database with tenant/club isolation
- * 4. Persist audit events append-only
- * 5. Use secure object storage for files — never serve from public paths
- * 6. Keep demoProvider available for training/demo deployments
+ * When implementing live mode (provisional stack: Supabase Auth + Postgres + RLS + Storage):
+ * 1. Add Supabase auth and server-side session validation (@supabase/ssr — future iteration)
+ * 2. Enforce RBAC on every method — never trust client role switcher; RLS on all tables
+ * 3. Use Supabase Postgres with club_id tenant isolation and migrations
+ * 4. Persist audit events append-only in audit_events table
+ * 5. Use Supabase Storage private buckets — never serve from public paths
+ * 6. Keep demoProvider available for training/demo deployments (public Vercel URL)
  *
- * @see PROVIDER_CONTRACTS.md
- * @see LIVE_MODE_PLAN.md
- * @see MIGRATION_PLAN.md
+ * @see RECOMMENDED_LIVE_STACK.md
+ * @see AUTH_IMPLEMENTATION_PLAN.md
  */
 
 import type { ClubOpsDataProvider } from "@/data/providers/types";

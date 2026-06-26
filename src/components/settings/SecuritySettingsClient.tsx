@@ -74,6 +74,16 @@ export function SecuritySettingsClient() {
               Production roadmap
             </Link>
           </li>
+          <li>
+            <Link href="/settings/auth-decision" className="text-indigo-600 hover:underline">
+              Auth decision pack (v1.3.0)
+            </Link>
+          </li>
+          <li>
+            <Link href="/settings/recommended-stack" className="text-indigo-600 hover:underline">
+              Recommended live stack
+            </Link>
+          </li>
         </ul>
       </Card>
     </>

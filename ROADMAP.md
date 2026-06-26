@@ -2,7 +2,7 @@
 
 ## Phase 0 — Foundation
 
-**Status: Complete (v1.2.0 architecture blueprint)**
+**Status: Complete (v1.3.0 auth/stack decision pack)**
 
 - Project scaffold and tooling
 - Dashboard layout shell
@@ -14,10 +14,11 @@
 - **v1.0.2** — Final demo readiness fixes (composer, data consistency)
 - **v1.1.0** — Demo role switching and RBAC foundation preview
 - **v1.2.0** — Live-ready data architecture blueprint (docs + settings UI; no DB/auth)
+- **v1.3.0** — Auth and live stack decision pack (Supabase provisional recommendation; no SDKs)
 
 ## Phase 1 — Core CRUD
 
-**Status: Complete (demo) — architecture documented; live auth next (Stage 2)**
+**Status: Complete (demo) — stack decision documented; live auth next (Stage 2)**
 
 - [x] Member management
 - [x] Session and attendance register
@@ -55,6 +56,8 @@
 - [x] Architecture blueprint and migration plan (v1.2.0)
 - [x] Provider contract documented
 - [x] Data model and classification documented
+- [x] Auth/stack decision pack (v1.3.0)
+- [ ] Supabase live foundation (Stage 2 — private deploy only)
 - [ ] Live data provider with database
 - [ ] Real authentication
 - [ ] Production security hardening

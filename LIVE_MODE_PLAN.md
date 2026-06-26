@@ -6,19 +6,28 @@ Enable real clubs to run ClubOps with **real data**, **authentication**, **RBAC*
 
 ## What live mode is not (yet)
 
-The v1.2.0 release is a **blueprint only**. The app does not:
+The v1.2.0 release is an architecture **blueprint**. v1.3.0 adds an auth/stack **decision pack**. The app still does not:
 
 - Connect to a database
 - Authenticate users
+- Install auth SDK packages
 - Store files securely
 - Persist audit events
 - Process real bank, email, or HMRC data
+
+## Provisional live stack (v1.3.0)
+
+**Recommended (not implemented):** Supabase Auth + Postgres + RLS + Storage on a private Vercel deployment.
+
+See `/settings/recommended-stack`, [AUTH_DECISION_PACK.md](./AUTH_DECISION_PACK.md), and [AUTH_IMPLEMENTATION_PLAN.md](./AUTH_IMPLEMENTATION_PLAN.md).
+
+Public demo: `demoProvider` only — no Supabase keys.
 
 ## Dual-mode strategy
 
 | Aspect | Demo Mode | Live Mode |
 |--------|-----------|-----------|
-| Deployment | Public Vercel URL | Private deployment (TBD) |
+| Deployment | Public Vercel URL | Private Vercel + Supabase (provisional) |
 | Provider | `demoProvider` | `liveProvider` (future) |
 | Data | Fake | Real, classified |
 | Auth | None | Required |
@@ -90,4 +99,6 @@ Use these pages when explaining the path to production:
 - [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [PROVIDER_CONTRACTS.md](./PROVIDER_CONTRACTS.md)
 - [SECURITY_LIVE_REQUIREMENTS.md](./SECURITY_LIVE_REQUIREMENTS.md)
-- [MIGRATION_PLAN.md](./MIGRATION_PLAN.md)
+- [AUTH_DECISION_PACK.md](./AUTH_DECISION_PACK.md)
+- [RECOMMENDED_LIVE_STACK.md](./RECOMMENDED_LIVE_STACK.md)
+- [AUTH_IMPLEMENTATION_PLAN.md](./AUTH_IMPLEMENTATION_PLAN.md)
