@@ -1,0 +1,93 @@
+# ClubOps — Features
+
+## Foundation (v0.1) — Complete
+
+- [x] Next.js + TypeScript + Tailwind CSS project scaffold
+- [x] Dashboard layout with sidebar navigation and top bar
+- [x] Demo mode banner ("Demo Mode — fake data only")
+- [x] Placeholder pages for all 13 modules
+- [x] Data provider interface and demo provider
+- [x] Fake demo data for all modules
+- [x] Shared UI components (Card, StatCard, DataTable, Badge, etc.)
+- [x] Documentation and Cursor rules
+- [x] GitHub and Vercel deployment readiness
+
+## Planned features
+
+### Members
+- [ ] Add / edit / archive members
+- [ ] Membership types and fee schedules
+- [ ] Parent/guardian linking
+- [ ] Medical and emergency contact fields (RBAC-protected)
+- [ ] Member search and filtering
+
+### Attendance
+- [ ] Session templates and scheduling
+- [ ] Quick attendance register (mobile-friendly)
+- [ ] Attendance reports by member/session
+- [ ] Absence notifications
+
+### Finance
+- [ ] Transaction entry and categorisation
+- [ ] Fee tracking and reminders
+- [ ] Budget vs actual reporting
+- [ ] Export for accountant
+
+### Gift Aid
+- [ ] Declaration capture and renewal
+- [ ] Eligible donation tracking
+- [ ] HMRC claim report generation
+
+### Communications
+- [ ] Email template builder
+- [ ] Group/segment targeting
+- [ ] Send history and delivery status
+- [ ] Notice board for members
+
+### Documents
+- [ ] File upload with defensive handling
+- [ ] Category and tag management
+- [ ] Version history
+- [ ] Soft-delete / archive
+
+### Calendar
+- [ ] Month/week/day views
+- [ ] Recurring session support
+- [ ] Event creation and editing
+- [ ] iCal export
+
+### Staff & Volunteers
+- [ ] DBS check tracking and expiry alerts
+- [ ] Qualification records
+- [ ] Safeguarding training log
+- [ ] Role assignment
+
+### Fundraising
+- [ ] Campaign creation and tracking
+- [ ] Donation recording
+- [ ] Progress visualisation
+- [ ] Gift Aid linkage
+
+### Reports
+- [ ] Pre-built report templates
+- [ ] Custom date range filtering
+- [ ] PDF/CSV export
+- [ ] Scheduled report generation
+
+### Audit Log
+- [ ] Automatic audit event creation on all data changes
+- [ ] Filter by actor, action, resource, date
+- [ ] Export for compliance review
+
+### Settings
+- [ ] Club profile configuration
+- [ ] Role-based access control (RBAC)
+- [ ] User management
+- [ ] Demo/live mode toggle
+
+### Platform
+- [ ] Authentication (email/password or OAuth)
+- [ ] Live data provider implementation
+- [ ] Database integration
+- [ ] Mobile-responsive refinements
+- [ ] Accessibility audit (WCAG 2.1 AA)

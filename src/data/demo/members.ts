@@ -1,0 +1,58 @@
+import type { Member } from "@/data/providers/types";
+
+export const demoMembers: Member[] = [
+  {
+    id: "mem-001",
+    firstName: "Alex",
+    lastName: "Thompson",
+    email: "alex.thompson@example.com",
+    membershipType: "Junior",
+    status: "active",
+    joinedDate: "2024-09-01",
+  },
+  {
+    id: "mem-002",
+    firstName: "Jordan",
+    lastName: "Reeves",
+    email: "jordan.reeves@example.com",
+    membershipType: "Junior",
+    status: "active",
+    joinedDate: "2023-01-15",
+  },
+  {
+    id: "mem-003",
+    firstName: "Sam",
+    lastName: "Patel",
+    email: "sam.patel@example.com",
+    membershipType: "Adult",
+    status: "active",
+    joinedDate: "2022-06-10",
+  },
+  {
+    id: "mem-004",
+    firstName: "Casey",
+    lastName: "Morgan",
+    email: "casey.morgan@example.com",
+    membershipType: "Junior",
+    status: "inactive",
+    joinedDate: "2021-03-22",
+  },
+  {
+    id: "mem-005",
+    firstName: "Riley",
+    lastName: "Chen",
+    email: "riley.chen@example.com",
+    membershipType: "Junior",
+    status: "active",
+    joinedDate: "2024-01-08",
+  },
+  {
+    id: "mem-006",
+    firstName: "Taylor",
+    lastName: "Brooks",
+    email: "taylor.brooks@example.com",
+    membershipType: "Parent/Guardian",
+    status: "active",
+    joinedDate: "2023-09-01",
+  },
+];

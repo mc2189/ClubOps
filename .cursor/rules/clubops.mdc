@@ -1,0 +1,27 @@
+---
+description: ClubOps permanent development rules
+globs:
+alwaysApply: true
+---
+
+# ClubOps Development Rules
+
+- ClubOps is demo-first and live-ready.
+- No real sensitive data in demo mode.
+- All demo data must be fake.
+- Do not hard-code data in UI components.
+- Use provider interfaces for data.
+- Keep modules modular and reusable.
+- Keep UI simple for non-technical volunteers.
+- Build mobile-responsive screens.
+- Consider accessibility.
+- Consider auditability.
+- Consider security before feature convenience.
+- Do not add paid APIs unless explicitly instructed.
+- Do not leave lint, type or build errors.
+- After each feature iteration, run lint, typecheck if available, tests if available, and build.
+- Fix all errors before stopping.
+- Update CHANGELOG.md, BUILD_NOTES.md and ROADMAP.md after every completed iteration.
+- If Git is configured and authenticated, commit changes with a clear message.
+- If a remote GitHub repository is configured, push after successful tests and commit.
+- Never commit secrets, `.env` files, real personal data, or real club data.
