@@ -362,6 +362,93 @@ export interface GiftAidDeclaration {
   amountEligible: number;
 }
 
+export type DeclarationStatus =
+  | "valid"
+  | "missing"
+  | "returned"
+  | "needs-review"
+  | "expired"
+  | "withdrawn";
+
+export type GiftAidEligibility = "eligible" | "not-eligible" | "needs-review";
+
+export type DonationIncomeCategory =
+  | "eligible individual donation"
+  | "ineligible fees"
+  | "ineligible raffle income"
+  | "ineligible business donation"
+  | "ineligible sponsorship"
+  | "ineligible grant"
+  | "needs review";
+
+export interface GiftAidDeclarationRecord {
+  id: string;
+  parentCarerName: string;
+  linkedMemberIds: string[];
+  linkedMemberNames: string[];
+  status: DeclarationStatus;
+  declarationDate?: string;
+  taxpayerConfirmed: boolean;
+  coveredPeriod: string;
+  communicationPlaceholder?: string;
+  auditPlaceholder?: string;
+}
+
+export interface GiftAidDonationRecord {
+  id: string;
+  date: string;
+  donorSource: string;
+  linkedParentMember?: string;
+  linkedMemberId?: string;
+  amount: number;
+  category: DonationIncomeCategory;
+  eligibility: GiftAidEligibility;
+  reason: string;
+  declarationStatus: DeclarationStatus | "n/a";
+  financeTransactionId?: string;
+}
+
+export interface GiftAidReviewItem {
+  id: string;
+  title: string;
+  description: string;
+  amount: number;
+  date: string;
+  reviewType: string;
+  eligibility: GiftAidEligibility;
+  linkedMemberId?: string;
+}
+
+export interface GiftAidDashboardData {
+  validDeclarations: number;
+  missingDeclarations: number;
+  returnedDeclarations: number;
+  needsReviewDeclarations: number;
+  eligibleDonationsThisMonth: number;
+  ineligibleIncomeThisMonth: number;
+  estimatedReclaim: number;
+  claimReadyAmount: number;
+  possibleMissedGiftAid: number;
+  donationsRequiringReview: number;
+}
+
+export interface GiftAidClaimExportData {
+  claimReadyDonations: GiftAidDonationRecord[];
+  estimatedReclaim: number;
+  missingDeclarations: GiftAidDeclarationRecord[];
+  excludedIncome: GiftAidDonationRecord[];
+  reviewExceptions: GiftAidReviewItem[];
+  checklist: { label: string; complete: boolean }[];
+}
+
+export interface GiftAidPageData {
+  dashboard: GiftAidDashboardData;
+  declarations: GiftAidDeclarationRecord[];
+  donations: GiftAidDonationRecord[];
+  reviewItems: GiftAidReviewItem[];
+  claimExport: GiftAidClaimExportData;
+}
+
 export interface Communication {
   id: string;
   subject: string;
@@ -530,6 +617,7 @@ export interface ClubOpsDataProvider {
   getImportPreview(source: "csv" | "pdf"): Promise<ImportPreviewData>;
   getFinanceReports(): Promise<FinanceReportsData>;
   getGiftAidDeclarations(): Promise<GiftAidDeclaration[]>;
+  getGiftAidPageData(): Promise<GiftAidPageData>;
   getCommunications(): Promise<Communication[]>;
   getDocuments(): Promise<Document[]>;
   getCalendarEvents(): Promise<CalendarEvent[]>;

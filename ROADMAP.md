@@ -16,6 +16,7 @@
 - [x] Member management (list, profile, add, edit, archive — demo state)
 - [x] Session and attendance register (demo state)
 - [x] Finance module with bank import demo and fee tracking
+- [x] Gift Aid module with declarations, eligibility review and claim export demo
 - [ ] Authentication and RBAC foundation
 
 ## Phase 2 — Communications & Documents

@@ -54,9 +54,15 @@
 - [ ] Persistent storage (live provider)
 
 ### Gift Aid
-- [ ] Declaration capture and renewal
-- [ ] Eligible donation tracking
-- [ ] HMRC claim report generation
+- [x] Gift Aid dashboard with declaration and eligibility stats
+- [x] Declarations page with parent/carer records and demo actions
+- [x] Eligible donations split (fees, donations, raffle, business, grants, review)
+- [x] Review workflow for uncertain items
+- [x] Claim export placeholder with compliance checklist
+- [x] Gift Aid rules page with plain-English compliance warnings
+- [x] Declaration request preview (Communications placeholder)
+- [ ] HMRC integration (not planned for demo)
+- [ ] Real declaration storage (live provider)
 
 ### Communications
 - [ ] Email template builder

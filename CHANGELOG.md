@@ -2,6 +2,26 @@
 
 All notable changes to ClubOps are documented here.
 
+## [0.5.0] — 2026-06-26
+
+### Added
+
+- **Gift Aid module v0.5.0** — dashboard, declarations, eligible donations, review, claim export, and rules
+- Gift Aid dashboard with declaration stats, eligible/ineligible income, reclaim estimates, and compliance warnings
+- Declarations page with parent/carer records, demo actions (mark valid, returned, flag review, send request)
+- Eligible donations page splitting income by eligibility with finance transaction links
+- Review workflow for uncertain items (missing declaration, unclear reference, business donation, raffle, etc.)
+- Claim export placeholder with checklist and simulated HMRC export (demo only)
+- Gift Aid rules page with plain-English eligibility rules and compliance warnings
+- Declaration request preview (links to future Communications module)
+- `GiftAidDemoProvider` for session-only state and audit event stubs
+- 11 demo declarations, 11 donation records, 6 review items linked to finance demo data
+
+### Changed
+
+- `/gift-aid` redesigned from placeholder table to full compliance-focused module
+- Extended Gift Aid provider with `getGiftAidPageData()`
+
 ## [0.4.0] — 2026-06-26
 
 ### Added

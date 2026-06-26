@@ -1,5 +1,40 @@
 # ClubOps — Build Notes
 
+## Iteration 5 — Gift Aid Module (2026-06-26)
+
+### What was built
+
+- Gift Aid dashboard with reclaim estimates and compliance warnings
+- Declarations management with demo actions and audit stubs
+- Eligible donations split by category with finance links
+- Review workflow and claim export placeholder
+- Rules page encoding HMRC-style eligibility in plain English
+
+### New routes
+
+- `/gift-aid`, `/gift-aid/declarations`, `/gift-aid/eligible-donations`
+- `/gift-aid/review`, `/gift-aid/claim-export`, `/gift-aid/rules`
+
+### Compliance
+
+- Strong warnings against claiming on fees, raffles, business donations
+- "Do not claim Gift Aid on this income type" on ineligible rows
+- No HMRC connection — demo only
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+Communications module next.
+
+---
+
 ## Iteration 4 — Finance & Bank Import Demo (2026-06-26)
 
 ### What was built
