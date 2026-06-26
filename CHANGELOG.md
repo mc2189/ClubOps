@@ -2,6 +2,26 @@
 
 All notable changes to ClubOps are documented here.
 
+## [0.4.0] — 2026-06-26
+
+### Added
+
+- **Finance module v0.4.0** — treasurer dashboard, fee tracking, expenses, transactions, and bank import demo
+- Bank import guided flow: CSV example, PDF placeholder, preview, normalise, auto-match, review, approve
+- Deterministic transaction matching with confidence scores (surname, amount, reference, due date)
+- 12 fake bank transactions with auto-match, suggested, unmatched, donation and expense scenarios
+- 8 demo fee records linked to member profiles with paid/unpaid/partial/overdue/waived statuses
+- Import review screen with approve match, change category, and approve import actions
+- Expenses page with add expense demo form and receipt/payment status
+- Finance reports page with 7 export placeholders (accountant pack, audit export, etc.)
+- `FinanceDemoProvider` for session-only import state and audit event stubs
+- Finance security notices for RBAC, bank data protection, and secure uploads (future live mode)
+
+### Changed
+
+- `/finance` redesigned from placeholder to full treasurer dashboard with quick actions
+- Extended finance provider with dashboard, fees, expenses, import preview, and reports methods
+
 ## [0.3.0] — 2026-06-26
 
 ### Added

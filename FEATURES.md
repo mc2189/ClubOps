@@ -44,10 +44,14 @@
 - [ ] iCal export
 
 ### Finance
-- [ ] Transaction entry and categorisation
-- [ ] Fee tracking and reminders
-- [ ] Budget vs actual reporting
-- [ ] Export for accountant
+- [x] Treasurer dashboard with income, outgoings, and fee summary
+- [x] Fee tracking linked to members (paid, unpaid, partial, overdue, waived)
+- [x] Bank import demo flow (CSV + PDF placeholder)
+- [x] Auto-match with confidence scores and review screen
+- [x] Expenses page with categories and receipt status
+- [x] Finance reports and export placeholders
+- [ ] Real file export (PDF/CSV)
+- [ ] Persistent storage (live provider)
 
 ### Gift Aid
 - [ ] Declaration capture and renewal

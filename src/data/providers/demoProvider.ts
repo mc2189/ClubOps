@@ -9,6 +9,13 @@ import {
 } from "@/data/demo/attendanceData";
 import { demoSessions } from "@/data/demo/sessions";
 import { demoFinance } from "@/data/demo/finance";
+import {
+  demoFinanceDashboard,
+  demoExpenses,
+  demoFinanceReports,
+  getImportPreview,
+} from "@/data/demo/financeData";
+import { demoFeeRecords } from "@/data/demo/fees";
 import { demoGiftAid } from "@/data/demo/giftAid";
 import { demoCommunications } from "@/data/demo/communications";
 import { demoDocuments } from "@/data/demo/documents";
@@ -81,6 +88,26 @@ export const demoProvider: ClubOpsDataProvider = {
 
   async getFinanceTransactions() {
     return simulateDelay(demoFinance);
+  },
+
+  async getFinanceDashboard() {
+    return simulateDelay(demoFinanceDashboard);
+  },
+
+  async getFeeRecords() {
+    return simulateDelay(demoFeeRecords);
+  },
+
+  async getExpenseRecords() {
+    return simulateDelay(demoExpenses);
+  },
+
+  async getImportPreview(source: "csv" | "pdf") {
+    return simulateDelay(getImportPreview(source));
+  },
+
+  async getFinanceReports() {
+    return simulateDelay(demoFinanceReports);
   },
 
   async getGiftAidDeclarations() {

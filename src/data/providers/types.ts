@@ -249,6 +249,110 @@ export interface FinanceTransaction {
   // TODO: RBAC — finance data restricted to treasurer/admin roles
 }
 
+export type FeeStatus = "paid" | "unpaid" | "partial" | "overdue" | "waived";
+export type TransactionCategory =
+  | "member fee"
+  | "voluntary donation"
+  | "hall hire"
+  | "equipment"
+  | "wages/session payment"
+  | "insurance"
+  | "competition fee"
+  | "fundraising income"
+  | "grant income"
+  | "business sponsorship"
+  | "refund"
+  | "unknown";
+
+export type MatchReviewStatus = "auto-matched" | "suggested" | "unmatched" | "approved" | "flagged";
+
+export type ExpenseCategory =
+  | "hall hire"
+  | "equipment"
+  | "insurance"
+  | "wages/session payments"
+  | "training/certifications"
+  | "competition costs"
+  | "travel"
+  | "utilities/miscellaneous";
+
+export interface FeeRecord {
+  id: string;
+  memberId: string;
+  memberName: string;
+  classGroup: string;
+  monthlyFee: number;
+  amountPaid: number;
+  amountOutstanding: number;
+  dueDate: string;
+  status: FeeStatus;
+  lastPaymentDate?: string;
+  paymentReference?: string;
+}
+
+export interface RawBankTransaction {
+  id: string;
+  date: string;
+  description: string;
+  reference: string;
+  amount: number;
+  type: "credit" | "debit";
+}
+
+export interface TransactionMatch {
+  transactionId: string;
+  confidence: number;
+  suggestedMemberId?: string;
+  suggestedMemberName?: string;
+  category: TransactionCategory;
+  reason: string;
+  reviewStatus: MatchReviewStatus;
+  warnings: string[];
+}
+
+export interface ImportReviewItem extends RawBankTransaction {
+  match: TransactionMatch;
+}
+
+export interface ExpenseRecord {
+  id: string;
+  payee: string;
+  category: ExpenseCategory;
+  date: string;
+  amount: number;
+  receiptStatus: "received" | "missing" | "pending";
+  paymentStatus: "paid" | "unpaid" | "partial";
+  notes?: string;
+}
+
+export interface FinanceDashboardData {
+  monthlyIncome: number;
+  monthlyOutgoings: number;
+  netPosition: number;
+  unpaidFees: number;
+  overdueFees: number;
+  matchedPayments: number;
+  unmatchedPayments: number;
+  possibleDonations: number;
+  expensesAwaitingReceipt: number;
+  upcomingObligations: { label: string; amount: number; dueDate: string }[];
+}
+
+export interface FinanceReportsData {
+  reports: {
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+  }[];
+}
+
+export interface ImportPreviewData {
+  source: "csv" | "pdf";
+  rawCount: number;
+  normalizedTransactions: RawBankTransaction[];
+}
+
 export interface GiftAidDeclaration {
   id: string;
   memberId: string;
@@ -420,6 +524,11 @@ export interface ClubOpsDataProvider {
   getAttendanceReports(): Promise<AttendanceReportsData>;
   getCalendarPageData(): Promise<CalendarPageData>;
   getFinanceTransactions(): Promise<FinanceTransaction[]>;
+  getFinanceDashboard(): Promise<FinanceDashboardData>;
+  getFeeRecords(): Promise<FeeRecord[]>;
+  getExpenseRecords(): Promise<ExpenseRecord[]>;
+  getImportPreview(source: "csv" | "pdf"): Promise<ImportPreviewData>;
+  getFinanceReports(): Promise<FinanceReportsData>;
   getGiftAidDeclarations(): Promise<GiftAidDeclaration[]>;
   getCommunications(): Promise<Communication[]>;
   getDocuments(): Promise<Document[]>;

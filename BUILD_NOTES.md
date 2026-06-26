@@ -1,5 +1,42 @@
 # ClubOps — Build Notes
 
+## Iteration 4 — Finance & Bank Import Demo (2026-06-26)
+
+### What was built
+
+- Treasurer dashboard with income, outgoings, fees, matching stats
+- Fee tracking table linked to member profiles
+- Bank import flow (CSV + PDF placeholder) with auto-match and review
+- Matching logic: amount, surname, parent surname, reference, due date, duplicates
+- Expenses CRUD (demo state), transactions list, reports/export placeholders
+
+### New routes
+
+- `/finance` — dashboard
+- `/finance/import` — guided import flow
+- `/finance/import/review` — match review and approve
+- `/finance/fees`, `/finance/transactions`, `/finance/expenses`, `/finance/reports`
+
+### Security
+
+- Demo-only notices on all finance pages
+- Finance data protection warning with RBAC TODOs
+- No real uploads or bank processing
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+Communications module or Gift Aid workflow next.
+
+---
+
 ## Iteration 3 — Attendance & Calendar (2026-06-26)
 
 ### What was built
