@@ -41,10 +41,12 @@ export function EligibleDonationsClient() {
 
       {groups.map((group) => {
         const items = donations.filter(group.filter);
-        if (items.length === 0) return null;
         return (
           <section key={group.title} className="mt-6">
             <h2 className="mb-3 text-lg font-semibold text-slate-900">{group.title}</h2>
+            {items.length === 0 ? (
+              <p className="text-sm text-slate-500">None in demo data for this category.</p>
+            ) : (
             <div className="space-y-3">
               {items.map((d) => (
                 <div key={d.id} className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
@@ -85,6 +87,7 @@ export function EligibleDonationsClient() {
                 </div>
               ))}
             </div>
+            )}
           </section>
         );
       })}

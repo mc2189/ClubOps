@@ -35,7 +35,9 @@ export function ReportsDashboardClient() {
                     {r.href ? (
                       <Link href={r.href} className="rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-indigo-700">Open report</Link>
                     ) : (
-                      <span className="rounded-md border border-slate-200 px-3 py-1.5 text-xs text-slate-500">Generate demo export</span>
+                      <Link href={r.href ?? "#"} className="rounded-md border border-slate-200 px-3 py-1.5 text-xs text-slate-600 hover:bg-slate-50">
+                        Open module →
+                      </Link>
                     )}
                     <Badge variant={r.exportStatus === "ready" ? "success" : r.exportStatus === "demo" ? "info" : "default"}>{r.exportStatus}</Badge>
                   </div>

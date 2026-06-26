@@ -50,11 +50,12 @@ export function PageHeader({ title, description, action }: PageHeaderProps) {
 interface EmptyStateProps {
   title: string;
   description: string;
+  className?: string;
 }
 
-export function EmptyState({ title, description }: EmptyStateProps) {
+export function EmptyState({ title, description, className }: EmptyStateProps) {
   return (
-    <Card className="text-center">
+    <Card className={cn("text-center", className)}>
       <h3 className="text-lg font-medium text-slate-900">{title}</h3>
       <p className="mt-2 text-sm text-slate-500">{description}</p>
     </Card>

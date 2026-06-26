@@ -2,7 +2,7 @@
 
 ## Phase 0 — Foundation
 
-**Status: Complete (v1.0.0 demo)**
+**Status: Complete (v1.0.1 demo polish)**
 
 - Project scaffold and tooling
 - Dashboard layout shell
@@ -10,6 +10,7 @@
 - All core module pages
 - Documentation and deployment readiness
 - **v1.0.0** — Reports, Audit, Export Centre and demo script
+- **v1.0.1** — Demo QA, link check and presentation polish
 
 ## Phase 1 — Core CRUD
 

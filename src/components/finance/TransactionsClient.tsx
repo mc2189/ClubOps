@@ -1,6 +1,6 @@
 "use client";
 
-import { Badge, PageHeader } from "@/components/ui";
+import { Badge, PageHeader, EmptyState } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/finance/FinanceNotices";
 import { FinanceSubNav } from "@/components/finance/FinanceDashboardClient";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
@@ -16,6 +16,13 @@ export function TransactionsClient() {
       <PageHeader title="Transactions" description="All income and expense transactions." />
       <FinanceSubNav active="Transactions" />
       <DemoOnlyNotice />
+      {transactions.length === 0 ? (
+        <EmptyState
+          title="No transactions"
+          description="Demo finance transactions appear here. Refresh resets session changes."
+          className="mt-4"
+        />
+      ) : (
       <div className="mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
         <table className="min-w-full text-sm">
           <thead className="bg-slate-50">
@@ -44,6 +51,7 @@ export function TransactionsClient() {
           </tbody>
         </table>
       </div>
+      )}
     </>
   );
 }

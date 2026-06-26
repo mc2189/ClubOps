@@ -19,13 +19,15 @@ Open [http://localhost:3000](http://localhost:3000) — the app redirects to the
 
 ## Demo mode
 
-**v1.0.0 is a safe demo, not production software.**
+**v1.0.1 is a polished demo, not production software.**
 
 This application runs in permanent demo mode with **fake data only**. A banner is displayed at the top of every page:
 
-> Demo Mode — fake data only
+> Demo mode — fake data only · refresh resets session changes
 
-No real member, financial or safeguarding data is used. The live version would require authentication, RBAC, secure storage, data protection policies and production integrations.
+No real member, financial or safeguarding data is used. The live version would require authentication, RBAC, secure database, secure storage, data protection policies and production-grade audit controls.
+
+See [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) before sharing the public demo link.
 
 ## Project structure
 
@@ -65,6 +67,7 @@ All pages fetch data through the provider layer (`src/data/providers/`). To swit
 - [DEPLOYMENT.md](./DEPLOYMENT.md) — GitHub and Vercel deployment
 - [BUILD_NOTES.md](./BUILD_NOTES.md) — build history
 - [CHANGELOG.md](./CHANGELOG.md) — change log
+- [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) — pre-share QA checklist
 
 ## License
 

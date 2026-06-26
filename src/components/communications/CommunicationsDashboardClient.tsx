@@ -107,7 +107,7 @@ export function CommunicationsDashboardClient() {
                 href="/communications/inbox"
                 className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50"
               >
-                View form replies
+                View inbox
               </Link>
               <Link
                 href="/communications/history"
@@ -137,6 +137,9 @@ export function CommunicationsDashboardClient() {
           </Card>
           <Card>
             <h2 className="text-sm font-semibold text-slate-900">Simulated sent messages</h2>
+            {recentSent.length === 0 ? (
+              <p className="mt-2 text-sm text-slate-500">No simulated sends yet — compose a message to see history here.</p>
+            ) : (
             <ul className="mt-2 divide-y divide-slate-100">
               {recentSent.map((m) => (
                 <li key={m.id} className="flex items-center justify-between py-2 text-sm">
@@ -150,6 +153,7 @@ export function CommunicationsDashboardClient() {
                 </li>
               ))}
             </ul>
+            )}
           </Card>
         </div>
 

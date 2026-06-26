@@ -17,7 +17,7 @@ export const demoDashboardTasks: DashboardTask[] = [
     title: "4 payments need review",
     description: "Recent bank transfers awaiting treasurer confirmation.",
     priority: "high",
-    href: "/finance",
+    href: "/finance/import/review",
     category: "Finance",
   },
   {
@@ -30,10 +30,10 @@ export const demoDashboardTasks: DashboardTask[] = [
   },
   {
     id: "task-003",
-    title: "7 unpaid fees",
+    title: "4 unpaid fees",
     description: "Membership fees overdue for June term.",
     priority: "medium",
-    href: "/finance",
+    href: "/finance/fees",
     category: "Finance",
   },
   {
@@ -46,10 +46,10 @@ export const demoDashboardTasks: DashboardTask[] = [
   },
   {
     id: "task-005",
-    title: "Coach first aid expires in 28 days",
-    description: "Jamie Hart's first aid certificate expires on 24 July 2026.",
+    title: "Safeguarding training expired — Jamie Hart",
+    description: "Jamie Hart's safeguarding certificate expired — book a refresher before the next session.",
     priority: "medium",
-    href: "/staff",
+    href: "/staff/qualifications",
     category: "Compliance",
   },
   {
@@ -57,7 +57,7 @@ export const demoDashboardTasks: DashboardTask[] = [
     title: "3 documents waiting to be assigned",
     description: "Uploaded files need categorisation and review.",
     priority: "low",
-    href: "/documents",
+    href: "/documents/assignment",
     category: "Documents",
   },
 ];
@@ -68,10 +68,10 @@ export const demoHealthMetrics: ClubHealthMetric[] = [
     label: "Finance",
     score: 78,
     status: "attention",
-    summary: "7 unpaid fees and 4 payments to review",
-    suggestedAction: "Review bank import",
+    summary: "4 unpaid fees and 4 payments to review",
+    suggestedAction: "Review bank import matches",
     linkedModule: "Finance",
-    linkedHref: "/finance",
+    linkedHref: "/finance/import/review",
   },
   {
     id: "health-attendance",
@@ -108,7 +108,10 @@ export const demoHealthMetrics: ClubHealthMetric[] = [
     label: "Compliance",
     score: 71,
     status: "attention",
-    summary: "1 first aid certificate expiring soon",
+    summary: "Safeguarding expired, BG Level 2 expiring soon",
+    suggestedAction: "Review qualifications",
+    linkedModule: "Staff",
+    linkedHref: "/staff/qualifications",
   },
   {
     id: "health-staff",
@@ -116,12 +119,15 @@ export const demoHealthMetrics: ClubHealthMetric[] = [
     score: 88,
     status: "good",
     summary: "All DBS checks current",
+    suggestedAction: "View staff alerts",
+    linkedModule: "Staff",
+    linkedHref: "/staff/alerts",
   },
 ];
 
 export const demoFinanceSnapshot: FinanceSnapshot = {
   paymentsNeedReview: 4,
-  unpaidFees: 7,
+  unpaidFees: 4,
   monthlyIncome: 3340.0,
   monthlyExpenses: 1145.5,
   netPosition: 2194.5,
@@ -143,15 +149,17 @@ export const demoGiftAidSnapshot: GiftAidSnapshot = {
 export const demoFundraisingProgress: FundraisingProgressItem[] = [
   {
     id: "fr-001",
-    name: "New Floor Equipment Fund",
-    raised: 1240,
+    name: "New Equipment Appeal",
+    raised: 3200,
     target: 5000,
+    href: "/fundraising/campaigns/fr-001",
   },
   {
     id: "fr-002",
-    name: "Charity Bake Sale",
-    raised: 485,
-    target: 500,
+    name: "Competition Travel Fund",
+    raised: 890,
+    target: 1500,
+    href: "/fundraising/campaigns/fr-002",
   },
 ];
 
@@ -160,7 +168,7 @@ export const demoQuickActions: QuickAction[] = [
     id: "qa-001",
     label: "Review payments",
     description: "Check pending transactions",
-    href: "/finance",
+    href: "/finance/import/review",
   },
   {
     id: "qa-002",
@@ -172,7 +180,7 @@ export const demoQuickActions: QuickAction[] = [
     id: "qa-003",
     label: "Add member",
     description: "Register a new member",
-    href: "/members",
+    href: "/members/new",
   },
   {
     id: "qa-004",
@@ -196,7 +204,7 @@ export const demoQuickActions: QuickAction[] = [
 
 export const demoDashboardHighlights: DashboardHighlights = {
   upcomingEvent: "Regional Competition — Saturday 12 July",
-  complianceAlert: "Coach first aid expires in 28 days",
+  complianceAlert: "Jamie Hart safeguarding expired — renewal needed",
   documentsWaiting: 3,
 };
 

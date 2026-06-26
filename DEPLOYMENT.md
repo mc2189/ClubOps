@@ -56,12 +56,16 @@ When connecting live data in the future, secrets must be configured in the Verce
 
 ## 6. Demo safety checklist
 
-Before sharing the public URL:
+Before sharing the public URL, complete [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md).
+
+Minimum checks:
 
 - [ ] Demo banner is visible on all pages
 - [ ] All data is fake (no real member/financial/safeguarding data)
+- [ ] `/demo-script` walkthrough completes without broken links
 - [ ] No `.env` files are committed
 - [ ] No API keys or secrets in the codebase
+- [ ] Recipients understand this is not production software
 
 ## Local development
 

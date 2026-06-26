@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Card, PageHeader, DataTable, Badge } from "@/components/ui";
+import { Card, PageHeader, DataTable, Badge, EmptyState } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/documents/DocumentsNotices";
 import { DocumentsSubNav } from "@/components/documents/DocumentsSubNav";
 import { useDocumentsDemo } from "@/components/documents/DocumentsDemoProvider";
@@ -18,6 +18,13 @@ export function MissingClient() {
       />
       <DocumentsSubNav active="Missing" />
       <DemoOnlyNotice />
+      {missing.length === 0 ? (
+        <EmptyState
+          title="No missing documents"
+          description="All required forms and documents are complete in the demo data."
+          className="mt-4"
+        />
+      ) : (
       <Card className="mt-4 overflow-x-auto">
         <DataTable
           headers={[
@@ -67,6 +74,7 @@ export function MissingClient() {
           ))}
         </DataTable>
       </Card>
+      )}
     </>
   );
 }

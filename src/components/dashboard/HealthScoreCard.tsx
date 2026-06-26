@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { ClubHealthMetric, HealthStatus } from "@/data/providers/types";
 
@@ -20,8 +21,8 @@ interface HealthScoreCardProps {
 export function HealthScoreCard({ metric }: HealthScoreCardProps) {
   const colors = statusColors[metric.status];
 
-  return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+  const content = (
+    <>
       <div className="flex items-center justify-between">
         <p className="text-sm font-semibold text-slate-900">{metric.label}</p>
         <span className={cn("rounded-full px-2 py-0.5 text-xs font-medium", colors.bg, colors.text)}>
@@ -44,6 +45,26 @@ export function HealthScoreCard({ metric }: HealthScoreCardProps) {
         />
       </div>
       <p className="mt-2 text-xs text-slate-500">{metric.summary}</p>
+      {metric.suggestedAction && metric.linkedHref && (
+        <p className="mt-2 text-xs font-medium text-indigo-600">{metric.suggestedAction} →</p>
+      )}
+    </>
+  );
+
+  if (metric.linkedHref) {
+    return (
+      <Link
+        href={metric.linkedHref}
+        className="block rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition-colors hover:border-indigo-300 hover:bg-indigo-50/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
+      >
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+      {content}
     </div>
   );
 }

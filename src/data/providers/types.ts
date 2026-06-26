@@ -1115,6 +1115,8 @@ export interface DemoScriptStep {
   whatToSay: string;
   problemSolved: string;
   emphasis: string;
+  secondaryHref?: string;
+  secondaryLinkLabel?: string;
 }
 
 export interface ReportsAuditPageData {
@@ -1202,6 +1204,7 @@ export interface FundraisingProgressItem {
   name: string;
   raised: number;
   target: number;
+  href?: string;
 }
 
 export interface QuickAction {

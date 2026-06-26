@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { PageHeader, Card } from "@/components/ui";
+import { DEMO_RESET_NOTE, DEMO_SAFETY_SUMMARY } from "@/lib/demoCopy";
 
 const demoFacts = [
   {
@@ -26,12 +27,15 @@ const demoFacts = [
 ];
 
 const notIncluded = [
+  "Real member, child or parent data",
   "Real Gmail or email delivery",
   "Real bank or Open Banking connections",
   "Real payment processing (Stripe, GoCardless, etc.)",
+  "Real file uploads or bank statement processing",
+  "HMRC Gift Aid submission",
   "Facebook or social media integrations",
   "AI or paid third-party APIs",
-  "Real member, child or parent data",
+  "Persistent storage — refresh resets session changes",
 ];
 
 export default function DemoModePage() {
@@ -51,11 +55,11 @@ export default function DemoModePage() {
       />
 
       <Card className="border-amber-200 bg-amber-50">
-        <p className="text-sm font-semibold text-amber-900">Demo Mode — fake data only</p>
+        <p className="text-sm font-semibold text-amber-900">Demo mode — fake data only</p>
         <p className="mt-2 text-sm text-amber-800">
-          This installation of ClubOps uses a demo data provider. All information displayed across
-          every module is generated for demonstration and must not be treated as real club data.
+          This installation of ClubOps uses a demo data provider. {DEMO_SAFETY_SUMMARY}
         </p>
+        <p className="mt-2 text-sm text-amber-800">{DEMO_RESET_NOTE}</p>
       </Card>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">

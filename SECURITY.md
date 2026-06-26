@@ -41,10 +41,12 @@
   - Store outside web root
   - Generate audit events on upload/delete
 
-## Audit and exports (v1.0.0 demo)
+## Audit and exports (v1.0.1 demo)
 
 - Audit events in demo mode are **simulated** and reset on page refresh.
 - Report exports do **not** generate real files in demo mode.
+- Session-only UI changes (registers, inbox status, alerts) reset on refresh.
+- Use [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) before sharing the public demo URL.
 - In live mode:
   - Audit logs must be **tamper-resistant** and retained
   - Exports must be **logged** and restricted by role

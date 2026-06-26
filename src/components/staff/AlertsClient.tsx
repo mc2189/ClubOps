@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Card, PageHeader, DataTable, Badge } from "@/components/ui";
+import { Card, PageHeader, DataTable, Badge, EmptyState } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/staff/StaffNotices";
 import { StaffSubNav } from "@/components/staff/StaffSubNav";
 import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
@@ -17,6 +17,13 @@ export function AlertsClient() {
       <PageHeader title="Staff & operations alerts" description="Qualifications, rota gaps, outgoings and compliance needing attention." />
       <StaffSubNav active="Alerts" />
       <DemoOnlyNotice />
+      {open.length === 0 ? (
+        <EmptyState
+          title="No open alerts"
+          description="All staff and operations alerts are resolved. Session-only changes — refresh resets."
+          className="mt-4"
+        />
+      ) : (
       <Card className="mt-4 overflow-x-auto">
         <DataTable headers={["Alert", "Severity", "Linked record", "Module", "Suggested action", "Due", "Status", "Actions"]}>
           {open.map((a) => (
@@ -41,6 +48,7 @@ export function AlertsClient() {
           ))}
         </DataTable>
       </Card>
+      )}
     </>
   );
 }

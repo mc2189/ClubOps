@@ -64,7 +64,7 @@ export const demoCalendarItems: CalendarItem[] = [
     location: "—",
     type: "payment-due",
     module: "Finance",
-    description: "7 members with outstanding fees",
+    description: "4 members with outstanding fees",
   },
   {
     id: "cal-007",
@@ -79,14 +79,14 @@ export const demoCalendarItems: CalendarItem[] = [
   },
   {
     id: "cal-008",
-    title: "Jamie Hart — first aid expiry",
-    date: "2026-07-24",
+    title: "Jamie Hart — safeguarding renewal",
+    date: "2026-07-01",
     startTime: "00:00",
     endTime: "23:59",
     location: "—",
     type: "qualification-expiry",
     module: "Staff",
-    description: "First aid certificate expires — renewal needed",
+    description: "Safeguarding certificate expired — book refresher course",
   },
   {
     id: "cal-009",
@@ -159,9 +159,9 @@ export const demoAutomationHints: AutomationHint[] = [
   {
     id: "hint-004",
     title: "Qualification expiring — alert admin",
-    description: "Jamie Hart's first aid certificate expires in 28 days.",
+    description: "Jamie Hart's safeguarding training has expired — book a refresher.",
     priority: "medium",
-    href: "/staff",
+    href: "/staff/qualifications",
     category: "Compliance",
   },
   {
@@ -169,7 +169,7 @@ export const demoAutomationHints: AutomationHint[] = [
     title: "Hall booking due — check invoice",
     description: "Main Hall hire invoice for July is due on 1 July.",
     priority: "medium",
-    href: "/finance",
+    href: "/finance/import/review",
     category: "Finance",
   },
   {

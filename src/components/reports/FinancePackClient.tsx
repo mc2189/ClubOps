@@ -35,7 +35,8 @@ export function FinancePackClient() {
         </ul>
         <div className="mt-4 flex flex-wrap gap-2">
           <Link href="/finance" className="text-sm text-indigo-600 hover:underline">Finance dashboard</Link>
-          <Link href="/finance/reports" className="text-sm text-indigo-600 hover:underline">Accountant export placeholder</Link>
+          <Link href="/reports/finance-pack" className="text-sm text-indigo-600 hover:underline">Finance pack report</Link>
+          <Link href="/finance/reports" className="text-sm text-indigo-600 hover:underline">Finance module reports</Link>
           <Link href="/documents/upload" className="text-sm text-indigo-600 hover:underline">Receipts/invoices</Link>
           <Link href="/fundraising/donations" className="text-sm text-indigo-600 hover:underline">Donations</Link>
         </div>

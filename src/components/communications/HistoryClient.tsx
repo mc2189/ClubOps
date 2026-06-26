@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, PageHeader, DataTable, Badge } from "@/components/ui";
+import { Card, PageHeader, DataTable, Badge, EmptyState } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/communications/CommunicationsNotices";
 import { CommunicationsSubNav } from "@/components/communications/CommunicationsSubNav";
 import { useCommunicationsDemo } from "@/components/communications/CommunicationsDemoProvider";
@@ -31,6 +31,13 @@ export function HistoryClient() {
       />
       <CommunicationsSubNav active="History" />
       <DemoOnlyNotice />
+      {history.length === 0 ? (
+        <EmptyState
+          title="No message history yet"
+          description="Simulated sends and drafts appear here after you compose messages. No real emails are sent."
+          className="mt-6"
+        />
+      ) : (
       <Card className="mt-6 overflow-x-auto">
         <DataTable
           headers={[
@@ -68,6 +75,7 @@ export function HistoryClient() {
           ))}
         </DataTable>
       </Card>
+      )}
     </>
   );
 }

@@ -2,6 +2,31 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.0.1] — 2026-06-26
+
+### Changed
+
+- **v1.0.1 Demo QA & presentation polish** — full route review, link accuracy and UI consistency pass
+- Dashboard tasks and quick actions link to precise module pages (import review, fees, qualifications, assignment)
+- Club Health scores on dashboard are now clickable links to relevant modules
+- Fundraising progress cards link to campaign detail pages; names aligned with fundraising module
+- Demo script updated with secondary links (finance review, wage prep) and clearer volunteer-time emphasis
+- Report cards without pack pages now link to module summary pages
+- Unpaid fee counts aligned across dashboard, calendar and report packs (4 members)
+- Jamie Hart compliance copy corrected (safeguarding, not first aid)
+- Empty states added to inbox, history, transactions, missing documents and staff alerts
+- Finance sub-nav highlights Dashboard consistently; finance pack export link corrected
+- Demo banner and `/demo` page clarify session reset and simulated actions
+- Shared demo wording in `src/lib/demoCopy.ts`
+- Documentation updated; `DEMO_QA_CHECKLIST.md` added for pre-share testing
+
+### Fixed
+
+- Imprecise dashboard task hrefs (finance, documents, staff)
+- Dead “Generate demo export” labels on report cards without actions
+- Communications “View form replies” renamed to “View inbox”
+- Inbox member records link to member profiles where matched
+
 ## [1.0.0] — 2026-06-26
 
 ### Added

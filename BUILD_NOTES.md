@@ -1,5 +1,39 @@
 # ClubOps — Build Notes
 
+## Iteration 11 — v1.0.1 Demo QA & Presentation Polish (2026-06-26)
+
+### What was built
+
+- Full route and link audit across all 68 app routes
+- Dashboard link accuracy (tasks, health scores, fundraising progress)
+- Demo script accuracy with secondary navigation links
+- Empty states for list pages that can become empty in session
+- Consistent demo safety wording and session-reset messaging
+- `DEMO_QA_CHECKLIST.md` for pre-share testing
+- Shared demo copy constants in `src/lib/demoCopy.ts`
+
+### QA focus
+
+- Broken links: none found; imprecise links corrected
+- Demo data alignment: fundraising names, unpaid fees, Jamie Hart safeguarding
+- Mobile: horizontal scroll preserved on tables; card layouts verified
+- Accessibility: meaningful link text, health score links, inbox member links
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+- Authentication and RBAC foundation for live mode
+- Live data provider with secure storage
+
+---
+
 ## Iteration 10 — v1.0.0 Audit, Reports & Demo Polish (2026-06-26)
 
 ### What was built

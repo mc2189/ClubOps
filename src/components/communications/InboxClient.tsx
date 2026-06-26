@@ -1,6 +1,7 @@
 "use client";
 
-import { Card, PageHeader, DataTable, Badge } from "@/components/ui";
+import Link from "next/link";
+import { Card, PageHeader, DataTable, Badge, EmptyState } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/communications/CommunicationsNotices";
 import { CommunicationsSubNav } from "@/components/communications/CommunicationsSubNav";
 import { useCommunicationsDemo } from "@/components/communications/CommunicationsDemoProvider";
@@ -20,6 +21,13 @@ export function InboxClient() {
       <p className="mt-2 text-sm text-slate-600">
         Uncertain matches are flagged for human review. No real mailbox is connected.
       </p>
+      {inbox.length === 0 ? (
+        <EmptyState
+          title="No form responses in inbox"
+          description="Simulated replies appear here when parents respond to demo forms. Refresh resets the inbox."
+          className="mt-4"
+        />
+      ) : (
       <Card className="mt-4 overflow-x-auto">
         <DataTable
           headers={[
@@ -38,7 +46,15 @@ export function InboxClient() {
               <td className="px-4 py-3 text-slate-600">{item.sender}</td>
               <td className="px-4 py-3 font-medium text-slate-900">{item.subject}</td>
               <td className="px-4 py-3 text-slate-600">{item.detectedType}</td>
-              <td className="px-4 py-3 text-slate-600">{item.matchedRecord}</td>
+              <td className="px-4 py-3 text-slate-600">
+                {item.matchedMemberId ? (
+                  <Link href={`/members/${item.matchedMemberId}`} className="text-indigo-600 hover:underline">
+                    {item.matchedRecord}
+                  </Link>
+                ) : (
+                  item.matchedRecord
+                )}
+              </td>
               <td className="px-4 py-3">
                 <span
                   className={
@@ -78,6 +94,7 @@ export function InboxClient() {
           ))}
         </DataTable>
       </Card>
+      )}
     </>
   );
 }

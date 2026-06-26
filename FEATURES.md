@@ -1,6 +1,14 @@
 # ClubOps — Features
 
-ClubOps v1.0.0 is a **complete end-to-end demo** suitable for showing to club secretaries, treasurers and committee members. It is not production software.
+ClubOps v1.0.1 is a **polished end-to-end demo** suitable for showing to club secretaries, treasurers and committee members. It is not production software and must not be used with real data.
+
+## v1.0.1 — Demo QA polish (current)
+
+- [x] Full route review and link accuracy
+- [x] Demo script aligned with current app
+- [x] Consistent demo safety messaging
+- [x] Empty states and mobile layout polish
+- [x] `DEMO_QA_CHECKLIST.md` for pre-share testing
 
 ## v1.0.0 — Complete (demo)
 

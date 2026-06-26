@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { formatCurrency } from "@/lib/utils";
 
@@ -5,14 +6,15 @@ interface ProgressCardProps {
   title: string;
   raised: number;
   target: number;
+  href?: string;
   className?: string;
 }
 
-export function ProgressCard({ title, raised, target, className }: ProgressCardProps) {
+export function ProgressCard({ title, raised, target, href, className }: ProgressCardProps) {
   const percentage = Math.min(Math.round((raised / target) * 100), 100);
 
-  return (
-    <div className={cn("rounded-lg border border-slate-200 bg-white p-4 shadow-sm", className)}>
+  const content = (
+    <>
       <p className="text-sm font-semibold text-slate-900">{title}</p>
       <div className="mt-2 flex items-baseline justify-between">
         <span className="text-lg font-bold text-slate-900">{formatCurrency(raised)}</span>
@@ -30,6 +32,26 @@ export function ProgressCard({ title, raised, target, className }: ProgressCardP
         />
       </div>
       <p className="mt-2 text-xs font-medium text-indigo-600">{percentage}% of target reached</p>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className={cn(
+          "block rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition-colors hover:border-indigo-300 hover:bg-indigo-50/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400",
+          className,
+        )}
+      >
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <div className={cn("rounded-lg border border-slate-200 bg-white p-4 shadow-sm", className)}>
+      {content}
     </div>
   );
 }

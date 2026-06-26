@@ -95,7 +95,7 @@ export function StaffProfileClient({ profile }: { profile: StaffProfileRecord })
             <h2 className="text-sm font-semibold text-slate-900">Linked documents</h2>
             <ul className="mt-2 text-sm text-slate-700">
               {profile.documentsLinked.map((d) => (
-                <li key={d}><Link href="/documents" className="text-indigo-600 hover:underline">{d}</Link></li>
+                <li key={d}><Link href="/documents/assignment" className="text-indigo-600 hover:underline">{d}</Link></li>
               ))}
             </ul>
           </Card>

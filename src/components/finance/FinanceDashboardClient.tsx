@@ -25,23 +25,9 @@ export function FinanceDashboardClient() {
       />
 
       <DemoOnlyNotice />
-      <div className="mt-4">
-        <FinanceSecurityNotice />
-      </div>
+      <FinanceSubNav active="Dashboard" />
 
-      <nav className="mt-4 flex flex-wrap gap-2" aria-label="Finance sections">
-        {subNav.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-200"
-          >
-            {item.label}
-          </Link>
-        ))}
-      </nav>
-
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Monthly income" value={formatCurrency(dashboard.monthlyIncome)} />
         <StatCard label="Monthly outgoings" value={formatCurrency(dashboard.monthlyOutgoings)} />
         <StatCard label="Net position" value={formatCurrency(dashboard.netPosition)} />
@@ -86,7 +72,7 @@ export function FinanceDashboardClient() {
             { href: "/finance/import/review", label: "Review unmatched payments", desc: "Match and categorise" },
             { href: "/finance/fees", label: "View unpaid fees", desc: "Member fee tracking" },
             { href: "/finance/expenses", label: "Add expense", desc: "Record club outgoings" },
-            { href: "/finance/reports", label: "Export finance pack", desc: "Accountant & audit exports" },
+            { href: "/reports/finance-pack", label: "Export finance pack", desc: "Demo treasurer summary" },
           ].map((action) => (
             <Link
               key={action.href}
@@ -99,6 +85,9 @@ export function FinanceDashboardClient() {
           ))}
         </div>
       </Card>
+      <div className="mt-6">
+        <FinanceSecurityNotice />
+      </div>
     </>
   );
 }
@@ -106,7 +95,14 @@ export function FinanceDashboardClient() {
 export function FinanceSubNav({ active }: { active: string }) {
   return (
     <nav className="mb-4 flex flex-wrap gap-2" aria-label="Finance sections">
-      <Link href="/finance" className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 hover:bg-slate-200">
+      <Link
+        href="/finance"
+        className={`rounded-full px-3 py-1 text-xs font-medium ${
+          active === "Dashboard"
+            ? "bg-indigo-600 text-white"
+            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+        }`}
+      >
         Dashboard
       </Link>
       {subNav.map((item) => (

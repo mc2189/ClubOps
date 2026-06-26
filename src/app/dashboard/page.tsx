@@ -125,6 +125,7 @@ export default async function DashboardPage() {
               title={item.name}
               raised={item.raised}
               target={item.target}
+              href={item.href}
             />
           ))}
         </div>

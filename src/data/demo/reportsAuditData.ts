@@ -33,12 +33,12 @@ export const demoAuditLog: AuditEvent[] = [
 export const demoReportCards: ReportCard[] = [
   { id: "rc-finance", name: "Finance Pack", purpose: "Income, outgoings, fees and accountant summary", linkedModules: ["Finance", "Staff"], lastGenerated: "2026-06-25", exportStatus: "ready", sensitivity: "sensitive", category: "Finance", href: "/reports/finance-pack" },
   { id: "rc-members", name: "Member Admin Pack", purpose: "Membership, consent and contact completeness", linkedModules: ["Members"], lastGenerated: "2026-06-20", exportStatus: "ready", sensitivity: "sensitive", category: "Members", href: "/reports/member-pack" },
-  { id: "rc-attendance", name: "Attendance Summary", purpose: "Session attendance and absence patterns", linkedModules: ["Attendance"], lastGenerated: "2026-06-18", exportStatus: "demo", sensitivity: "normal", category: "Attendance" },
+  { id: "rc-attendance", name: "Attendance Summary", purpose: "Session attendance and absence patterns", linkedModules: ["Attendance"], lastGenerated: "2026-06-18", exportStatus: "demo", sensitivity: "normal", category: "Attendance", href: "/attendance/reports" },
   { id: "rc-giftaid", name: "Gift Aid Pack", purpose: "Declarations, claim-ready donations and compliance", linkedModules: ["Gift Aid", "Finance"], lastGenerated: "2026-06-22", exportStatus: "ready", sensitivity: "sensitive", category: "Gift Aid", href: "/reports/gift-aid-pack" },
-  { id: "rc-comms", name: "Communications History", purpose: "Simulated sends and form responses", linkedModules: ["Communications"], exportStatus: "never", sensitivity: "sensitive", category: "Communications" },
-  { id: "rc-docs", name: "Documents Review", purpose: "Unassigned and sensitive documents", linkedModules: ["Documents"], exportStatus: "demo", sensitivity: "restricted", category: "Documents" },
-  { id: "rc-staff", name: "Staff Qualification Summary", purpose: "DBS, qualifications and wage prep", linkedModules: ["Staff"], lastGenerated: "2026-06-24", exportStatus: "ready", sensitivity: "sensitive", category: "Staff/Volunteers" },
-  { id: "rc-fundraising", name: "Fundraising Pipeline", purpose: "Campaigns, donors and business leads", linkedModules: ["Fundraising"], lastGenerated: "2026-06-23", exportStatus: "demo", sensitivity: "normal", category: "Fundraising" },
+  { id: "rc-comms", name: "Communications History", purpose: "Simulated sends and form responses", linkedModules: ["Communications"], exportStatus: "never", sensitivity: "sensitive", category: "Communications", href: "/communications/history" },
+  { id: "rc-docs", name: "Documents Review", purpose: "Unassigned and sensitive documents", linkedModules: ["Documents"], exportStatus: "demo", sensitivity: "restricted", category: "Documents", href: "/documents/missing" },
+  { id: "rc-staff", name: "Staff Qualification Summary", purpose: "DBS, qualifications and wage prep", linkedModules: ["Staff"], lastGenerated: "2026-06-24", exportStatus: "ready", sensitivity: "sensitive", category: "Staff/Volunteers", href: "/staff/qualifications" },
+  { id: "rc-fundraising", name: "Fundraising Pipeline", purpose: "Campaigns, donors and business leads", linkedModules: ["Fundraising"], lastGenerated: "2026-06-23", exportStatus: "demo", sensitivity: "normal", category: "Fundraising", href: "/fundraising/reports" },
   { id: "rc-audit", name: "Audit Log Summary", purpose: "Cross-module activity evidence trail", linkedModules: ["Audit"], lastGenerated: "2026-06-26", exportStatus: "ready", sensitivity: "sensitive", category: "Audit", href: "/audit/activity" },
   { id: "rc-committee", name: "Committee Pack", purpose: "Pre-meeting club health and actions summary", linkedModules: ["All modules"], lastGenerated: "2026-06-25", exportStatus: "ready", sensitivity: "normal", category: "Committee Pack", href: "/reports/committee-pack" },
   { id: "rc-export", name: "Full Club Admin Pack", purpose: "Complete export centre for audit and accounting", linkedModules: ["All modules"], exportStatus: "never", sensitivity: "restricted", category: "Export Centre", href: "/reports/export-centre" },
@@ -72,7 +72,7 @@ export const demoFinancePack: FinancePackData = {
   outgoingsThisMonth: 1975,
   outgoingsThisYear: 11800,
   netPosition: 2400,
-  unpaidFees: 3,
+  unpaidFees: 4,
   matchedTransactions: 9,
   unmatchedTransactions: 3,
   possibleDonations: 2,
@@ -121,12 +121,12 @@ export const demoMemberPack: MemberPackData = {
   missingConsent: 1,
   medicalFlags: 2,
   attendanceConcerns: 1,
-  unpaidFees: 3,
+  unpaidFees: 4,
   documentsMissing: 8,
 };
 
 export const demoClubHealthSummary: ClubHealthMetric[] = [
-  { id: "health-finance", label: "Finance", score: 78, status: "attention", summary: "7 unpaid fees and 4 payments to review", suggestedAction: "Review bank import matches", linkedModule: "Finance", linkedHref: "/finance" },
+  { id: "health-finance", label: "Finance", score: 78, status: "attention", summary: "4 unpaid fees and 4 payments to review", suggestedAction: "Review bank import matches", linkedModule: "Finance", linkedHref: "/finance/import/review" },
   { id: "health-attendance", label: "Attendance", score: 92, status: "good", summary: "92% average attendance this month", suggestedAction: "Follow up repeated absences", linkedModule: "Attendance", linkedHref: "/attendance/reports" },
   { id: "health-giftaid", label: "Gift Aid", score: 65, status: "attention", summary: "3 missing declarations, £187 reclaim possible", suggestedAction: "Send declaration requests", linkedModule: "Gift Aid", linkedHref: "/gift-aid" },
   { id: "health-comms", label: "Communications", score: 85, status: "good", summary: "2 replies needing review", suggestedAction: "Review inbox responses", linkedModule: "Communications", linkedHref: "/communications/inbox" },
@@ -136,16 +136,16 @@ export const demoClubHealthSummary: ClubHealthMetric[] = [
 ];
 
 export const demoScriptSteps: DemoScriptStep[] = [
-  { step: 1, title: "Dashboard", href: "/dashboard", whatToClick: "Open Dashboard — review tasks and Club Health scores", whatToSay: "This is your club command centre. Tasks and health scores show what needs attention today.", problemSolved: "Volunteers no longer rely on scattered spreadsheets and WhatsApp messages.", emphasis: "Everything is in one place — fake demo data only." },
-  { step: 2, title: "Members", href: "/members/mem-002", whatToClick: "Open a member profile — show parent/carer tab and medical flag", whatToSay: "Each gymnast has a linked parent record, medical flag and finance status.", problemSolved: "Secretary can find member details without digging through paper files.", emphasis: "Medical details are flagged — restricted access in live mode." },
-  { step: 3, title: "Attendance", href: "/attendance/register", whatToClick: "Select a session and mark Present/Absent on the register", whatToSay: "Coaches mark attendance on a phone-friendly register in seconds.", problemSolved: "No more paper registers lost in kit bags.", emphasis: "Large buttons — designed for busy gym sessions." },
-  { step: 4, title: "Finance", href: "/finance/import", whatToClick: "Walk through bank import → review → approve match", whatToSay: "The treasurer uploads a bank statement and ClubOps suggests matches to members.", problemSolved: "Reduces hours matching payments to members manually.", emphasis: "Demo only — no real bank connection." },
-  { step: 5, title: "Gift Aid", href: "/gift-aid/eligible-donations", whatToClick: "Show eligible vs ineligible donations and compliance warnings", whatToSay: "Gift Aid is tracked separately from fees — with clear warnings about what not to claim.", problemSolved: "Treasurer avoids costly HMRC mistakes.", emphasis: "Strong compliance warnings built in." },
-  { step: 6, title: "Communications", href: "/communications/compose?preset=gift-aid", whatToClick: "Prepare Gift Aid declaration request — show preview", whatToSay: "The secretary can message parents missing declarations with one click.", problemSolved: "No more copying emails from a spreadsheet.", emphasis: "Simulated send only — no real email." },
-  { step: 7, title: "Documents", href: "/documents/scanned-notes", whatToClick: "Assign a scanned paper note to a member", whatToSay: "Paper notes can be digitised and linked to the right member record.", problemSolved: "Club escapes filing cabinets full of paper.", emphasis: "Safeguarding notes would be restricted in live mode." },
-  { step: 8, title: "Staff & Operations", href: "/staff/qualifications", whatToClick: "Show expiring qualification and wage prep page", whatToSay: "Track coach qualifications, rota gaps and session payment prep.", problemSolved: "Committee knows when DBS or qualifications need renewal.", emphasis: "Wage prep is not payroll software." },
-  { step: 9, title: "Fundraising", href: "/fundraising/businesses", whatToClick: "Show business CRM — pledge and follow-up actions", whatToSay: "Track local business sponsors and campaign progress in one place.", problemSolved: "Fundraising leads don't get forgotten between volunteers.", emphasis: "Business donations are not Gift Aid eligible." },
-  { step: 10, title: "Reports & Audit", href: "/reports/export-centre", whatToClick: "Generate demo Full Club Admin Pack", whatToSay: "Before a committee meeting, generate a pack covering finance, members, Gift Aid and audit trail.", problemSolved: "Committee gets evidence without manual report building.", emphasis: "No real file generated — shows what live mode would include." },
+  { step: 1, title: "Dashboard", href: "/dashboard", whatToClick: "Review Today's tasks, then click a Club Health score to jump to that module", whatToSay: "This is your club command centre. Tasks and health scores show what needs attention today — saving volunteers from scattered spreadsheets.", problemSolved: "Volunteers no longer rely on scattered spreadsheets and WhatsApp messages.", emphasis: "Everything is in one place — fake demo data only. Refresh resets session changes." },
+  { step: 2, title: "Members", href: "/members/mem-002", whatToClick: "Open Jordan Reeves — show parent/carer tab and medical flag", whatToSay: "Each gymnast has a linked parent record, medical flag and finance status.", problemSolved: "Secretary can find member details in seconds instead of digging through paper files.", emphasis: "Medical details are flagged — restricted access in live mode." },
+  { step: 3, title: "Attendance", href: "/attendance/register", whatToClick: "Select a session and mark Present/Absent on the register", whatToSay: "Coaches mark attendance on a phone-friendly register in seconds.", problemSolved: "No more paper registers lost in kit bags.", emphasis: "Large buttons — designed for busy gym sessions. Session-only change." },
+  { step: 4, title: "Finance", href: "/finance/import", secondaryHref: "/finance/import/review", secondaryLinkLabel: "Review matches", whatToClick: "Walk through bank import, then open Review to approve a match", whatToSay: "The treasurer uploads a bank statement and ClubOps suggests matches to members.", problemSolved: "Reduces hours matching payments to members manually.", emphasis: "Demo only — no real bank connection or bank data processed." },
+  { step: 5, title: "Gift Aid", href: "/gift-aid/eligible-donations", whatToClick: "Show eligible vs ineligible donations and compliance warnings", whatToSay: "Gift Aid is tracked separately from fees — with clear warnings about what not to claim.", problemSolved: "Treasurer avoids costly HMRC mistakes.", emphasis: "No HMRC submission is made — demo guidance only." },
+  { step: 6, title: "Communications", href: "/communications/compose?preset=gift-aid", whatToClick: "Prepare Gift Aid declaration request — show preview before simulated send", whatToSay: "The secretary can message parents missing declarations with one click.", problemSolved: "No more copying emails from a spreadsheet.", emphasis: "Simulated send only — no real email sent." },
+  { step: 7, title: "Documents", href: "/documents/scanned-notes", whatToClick: "Assign a scanned paper note to a member", whatToSay: "Paper notes can be digitised and linked to the right member record.", problemSolved: "Club escapes filing cabinets full of paper.", emphasis: "No real file uploaded — safeguarding notes would be restricted in live mode." },
+  { step: 8, title: "Staff & Operations", href: "/staff/qualifications", secondaryHref: "/staff/wages", secondaryLinkLabel: "Wage prep", whatToClick: "Show Jamie Hart's expired safeguarding qualification, then open Wage prep", whatToSay: "Track coach qualifications, rota gaps and session payment prep in one place.", problemSolved: "Committee knows when DBS or qualifications need renewal without chasing coaches.", emphasis: "Wage prep is not payroll software — demo only." },
+  { step: 9, title: "Fundraising", href: "/fundraising/businesses", whatToClick: "Show business CRM — pledge and follow-up demo actions", whatToSay: "Track local business sponsors and campaign progress in one place.", problemSolved: "Fundraising leads don't get forgotten between volunteers.", emphasis: "Business donations are not Gift Aid eligible — demo data only." },
+  { step: 10, title: "Reports & Audit", href: "/reports/export-centre", whatToClick: "Generate demo Full Club Admin Pack", whatToSay: "Before a committee meeting, generate a pack covering finance, members, Gift Aid and audit trail.", problemSolved: "Committee gets evidence without manual report building.", emphasis: "Generate demo export — no real file generated." },
 ];
 
 export const demoReportsAuditPageData: ReportsAuditPageData = {
