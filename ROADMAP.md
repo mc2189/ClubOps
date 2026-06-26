@@ -15,7 +15,7 @@
 
 - [x] Member management (list, profile, add, edit, archive — demo state)
 - [x] Session and attendance register (demo state)
-- [ ] Basic finance transaction entry
+- [x] Finance module with bank import demo and fee tracking
 - [ ] Authentication and RBAC foundation
 
 ## Phase 2 — Communications & Documents
