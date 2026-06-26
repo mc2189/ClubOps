@@ -16,6 +16,7 @@ UI summary: `/settings/production-roadmap`
 | RBAC preview (client-side, v1.1.0) | Done |
 | Architecture blueprint (v1.2.0) | Done |
 | Auth/stack decision pack (v1.3.0) | Done |
+| Supabase foundation prep (v1.4.0) | Done — scaffold only, not connected |
 
 **Risks:** Accidentally loading real data into demo deployment.
 

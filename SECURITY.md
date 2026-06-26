@@ -20,7 +20,13 @@
 - TODO markers exist in code for future RBAC enforcement.
 - Sensitive fields (medical notes, safeguarding records, finance details) require restricted access.
 
-## Live-ready architecture (v1.2.0)
+## Supabase foundation prep (v1.4.0)
+
+- Draft schema, RLS and storage files in `supabase/` — **not applied**
+- Client scaffold in `src/lib/supabase/` — **not wired** to demo routes
+- `.env.example` documents future vars — **no keys committed**
+- Public demo: no Supabase env vars required; build succeeds without them
+- No login, no middleware, no liveProvider activation
 
 - Data architecture blueprint documented in ARCHITECTURE.md, DATA_MODEL.md, MIGRATION_PLAN.md.
 - Settings UI at `/settings/live-readiness`, `/settings/data-architecture`, `/settings/provider-model`, `/settings/production-roadmap`.

@@ -78,6 +78,9 @@ export function LiveReadinessClient() {
         <Link href="/settings/auth-decision" className="font-medium text-indigo-600 hover:underline">
           Auth decision pack (v1.3.0) →
         </Link>
+        <Link href="/settings/supabase-prep" className="font-medium text-indigo-600 hover:underline">
+          Supabase prep (v1.4.0) →
+        </Link>
         <Link href="/settings/recommended-stack" className="font-medium text-indigo-600 hover:underline">
           Recommended stack →
         </Link>

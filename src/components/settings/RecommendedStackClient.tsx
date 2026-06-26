@@ -96,6 +96,9 @@ export function RecommendedStackClient() {
       </Card>
 
       <div className="mt-6 flex flex-wrap gap-3 text-sm">
+        <Link href="/settings/supabase-prep" className="font-medium text-indigo-600 hover:underline">
+          Supabase prep (v1.4.0) →
+        </Link>
         <Link href="/settings/live-stack" className="font-medium text-indigo-600 hover:underline">
           Decision matrix →
         </Link>

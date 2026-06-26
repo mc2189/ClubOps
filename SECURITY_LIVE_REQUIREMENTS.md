@@ -2,7 +2,7 @@
 
 Requirements for a **production** ClubOps deployment with real club data. The public demo **does not** meet these requirements.
 
-Also surfaced in UI: `/settings/security`, `/settings/live-readiness`, `/settings/auth-decision`, `/settings/recommended-stack`.
+Also surfaced in UI: `/settings/security`, `/settings/live-readiness`, `/settings/supabase-prep`.
 
 ## Auth stack decision (v1.3.0)
 
@@ -11,6 +11,7 @@ Provisional live auth/data stack: **Supabase Auth + Postgres + RLS + Storage** (
 Before implementation:
 
 - [ ] Stack choice approved by committee
+- [ ] Supabase draft schema reviewed (v1.4.0 prep — not applied)
 - [ ] Live security review scheduled
 - [ ] No auth SDK or env vars on public demo Vercel project
 

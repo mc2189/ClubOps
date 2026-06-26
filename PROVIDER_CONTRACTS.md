@@ -36,7 +36,14 @@ import { dataProvider } from "@/data/providers";
 export const dataProvider = resolveProvider();
 ```
 
-`resolveProvider()` returns `demoProvider` when `isDemoMode()` is true (always, today).
+`resolveProvider()` returns `demoProvider` when `isDemoMode()` is true (always on public demo).
+
+## Supabase scaffold (v1.4.0 — not active)
+
+- `src/lib/supabase/` — client/server helpers; return null without env vars
+- Not imported by demo pages or `dataProvider`
+- Future `liveProvider` will use Supabase on private deployment only
+- See [LIVE_PROVIDER_IMPLEMENTATION_PLAN.md](./LIVE_PROVIDER_IMPLEMENTATION_PLAN.md)
 
 ## Contract methods (overview)
 

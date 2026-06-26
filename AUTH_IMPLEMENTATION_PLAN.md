@@ -1,6 +1,8 @@
 # ClubOps — Auth Implementation Plan
 
-**Status: Plan only — do not implement until stack approved and Stage 2 migration begins.**
+**Status: Plan only — v1.4.0 adds draft schema and scaffold; do not implement until stack approved.**
+
+See also: [LIVE_PROVIDER_IMPLEMENTATION_PLAN.md](./LIVE_PROVIDER_IMPLEMENTATION_PLAN.md), [PRIVATE_DEPLOYMENT_CHECKLIST.md](./PRIVATE_DEPLOYMENT_CHECKLIST.md)
 
 Provisional stack: **Supabase Auth + Postgres + RLS + Storage** on a **private** Vercel deployment. Public demo unchanged.
 

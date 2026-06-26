@@ -1,10 +1,20 @@
 # ClubOps — Features
 
-ClubOps v1.3.0 adds an **auth and live stack decision pack**. v1.2.0 adds a **live-ready data architecture blueprint**. v1.1.0 adds **demo role switching and RBAC preview**. It remains a public demo — not production software — and must not be used with real data.
+ClubOps v1.4.0 adds **Supabase live foundation prep**. v1.3.0 adds an **auth and live stack decision pack**. It remains a public demo — not production software.
 
-Live deployment requires authentication, RBAC, a secure database, secure file storage, production audit logging and data protection controls.
+## v1.4.0 — Supabase foundation prep (current)
 
-## v1.3.0 — Auth & live stack decision pack (current)
+- [x] @supabase/supabase-js and @supabase/ssr installed (scaffold only)
+- [x] .env.example with placeholder vars
+- [x] src/lib/supabase/ client scaffold (not wired to demo)
+- [x] Draft SQL migrations 001–011
+- [x] RLS and storage policy drafts
+- [x] Settings: supabase-prep, schema-plan, private-deployment
+- [x] LIVE_PROVIDER_IMPLEMENTATION_PLAN and Supabase planning docs
+- [ ] Private Supabase project (future)
+- [ ] liveProvider implementation (future)
+
+## v1.3.0 — Auth & live stack decision pack
 
 - [x] Settings: auth decision pack (stack comparison)
 - [x] Settings: live stack decision matrix (1–5 scores)

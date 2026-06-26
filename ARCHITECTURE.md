@@ -98,6 +98,12 @@ Non-technical and technical audiences can review:
 - `/settings/implementation-options` — Clerk, Auth.js, Firebase alternatives
 - `/settings/recommended-stack` — provisional Supabase recommendation
 
+No SDK packages or env vars added in v1.3.0.
+
+## Supabase scaffold (v1.4.0 — not active)
+
+`src/lib/supabase/` — client helpers return null without env vars. Not imported by demo routes. See `supabase/` for draft migrations.
+
 ## Provisional live stack (v1.3.0 — not implemented)
 
 See [RECOMMENDED_LIVE_STACK.md](./RECOMMENDED_LIVE_STACK.md):

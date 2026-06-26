@@ -84,6 +84,16 @@ export function SecuritySettingsClient() {
               Recommended live stack
             </Link>
           </li>
+          <li>
+            <Link href="/settings/supabase-prep" className="text-indigo-600 hover:underline">
+              Supabase prep (v1.4.0)
+            </Link>
+          </li>
+          <li>
+            <Link href="/settings/private-deployment" className="text-indigo-600 hover:underline">
+              Private deployment checklist
+            </Link>
+          </li>
         </ul>
       </Card>
     </>

@@ -2,6 +2,34 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.0] — 2026-06-26
+
+### Added
+
+- **v1.4.0 Supabase live foundation prep (preparation only — not live)**
+- `@supabase/supabase-js` and `@supabase/ssr` packages (scaffold not wired to demo)
+- `.env.example` and `.env.local.example` with placeholder vars only
+- `src/lib/supabase/` — config, client, server, middleware scaffold (inactive in public demo)
+- `supabase/migrations/` draft SQL 001–011 (schema, RLS, storage)
+- `supabase/policies/` and `supabase/storage/` policy drafts
+- Settings pages: `/settings/supabase-prep`, `/settings/schema-plan`, `/settings/private-deployment`
+- Docs: LIVE_PROVIDER_IMPLEMENTATION_PLAN, SUPABASE_SCHEMA_PLAN, SUPABASE_RLS_PLAN, SUPABASE_STORAGE_PLAN, SUPABASE_LOCAL_DEV, PRIVATE_DEPLOYMENT_CHECKLIST
+- Provider safety helpers in `providerMode.ts`; `SupabasePrepSafetyNotice` component
+
+### Changed
+
+- Settings, Security, Live readiness, Recommended stack, Production roadmap link to Supabase prep
+- `.gitignore` explicitly allows `.env.example` files
+- Provider index comments reference v1.4.0 scaffold
+- Architecture and migration docs updated for prep status
+
+### Not included (by design)
+
+- No Supabase project, keys, or live connection
+- No root middleware.ts; no login pages
+- `PROVIDER_MODE` remains `"demo"`; liveProvider not wired
+- Public demo unchanged — fake data only
+
 ## [1.3.0] — 2026-06-26
 
 ### Added

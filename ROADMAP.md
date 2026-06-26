@@ -2,7 +2,7 @@
 
 ## Phase 0 — Foundation
 
-**Status: Complete (v1.3.0 auth/stack decision pack)**
+**Status: Complete (v1.4.0 Supabase foundation prep — not live)**
 
 - Project scaffold and tooling
 - Dashboard layout shell
@@ -14,7 +14,8 @@
 - **v1.0.2** — Final demo readiness fixes (composer, data consistency)
 - **v1.1.0** — Demo role switching and RBAC foundation preview
 - **v1.2.0** — Live-ready data architecture blueprint (docs + settings UI; no DB/auth)
-- **v1.3.0** — Auth and live stack decision pack (Supabase provisional recommendation; no SDKs)
+- **v1.3.0** — Auth and live stack decision pack (Supabase provisional recommendation; no SDKs active on demo)
+- **v1.4.0** — Supabase scaffold, draft schema/RLS/storage, env docs (no connection)
 
 ## Phase 1 — Core CRUD
 
@@ -57,7 +58,8 @@
 - [x] Provider contract documented
 - [x] Data model and classification documented
 - [x] Auth/stack decision pack (v1.3.0)
-- [ ] Supabase live foundation (Stage 2 — private deploy only)
+- [x] Supabase client scaffold and draft migrations (v1.4.0)
+- [ ] Private Supabase project + env on private Vercel only
 - [ ] Live data provider with database
 - [ ] Real authentication
 - [ ] Production security hardening

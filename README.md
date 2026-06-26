@@ -19,7 +19,9 @@ Open [http://localhost:3000](http://localhost:3000) — the app redirects to the
 
 ## Demo mode
 
-**v1.3.0 adds auth and live stack decision pack — still demo only, no SDKs or env vars.**
+**v1.4.0 adds Supabase foundation prep — scaffold and draft schema only; still demo-only, no keys.**
+
+**v1.3.0 adds auth and live stack decision pack — still demo only, no SDKs active on public demo.**
 
 **v1.2.0 adds live-ready data architecture blueprint — still demo only, no database.**
 
@@ -41,6 +43,18 @@ See [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) before sharing the public dem
 - [MIGRATION_PLAN.md](./MIGRATION_PLAN.md) — staged migration stages 1–6
 
 Settings UI: `/settings/live-readiness`, `/settings/data-architecture`, `/settings/provider-model`, `/settings/production-roadmap`, `/settings/auth-decision`, `/settings/live-stack`, `/settings/recommended-stack`
+
+## Supabase prep (v1.4.0)
+
+- [LIVE_PROVIDER_IMPLEMENTATION_PLAN.md](./LIVE_PROVIDER_IMPLEMENTATION_PLAN.md)
+- [SUPABASE_SCHEMA_PLAN.md](./SUPABASE_SCHEMA_PLAN.md)
+- [SUPABASE_RLS_PLAN.md](./SUPABASE_RLS_PLAN.md)
+- [SUPABASE_STORAGE_PLAN.md](./SUPABASE_STORAGE_PLAN.md)
+- [SUPABASE_LOCAL_DEV.md](./SUPABASE_LOCAL_DEV.md)
+- [PRIVATE_DEPLOYMENT_CHECKLIST.md](./PRIVATE_DEPLOYMENT_CHECKLIST.md)
+- `.env.example` — placeholder env vars only
+
+Settings UI: `/settings/supabase-prep`, `/settings/schema-plan`, `/settings/private-deployment`
 
 ## Auth & stack decision (v1.3.0)
 

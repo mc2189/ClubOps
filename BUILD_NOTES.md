@@ -1,5 +1,37 @@
 # ClubOps — Build Notes
 
+## Iteration 16 — v1.4.0 Supabase Live Foundation Prep (2026-06-26)
+
+### What was built
+
+- Supabase SSR packages installed; client scaffold in src/lib/supabase/
+- Draft SQL migrations, RLS and storage policy files in supabase/
+- .env.example placeholders; provider mode safety helpers
+- Settings: supabase-prep, schema-plan, private-deployment pages
+- Six Supabase/live provider planning documents
+
+### New routes
+
+- `/settings/supabase-prep`
+- `/settings/schema-plan`
+- `/settings/private-deployment`
+
+### Commands run
+
+```bash
+npm install @supabase/supabase-js @supabase/ssr
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+- Committee approval; create private Supabase + Vercel projects
+- Apply schema + RLS; implement auth and liveProvider Members read path
+
+---
+
 ## Iteration 15 — v1.3.0 Auth & Live Stack Decision Pack (2026-06-26)
 
 ### What was built

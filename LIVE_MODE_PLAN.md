@@ -6,7 +6,7 @@ Enable real clubs to run ClubOps with **real data**, **authentication**, **RBAC*
 
 ## What live mode is not (yet)
 
-The v1.2.0 release is an architecture **blueprint**. v1.3.0 adds an auth/stack **decision pack**. The app still does not:
+The v1.4.0 release adds **Supabase scaffold and draft schema** — still no live connection. The app still does not:
 
 - Connect to a database
 - Authenticate users

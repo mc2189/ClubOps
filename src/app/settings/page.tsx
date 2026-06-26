@@ -73,6 +73,25 @@ export default function SettingsPage() {
         </Card>
 
         <Card>
+          <h3 className="text-base font-semibold text-slate-900">Supabase foundation prep (v1.4.0)</h3>
+          <p className="mt-2 text-sm text-slate-600">
+            Draft schema, RLS, storage policies and client scaffold — not connected. Public demo still
+            uses fake data only.
+          </p>
+          <div className="mt-3 flex flex-col gap-2 text-sm">
+            <Link href="/settings/supabase-prep" className="font-medium text-indigo-600 hover:underline">
+              Supabase prep overview →
+            </Link>
+            <Link href="/settings/schema-plan" className="font-medium text-indigo-600 hover:underline">
+              Schema plan →
+            </Link>
+            <Link href="/settings/private-deployment" className="font-medium text-indigo-600 hover:underline">
+              Private deployment checklist →
+            </Link>
+          </div>
+        </Card>
+
+        <Card>
           <h3 className="text-base font-semibold text-slate-900">Auth & live stack (v1.3.0)</h3>
           <p className="mt-2 text-sm text-slate-600">
             Compare Supabase, Clerk, Auth.js and Firebase before implementing live mode — decision

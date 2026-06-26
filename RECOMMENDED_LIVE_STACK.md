@@ -1,6 +1,6 @@
 # ClubOps — Recommended Live Stack
 
-**Status: Provisional recommendation — not implemented.**
+**Status: Provisional recommendation — scaffold prepared in v1.4.0, not connected.**
 
 This is a **technical recommendation** for ClubOps live mode. It is not legal or security certification. No real data should be entered until secure configuration, RLS policies, backups and testing are complete.
 

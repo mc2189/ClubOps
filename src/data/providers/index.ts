@@ -12,8 +12,11 @@ import { isDemoMode } from "@/lib/providerMode";
  *
  * UI pages must use dataProvider only — never import demo data files directly.
  *
- * @see PROVIDER_CONTRACTS.md
- * @see ARCHITECTURE.md
+ * v1.4.0: Supabase client scaffold in src/lib/supabase/ — not imported by demo routes.
+ * liveProvider remains stub; PROVIDER_MODE stays "demo" on public deployment.
+ *
+ * @see LIVE_PROVIDER_IMPLEMENTATION_PLAN.md
+ * @see PRIVATE_DEPLOYMENT_CHECKLIST.md
  */
 function resolveProvider() {
   if (isDemoMode()) {
