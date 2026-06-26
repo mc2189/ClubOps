@@ -1,5 +1,44 @@
 # ClubOps — Build Notes
 
+## Iteration 2 — Members & Parent Records (2026-06-26)
+
+### What was built
+
+- Members list with search and 8 filters
+- Member profile with 8 tabs and avatar placeholder
+- Add / edit / archive demo flows (local state, resets on refresh)
+- MembersDemoProvider for session-only CRUD + audit stubs
+- Sensitive data warnings on medical, finance, audit tabs
+- 9 fake member profiles with realistic variety
+
+### New routes
+
+- `/members` — list with search/filter
+- `/members/new` — add member form
+- `/members/[id]` — profile with tabs
+- `/members/[id]/edit` — edit form
+
+### Security
+
+- Medical/welfare sections marked sensitive with RBAC TODOs
+- Archive uses soft-delete language (status → archived)
+- Internal IDs not shown in UI
+- Demo-only notice on all CRUD flows
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+See ROADMAP.md — Attendance register or Finance module next.
+
+---
+
 ## Iteration 1 — Dashboard & Demo Mode (2026-06-26)
 
 ### What was built

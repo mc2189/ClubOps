@@ -13,10 +13,11 @@
 
 ## Phase 1 — Core CRUD (current)
 
-- Member management (add, edit, archive, search)
-- Session and attendance register
-- Basic finance transaction entry
-- Authentication and RBAC foundation
+- [x] Member management (list, profile, add, edit, archive — demo state)
+- [ ] Member search persistence and export
+- [ ] Session and attendance register
+- [ ] Basic finance transaction entry
+- [ ] Authentication and RBAC foundation
 
 ## Phase 2 — Communications & Documents
 

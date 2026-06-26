@@ -1,5 +1,98 @@
 export type MemberStatus = "active" | "inactive" | "archived";
+export type FinanceStatus = "paid" | "unpaid" | "partial" | "n/a";
+export type GiftAidStatus = "declared" | "missing" | "expired" | "n/a";
+export type ConsentStatus = "complete" | "partial" | "missing";
+export type EmergencyContactCompleteness = "complete" | "partial" | "missing";
 
+export interface ParentCarer {
+  name: string;
+  email: string;
+  phone: string;
+  relationship: string;
+}
+
+export interface EmergencyContact {
+  name: string;
+  phone: string;
+  relationship: string;
+}
+
+export interface AuthorisedPickup {
+  name: string;
+  notes?: string;
+}
+
+export interface MemberNote {
+  id: string;
+  date: string;
+  author: string;
+  content: string;
+}
+
+export interface MemberDocumentLink {
+  id: string;
+  title: string;
+  category: string;
+  uploadedDate: string;
+}
+
+export interface MemberFinanceSummary {
+  status: FinanceStatus;
+  outstandingAmount: number;
+  lastPaymentDate?: string;
+}
+
+export interface MemberAttendanceSummary {
+  percentage: number;
+  sessionsAttended: number;
+  sessionsTotal: number;
+}
+
+export interface MemberProfile {
+  id: string;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  classGroup: string;
+  status: MemberStatus;
+  joinedDate: string;
+  membershipType: string;
+  parentCarer: ParentCarer;
+  emergencyContact: EmergencyContact;
+  emergencyContactComplete: EmergencyContactCompleteness;
+  authorisedPickup: AuthorisedPickup[];
+  medicalSummary?: string;
+  // TODO: RBAC — restrict medical/safeguarding fields to authorised roles only
+  medicalNotes?: string;
+  allergies: string[];
+  hasMedicalFlag: boolean;
+  consentStatus: ConsentStatus;
+  giftAidStatus: GiftAidStatus;
+  finance: MemberFinanceSummary;
+  attendance: MemberAttendanceSummary;
+  documents: MemberDocumentLink[];
+  notes: MemberNote[];
+  auditEvents: AuditEvent[];
+}
+
+export interface MemberFormData {
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  classGroup: string;
+  parentCarerName: string;
+  parentCarerEmail: string;
+  parentCarerPhone: string;
+  emergencyContactName: string;
+  emergencyContactPhone: string;
+  authorisedPickupNotes: string;
+  medicalNotes: string;
+  allergies: string;
+  consentStatus: ConsentStatus;
+  giftAidStatus: GiftAidStatus;
+}
+
+/** @deprecated Use MemberProfile — kept for backward compatibility with other modules */
 export interface Member {
   id: string;
   firstName: string;
@@ -8,7 +101,6 @@ export interface Member {
   membershipType: string;
   status: MemberStatus;
   joinedDate: string;
-  // TODO: RBAC — restrict medical/safeguarding fields to authorised roles only
   medicalNotes?: string;
 }
 
@@ -194,6 +286,8 @@ export interface ClubOpsDataProvider {
   getDashboardStats(): Promise<DashboardStats>;
   getDashboardData(): Promise<DashboardData>;
   getMembers(): Promise<Member[]>;
+  getMemberProfiles(): Promise<MemberProfile[]>;
+  getMemberProfile(id: string): Promise<MemberProfile | null>;
   getAttendanceRecords(): Promise<AttendanceRecord[]>;
   getFinanceTransactions(): Promise<FinanceTransaction[]>;
   getGiftAidDeclarations(): Promise<GiftAidDeclaration[]>;

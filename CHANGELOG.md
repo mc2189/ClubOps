@@ -2,6 +2,25 @@
 
 All notable changes to ClubOps are documented here.
 
+## [0.2.0] — 2026-06-26
+
+### Added
+
+- **Members module v0.2.0** — full member/gymnast management with linked parent/carer records
+- Members list with search, 8 filter chips, and detailed columns (age, class, status, parent, emergency, medical, finance, Gift Aid, attendance)
+- Member profile page with 8 tabs: Overview, Parents/Carers, Medical, Attendance, Finance, Documents, Notes, Audit
+- Add member, edit member, and archive member demo flows (local React state only)
+- `MembersDemoProvider` for demo-only CRUD with audit event stubs
+- Extended `MemberProfile` type with parent/carer, emergency contact, medical, finance, and attendance data
+- `getMemberProfiles()` and `getMemberProfile(id)` provider methods
+- Sensitive data notices and RBAC TODO markers on medical, finance, and audit sections
+- 9 demo member profiles with varied statuses, flags, and completeness levels
+
+### Changed
+
+- Members list page replaced placeholder with interactive client component
+- Demo member data expanded from 6 to 9 profiles with full detail
+
 ## [0.1.0] — 2026-06-26
 
 ### Added

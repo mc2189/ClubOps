@@ -18,11 +18,13 @@
 ## Planned features
 
 ### Members
-- [ ] Add / edit / archive members
-- [ ] Membership types and fee schedules
-- [ ] Parent/guardian linking
-- [ ] Medical and emergency contact fields (RBAC-protected)
-- [ ] Member search and filtering
+- [x] Member list with search and filters
+- [x] Member profile with tabs (Overview, Parents/Carers, Medical, Attendance, Finance, Documents, Notes, Audit)
+- [x] Add / edit / archive demo flows (local state)
+- [x] Parent/guardian linking on profile
+- [x] Medical and emergency contact fields with sensitive data warnings
+- [ ] Member export
+- [ ] Persistent storage (live provider)
 
 ### Attendance
 - [ ] Session templates and scheduling

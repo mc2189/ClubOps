@@ -1,5 +1,5 @@
 import type { ClubOpsDataProvider } from "@/data/providers/types";
-import { demoMembers } from "@/data/demo/members";
+import { demoMembers, demoMemberProfiles } from "@/data/demo/members";
 import { demoAttendance } from "@/data/demo/attendance";
 import { demoFinance } from "@/data/demo/finance";
 import { demoGiftAid } from "@/data/demo/giftAid";
@@ -36,6 +36,15 @@ export const demoProvider: ClubOpsDataProvider = {
 
   async getMembers() {
     return simulateDelay(demoMembers);
+  },
+
+  async getMemberProfiles() {
+    return simulateDelay(demoMemberProfiles);
+  },
+
+  async getMemberProfile(id: string) {
+    const profile = demoMemberProfiles.find((p) => p.id === id) ?? null;
+    return simulateDelay(profile);
   },
 
   async getAttendanceRecords() {
