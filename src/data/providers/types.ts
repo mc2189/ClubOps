@@ -556,6 +556,142 @@ export interface Document {
   archived: boolean;
 }
 
+export type DocumentCategory =
+  | "medical form"
+  | "emergency contact form"
+  | "consent form"
+  | "Gift Aid declaration"
+  | "bank statement"
+  | "receipt"
+  | "invoice"
+  | "coach qualification"
+  | "safeguarding note"
+  | "progress/skill note"
+  | "incident/injury note"
+  | "parent communication"
+  | "sponsor document"
+  | "general note";
+
+export type DocumentAssignmentStatus = "assigned" | "unassigned" | "needs-review" | "archived";
+export type SensitivityLevel = "normal" | "sensitive" | "restricted";
+export type LinkedRecordType =
+  | "member"
+  | "parent-carer"
+  | "staff"
+  | "finance"
+  | "gift-aid"
+  | "sponsor"
+  | "event";
+
+export interface ClubDocumentRecord {
+  id: string;
+  fileName: string;
+  title: string;
+  category: DocumentCategory;
+  fileType: string;
+  uploadedDate: string;
+  uploadedBy: string;
+  status: DocumentAssignmentStatus;
+  sensitivity: SensitivityLevel;
+  linkedRecordType?: LinkedRecordType;
+  linkedRecordName?: string;
+  linkedModule?: string;
+  extractedPreview?: string;
+  archived: boolean;
+  auditReference?: string;
+}
+
+export interface UnassignedDocumentItem {
+  id: string;
+  fileName: string;
+  suggestedCategory: DocumentCategory;
+  suggestedLinkedRecord: string;
+  suggestedRecordType: LinkedRecordType;
+  confidence: number;
+  matchReason: string;
+  sensitivity: SensitivityLevel;
+}
+
+export type ScannedNoteType =
+  | "progress note"
+  | "skill assessment"
+  | "injury/incident"
+  | "welfare/behaviour"
+  | "safeguarding concern"
+  | "parent communication"
+  | "general note";
+
+export interface ScannedNoteItem {
+  id: string;
+  fileName: string;
+  scannedDate: string;
+  suggestedMember: string;
+  suggestedMemberId?: string;
+  suggestedNoteType: ScannedNoteType;
+  extractedPreview: string;
+  status: "pending" | "assigned" | "needs-review";
+  coach?: string;
+}
+
+export interface MissingDocumentItem {
+  id: string;
+  linkedPerson: string;
+  missingDocument: string;
+  priority: "high" | "medium" | "low";
+  linkedModule: string;
+  suggestedAction: string;
+}
+
+export interface DocumentActivityItem {
+  id: string;
+  timestamp: string;
+  action: string;
+  documentTitle: string;
+  actor: string;
+}
+
+export interface DocumentRoutingRule {
+  id: string;
+  condition: string;
+  action: string;
+  priority: number;
+}
+
+export interface DemoUploadExample {
+  id: string;
+  fileName: string;
+  fileType: string;
+  title: string;
+  extractedText: string;
+  suggestedCategory: DocumentCategory;
+  suggestedLinkedRecord: string;
+  suggestedRecordType: LinkedRecordType;
+  suggestedModule: string;
+  confidence: number;
+  sensitivity: SensitivityLevel;
+}
+
+export interface DocumentsDashboardData {
+  totalDocuments: number;
+  unassignedDocuments: number;
+  sensitiveDocuments: number;
+  awaitingReview: number;
+  missingForms: number;
+  archivedDocuments: number;
+  scannedNotesPending: number;
+}
+
+export interface DocumentsPageData {
+  dashboard: DocumentsDashboardData;
+  documents: ClubDocumentRecord[];
+  unassigned: UnassignedDocumentItem[];
+  scannedNotes: ScannedNoteItem[];
+  missing: MissingDocumentItem[];
+  activities: DocumentActivityItem[];
+  rules: DocumentRoutingRule[];
+  uploadExamples: DemoUploadExample[];
+}
+
 export interface CalendarEvent {
   id: string;
   title: string;
@@ -709,6 +845,7 @@ export interface ClubOpsDataProvider {
   getCommunications(): Promise<Communication[]>;
   getCommunicationsPageData(): Promise<CommunicationsPageData>;
   getDocuments(): Promise<Document[]>;
+  getDocumentsPageData(): Promise<DocumentsPageData>;
   getCalendarEvents(): Promise<CalendarEvent[]>;
   getStaffMembers(): Promise<StaffMember[]>;
   getFundraisingCampaigns(): Promise<FundraisingCampaign[]>;

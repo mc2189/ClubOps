@@ -18,12 +18,13 @@
 - [x] Finance module with bank import demo and fee tracking
 - [x] Gift Aid module with declarations, eligibility review and claim export demo
 - [x] Communications module with compose, templates, groups, forms, inbox and simulated send (demo)
+- [x] Documents module with upload simulation, assignment, scanned notes and archive (demo)
 - [ ] Authentication and RBAC foundation
 
 ## Phase 2 — Communications & Documents
 
 - [x] Email/notice composition and sending (demo simulation)
-- [ ] Document upload and management
+- [x] Document upload and management (demo simulation)
 - [x] Calendar with recurring sessions
 
 ## Phase 3 — Finance & Compliance

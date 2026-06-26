@@ -2,6 +2,27 @@
 
 All notable changes to ClubOps are documented here.
 
+## [0.7.0] — 2026-06-26
+
+### Added
+
+- **Documents module v0.7.0** — dashboard, upload simulation, assignment, scanned notes, missing, archive, and rules
+- Documents dashboard with totals, unassigned/sensitive/review counts, activity feed and quick actions
+- Demo upload flow with fake examples, simulated extraction, category/record suggestions and audit events
+- Assignment workflow with confidence scores, sensitivity levels, assign/change category/mark sensitive/archive actions
+- Scanned notes digitisation workflow with member matching, note types and restricted content warnings
+- Missing documents page linked to Members, Gift Aid, Finance, Staff and Fundraising
+- Soft archive with restore — no permanent delete
+- Document routing rules page (display only)
+- 14 document categories including medical, Gift Aid, finance, coach qualification and safeguarding
+- `DocumentsDemoProvider` for session-only uploads, assignments, scanned notes and audit stubs
+- Security notices for encryption, virus scanning, RBAC and retention policies
+
+### Changed
+
+- `/documents` redesigned from placeholder table to full document management module
+- Extended provider with `getDocumentsPageData()`
+
 ## [0.6.0] — 2026-06-26
 
 ### Added

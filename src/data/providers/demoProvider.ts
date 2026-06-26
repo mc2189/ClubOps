@@ -18,7 +18,7 @@ import {
 import { demoFeeRecords } from "@/data/demo/fees";
 import { demoGiftAid, demoGiftAidPageData } from "@/data/demo/giftAid";
 import { demoCommunications, demoCommunicationsPageData } from "@/data/demo/communicationsData";
-import { demoDocuments } from "@/data/demo/documents";
+import { demoDocuments, demoDocumentsPageData } from "@/data/demo/documentsData";
 import { demoCalendarEvents, demoCalendarPageData } from "@/data/demo/calendar";
 import { demoStaff } from "@/data/demo/staff";
 import { demoFundraising } from "@/data/demo/fundraising";
@@ -128,6 +128,10 @@ export const demoProvider: ClubOpsDataProvider = {
 
   async getDocuments() {
     return simulateDelay(demoDocuments.filter((d) => !d.archived));
+  },
+
+  async getDocumentsPageData() {
+    return simulateDelay(demoDocumentsPageData);
   },
 
   async getCalendarEvents() {

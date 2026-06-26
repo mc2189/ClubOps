@@ -1,5 +1,42 @@
 # ClubOps — Build Notes
 
+## Iteration 7 — Documents & Scanned Notes (2026-06-26)
+
+### What was built
+
+- Documents dashboard with stats, activity feed and quick actions
+- Upload simulation with disabled file input and demo document examples
+- Assignment page for unassigned documents with confidence and sensitivity
+- Scanned notes workflow for digitising paper gymnast notes
+- Missing documents tracker with cross-module suggested actions
+- Soft archive with restore (no permanent delete)
+- Routing rules page (display only)
+
+### New routes
+
+- `/documents`, `/documents/upload`, `/documents/assignment`
+- `/documents/scanned-notes`, `/documents/missing`, `/documents/archive`, `/documents/rules`
+
+### Security
+
+- Demo-only notices — no real files uploaded or stored
+- Restricted content warnings for medical/safeguarding/injury notes
+- Documents data protection warning with encryption, virus scan and RBAC TODOs
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+Staff/volunteer module or authentication/RBAC foundation next.
+
+---
+
 ## Iteration 6 — Communications & Forms (2026-06-26)
 
 ### What was built
