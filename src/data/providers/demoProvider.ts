@@ -21,7 +21,7 @@ import { demoCommunications, demoCommunicationsPageData } from "@/data/demo/comm
 import { demoDocuments, demoDocumentsPageData } from "@/data/demo/documentsData";
 import { demoCalendarEvents, demoCalendarPageData } from "@/data/demo/calendar";
 import { demoStaff, demoStaffPageData, getStaffProfileById } from "@/data/demo/staffData";
-import { demoFundraising } from "@/data/demo/fundraising";
+import { demoFundraising, demoFundraisingPageData, getFundraisingCampaignById } from "@/data/demo/fundraisingData";
 import { demoReports } from "@/data/demo/reports";
 import { demoAuditEvents } from "@/data/demo/audit";
 import { demoDashboardData } from "@/data/demo/dashboard";
@@ -152,6 +152,14 @@ export const demoProvider: ClubOpsDataProvider = {
 
   async getFundraisingCampaigns() {
     return simulateDelay(demoFundraising);
+  },
+
+  async getFundraisingPageData() {
+    return simulateDelay(demoFundraisingPageData);
+  },
+
+  async getFundraisingCampaign(id: string) {
+    return simulateDelay(getFundraisingCampaignById(id));
   },
 
   async getReportSummaries() {

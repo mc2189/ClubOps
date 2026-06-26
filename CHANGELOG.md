@@ -2,6 +2,28 @@
 
 All notable changes to ClubOps are documented here.
 
+## [0.9.0] — 2026-06-26
+
+### Added
+
+- **Fundraising module v0.9.0** — dashboard, campaigns, donors, businesses, sponsorships, donations, follow-ups and reports
+- Fundraising dashboard with raised totals, campaign progress, Gift Aid potential and quick actions
+- 6 demo campaigns including Equipment Appeal, Competition Travel Fund and Hardship/Access Fund
+- Campaign detail pages with linked donations, sponsors and Communications actions
+- Donor CRM with types, Gift Aid status, thank-you and follow-up tracking
+- Business CRM with pipeline statuses and demo actions (pledge, donation, status changes)
+- Sponsorship tiers (Bronze through Competition Sponsor) with Gift Aid guidance
+- Donations page with eligibility rules, finance/Gift Aid links and add demo donation
+- Follow-ups page with task types and Communications compose links
+- Reports page with 7 export placeholders and simulated export audit events
+- `FundraisingDemoProvider` for session-only state and audit stubs
+- Communications integration presets for sponsorship, thank-you, campaign update and renewal
+
+### Changed
+
+- `/fundraising` redesigned from placeholder table to full fundraising and donor CRM module
+- Extended provider with `getFundraisingPageData()` and `getFundraisingCampaign()`
+
 ## [0.8.0] — 2026-06-26
 
 ### Added

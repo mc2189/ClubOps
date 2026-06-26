@@ -20,6 +20,7 @@
 - [x] Communications module with compose, templates, groups, forms, inbox and simulated send (demo)
 - [x] Documents module with upload simulation, assignment, scanned notes and archive (demo)
 - [x] Staff & volunteers module with rota, qualifications, wages, venues and outgoings (demo)
+- [x] Fundraising module with campaigns, donors, business CRM, sponsorships and donations (demo)
 - [ ] Authentication and RBAC foundation
 
 ## Phase 2 — Communications & Documents
@@ -38,7 +39,7 @@
 ## Phase 4 — Staff & Fundraising
 
 - [x] Staff/volunteer records with DBS tracking (demo)
-- [ ] Fundraising campaign management
+- [x] Fundraising campaign management (demo)
 - [ ] Safeguarding record management (RBAC-protected)
 
 ## Phase 5 — Live-ready

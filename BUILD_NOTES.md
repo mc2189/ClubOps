@@ -1,5 +1,42 @@
 # ClubOps — Build Notes
 
+## Iteration 9 — Fundraising & Donor CRM (2026-06-26)
+
+### What was built
+
+- Fundraising dashboard with progress bars and Gift Aid potential
+- Campaign list and detail pages
+- Donor and business CRM with demo actions
+- Sponsorship tiers with renewal tracking
+- Donations with Gift Aid eligibility rules
+- Follow-ups and reports with simulated export
+
+### New routes
+
+- `/fundraising`, `/fundraising/campaigns`, `/fundraising/campaigns/[id]`
+- `/fundraising/donors`, `/fundraising/businesses`, `/fundraising/sponsorships`
+- `/fundraising/donations`, `/fundraising/follow-ups`, `/fundraising/reports`
+
+### Security
+
+- Demo-only notices — no real payments or donor data
+- Gift Aid guidance on business/sponsorship ineligibility
+- Fundraising data protection with RBAC and consent TODOs
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+Authentication/RBAC foundation or Reports/Audit module next.
+
+---
+
 ## Iteration 8 — Staff, Volunteers & Operations (2026-06-26)
 
 ### What was built

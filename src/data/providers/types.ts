@@ -875,6 +875,162 @@ export interface FundraisingCampaign {
   status: "active" | "completed" | "archived";
 }
 
+export type DonorType =
+  | "individual"
+  | "parent/carer"
+  | "business"
+  | "sponsor"
+  | "grant/funder"
+  | "anonymous/community";
+
+export type BusinessLeadStatus =
+  | "not contacted"
+  | "contacted"
+  | "interested"
+  | "pledged"
+  | "donated"
+  | "declined"
+  | "renewal due";
+
+export type DonationCategory =
+  | "individual voluntary donation"
+  | "parent/supporter donation"
+  | "business donation"
+  | "sponsorship"
+  | "grant"
+  | "fundraising event income"
+  | "raffle income"
+  | "anonymous/community collection"
+  | "equipment-specific donation";
+
+export type FundraisingThankYouStatus = "sent" | "needed" | "pending";
+export type FollowUpTaskStatus = "open" | "completed" | "overdue";
+
+export type FollowUpTaskType =
+  | "first contact"
+  | "chase reply"
+  | "confirm pledge"
+  | "collect donation"
+  | "send thank-you"
+  | "request logo"
+  | "renew sponsorship"
+  | "send update"
+  | "invite to event";
+
+export interface FundraisingCampaignDetail extends FundraisingCampaign {
+  purpose: string;
+  linkedDonationIds: string[];
+  linkedSponsorNames: string[];
+  documentsPlaceholder: string[];
+  communicationsPlaceholder: string[];
+  recentActivity: string[];
+}
+
+export interface DonorRecord {
+  id: string;
+  name: string;
+  donorType: DonorType;
+  totalDonated: number;
+  lastDonationDate?: string;
+  giftAidStatus?: string;
+  linkedCampaign?: string;
+  thankYouStatus: FundraisingThankYouStatus;
+  followUpStatus: string;
+}
+
+export interface BusinessLead {
+  id: string;
+  businessName: string;
+  contactPerson?: string;
+  contactPlaceholder: string;
+  sector: string;
+  status: BusinessLeadStatus;
+  lastContactDate?: string;
+  nextFollowUpDate?: string;
+  potentialAmount?: number;
+  pledgedAmount?: number;
+  receivedAmount?: number;
+  sponsorshipTier?: string;
+  notes?: string;
+  suggestedNextAction?: string;
+}
+
+export interface SponsorshipTier {
+  id: string;
+  name: string;
+  suggestedAmount: number;
+  benefitsPlaceholder: string;
+  currentSponsors: string[];
+  renewalPeriod: string;
+  nextRenewalDate?: string;
+  acknowledgementStatus: FundraisingThankYouStatus;
+}
+
+export interface FundraisingDonationRecord {
+  id: string;
+  date: string;
+  donor: string;
+  amount: number;
+  campaign: string;
+  campaignId: string;
+  donationType: DonationCategory;
+  paymentStatus: "received" | "pledged" | "pending";
+  giftAidEligibility: "eligible" | "not-eligible" | "needs-review";
+  giftAidDeclarationStatus?: string;
+  thankYouStatus: FundraisingThankYouStatus;
+  financeLinkPlaceholder?: string;
+  giftAidLinkPlaceholder?: string;
+}
+
+export interface FollowUpTask {
+  id: string;
+  donorOrBusiness: string;
+  taskType: FollowUpTaskType;
+  dueDate: string;
+  priority: "high" | "medium" | "low";
+  status: FollowUpTaskStatus;
+  linkedCampaign?: string;
+  suggestedAction: string;
+}
+
+export interface FundraisingReportItem {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+}
+
+export interface FundraisingActivityItem {
+  id: string;
+  timestamp: string;
+  action: string;
+  details: string;
+  actor: string;
+}
+
+export interface FundraisingDashboardData {
+  raisedThisMonth: number;
+  raisedThisYear: number;
+  activeCampaigns: number;
+  businessesContacted: number;
+  pledgesOutstanding: number;
+  followUpsDue: number;
+  thankYouOutstanding: number;
+  potentialGiftAid: number;
+  sponsorshipRenewalsDue: number;
+}
+
+export interface FundraisingPageData {
+  dashboard: FundraisingDashboardData;
+  campaigns: FundraisingCampaignDetail[];
+  donors: DonorRecord[];
+  businesses: BusinessLead[];
+  sponsorships: SponsorshipTier[];
+  donations: FundraisingDonationRecord[];
+  followUps: FollowUpTask[];
+  reports: FundraisingReportItem[];
+}
+
 export interface ReportSummary {
   id: string;
   title: string;
@@ -1004,6 +1160,8 @@ export interface ClubOpsDataProvider {
   getStaffPageData(): Promise<StaffPageData>;
   getStaffProfile(id: string): Promise<StaffProfileRecord | null>;
   getFundraisingCampaigns(): Promise<FundraisingCampaign[]>;
+  getFundraisingPageData(): Promise<FundraisingPageData>;
+  getFundraisingCampaign(id: string): Promise<FundraisingCampaignDetail | null>;
   getReportSummaries(): Promise<ReportSummary[]>;
   getAuditEvents(): Promise<AuditEvent[]>;
 }
