@@ -20,7 +20,7 @@ import { demoGiftAid, demoGiftAidPageData } from "@/data/demo/giftAid";
 import { demoCommunications, demoCommunicationsPageData } from "@/data/demo/communicationsData";
 import { demoDocuments, demoDocumentsPageData } from "@/data/demo/documentsData";
 import { demoCalendarEvents, demoCalendarPageData } from "@/data/demo/calendar";
-import { demoStaff } from "@/data/demo/staff";
+import { demoStaff, demoStaffPageData, getStaffProfileById } from "@/data/demo/staffData";
 import { demoFundraising } from "@/data/demo/fundraising";
 import { demoReports } from "@/data/demo/reports";
 import { demoAuditEvents } from "@/data/demo/audit";
@@ -140,6 +140,14 @@ export const demoProvider: ClubOpsDataProvider = {
 
   async getStaffMembers() {
     return simulateDelay(demoStaff);
+  },
+
+  async getStaffPageData() {
+    return simulateDelay(demoStaffPageData);
+  },
+
+  async getStaffProfile(id: string) {
+    return simulateDelay(getStaffProfileById(id));
   },
 
   async getFundraisingCampaigns() {

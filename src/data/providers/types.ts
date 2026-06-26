@@ -712,6 +712,159 @@ export interface StaffMember {
   status: "active" | "inactive" | "archived";
 }
 
+export type StaffType =
+  | "coach"
+  | "assistant coach"
+  | "volunteer"
+  | "committee member"
+  | "safeguarding officer"
+  | "treasurer"
+  | "secretary";
+
+export type QualificationStatus = "valid" | "expiring soon" | "expired" | "missing" | "needs review";
+export type ComplianceStatus = "valid" | "expiring soon" | "expired" | "missing" | "needs review";
+export type StaffPaymentStatus = "paid" | "unpaid" | "partial" | "pending";
+export type AlertSeverity = "high" | "medium" | "low";
+export type AlertStatus = "open" | "in-progress" | "resolved";
+
+export interface StaffQualification {
+  id: string;
+  name: string;
+  issueDate?: string;
+  expiryDate?: string;
+  status: QualificationStatus;
+  documentLink?: string;
+}
+
+export interface StaffProfileRecord {
+  id: string;
+  name: string;
+  role: string;
+  staffType: StaffType;
+  email: string;
+  phone?: string;
+  status: "active" | "inactive" | "archived";
+  assignedSessions: string[];
+  availability: string;
+  qualifications: StaffQualification[];
+  dbsStatus: ComplianceStatus;
+  dbsExpiry?: string;
+  safeguardingStatus: ComplianceStatus;
+  firstAidStatus: ComplianceStatus;
+  documentsLinked: string[];
+  notes?: string;
+  sessionRate?: number;
+  recentActivity?: string;
+}
+
+export interface QualificationRecord {
+  id: string;
+  qualificationName: string;
+  person: string;
+  staffId: string;
+  status: QualificationStatus;
+  issueDate?: string;
+  expiryDate?: string;
+  daysRemaining?: number;
+  documentLink?: string;
+  actionRequired?: string;
+}
+
+export interface RotaEntry {
+  id: string;
+  sessionName: string;
+  date: string;
+  time: string;
+  venue: string;
+  assignedStaff: string[];
+  gaps: string[];
+  hasConflict: boolean;
+  suggestedAction?: string;
+  confirmed: boolean;
+}
+
+export interface WagePrepRecord {
+  id: string;
+  staffName: string;
+  staffId: string;
+  sessionsWorked: number;
+  rate: number;
+  totalDue: number;
+  expensesPlaceholder?: number;
+  paymentStatus: StaffPaymentStatus;
+}
+
+export interface VenueRecord {
+  id: string;
+  name: string;
+  address: string;
+  contact: string;
+  hireRate: number;
+  recurringPattern: string;
+  linkedCalendarItems: string[];
+  monthlyEstimatedCost: number;
+  paymentStatus: StaffPaymentStatus;
+  notes?: string;
+}
+
+export type OutgoingCategory =
+  | "hall hire"
+  | "equipment"
+  | "insurance"
+  | "training/certifications"
+  | "competition fees"
+  | "travel"
+  | "utilities/miscellaneous"
+  | "wage/session payments";
+
+export interface OutgoingRecord {
+  id: string;
+  payee: string;
+  category: OutgoingCategory;
+  amount: number;
+  dueDate: string;
+  paymentStatus: StaffPaymentStatus;
+  receiptPlaceholder?: string;
+  financeLinkPlaceholder?: string;
+  priority: "high" | "medium" | "low";
+  notes?: string;
+  missingReceipt?: boolean;
+}
+
+export interface StaffAlert {
+  id: string;
+  title: string;
+  severity: AlertSeverity;
+  linkedRecord: string;
+  linkedModule: string;
+  suggestedAction: string;
+  dueDate?: string;
+  status: AlertStatus;
+}
+
+export interface StaffDashboardData {
+  activeCoaches: number;
+  activeVolunteers: number;
+  committeeAdminPlaceholder: number;
+  qualificationsExpiringSoon: number;
+  dbsReviewDue: number;
+  sessionsNeedingStaff: number;
+  wagePrepTotalThisMonth: number;
+  outgoingsDueThisMonth: number;
+  venueBookingsThisWeek: number;
+}
+
+export interface StaffPageData {
+  dashboard: StaffDashboardData;
+  staff: StaffProfileRecord[];
+  qualifications: QualificationRecord[];
+  rota: RotaEntry[];
+  wages: WagePrepRecord[];
+  venues: VenueRecord[];
+  outgoings: OutgoingRecord[];
+  alerts: StaffAlert[];
+}
+
 export interface FundraisingCampaign {
   id: string;
   name: string;
@@ -848,6 +1001,8 @@ export interface ClubOpsDataProvider {
   getDocumentsPageData(): Promise<DocumentsPageData>;
   getCalendarEvents(): Promise<CalendarEvent[]>;
   getStaffMembers(): Promise<StaffMember[]>;
+  getStaffPageData(): Promise<StaffPageData>;
+  getStaffProfile(id: string): Promise<StaffProfileRecord | null>;
   getFundraisingCampaigns(): Promise<FundraisingCampaign[]>;
   getReportSummaries(): Promise<ReportSummary[]>;
   getAuditEvents(): Promise<AuditEvent[]>;

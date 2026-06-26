@@ -19,6 +19,7 @@
 - [x] Gift Aid module with declarations, eligibility review and claim export demo
 - [x] Communications module with compose, templates, groups, forms, inbox and simulated send (demo)
 - [x] Documents module with upload simulation, assignment, scanned notes and archive (demo)
+- [x] Staff & volunteers module with rota, qualifications, wages, venues and outgoings (demo)
 - [ ] Authentication and RBAC foundation
 
 ## Phase 2 — Communications & Documents
@@ -36,9 +37,9 @@
 
 ## Phase 4 — Staff & Fundraising
 
-- Staff/volunteer records with DBS tracking
-- Fundraising campaign management
-- Safeguarding record management (RBAC-protected)
+- [x] Staff/volunteer records with DBS tracking (demo)
+- [ ] Fundraising campaign management
+- [ ] Safeguarding record management (RBAC-protected)
 
 ## Phase 5 — Live-ready
 

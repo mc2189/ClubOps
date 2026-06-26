@@ -2,6 +2,27 @@
 
 All notable changes to ClubOps are documented here.
 
+## [0.8.0] — 2026-06-26
+
+### Added
+
+- **Staff & Volunteers module v0.8.0** — dashboard, profiles, rota, qualifications, wages, venues, outgoings and alerts
+- Staff dashboard with coaches, volunteers, compliance stats, wage/outgoing totals and quick actions
+- Staff profile pages with contact, compliance, sessions, qualifications and linked documents
+- Rota page with session assignments, gaps, conflicts and demo assign/confirm actions
+- Qualifications & compliance tracking with expiry warnings and document links
+- Wage preparation page (not payroll) with session rates and demo export
+- Venues page with hall hire, recurring bookings and calendar links
+- Outgoings page with hall hire, insurance, wages and demo add/mark paid actions
+- Alerts page for qualifications, DBS, rota gaps, invoices and wage prep
+- `StaffDemoProvider` for session-only rota, outgoings, alerts and audit stubs
+- Security notices for staff RBAC, PVG/DBS, safeguarding and wage prep access
+
+### Changed
+
+- `/staff` redesigned from placeholder table to full operations module
+- Extended provider with `getStaffPageData()` and `getStaffProfile()`
+
 ## [0.7.0] — 2026-06-26
 
 ### Added

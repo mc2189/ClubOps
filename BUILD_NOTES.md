@@ -1,5 +1,41 @@
 # ClubOps — Build Notes
 
+## Iteration 8 — Staff, Volunteers & Operations (2026-06-26)
+
+### What was built
+
+- Staff dashboard with operational stats and quick actions
+- Staff profile pages for coaches, volunteers and committee
+- Rota with assign, conflict flag and confirm actions
+- Qualifications/compliance with expiry tracking
+- Wage prep (not payroll) with demo export
+- Venues, outgoings and alerts pages
+
+### New routes
+
+- `/staff`, `/staff/[id]`, `/staff/rota`, `/staff/qualifications`
+- `/staff/wages`, `/staff/venues`, `/staff/outgoings`, `/staff/alerts`
+
+### Security
+
+- Demo-only notices on all staff pages
+- Wage prep warning — not payroll, no HMRC submission
+- Staff data protection with RBAC, PVG/DBS and safeguarding TODOs
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+Fundraising module or authentication/RBAC foundation next.
+
+---
+
 ## Iteration 7 — Documents & Scanned Notes (2026-06-26)
 
 ### What was built
