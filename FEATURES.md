@@ -1,19 +1,15 @@
 # ClubOps — Features
 
-## Foundation (v0.1) — Complete
+ClubOps v1.0.0 is a **complete end-to-end demo** suitable for showing to club secretaries, treasurers and committee members. It is not production software.
 
-- [x] Next.js + TypeScript + Tailwind CSS project scaffold
-- [x] Dashboard layout with sidebar navigation and top bar
-- [x] Demo mode banner ("Demo Mode — fake data only")
-- [x] **v0.1.0 Dashboard** — today's tasks, club health scores, finance/attendance/Gift Aid snapshots, fundraising progress, quick actions, recent activity
-- [x] **Demo mode page** (`/demo`) explaining fake data and simulated integrations
-- [x] Dashboard components: TaskCard, HealthScoreCard, ProgressCard, RecentActivityList, QuickActionCard
-- [x] Placeholder pages for all 13 modules
-- [x] Data provider interface and demo provider
-- [x] Fake demo data for all modules
-- [x] Shared UI components (Card, StatCard, DataTable, Badge, etc.)
-- [x] Documentation and Cursor rules
-- [x] GitHub and Vercel deployment readiness
+## v1.0.0 — Complete (demo)
+
+- [x] All core modules implemented with demo data
+- [x] Reports dashboard and export packs
+- [x] Audit log with cross-module activity
+- [x] Export Centre (simulated Full Club Admin Pack)
+- [x] Demo script for presentations
+- [x] GitHub → Vercel auto-deploy
 
 ## Planned features
 

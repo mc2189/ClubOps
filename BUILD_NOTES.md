@@ -1,5 +1,45 @@
 # ClubOps — Build Notes
 
+## Iteration 10 — v1.0.0 Audit, Reports & Demo Polish (2026-06-26)
+
+### What was built
+
+- Reports dashboard with export categories and sensitivity levels
+- Export Centre — Full Club Admin Pack with 19 sections
+- Finance, Committee, Gift Aid and Member packs
+- Audit activity feed with filters and security guidance
+- Demo script for 10–15 minute club presentation
+- Club Health summary reusable component
+- Navigation and documentation polish
+
+### New routes
+
+- `/reports/finance-pack`, `/reports/committee-pack`, `/reports/gift-aid-pack`
+- `/reports/member-pack`, `/reports/export-centre`
+- `/audit/activity`, `/audit/security`
+- `/demo-script`
+
+### Security
+
+- Export restrictions documented for live mode
+- Sensitive summary only for medical/member packs
+- Audit tamper-resistance and RBAC guidance
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+- Authentication and RBAC foundation for live mode
+- Live data provider with secure storage
+
+---
+
 ## Iteration 9 — Fundraising & Donor CRM (2026-06-26)
 
 ### What was built

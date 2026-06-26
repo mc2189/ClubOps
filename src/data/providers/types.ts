@@ -1039,6 +1039,96 @@ export interface ReportSummary {
   description: string;
 }
 
+export interface ReportCard {
+  id: string;
+  name: string;
+  purpose: string;
+  linkedModules: string[];
+  lastGenerated?: string;
+  exportStatus: "ready" | "never" | "demo";
+  sensitivity: "normal" | "sensitive" | "restricted";
+  category: string;
+  href?: string;
+}
+
+export interface ExportPackItem {
+  id: string;
+  name: string;
+  description: string;
+  sensitivity: "normal" | "sensitive" | "restricted";
+}
+
+export interface FinancePackData {
+  incomeThisMonth: number;
+  incomeThisYear: number;
+  outgoingsThisMonth: number;
+  outgoingsThisYear: number;
+  netPosition: number;
+  unpaidFees: number;
+  matchedTransactions: number;
+  unmatchedTransactions: number;
+  possibleDonations: number;
+  expensesMissingReceipts: number;
+  wagePrepTotal: number;
+  hallHireOutgoings: number;
+}
+
+export interface CommitteePackData {
+  clubHealthScore: number;
+  activeMembers: number;
+  averageAttendance: number;
+  netFinancePosition: number;
+  fundraisingRaised: number;
+  giftAidOpportunity: number;
+  staffAlerts: number;
+  missingDocuments: number;
+  upcomingEvents: number;
+  actionsNeedingAttention: string[];
+}
+
+export interface GiftAidPackData {
+  validDeclarations: number;
+  missingDeclarations: number;
+  claimReadyAmount: number;
+  excludedIncome: number;
+  donationsNeedingReview: number;
+  estimatedReclaim: number;
+  complianceWarnings: string[];
+}
+
+export interface MemberPackData {
+  activeMembers: number;
+  inactiveMembers: number;
+  incompleteEmergencyContacts: number;
+  missingConsent: number;
+  medicalFlags: number;
+  attendanceConcerns: number;
+  unpaidFees: number;
+  documentsMissing: number;
+}
+
+export interface DemoScriptStep {
+  step: number;
+  title: string;
+  href: string;
+  whatToClick: string;
+  whatToSay: string;
+  problemSolved: string;
+  emphasis: string;
+}
+
+export interface ReportsAuditPageData {
+  reportCards: ReportCard[];
+  auditEvents: AuditEvent[];
+  exportPackItems: ExportPackItem[];
+  financePack: FinancePackData;
+  committeePack: CommitteePackData;
+  giftAidPack: GiftAidPackData;
+  memberPack: MemberPackData;
+  clubHealth: ClubHealthMetric[];
+  demoScript: DemoScriptStep[];
+}
+
 export interface AuditEvent {
   id: string;
   timestamp: string;
@@ -1046,6 +1136,11 @@ export interface AuditEvent {
   action: string;
   resource: string;
   details: string;
+  module?: string;
+  affectedRecord?: string;
+  riskLevel?: "normal" | "sensitive" | "restricted";
+  status?: "recorded" | "needs-review" | "flagged";
+  linkedHref?: string;
 }
 
 export interface DashboardStats {
@@ -1076,6 +1171,9 @@ export interface ClubHealthMetric {
   score: number;
   status: HealthStatus;
   summary: string;
+  suggestedAction?: string;
+  linkedModule?: string;
+  linkedHref?: string;
 }
 
 export interface FinanceSnapshot {
@@ -1164,4 +1262,5 @@ export interface ClubOpsDataProvider {
   getFundraisingCampaign(id: string): Promise<FundraisingCampaignDetail | null>;
   getReportSummaries(): Promise<ReportSummary[]>;
   getAuditEvents(): Promise<AuditEvent[]>;
+  getReportsAuditPageData(): Promise<ReportsAuditPageData>;
 }

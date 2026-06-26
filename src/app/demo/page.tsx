@@ -82,13 +82,13 @@ export default function DemoModePage() {
       </Card>
 
       <Card className="mt-6">
-        <h3 className="text-base font-semibold text-slate-900">Demo club</h3>
+        <h3 className="text-base font-semibold text-slate-900">Present ClubOps to your club</h3>
         <p className="mt-2 text-sm text-slate-600">
-          The demo uses <strong>Riverside Gymnastics Club</strong> as a fictional example. When
-          ClubOps moves to live mode, a real data provider will replace the demo provider without
-          requiring changes to the user interface.
+          Follow the step-by-step demo script for a 10–15 minute walkthrough.
         </p>
-        {/* TODO: RBAC — live mode will require authentication and role-based access */}
+        <Link href="/demo-script" className="mt-3 inline-block rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700">
+          Open demo script
+        </Link>
       </Card>
     </DashboardLayout>
   );

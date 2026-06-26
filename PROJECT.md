@@ -18,8 +18,9 @@ ClubOps reduces volunteer admin workload for sports clubs. The first demonstrati
 | Calendar           | Sessions, competitions and events            |
 | Staff & Volunteers | Coaches, DBS and safeguarding records        |
 | Fundraising        | Campaigns and donation tracking              |
-| Reports            | Membership, finance and attendance reports   |
-| Audit Log          | Activity and change history                  |
+| Reports            | Exports, committee packs and admin reports   |
+| Audit Log          | Cross-module activity and evidence trail     |
+| Demo Script        | Guided presentation walkthrough              |
 | Settings           | Club configuration                           |
 
 ## Design principles

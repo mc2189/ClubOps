@@ -41,6 +41,17 @@
   - Store outside web root
   - Generate audit events on upload/delete
 
+## Audit and exports (v1.0.0 demo)
+
+- Audit events in demo mode are **simulated** and reset on page refresh.
+- Report exports do **not** generate real files in demo mode.
+- In live mode:
+  - Audit logs must be **tamper-resistant** and retained
+  - Exports must be **logged** and restricted by role
+  - Medical/safeguarding data must **not** be casually exported
+  - Financial exports require **treasurer/admin** access
+  - Real **data retention policies** are required before production use
+
 ## Deployment
 
 - The first public demo deployment must contain **fake data only**.

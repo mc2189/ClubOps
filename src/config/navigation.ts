@@ -15,8 +15,9 @@ export const mainNavigation: NavItem[] = [
   { label: "Calendar", href: "/calendar", description: "Sessions, events and meetings" },
   { label: "Staff & Volunteers", href: "/staff", description: "Coaches, volunteers and DBS records" },
   { label: "Fundraising", href: "/fundraising", description: "Campaigns and donations" },
-  { label: "Reports", href: "/reports", description: "Membership, finance and attendance reports" },
-  { label: "Audit Log", href: "/audit", description: "Activity and change history" },
+  { label: "Reports", href: "/reports", description: "Exports, committee packs and admin reports" },
+  { label: "Audit Log", href: "/audit", description: "Cross-module activity and evidence trail" },
+  { label: "Demo Script", href: "/demo-script", description: "Guide for showing ClubOps to your club" },
   { label: "Settings", href: "/settings", description: "Club configuration and preferences" },
 ];
 

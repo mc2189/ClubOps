@@ -2,26 +2,29 @@
 
 ## Phase 0 — Foundation
 
-**Status: Complete**
+**Status: Complete (v1.0.0 demo)**
 
 - Project scaffold and tooling
 - Dashboard layout shell
 - Demo data provider
-- Placeholder pages for all modules
+- All core module pages
 - Documentation and deployment readiness
-- **v0.1.0 Dashboard** — tasks, health scores, snapshots, quick actions, demo mode page
+- **v1.0.0** — Reports, Audit, Export Centre and demo script
 
-## Phase 1 — Core CRUD (current)
+## Phase 1 — Core CRUD
 
-- [x] Member management (list, profile, add, edit, archive — demo state)
-- [x] Session and attendance register (demo state)
-- [x] Finance module with bank import demo and fee tracking
-- [x] Gift Aid module with declarations, eligibility review and claim export demo
-- [x] Communications module with compose, templates, groups, forms, inbox and simulated send (demo)
-- [x] Documents module with upload simulation, assignment, scanned notes and archive (demo)
-- [x] Staff & volunteers module with rota, qualifications, wages, venues and outgoings (demo)
-- [x] Fundraising module with campaigns, donors, business CRM, sponsorships and donations (demo)
-- [ ] Authentication and RBAC foundation
+**Status: Complete (demo)**
+
+- [x] Member management
+- [x] Session and attendance register
+- [x] Finance module with bank import demo
+- [x] Gift Aid module
+- [x] Communications module
+- [x] Documents module
+- [x] Staff & volunteers module
+- [x] Fundraising module
+- [x] Reports and Audit module
+- [ ] Authentication and RBAC foundation (live mode)
 
 ## Phase 2 — Communications & Documents
 

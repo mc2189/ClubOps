@@ -43,14 +43,16 @@ git push -u origin main
 
 ## 4. Automatic deployments
 
-- **Production**: Vercel auto-deploys from the `main` branch on every push.
+- **Production**: Vercel auto-deploys from the `main` branch on **every push**.
 - **Preview**: Feature branches get preview deployment URLs automatically.
+- The demo URL can be shared safely with committee members — all data is fake.
+- No environment variables are required for the demo.
 
 ## 5. Environment variables
 
 **No environment variables are required for the demo version.**
 
-When connecting live data in the future, secrets must be configured in the Vercel dashboard under **Settings → Environment Variables**. Never commit secrets to the repository.
+When connecting live data in the future, secrets must be configured in the Vercel dashboard under **Settings → Environment Variables**. Never commit secrets to the repository. **Never add real data to the public demo deployment.**
 
 ## 6. Demo safety checklist
 

@@ -2,6 +2,29 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.0.0] — 2026-06-26
+
+### Added
+
+- **v1.0.0 Reports, Audit & Export** — complete demo layer for committee and treasurer workflows
+- Reports dashboard with 11 report categories and sensitivity labels
+- Export Centre with Full Club Admin Pack (19 sections, simulated export)
+- Finance Pack, Committee Pack, Gift Aid Pack and Member Admin Pack pages
+- Audit overview, filterable activity feed and security guidance pages
+- Cross-module audit log with 15 demo events from all modules
+- Reusable Club Health summary with suggested actions and module links
+- Demo script page (`/demo-script`) with 10-step presentation guide
+- `ReportsAuditDemoProvider` for simulated exports and audit events
+- Navigation updates: Reports, Audit Log, Demo Script descriptions
+
+### Changed
+
+- `/reports` and `/audit` redesigned from placeholders to full modules
+- Extended audit events with module, risk level, status and linked pages
+- Dashboard health metrics now include suggested actions and links
+- Demo and Settings pages link to demo script
+- Documentation updated for v1.0.0 demo-complete status
+
 ## [0.9.0] — 2026-06-26
 
 ### Added

@@ -22,8 +22,8 @@ import { demoDocuments, demoDocumentsPageData } from "@/data/demo/documentsData"
 import { demoCalendarEvents, demoCalendarPageData } from "@/data/demo/calendar";
 import { demoStaff, demoStaffPageData, getStaffProfileById } from "@/data/demo/staffData";
 import { demoFundraising, demoFundraisingPageData, getFundraisingCampaignById } from "@/data/demo/fundraisingData";
-import { demoReports } from "@/data/demo/reports";
-import { demoAuditEvents } from "@/data/demo/audit";
+import { demoReports, demoReportsAuditPageData } from "@/data/demo/reportsAuditData";
+import { demoAuditEvents } from "@/data/demo/reportsAuditData";
 import { demoDashboardData } from "@/data/demo/dashboard";
 
 async function simulateDelay<T>(data: T): Promise<T> {
@@ -168,5 +168,9 @@ export const demoProvider: ClubOpsDataProvider = {
 
   async getAuditEvents() {
     return simulateDelay(demoAuditEvents);
+  },
+
+  async getReportsAuditPageData() {
+    return simulateDelay(demoReportsAuditPageData);
   },
 };
