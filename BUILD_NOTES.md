@@ -1,5 +1,38 @@
 # ClubOps — Build Notes
 
+## Iteration 14 — v1.2.0 Live-Ready Data Architecture Blueprint (2026-06-26)
+
+### What was built
+
+- Live readiness, data architecture, provider model and production roadmap settings pages
+- Architecture blueprint data (entities, classifications, migration stages, checklist)
+- `liveProvider.stub.ts` placeholder (not wired)
+- `providerMode.ts` demo flag
+- Six technical architecture documents
+- Links from Settings, Security, Demo page, optional demo script step
+
+### New routes
+
+- `/settings/live-readiness`
+- `/settings/data-architecture`
+- `/settings/provider-model`
+- `/settings/production-roadmap`
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+- Stage 2 migration: choose auth strategy, database schema, server-side RBAC
+- Implement liveProvider read path for members module (private deployment only)
+
+---
+
 ## Iteration 13 — v1.1.0 Demo Role Switching & RBAC Foundation (2026-06-26)
 
 ### What was built

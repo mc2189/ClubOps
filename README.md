@@ -19,6 +19,8 @@ Open [http://localhost:3000](http://localhost:3000) — the app redirects to the
 
 ## Demo mode
 
+**v1.2.0 adds live-ready data architecture blueprint — still demo only, no database.**
+
 **v1.1.0 adds demo role switching and RBAC preview — not real authentication.**
 
 This application runs in permanent demo mode with **fake data only**. Use the **demo role switcher** in the top bar to preview permissions (session storage — persists on refresh in the same tab).
@@ -26,6 +28,17 @@ This application runs in permanent demo mode with **fake data only**. Use the **
 No real member, financial or safeguarding data is used. Live use requires authentication, RBAC, a secure database, secure file storage, production audit logging and data protection controls.
 
 See [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) before sharing the public demo link.
+
+## Architecture documentation (v1.2.0)
+
+- [ARCHITECTURE.md](./ARCHITECTURE.md) — system layers and module map
+- [DATA_MODEL.md](./DATA_MODEL.md) — entities, classifications, schema outline
+- [LIVE_MODE_PLAN.md](./LIVE_MODE_PLAN.md) — demo vs live strategy
+- [PROVIDER_CONTRACTS.md](./PROVIDER_CONTRACTS.md) — `ClubOpsDataProvider` contract
+- [SECURITY_LIVE_REQUIREMENTS.md](./SECURITY_LIVE_REQUIREMENTS.md) — production security checklist
+- [MIGRATION_PLAN.md](./MIGRATION_PLAN.md) — staged migration stages 1–6
+
+Settings UI: `/settings/live-readiness`, `/settings/data-architecture`, `/settings/provider-model`, `/settings/production-roadmap`
 
 ## Project structure
 
@@ -44,7 +57,7 @@ src/
 
 ## Data architecture
 
-All pages fetch data through the provider layer (`src/data/providers/`). To switch from demo to live data, implement `liveProvider.ts` and update `src/data/providers/index.ts`.
+All pages fetch data through the provider layer (`src/data/providers/`). To switch from demo to live data, implement `liveProvider` (see `liveProvider.stub.ts`) and update `src/data/providers/index.ts` — **only on a private live deployment**. Public demo must always use `demoProvider`.
 
 ## Scripts
 
@@ -58,6 +71,12 @@ All pages fetch data through the provider layer (`src/data/providers/`). To swit
 
 ## Documentation
 
+- [ARCHITECTURE.md](./ARCHITECTURE.md) — system architecture
+- [DATA_MODEL.md](./DATA_MODEL.md) — domain model
+- [LIVE_MODE_PLAN.md](./LIVE_MODE_PLAN.md) — live mode strategy
+- [PROVIDER_CONTRACTS.md](./PROVIDER_CONTRACTS.md) — provider interface
+- [SECURITY_LIVE_REQUIREMENTS.md](./SECURITY_LIVE_REQUIREMENTS.md) — live security requirements
+- [MIGRATION_PLAN.md](./MIGRATION_PLAN.md) — migration stages
 - [PROJECT.md](./PROJECT.md) — project overview
 - [FEATURES.md](./FEATURES.md) — feature list
 - [ROADMAP.md](./ROADMAP.md) — development roadmap

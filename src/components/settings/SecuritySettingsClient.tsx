@@ -54,6 +54,26 @@ export function SecuritySettingsClient() {
               Demo roles quick intro
             </Link>
           </li>
+          <li>
+            <Link href="/settings/live-readiness" className="text-indigo-600 hover:underline">
+              Live readiness checklist (v1.2.0)
+            </Link>
+          </li>
+          <li>
+            <Link href="/settings/data-architecture" className="text-indigo-600 hover:underline">
+              Data architecture blueprint
+            </Link>
+          </li>
+          <li>
+            <Link href="/settings/provider-model" className="text-indigo-600 hover:underline">
+              Provider model — demo vs live
+            </Link>
+          </li>
+          <li>
+            <Link href="/settings/production-roadmap" className="text-indigo-600 hover:underline">
+              Production roadmap
+            </Link>
+          </li>
         </ul>
       </Card>
     </>

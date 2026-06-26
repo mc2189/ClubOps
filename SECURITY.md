@@ -15,9 +15,17 @@
 
 ## Access control
 
-- Role-based access control (RBAC) is planned but not yet implemented.
+- Role-based access control (RBAC) is **previewed in demo** (v1.1.0) — client-side only.
+- Live mode requires **server-side** RBAC on every request — see [SECURITY_LIVE_REQUIREMENTS.md](./SECURITY_LIVE_REQUIREMENTS.md).
 - TODO markers exist in code for future RBAC enforcement.
 - Sensitive fields (medical notes, safeguarding records, finance details) require restricted access.
+
+## Live-ready architecture (v1.2.0)
+
+- Data architecture blueprint documented in ARCHITECTURE.md, DATA_MODEL.md, MIGRATION_PLAN.md.
+- Settings UI at `/settings/live-readiness`, `/settings/data-architecture`, `/settings/provider-model`, `/settings/production-roadmap`.
+- `liveProvider.stub.ts` is a placeholder — **not wired** and must not be used with real data.
+- Public demo must always use `demoProvider`.
 
 ## Integrations — prohibited in demo
 

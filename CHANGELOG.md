@@ -2,6 +2,31 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.2.0] — 2026-06-26
+
+### Added
+
+- **v1.2.0 Live-ready data architecture blueprint**
+- Settings pages: `/settings/live-readiness`, `/settings/data-architecture`, `/settings/provider-model`, `/settings/production-roadmap`
+- Architecture blueprint data (`src/data/demo/architectureData.ts`) — entities, classifications, migration stages, readiness checklist
+- `liveProvider.stub.ts` — future live provider placeholder (throws; not wired)
+- `src/lib/providerMode.ts` — demo mode flag (`PROVIDER_MODE = "demo"`)
+- Technical docs: ARCHITECTURE.md, DATA_MODEL.md, LIVE_MODE_PLAN.md, PROVIDER_CONTRACTS.md, SECURITY_LIVE_REQUIREMENTS.md, MIGRATION_PLAN.md
+- Optional demo script step for live-ready architecture walkthrough
+
+### Changed
+
+- Settings overview and Security settings link to architecture blueprint pages
+- Demo page links to live readiness and production roadmap
+- Settings sub-nav extended with architecture pages
+- Provider index comments and documentation references
+- README, PROJECT, FEATURES, ROADMAP, SECURITY, BUILD_NOTES, DEPLOYMENT, DEMO_QA_CHECKLIST updated
+
+### Not included (by design)
+
+- No database, auth, Supabase/Firebase/Prisma/Neon, external APIs, or real file storage
+- Demo behaviour unchanged except new settings links and docs
+
 ## [1.1.0] — 2026-06-26
 
 ### Added

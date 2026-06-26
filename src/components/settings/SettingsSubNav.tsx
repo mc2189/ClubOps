@@ -8,6 +8,10 @@ const links = [
   { href: "/settings/roles", label: "Demo roles" },
   { href: "/settings/permissions", label: "Permissions" },
   { href: "/settings/security", label: "Security" },
+  { href: "/settings/live-readiness", label: "Live readiness" },
+  { href: "/settings/data-architecture", label: "Data architecture" },
+  { href: "/settings/provider-model", label: "Provider model" },
+  { href: "/settings/production-roadmap", label: "Production roadmap" },
 ];
 
 export function SettingsSubNav() {

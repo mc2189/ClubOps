@@ -43,8 +43,16 @@ UI Page → dataProvider.getX() → demoProvider (now) / liveProvider (future)
 
 All data access goes through `ClubOpsDataProvider` interface defined in `src/data/providers/types.ts`.
 
+## v1.2.0 status
+
+ClubOps v1.2.0 adds a **live-ready data architecture blueprint** — documentation and settings UI for moving from demo to live without messy rewrites. **No database, auth, or live integrations are added.** Demo Mode remains permanent.
+
+Blueprint pages: `/settings/live-readiness`, `/settings/data-architecture`, `/settings/provider-model`, `/settings/production-roadmap`.
+
+Technical docs: ARCHITECTURE.md, DATA_MODEL.md, LIVE_MODE_PLAN.md, PROVIDER_CONTRACTS.md, SECURITY_LIVE_REQUIREMENTS.md, MIGRATION_PLAN.md.
+
 ## v1.1.0 status
 
 ClubOps v1.1.0 adds **demo role switching and RBAC preview** — a presentation tool showing how secretary, treasurer, coach and welfare roles would restrict access in live mode. This is **not real authentication** and does not protect real data. The demo remains publicly accessible without login.
 
-The next phase after v1.1.0 is backend authentication and server-side authorisation for live mode.
+The next phase after v1.2.0 is Stage 2 of the migration plan: real authentication, database, and server-side authorisation for live mode.

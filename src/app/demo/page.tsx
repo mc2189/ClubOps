@@ -97,6 +97,22 @@ export default function DemoModePage() {
       </Card>
 
       <Card className="mt-6">
+        <h3 className="text-base font-semibold text-slate-900">Live-ready blueprint (v1.2.0)</h3>
+        <p className="mt-2 text-sm text-slate-600">
+          ClubOps is demo-only today, but the architecture is documented for a future live version.
+          Demo mode stays permanent for public training and sales demos.
+        </p>
+        <div className="mt-3 flex flex-col gap-2 text-sm">
+          <Link href="/settings/live-readiness" className="font-medium text-indigo-600 hover:underline">
+            What must exist before real data →
+          </Link>
+          <Link href="/settings/production-roadmap" className="font-medium text-indigo-600 hover:underline">
+            Staged migration roadmap →
+          </Link>
+        </div>
+      </Card>
+
+      <Card className="mt-6">
         <h3 className="text-base font-semibold text-slate-900">Present ClubOps to your club</h3>
         <p className="mt-2 text-sm text-slate-600">
           Follow the step-by-step demo script for a 10–15 minute walkthrough.

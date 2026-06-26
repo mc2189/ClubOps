@@ -99,9 +99,9 @@ export function DemoScriptClient({
       </ol>
       {optionalSteps.length > 0 && (
         <section className="mt-10">
-          <h2 className="text-lg font-semibold text-slate-900">Optional aside — demo roles (v1.1.0)</h2>
+          <h2 className="text-lg font-semibold text-slate-900">Optional aside</h2>
           <p className="mt-2 text-sm text-slate-600">
-            Add 2–3 minutes if the committee asks about data protection or who should see what.
+            Add 2–5 minutes if the committee asks about data protection, permissions or going live.
           </p>
           <ol className="mt-4 space-y-6">
             {optionalSteps.map((step) => (

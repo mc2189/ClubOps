@@ -1,10 +1,23 @@
 # ClubOps — Features
 
-ClubOps v1.1.0 adds **demo role switching and RBAC preview**. It remains a public demo — not production software — and must not be used with real data.
+ClubOps v1.2.0 adds a **live-ready data architecture blueprint**. v1.1.0 adds **demo role switching and RBAC preview**. It remains a public demo — not production software — and must not be used with real data.
 
 Live deployment requires authentication, RBAC, a secure database, secure file storage, production audit logging and data protection controls.
 
-## v1.1.0 — Demo RBAC preview (current)
+## v1.2.0 — Live-ready architecture blueprint (current)
+
+- [x] Settings: live readiness checklist
+- [x] Settings: data architecture (entities + classifications)
+- [x] Settings: provider model (demo vs live)
+- [x] Settings: production roadmap (migration stages)
+- [x] Architecture docs: ARCHITECTURE, DATA_MODEL, LIVE_MODE_PLAN, PROVIDER_CONTRACTS, SECURITY_LIVE_REQUIREMENTS, MIGRATION_PLAN
+- [x] `liveProvider.stub.ts` — typed placeholder (not wired)
+- [x] `architectureData.ts` — blueprint data for UI
+- [x] Links from Settings, Security, Demo page, optional demo script step
+- [ ] Real authentication (live mode — not in this release)
+- [ ] Database (live mode — not in this release)
+
+## v1.1.0 — Demo RBAC preview
 
 - [x] Seven demo roles with permission matrix
 - [x] Top-bar role switcher (session storage)

@@ -162,6 +162,18 @@ export const demoScriptOptionalSteps: DemoScriptStep[] = [
     emphasis: "Demo role switching only — not real security. Real login required before production.",
     optional: true,
   },
+  {
+    step: 0,
+    title: "Optional — Live-ready architecture (v1.2.0)",
+    href: "/settings/live-readiness",
+    secondaryHref: "/settings/production-roadmap",
+    secondaryLinkLabel: "Production roadmap",
+    whatToClick: "Open Live readiness → skim checklist. Open Data architecture for entity groups. Mention demo stays permanent; live is a separate deployment.",
+    whatToSay: "This demo uses fake data only. Before we load real member or medical records, we need authentication, a secure database, file storage and audit logging — all documented here so we avoid a messy rewrite.",
+    problemSolved: "Committee sees a credible path from demo to production without rushing into live data.",
+    emphasis: "Blueprint only — no database or real auth in this release.",
+    optional: true,
+  },
 ];
 
 export const demoReportsAuditPageData: ReportsAuditPageData = {
