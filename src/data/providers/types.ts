@@ -112,6 +112,131 @@ export interface AttendanceRecord {
   memberId: string;
   memberName: string;
   present: boolean;
+  mark?: AttendanceMark;
+}
+
+export type AttendanceMark = "present" | "absent" | "late" | "left-early" | "trial" | "unmarked";
+
+export type RegisterStatus = "complete" | "incomplete" | "outstanding";
+
+export interface SessionClass {
+  id: string;
+  name: string;
+  day: string;
+  time: string;
+  venue: string;
+  coach: string;
+  memberIds: string[];
+  sessionDate: string;
+  registerStatus: RegisterStatus;
+}
+
+export interface RegisterMemberEntry {
+  memberId: string;
+  memberName: string;
+  age: number;
+  classGroup: string;
+  hasMedicalFlag: boolean;
+  emergencyContactComplete: EmergencyContactCompleteness;
+  recentAttendanceSummary: string;
+  mark: AttendanceMark;
+}
+
+export interface SessionRegister {
+  sessionId: string;
+  sessionName: string;
+  sessionDate: string;
+  entries: RegisterMemberEntry[];
+  status: RegisterStatus;
+  savedAt?: string;
+}
+
+export interface AbsenceAlert {
+  memberId: string;
+  memberName: string;
+  consecutiveAbsences: number;
+  lastSession: string;
+}
+
+export interface LowAttendanceMember {
+  memberId: string;
+  memberName: string;
+  classGroup: string;
+  percentage: number;
+}
+
+export interface AttendanceDashboardData {
+  todaySessions: SessionClass[];
+  registersCompleted: number;
+  registersOutstanding: number;
+  attendancePercentWeek: number;
+  attendancePercentMonth: number;
+  absenceAlerts: AbsenceAlert[];
+  lowAttendanceMembers: LowAttendanceMember[];
+}
+
+export interface ClassAttendanceReport {
+  sessionId: string;
+  sessionName: string;
+  averageAttendance: number;
+  registersComplete: number;
+  registersTotal: number;
+}
+
+export interface MemberAttendanceReport {
+  memberId: string;
+  memberName: string;
+  classGroup: string;
+  percentage: number;
+  present: number;
+  absent: number;
+  late: number;
+}
+
+export interface AttendanceReportsData {
+  byClass: ClassAttendanceReport[];
+  byMember: MemberAttendanceReport[];
+  repeatedAbsences: AbsenceAlert[];
+  lowAttendance: LowAttendanceMember[];
+  incompleteRegisters: SessionClass[];
+}
+
+export type CalendarItemType =
+  | "session"
+  | "competition"
+  | "hall-booking"
+  | "staff-rota"
+  | "payment-due"
+  | "gift-aid"
+  | "qualification-expiry"
+  | "fundraising"
+  | "meeting"
+  | "social";
+
+export interface CalendarItem {
+  id: string;
+  title: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  location: string;
+  type: CalendarItemType;
+  module: string;
+  description?: string;
+}
+
+export interface AutomationHint {
+  id: string;
+  title: string;
+  description: string;
+  priority: "high" | "medium" | "low";
+  href?: string;
+  category: string;
+}
+
+export interface CalendarPageData {
+  items: CalendarItem[];
+  automationHints: AutomationHint[];
 }
 
 export interface FinanceTransaction {
@@ -289,6 +414,11 @@ export interface ClubOpsDataProvider {
   getMemberProfiles(): Promise<MemberProfile[]>;
   getMemberProfile(id: string): Promise<MemberProfile | null>;
   getAttendanceRecords(): Promise<AttendanceRecord[]>;
+  getAttendanceDashboard(): Promise<AttendanceDashboardData>;
+  getSessionClasses(): Promise<SessionClass[]>;
+  getSessionRegister(sessionId: string): Promise<SessionRegister>;
+  getAttendanceReports(): Promise<AttendanceReportsData>;
+  getCalendarPageData(): Promise<CalendarPageData>;
   getFinanceTransactions(): Promise<FinanceTransaction[]>;
   getGiftAidDeclarations(): Promise<GiftAidDeclaration[]>;
   getCommunications(): Promise<Communication[]>;

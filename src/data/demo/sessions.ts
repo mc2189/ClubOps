@@ -1,0 +1,73 @@
+import type { SessionClass } from "@/data/providers/types";
+
+/** Demo "today" for consistent session display */
+export const DEMO_TODAY = "2026-06-26";
+
+export const demoSessions: SessionClass[] = [
+  {
+    id: "ses-mon-beginners",
+    name: "Monday Beginners",
+    day: "Monday",
+    time: "16:00 – 17:00",
+    venue: "Main Hall",
+    coach: "Quinn Shaw",
+    memberIds: ["mem-008"],
+    sessionDate: "2026-06-30",
+    registerStatus: "outstanding",
+  },
+  {
+    id: "ses-tue-development",
+    name: "Tuesday Development Squad",
+    day: "Tuesday",
+    time: "17:00 – 18:30",
+    venue: "Main Hall",
+    coach: "Jamie Hart",
+    memberIds: ["mem-001", "mem-005", "mem-004"],
+    sessionDate: "2026-07-01",
+    registerStatus: "complete",
+  },
+  {
+    id: "ses-wed-intermediate",
+    name: "Wednesday Intermediate",
+    day: "Wednesday",
+    time: "18:00 – 19:30",
+    venue: "Main Hall",
+    coach: "Morgan Ellis",
+    memberIds: ["mem-003", "mem-009"],
+    sessionDate: "2026-07-02",
+    registerStatus: "outstanding",
+  },
+  {
+    id: "ses-fri-competition",
+    name: "Friday Competition Squad",
+    day: "Friday",
+    time: "17:30 – 20:00",
+    venue: "Main Hall",
+    coach: "Morgan Ellis",
+    memberIds: ["mem-002", "mem-007", "mem-009"],
+    sessionDate: "2026-06-27",
+    registerStatus: "incomplete",
+  },
+  {
+    id: "ses-sat-recreational",
+    name: "Saturday Recreational",
+    day: "Saturday",
+    time: "10:00 – 11:30",
+    venue: "Main Hall",
+    coach: "Jamie Hart",
+    memberIds: ["mem-008", "mem-001", "mem-005"],
+    sessionDate: "2026-06-28",
+    registerStatus: "outstanding",
+  },
+  {
+    id: "ses-thu-competitive",
+    name: "Competitive Squad — Thursday",
+    day: "Thursday",
+    time: "18:00 – 20:00",
+    venue: "Main Hall",
+    coach: "Morgan Ellis",
+    memberIds: ["mem-002", "mem-007", "mem-009"],
+    sessionDate: DEMO_TODAY,
+    registerStatus: "outstanding",
+  },
+];

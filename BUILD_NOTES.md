@@ -1,5 +1,44 @@
 # ClubOps — Build Notes
 
+## Iteration 3 — Attendance & Calendar (2026-06-26)
+
+### What was built
+
+- Attendance dashboard with today's sessions, stats, absence alerts, low attendance
+- Session selector and register marking UI (large mobile-friendly buttons)
+- Mark all present (with confirmation) and save register flows
+- Attendance reports page with export placeholder
+- Calendar agenda view with multi-module items and automation hints
+- AttendanceDemoProvider for demo register state
+
+### New routes
+
+- `/attendance` — dashboard
+- `/attendance/register` — session selector
+- `/attendance/register/[sessionId]` — register marking
+- `/attendance/reports` — reports
+- `/calendar` — agenda + suggested actions
+
+### Security
+
+- Medical flags visible on register; detailed notes not shown
+- "Medical information available — restricted access required in live mode" notice
+- RBAC TODO on medical data in register context
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+Finance module or Communications module next.
+
+---
+
 ## Iteration 2 — Members & Parent Records (2026-06-26)
 
 ### What was built

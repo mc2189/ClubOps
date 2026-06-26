@@ -27,10 +27,21 @@
 - [ ] Persistent storage (live provider)
 
 ### Attendance
-- [ ] Session templates and scheduling
-- [ ] Quick attendance register (mobile-friendly)
-- [ ] Attendance reports by member/session
-- [ ] Absence notifications
+- [x] Attendance dashboard with today's sessions and alerts
+- [x] Session/class selector with 6 demo sessions
+- [x] Mobile-friendly register marking (Present, Absent, Late, Left Early, Trial)
+- [x] Mark all present and save register (demo state)
+- [x] Attendance reports (by class, by member, absences, incomplete registers)
+- [ ] Attendance export (PDF/CSV)
+- [ ] Persistent storage (live provider)
+
+### Calendar
+- [x] Multi-module agenda view (sessions, competitions, finance, staff, Gift Aid, fundraising)
+- [x] Static automation/suggested action hints
+- [ ] Month/week/day grid views
+- [ ] Recurring session support
+- [ ] Event creation and editing
+- [ ] iCal export
 
 ### Finance
 - [ ] Transaction entry and categorisation
@@ -54,12 +65,6 @@
 - [ ] Category and tag management
 - [ ] Version history
 - [ ] Soft-delete / archive
-
-### Calendar
-- [ ] Month/week/day views
-- [ ] Recurring session support
-- [ ] Event creation and editing
-- [ ] iCal export
 
 ### Staff & Volunteers
 - [ ] DBS check tracking and expiry alerts

@@ -2,6 +2,27 @@
 
 All notable changes to ClubOps are documented here.
 
+## [0.3.0] — 2026-06-26
+
+### Added
+
+- **Attendance module v0.3.0** — dashboard, session selector, mobile-friendly register marking, and reports
+- Attendance workflow: select session → mark Present/Absent/Late/Left Early/Trial → save register
+- `AttendanceDemoProvider` for session-only register state and audit event stubs
+- 6 demo sessions (Monday Beginners through Saturday Recreational)
+- Attendance reports: by class, by member, repeated absences, low attendance, incomplete registers
+- **Calendar module v0.3.0** — multi-module agenda view with automation hints
+- Calendar items from attendance, finance, staff, Gift Aid, fundraising and competitions
+- Static suggested actions (competition prep, incomplete register, absence follow-up, etc.)
+- Medical flag on register with safeguarding notice (no detailed notes exposed)
+
+### Changed
+
+- `/attendance` redesigned from placeholder table to full dashboard
+- `/calendar` redesigned from simple table to agenda + suggested actions view
+- Extended `AttendanceRecord` with optional `mark` field
+- Expanded calendar demo data with 10+ item types across modules
+
 ## [0.2.0] — 2026-06-26
 
 ### Added

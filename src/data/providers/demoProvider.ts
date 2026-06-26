@@ -1,11 +1,18 @@
 import type { ClubOpsDataProvider } from "@/data/providers/types";
 import { demoMembers, demoMemberProfiles } from "@/data/demo/members";
 import { demoAttendance } from "@/data/demo/attendance";
+import {
+  demoAttendanceDashboard,
+  demoAttendanceReports,
+  buildSessionRegister,
+  demoCompletedRegisterMarks,
+} from "@/data/demo/attendanceData";
+import { demoSessions } from "@/data/demo/sessions";
 import { demoFinance } from "@/data/demo/finance";
 import { demoGiftAid } from "@/data/demo/giftAid";
 import { demoCommunications } from "@/data/demo/communications";
 import { demoDocuments } from "@/data/demo/documents";
-import { demoCalendarEvents } from "@/data/demo/calendar";
+import { demoCalendarEvents, demoCalendarPageData } from "@/data/demo/calendar";
 import { demoStaff } from "@/data/demo/staff";
 import { demoFundraising } from "@/data/demo/fundraising";
 import { demoReports } from "@/data/demo/reports";
@@ -49,6 +56,27 @@ export const demoProvider: ClubOpsDataProvider = {
 
   async getAttendanceRecords() {
     return simulateDelay(demoAttendance);
+  },
+
+  async getAttendanceDashboard() {
+    return simulateDelay(demoAttendanceDashboard);
+  },
+
+  async getSessionClasses() {
+    return simulateDelay(demoSessions);
+  },
+
+  async getSessionRegister(sessionId: string) {
+    const marks = demoCompletedRegisterMarks[sessionId];
+    return simulateDelay(buildSessionRegister(sessionId, marks));
+  },
+
+  async getAttendanceReports() {
+    return simulateDelay(demoAttendanceReports);
+  },
+
+  async getCalendarPageData() {
+    return simulateDelay(demoCalendarPageData);
   },
 
   async getFinanceTransactions() {
