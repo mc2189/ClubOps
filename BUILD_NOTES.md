@@ -1,5 +1,36 @@
 # ClubOps — Build Notes
 
+## Iteration 13 — v1.1.0 Demo Role Switching & RBAC Foundation (2026-06-26)
+
+### What was built
+
+- Demo role switcher in top bar with 7 roles
+- Permissions matrix and role cards in Settings
+- Security requirements educational page
+- Permission preview notices on sensitive modules
+- RBAC session audit events
+- Optional demo script step
+
+### New routes
+
+- `/settings/roles`, `/settings/permissions`, `/settings/security`
+- `/demo-roles`
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+- Real authentication and server-side RBAC for live mode
+- Live data provider with secure storage
+
+---
+
 ## Iteration 12 — v1.0.2 Final Demo Readiness Fixes (2026-06-26)
 
 ### What was built

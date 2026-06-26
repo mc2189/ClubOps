@@ -60,6 +60,7 @@ Before sharing the public URL, complete [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLI
 
 Minimum checks:
 
+- [ ] Demo role switcher visible in top bar — switch roles and verify permission previews
 - [ ] Communications compose loads without getting stuck (test Gift Aid preset)
 - [ ] Demo banner is visible on all pages
 - [ ] All data is fake (no real member/financial/safeguarding data)

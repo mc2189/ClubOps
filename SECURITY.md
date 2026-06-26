@@ -41,6 +41,14 @@
   - Store outside web root
   - Generate audit events on upload/delete
 
+## Demo RBAC preview (v1.1.0)
+
+- Demo role switching is **not real authentication** — it does not protect real data on the public demo.
+- Permission previews are client-side only; live mode requires server-side authorisation on every request.
+- Role selection persists in **session storage** for the current browser tab (survives refresh; cleared when tab closes).
+- RBAC-related audit events are session-only and merge into the audit activity feed on Reports/Audit pages.
+- Use [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) before sharing the public demo URL.
+
 ## Audit and exports (v1.0.2 demo)
 
 - Audit events in demo mode are **simulated** and reset on page refresh.

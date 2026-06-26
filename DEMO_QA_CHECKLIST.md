@@ -14,7 +14,8 @@ Complete these on the **production demo URL** (not localhost):
 - [ ] **Finance import review** — `/finance/import/review` shows match review demo
 - [ ] **Attendance register** — mark Present/Absent on a session register
 - [ ] **Reports export centre** — `/reports/export-centre` generates demo pack (no real file)
-- [ ] Confirm demo banner visible on every page visited
+- [ ] Switch demo roles and verify permission preview messages (Coach on Finance, Treasurer on Gift Aid)
+- [ ] Open `/settings/permissions` matrix
 - [ ] Confirm no real uploads, emails, banking, payments or HMRC actions occur
 - [ ] Refresh page — session-only changes reset
 - [ ] Explain: **not production software** — live use needs auth, RBAC, secure DB, secure storage and audit controls

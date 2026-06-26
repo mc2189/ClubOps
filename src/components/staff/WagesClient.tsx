@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Card, PageHeader, DataTable, Badge } from "@/components/ui";
 import { DemoOnlyNotice, WagePrepWarning } from "@/components/staff/StaffNotices";
+import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
 import { StaffSubNav } from "@/components/staff/StaffSubNav";
 import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
 import { formatStaffCurrency, paymentStatusVariant } from "@/lib/staff";
@@ -16,6 +17,7 @@ export function WagesClient() {
       <PageHeader title="Wage preparation" description="Session payment preparation — not payroll." />
       <StaffSubNav active="Wages" />
       <DemoOnlyNotice />
+      <PermissionPreviewNotice module="wage-prep" />
       <WagePrepWarning />
       {wageExportDone && (
         <div className="mt-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-900">

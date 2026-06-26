@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
 import { DemoOnlyNotice, ReportsSecurityNotice, ExportSuccessNotice } from "@/components/reports/ReportsNotices";
+import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
 import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
 import { sensitivityVariant } from "@/lib/reports";
@@ -15,6 +16,7 @@ export function ExportCentreClient() {
       <PageHeader title="Export Centre" description="Full Club Admin Pack — simulated export, no real file generated." />
       <ReportsSubNav active="Export Centre" />
       <DemoOnlyNotice />
+      <PermissionPreviewNotice module="exports" action="export" />
       {lastExportTitle === "Full Club Admin Pack" && <ExportSuccessNotice title="Full Club Admin Pack" />}
       <Card className="mt-4">
         <h2 className="text-sm font-semibold text-slate-900">Full Club Admin Pack</h2>

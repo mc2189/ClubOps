@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Card, PageHeader, StatCard } from "@/components/ui";
 import { DemoOnlyNotice, FinanceSecurityNotice } from "@/components/finance/FinanceNotices";
+import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import { formatCurrency, formatDate } from "@/lib/utils";
 
@@ -25,6 +26,7 @@ export function FinanceDashboardClient() {
       />
 
       <DemoOnlyNotice />
+      <PermissionPreviewNotice module="finance" />
       <FinanceSubNav active="Dashboard" />
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

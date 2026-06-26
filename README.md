@@ -19,11 +19,9 @@ Open [http://localhost:3000](http://localhost:3000) — the app redirects to the
 
 ## Demo mode
 
-**v1.0.2 is a polished public demo, not production software.**
+**v1.1.0 adds demo role switching and RBAC preview — not real authentication.**
 
-This application runs in permanent demo mode with **fake data only**. A banner is displayed at the top of every page:
-
-> Demo mode — fake data only · refresh resets session changes
+This application runs in permanent demo mode with **fake data only**. Use the **demo role switcher** in the top bar to preview permissions (session storage — persists on refresh in the same tab).
 
 No real member, financial or safeguarding data is used. Live use requires authentication, RBAC, a secure database, secure file storage, production audit logging and data protection controls.
 

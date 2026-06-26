@@ -1,0 +1,38 @@
+"use client";
+
+import { useDemoRole } from "@/components/rbac/DemoRoleProvider";
+import type { DemoRoleId } from "@/lib/permissions";
+
+export function DemoRoleSwitcher() {
+  const { role, roleName, roleDescription, setRole, roles } = useDemoRole();
+
+  return (
+    <div className="flex flex-col items-end gap-1 sm:flex-row sm:items-center sm:gap-3">
+      <div className="hidden text-right lg:block">
+        <p className="text-xs font-medium text-slate-700">Current demo role</p>
+        <p className="max-w-[180px] truncate text-xs text-slate-500" title={roleDescription}>
+          {roleName}
+        </p>
+      </div>
+      <label htmlFor="demo-role-switcher" className="sr-only">
+        Switch demo role
+      </label>
+      <select
+        id="demo-role-switcher"
+        value={role}
+        onChange={(e) => setRole(e.target.value as DemoRoleId)}
+        className="max-w-[200px] rounded-md border border-indigo-200 bg-indigo-50 px-2 py-1.5 text-xs font-medium text-indigo-900"
+        aria-describedby="demo-role-switcher-note"
+      >
+        {roles.map((r) => (
+          <option key={r.id} value={r.id}>
+            {r.shortName}
+          </option>
+        ))}
+      </select>
+      <span id="demo-role-switcher-note" className="hidden text-[10px] text-amber-700 xl:inline">
+        Demo only — not real security
+      </span>
+    </div>
+  );
+}

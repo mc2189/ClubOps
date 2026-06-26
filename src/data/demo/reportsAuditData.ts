@@ -149,6 +149,21 @@ export const demoScriptSteps: DemoScriptStep[] = [
   { step: 10, title: "Reports & Audit", href: "/reports/export-centre", whatToClick: "Generate demo Full Club Admin Pack", whatToSay: "Before a committee meeting, generate a pack covering finance, members, Gift Aid and audit trail.", problemSolved: "Committee gets evidence without manual report building.", emphasis: "Generate demo export — no real file generated." },
 ];
 
+export const demoScriptOptionalSteps: DemoScriptStep[] = [
+  {
+    step: 0,
+    title: "Optional — Switch demo roles",
+    href: "/demo-roles",
+    secondaryHref: "/settings/permissions",
+    secondaryLinkLabel: "Permissions matrix",
+    whatToClick: "Switch to Coach → open Finance (see restriction). Switch to Treasurer → open Gift Aid. Switch to Welfare Officer → open member medical tab. Return to Secretary/Admin.",
+    whatToSay: "Not every volunteer sees everything. Treasurers handle money, welfare officers handle sensitive records, coaches mark attendance — demo role switching shows how live permissions would work.",
+    problemSolved: "Committee understands why RBAC matters before any real data is loaded.",
+    emphasis: "Demo role switching only — not real security. Real login required before production.",
+    optional: true,
+  },
+];
+
 export const demoReportsAuditPageData: ReportsAuditPageData = {
   reportCards: demoReportCards,
   auditEvents: demoAuditLog,
@@ -159,6 +174,7 @@ export const demoReportsAuditPageData: ReportsAuditPageData = {
   memberPack: demoMemberPack,
   clubHealth: demoClubHealthSummary,
   demoScript: demoScriptSteps,
+  demoScriptOptional: demoScriptOptionalSteps,
 };
 
 /** Legacy */

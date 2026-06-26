@@ -1,10 +1,19 @@
 # ClubOps — Features
 
-ClubOps v1.0.2 is a **polished public demo** suitable for showing to club secretaries, treasurers and committee members. It is **not production software** and must not be used with real data.
+ClubOps v1.1.0 adds **demo role switching and RBAC preview**. It remains a public demo — not production software — and must not be used with real data.
 
 Live deployment requires authentication, RBAC, a secure database, secure file storage, production audit logging and data protection controls.
 
-## v1.0.2 — Final demo readiness (current)
+## v1.1.0 — Demo RBAC preview (current)
+
+- [x] Seven demo roles with permission matrix
+- [x] Top-bar role switcher (session storage)
+- [x] Settings: roles, permissions, security pages
+- [x] Permission preview notices on sensitive modules
+- [x] Optional demo script step for role switching
+- [x] RBAC audit events (session-only)
+
+## v1.0.2 — Final demo readiness
 
 - [x] Communications composer loads reliably (no stuck “Loading composer…”)
 - [x] Compose presets: Gift Aid, unpaid fees, sponsorship request
@@ -105,7 +114,8 @@ Live deployment requires authentication, RBAC, a secure database, secure file st
 ## Live mode only (not in demo)
 
 ### Platform
-- [ ] Authentication (email/password or OAuth)
+- [x] Demo role switching and RBAC preview (v1.1.0 — not real auth)
+- [ ] Real authentication (email/password or OAuth)
 - [ ] Role-based access control (RBAC)
 - [ ] Live data provider with secure database
 - [ ] Secure file storage with defensive upload handling

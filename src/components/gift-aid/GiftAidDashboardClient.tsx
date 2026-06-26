@@ -7,6 +7,7 @@ import {
   GiftAidSecurityNotice,
   ComplianceWarnings,
 } from "@/components/gift-aid/GiftAidNotices";
+import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
 import { useGiftAidDemo } from "@/components/gift-aid/GiftAidDemoProvider";
 import { DeclarationRequestModal } from "@/components/gift-aid/DeclarationRequestModal";
 import { formatCurrency } from "@/lib/utils";
@@ -58,6 +59,7 @@ export function GiftAidDashboardClient() {
       />
       <GiftAidSubNav active="Dashboard" />
       <DemoOnlyNotice />
+      <PermissionPreviewNotice module="gift-aid" />
       <div className="mt-4 space-y-4">
         <GiftAidSecurityNotice />
         <ComplianceWarnings />

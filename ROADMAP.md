@@ -2,7 +2,7 @@
 
 ## Phase 0 — Foundation
 
-**Status: Complete (v1.0.2 demo readiness)**
+**Status: Complete (v1.1.0 demo RBAC preview)**
 
 - Project scaffold and tooling
 - Dashboard layout shell
@@ -12,10 +12,11 @@
 - **v1.0.0** — Reports, Audit, Export Centre and demo script
 - **v1.0.1** — Demo QA, link check and presentation polish
 - **v1.0.2** — Final demo readiness fixes (composer, data consistency)
+- **v1.1.0** — Demo role switching and RBAC foundation preview
 
 ## Phase 1 — Core CRUD
 
-**Status: Complete (demo) — ready for v1.1.0 RBAC**
+**Status: Complete (demo) — RBAC preview added; live auth next**
 
 - [x] Member management
 - [x] Session and attendance register
@@ -26,7 +27,8 @@
 - [x] Staff & volunteers module
 - [x] Fundraising module
 - [x] Reports and Audit module
-- [ ] Authentication and RBAC foundation (live mode)
+- [x] Demo role switching and RBAC preview (v1.1.0)
+- [ ] Real authentication and server-side RBAC (live mode)
 
 ## Phase 2 — Communications & Documents
 

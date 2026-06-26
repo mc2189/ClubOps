@@ -1117,6 +1117,7 @@ export interface DemoScriptStep {
   emphasis: string;
   secondaryHref?: string;
   secondaryLinkLabel?: string;
+  optional?: boolean;
 }
 
 export interface ReportsAuditPageData {
@@ -1129,6 +1130,7 @@ export interface ReportsAuditPageData {
   memberPack: MemberPackData;
   clubHealth: ClubHealthMetric[];
   demoScript: DemoScriptStep[];
+  demoScriptOptional?: DemoScriptStep[];
 }
 
 export interface AuditEvent {

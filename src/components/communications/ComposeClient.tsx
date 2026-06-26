@@ -12,6 +12,7 @@ import {
   SPONSORSHIP_COMPOSE_PRESET,
   UNPAID_FEES_COMPOSE_PRESET,
 } from "@/lib/communications";
+import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
 
 export interface ComposeClientProps {
   preset?: string | null;
@@ -128,6 +129,7 @@ export function ComposeClient({
       />
       <CommunicationsSubNav active="Compose" />
       <DemoOnlyNotice />
+      <PermissionPreviewNotice module="communications" action="send" />
 
       {isGiftAidFlow && (
         <div className="mt-4 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-3 text-sm text-indigo-900">

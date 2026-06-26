@@ -6,7 +6,7 @@ export default async function DemoScriptPage() {
   const data = await dataProvider.getReportsAuditPageData();
   return (
     <DashboardLayout>
-      <DemoScriptClient steps={data.demoScript} />
+      <DemoScriptClient steps={data.demoScript} optionalSteps={data.demoScriptOptional} />
     </DashboardLayout>
   );
 }

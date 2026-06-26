@@ -2,6 +2,27 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.1.0] — 2026-06-26
+
+### Added
+
+- **v1.1.0 Demo role switching and RBAC foundation preview**
+- Seven demo roles: Secretary/Admin, Treasurer, Coach, Welfare Officer, Fundraising Lead, Committee Read-Only, Demo Super Admin
+- Central permissions model (`src/lib/permissions.ts`) with `can()`, `getModuleLevel()`, restriction messages
+- `DemoRoleProvider` and top-bar role switcher (session storage persistence)
+- Settings pages: `/settings/roles`, `/settings/permissions`, `/settings/security`
+- `/demo-roles` intro page for role switching walkthrough
+- Permission preview notices on finance, Gift Aid, medical, exports, communications, wage prep
+- RBAC audit events merged into audit activity feed
+- Optional demo script step for role switching
+- Live-mode security requirements documentation
+
+### Changed
+
+- Settings page redesigned with RBAC links
+- Demo page and audit security page link to role/permission pages
+- Fundraising sponsorship compose links use `preset=sponsorship-request`
+
 ## [1.0.2] — 2026-06-26
 
 ### Fixed

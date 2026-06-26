@@ -86,6 +86,17 @@ export default function DemoModePage() {
       </Card>
 
       <Card className="mt-6">
+        <h3 className="text-base font-semibold text-slate-900">Demo roles (v1.1.0)</h3>
+        <p className="mt-2 text-sm text-slate-600">
+          Preview how secretary, treasurer, coach and welfare roles would restrict access — demo role
+          switching only, not real security.
+        </p>
+        <Link href="/demo-roles" className="mt-3 inline-block rounded-md border border-indigo-300 bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-800 hover:bg-indigo-100">
+          Try demo role switching
+        </Link>
+      </Card>
+
+      <Card className="mt-6">
         <h3 className="text-base font-semibold text-slate-900">Present ClubOps to your club</h3>
         <p className="mt-2 text-sm text-slate-600">
           Follow the step-by-step demo script for a 10–15 minute walkthrough.

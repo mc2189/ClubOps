@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Badge, Card, EmptyState, PageHeader, StatCard } from "@/components/ui";
 import { MemberTabs, useMemberTab, type MemberTabId } from "@/components/members/MemberTabs";
 import { DemoOnlyNotice, SensitiveDataNotice } from "@/components/members/MemberNotices";
+import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
 import { useMembersDemo } from "@/components/members/MembersDemoProvider";
 import {
   calculateAge,
@@ -274,6 +275,7 @@ function MedicalTab({ profile }: { profile: MemberProfile }) {
   return (
     <div className="space-y-4">
       <SensitiveDataNotice area="Medical & welfare" />
+      <PermissionPreviewNotice module="members-sensitive" action="view-sensitive-detail" />
       <Card>
         <h3 className="text-sm font-semibold text-slate-900">Medical summary</h3>
         <p className="mt-2 text-sm text-slate-600">{profile.medicalSummary}</p>
