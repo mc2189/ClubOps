@@ -2,6 +2,29 @@
 
 All notable changes to ClubOps are documented here.
 
+## [0.6.0] — 2026-06-26
+
+### Added
+
+- **Communications module v0.6.0** — dashboard, compose, templates, groups, history, forms, inbox, and rules
+- Communications dashboard with draft/sent counts, campaign reminders, and quick actions
+- Demo message composer with recipient groups, templates, form attachment, preview, draft save and simulated send
+- 14 dynamic recipient groups derived from members, finance, Gift Aid, attendance, staff and fundraising demo data
+- 10 message templates with placeholder preview (`{{parent_first_name}}`, `{{form_link}}`, etc.)
+- 6 digital forms (Gift Aid, medical, emergency contact, consent, event permission, coach availability)
+- Simulated inbox with auto-match, confidence scores, and review workflow
+- Routing rules page with plain-English automation rules (display only)
+- Message history with audit reference placeholders
+- Gift Aid integration: "Request missing Gift Aid declarations" quick action and modal link to compose preset
+- `CommunicationsDemoProvider` for session-only drafts, sends, inbox updates and audit stubs
+- Security notices for bulk messaging RBAC, contact data protection, consent/unsubscribe and medical form access
+
+### Changed
+
+- `/communications` redesigned from placeholder table to full secretary-friendly module
+- Gift Aid declaration request modal now links to Communications compose preset
+- Extended provider with `getCommunicationsPageData()`
+
 ## [0.5.0] — 2026-06-26
 
 ### Added

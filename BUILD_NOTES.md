@@ -1,5 +1,41 @@
 # ClubOps — Build Notes
 
+## Iteration 6 — Communications & Forms (2026-06-26)
+
+### What was built
+
+- Communications dashboard with campaign reminders and quick actions
+- Compose page with group/template/form selectors, preview panel, draft and simulated send
+- Templates, recipient groups, forms, inbox, history and routing rules pages
+- Gift Aid declaration request wired from Gift Aid module to Communications compose preset
+- Simulated inbox responses with auto-match confidence and review actions
+
+### New routes
+
+- `/communications`, `/communications/compose`, `/communications/templates`
+- `/communications/groups`, `/communications/history`, `/communications/forms`
+- `/communications/inbox`, `/communications/rules`
+
+### Security
+
+- Demo-only notices on all communications pages — no real email sent
+- Communications data protection warning with RBAC, consent and medical form access TODOs
+- No external APIs, Gmail, Outlook, SMS or real form processing
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+Documents module or authentication/RBAC foundation next.
+
+---
+
 ## Iteration 5 — Gift Aid Module (2026-06-26)
 
 ### What was built

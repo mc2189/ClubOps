@@ -17,7 +17,7 @@ import {
 } from "@/data/demo/financeData";
 import { demoFeeRecords } from "@/data/demo/fees";
 import { demoGiftAid, demoGiftAidPageData } from "@/data/demo/giftAid";
-import { demoCommunications } from "@/data/demo/communications";
+import { demoCommunications, demoCommunicationsPageData } from "@/data/demo/communicationsData";
 import { demoDocuments } from "@/data/demo/documents";
 import { demoCalendarEvents, demoCalendarPageData } from "@/data/demo/calendar";
 import { demoStaff } from "@/data/demo/staff";
@@ -120,6 +120,10 @@ export const demoProvider: ClubOpsDataProvider = {
 
   async getCommunications() {
     return simulateDelay(demoCommunications);
+  },
+
+  async getCommunicationsPageData() {
+    return simulateDelay(demoCommunicationsPageData);
   },
 
   async getDocuments() {

@@ -458,6 +458,94 @@ export interface Communication {
   status: "draft" | "sent" | "scheduled";
 }
 
+export type MessageStatus = "draft" | "sent" | "scheduled" | "simulated";
+export type InboxResponseStatus = "auto-filed" | "needs-review" | "unresolved";
+export type FormStatus = "active" | "draft" | "archived";
+
+export interface RecipientGroup {
+  id: string;
+  name: string;
+  description: string;
+  recipientCount: number;
+  sourceModule: string;
+  exampleRecipients: string[];
+  lastContacted?: string;
+}
+
+export interface MessageTemplate {
+  id: string;
+  name: string;
+  category: string;
+  subject: string;
+  body: string;
+  linkedFormId?: string;
+}
+
+export interface DemoForm {
+  id: string;
+  name: string;
+  purpose: string;
+  linkedModule: string;
+  status: FormStatus;
+  lastSent?: string;
+  responsesReceived: number;
+  responsesNeedingReview: number;
+}
+
+export interface InboxResponse {
+  id: string;
+  sender: string;
+  subject: string;
+  detectedType: string;
+  matchedRecord: string;
+  matchedMemberId?: string;
+  confidence: number;
+  suggestedAction: string;
+  status: InboxResponseStatus;
+  linkedModule: string;
+}
+
+export interface MessageHistoryRecord {
+  id: string;
+  dateTime: string;
+  sender: string;
+  recipientGroup: string;
+  subject: string;
+  templateUsed?: string;
+  formsAttached?: string[];
+  status: MessageStatus;
+  linkedModule: string;
+  auditReference?: string;
+}
+
+export interface RoutingRule {
+  id: string;
+  condition: string;
+  action: string;
+  priority: number;
+}
+
+export interface CommunicationsDashboardData {
+  draftCount: number;
+  sentCount: number;
+  pendingFormResponses: number;
+  repliesNeedingReview: number;
+  bouncedPlaceholder: number;
+  giftAidCampaignPending: boolean;
+  unpaidFeeCampaignPending: boolean;
+  upcomingCompetitionMessage: string;
+}
+
+export interface CommunicationsPageData {
+  dashboard: CommunicationsDashboardData;
+  groups: RecipientGroup[];
+  templates: MessageTemplate[];
+  forms: DemoForm[];
+  inbox: InboxResponse[];
+  history: MessageHistoryRecord[];
+  rules: RoutingRule[];
+}
+
 export interface Document {
   id: string;
   title: string;
@@ -619,6 +707,7 @@ export interface ClubOpsDataProvider {
   getGiftAidDeclarations(): Promise<GiftAidDeclaration[]>;
   getGiftAidPageData(): Promise<GiftAidPageData>;
   getCommunications(): Promise<Communication[]>;
+  getCommunicationsPageData(): Promise<CommunicationsPageData>;
   getDocuments(): Promise<Document[]>;
   getCalendarEvents(): Promise<CalendarEvent[]>;
   getStaffMembers(): Promise<StaffMember[]>;
