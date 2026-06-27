@@ -4,7 +4,8 @@ import { PageHeader, Card } from "@/components/ui";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { DemoRoleSwitcher } from "@/components/rbac/DemoRoleSwitcher";
-import { clubName } from "@/config/navigation";
+import { ClubLogo } from "@/components/branding/ClubLogo";
+import { clubName } from "@/config/branding";
 import { settingsTrail } from "@/lib/breadcrumbs";
 
 export default function SettingsPage() {
@@ -28,8 +29,14 @@ export default function SettingsPage() {
           Everyday settings for secretaries, treasurers and committee members.
         </p>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <Card>
-            <h3 className="text-base font-semibold text-slate-900">Club details</h3>
+          <Card className="border-brand-primary/10 bg-brand-soft/30">
+            <div className="flex items-center gap-3">
+              <ClubLogo size={36} />
+              <div>
+                <h3 className="text-base font-semibold text-brand-charcoal">Club details</h3>
+                <p className="text-xs text-slate-500">Branded demo instance</p>
+              </div>
+            </div>
             <dl className="mt-4 space-y-3 text-sm">
               <div>
                 <dt className="text-slate-500">Club name</dt>

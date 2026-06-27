@@ -36,14 +36,14 @@ export const demoMessageTemplates: MessageTemplate[] = [
     subject: "Gift Aid declaration — {{member_first_name}}",
     body: `Dear {{parent_first_name}},
 
-We would like to invite you to complete a Gift Aid declaration for Riverside Gymnastics Club.
+We would like to invite you to complete a Gift Aid declaration for Arbroath Gymnastics Club.
 
 If you are a UK taxpayer, the club can claim an extra 25p for every £1 you donate at no cost to you. This only applies to genuine voluntary donations — not class fees.
 
 Please complete the form: {{form_link}}
 
 Kind regards,
-Riverside Gymnastics Club`,
+Arbroath Gymnastics Club`,
     linkedFormId: "form-giftaid",
   },
   {
@@ -58,7 +58,7 @@ Our records show an outstanding membership fee of {{amount_due}} for {{member_fi
 Please arrange payment at your earliest convenience.
 
 Kind regards,
-Riverside Gymnastics Club`,
+Arbroath Gymnastics Club`,
   },
   {
     id: "tpl-class-cancel",
@@ -72,7 +72,7 @@ Please note that {{class_name}} on {{event_date}} has been cancelled.
 Apologies for any inconvenience.
 
 Kind regards,
-Riverside Gymnastics Club`,
+Arbroath Gymnastics Club`,
   },
   {
     id: "tpl-competition",
@@ -86,7 +86,7 @@ This is a reminder about {{event_name}} on {{event_date}}.
 Please ensure {{member_first_name}} arrives 30 minutes before the start time.
 
 Kind regards,
-Riverside Gymnastics Club`,
+Arbroath Gymnastics Club`,
   },
   {
     id: "tpl-medical",
@@ -100,14 +100,14 @@ Please review and update medical and emergency contact details for {{member_firs
 Complete the form: {{form_link}}
 
 Kind regards,
-Riverside Gymnastics Club`,
+Arbroath Gymnastics Club`,
     linkedFormId: "form-medical",
   },
   {
     id: "tpl-sponsorship",
     name: "Sponsorship request",
     category: "Fundraising",
-    subject: "Sponsorship opportunity — Riverside Gymnastics Club",
+    subject: "Sponsorship opportunity — Arbroath Gymnastics Club",
     body: `Dear {{parent_first_name}},
 
 We are seeking local business sponsors for our upcoming equipment fund.
@@ -115,7 +115,7 @@ We are seeking local business sponsors for our upcoming equipment fund.
 If you know a business that might support us, please get in touch.
 
 Kind regards,
-Riverside Gymnastics Club`,
+Arbroath Gymnastics Club`,
   },
   {
     id: "tpl-fundraising",
@@ -129,7 +129,7 @@ We are running a fundraiser and would appreciate your support.
 Every donation helps — thank you!
 
 Kind regards,
-Riverside Gymnastics Club`,
+Arbroath Gymnastics Club`,
   },
   {
     id: "tpl-announcement",
@@ -141,7 +141,7 @@ Riverside Gymnastics Club`,
 [Your message here]
 
 Kind regards,
-Riverside Gymnastics Club`,
+Arbroath Gymnastics Club`,
   },
   {
     id: "tpl-attendance",
@@ -155,7 +155,7 @@ We noticed {{member_first_name}} has missed recent sessions. Is everything okay?
 Please let us know if there is anything we can help with.
 
 Kind regards,
-Riverside Gymnastics Club`,
+Arbroath Gymnastics Club`,
   },
   {
     id: "tpl-coach",
@@ -169,7 +169,7 @@ Can you confirm availability for {{event_name}} on {{event_date}}?
 Please reply using the form: {{form_link}}
 
 Thanks,
-Riverside Gymnastics Club`,
+Arbroath Gymnastics Club`,
     linkedFormId: "form-coach",
   },
 ];

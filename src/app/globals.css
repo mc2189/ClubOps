@@ -1,8 +1,22 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-primary: #157347;
+  --color-brand-primary-hover: #12603b;
+  --color-brand-soft: #ddf3e7;
+  --color-brand-charcoal: #1f2937;
+  --color-brand-off-white: #f9fafb;
+  --color-brand-accent: #fce7f3;
+  --color-brand-accent-lilac: #f3e8ff;
+  --color-brand-sidebar: #1a2e24;
+  --color-brand-sidebar-border: #2d4a3a;
+}
+
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #f9fafb;
+  --foreground: #1f2937;
+  --brand-primary: #157347;
+  --brand-soft: #ddf3e7;
 }
 
 body {
@@ -15,4 +29,12 @@ body {
     "Segoe UI",
     Roboto,
     sans-serif;
+}
+
+.brand-shimmer {
+  background-size: 200% 200%;
+}
+
+:focus-visible {
+  outline-color: var(--brand-primary);
 }

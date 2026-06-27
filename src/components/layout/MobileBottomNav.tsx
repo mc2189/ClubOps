@@ -31,7 +31,7 @@ export function MobileBottomNav() {
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "flex min-h-[52px] flex-col items-center justify-center px-1 py-2 text-xs font-medium",
-                  active ? "text-indigo-700" : "text-slate-600",
+                  active ? "text-brand-primary" : "text-slate-600",
                 )}
               >
                 {item.label}

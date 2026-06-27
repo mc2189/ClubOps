@@ -1,5 +1,6 @@
 "use client";
 
+import { ReportBrandHeader } from "@/components/branding/ReportBrandHeader";
 import Link from "next/link";
 import { Card, PageHeader, StatCard } from "@/components/ui";
 import { DemoOnlyNotice, ReportsSecurityNotice, ExportSuccessNotice } from "@/components/reports/ReportsNotices";
@@ -17,6 +18,9 @@ export function FinancePackClient() {
     <>
       <PageHeader title="Finance Pack" description="Treasurer summary for accounting and audit." breadcrumbs={reportsTrail("Finance Pack")} backHref="/reports" />
       <ReportsSubNav active="Finance Pack" />
+      <div className="mt-4">
+        <ReportBrandHeader title="Finance Pack" subtitle="Treasurer summary for accounting and audit" />
+      </div>
       <DemoOnlyNotice />
       {lastExportTitle === "Finance Pack" && <ExportSuccessNotice title="Finance Pack" />}
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

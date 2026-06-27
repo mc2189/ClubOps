@@ -2,7 +2,7 @@
 
 ## Phase 0 — Foundation
 
-**Status: Complete (v1.4.4 RBAC honesty — still demo-only)**
+**Status: Complete (v1.4.5 Arbroath branding — still demo-only)**
 
 - Project scaffold and tooling
 - Dashboard layout shell
@@ -20,6 +20,7 @@
 - **v1.4.2** — Mobile/tablet shell (drawer sidebar, bottom nav, touch targets, mobile tables)
 - **v1.4.3** — Breadcrumb navigation on all module page headers
 - **v1.4.4** — RBAC honesty: locked/summary restricted content previews by demo role
+- **v1.4.5** — Arbroath Gymnastics Club branding refresh (logo, colours, club naming)
 
 ### Upcoming (planned)
 

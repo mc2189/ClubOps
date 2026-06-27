@@ -2,6 +2,28 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.5] — 2026-06-27
+
+### Added
+
+- `src/config/branding.ts` — club name, logo paths, colour tokens, tagline
+- `ClubLogo`, `BrandMark`, `DashboardWelcomeCard`, `ReportBrandHeader` components
+- SVG club logo at `public/branding/arbroath-logo.svg` (PNG can replace via same path)
+- Branded welcome card on dashboard; strong branding on About demo page
+- Report/export pack brand headers (Export Centre, Finance, Committee, Gift Aid, Member packs)
+
+### Changed
+
+- Public demo branded as **Arbroath Gymnastics Club** (was Riverside Gymnastics Club in user-facing copy)
+- Theme palette: emerald green primary, charcoal text, soft green accents, subtle pink/lilac shimmer
+- Sidebar, mobile nav, sub-nav pills, role switcher and shell use brand colours
+- Communication templates and Gift Aid declaration preview use Arbroath club name
+- Page metadata title references Arbroath Gymnastics Club demo
+
+### Note
+
+- Branded for demonstration purposes only — all data remains fake; not a live club system
+
 ## [1.4.4] — 2026-06-27
 
 ### Added

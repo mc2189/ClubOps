@@ -33,6 +33,8 @@ ClubOps reduces volunteer admin workload for sports clubs. The first demonstrati
 
 ## Current release
 
+**v1.4.5** — Arbroath Gymnastics Club branding (logo, theme, club naming). Still demo-only.
+
 **v1.4.4** — RBAC honesty: locked/summary restricted content previews by demo role. Still demo-only; not real security.
 
 **v1.4.3** — Breadcrumb navigation on all module pages.
@@ -43,7 +45,7 @@ ClubOps reduces volunteer admin workload for sports clubs. The first demonstrati
 
 ## Demo club
 
-The demo uses **Riverside Gymnastics Club** with entirely fictional members, staff and records.
+The demo uses **Arbroath Gymnastics Club** branding with entirely fictional members, staff and records.
 
 ## Data provider pattern
 

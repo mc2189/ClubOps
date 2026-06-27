@@ -1,5 +1,6 @@
 "use client";
 
+import { ReportBrandHeader } from "@/components/branding/ReportBrandHeader";
 import Link from "next/link";
 import { Card, PageHeader, StatCard } from "@/components/ui";
 import { DemoOnlyNotice, ExportSuccessNotice } from "@/components/reports/ReportsNotices";
@@ -16,6 +17,9 @@ export function MemberPackClient() {
     <>
       <PageHeader title="Member Admin Pack" description="Membership summary — sensitive summary only, no detailed medical notes." breadcrumbs={reportsTrail("Member Pack")} backHref="/reports" />
       <ReportsSubNav active="Member Pack" />
+      <div className="mt-4">
+        <ReportBrandHeader title="Member Admin Pack" subtitle="Membership summary — sensitive summary only" />
+      </div>
       <DemoOnlyNotice />
       {lastExportTitle === "Member Admin Pack" && <ExportSuccessNotice title="Member Admin Pack" />}
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

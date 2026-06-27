@@ -34,8 +34,8 @@ export function DemoRoleSwitcher({ compact = false }: DemoRoleSwitcherProps) {
         title={`Demo role: ${roleName}. Not a real login.`}
         className={
           compact
-            ? "min-h-[44px] max-w-full rounded-md border border-indigo-200 bg-indigo-50 px-2 py-2 text-sm font-medium text-indigo-900 sm:max-w-[200px] sm:text-xs sm:py-1.5"
-            : "max-w-[200px] rounded-md border border-indigo-200 bg-indigo-50 px-2 py-1.5 text-xs font-medium text-indigo-900"
+            ? "min-h-[44px] max-w-full rounded-md border border-brand-primary/30 bg-brand-soft px-2 py-2 text-sm font-medium text-brand-primary sm:max-w-[200px] sm:text-xs sm:py-1.5"
+            : "max-w-[200px] rounded-md border border-brand-primary/30 bg-brand-soft px-2 py-1.5 text-xs font-medium text-brand-primary"
         }
         aria-describedby="demo-role-switcher-note"
       >

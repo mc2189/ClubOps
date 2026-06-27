@@ -60,10 +60,10 @@ export const eligibilityVariant = (
 };
 
 export const DECLARATION_REQUEST_PREVIEW = {
-  subject: "Gift Aid declaration request — Riverside Gymnastics Club",
+  subject: "Gift Aid declaration request — Arbroath Gymnastics Club",
   body: `Dear [Parent/Carer name],
 
-We would like to invite you to complete a Gift Aid declaration for Riverside Gymnastics Club.
+We would like to invite you to complete a Gift Aid declaration for Arbroath Gymnastics Club.
 
 If you are a UK taxpayer, the club can claim an extra 25p for every £1 you donate at no cost to you. This only applies to genuine voluntary donations — not class fees or membership payments.
 
@@ -72,5 +72,5 @@ Please complete the attached declaration form and return it to the club secretar
 This is a demo preview only. No email will be sent.
 
 Kind regards,
-Riverside Gymnastics Club`,
+Arbroath Gymnastics Club`,
 };

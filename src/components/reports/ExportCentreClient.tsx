@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
+import { ReportBrandHeader } from "@/components/branding/ReportBrandHeader";
 import { DemoOnlyNotice, ReportsSecurityNotice, ExportSuccessNotice } from "@/components/reports/ReportsNotices";
 import { RestrictedExportButton } from "@/components/rbac/RestrictedExportButton";
 import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
@@ -21,10 +22,13 @@ export function ExportCentreClient() {
         backHref="/reports"
       />
       <ReportsSubNav active="Export Centre" />
+      <div className="mt-4">
+        <ReportBrandHeader title="Export Centre" subtitle="Full Club Admin Pack — simulated export" />
+      </div>
       <DemoOnlyNotice />
       {lastExportTitle === "Full Club Admin Pack" && <ExportSuccessNotice title="Full Club Admin Pack" />}
       <Card className="mt-4">
-        <h2 className="text-sm font-semibold text-slate-900">Full Club Admin Pack</h2>
+        <h2 className="text-sm font-semibold text-brand-charcoal">Full Club Admin Pack</h2>
         <p className="mt-1 text-sm text-slate-600">A complete summary for audit, accounting and committee purposes.</p>
         <RestrictedExportButton
           label="Generate demo export"
@@ -36,7 +40,7 @@ export function ExportCentreClient() {
         {exportPackItems.map((item) => (
           <Card key={item.id} className="p-4">
             <div className="flex items-start justify-between gap-2">
-              <h3 className="text-sm font-medium text-slate-900">{item.name}</h3>
+              <h3 className="text-sm font-medium text-brand-charcoal">{item.name}</h3>
               <Badge variant={sensitivityVariant[item.sensitivity]}>{item.sensitivity === "restricted" ? "Sensitive summary only" : item.sensitivity}</Badge>
             </div>
             <p className="mt-1 text-xs text-slate-600">{item.description}</p>
@@ -44,7 +48,7 @@ export function ExportCentreClient() {
         ))}
       </div>
       <div className="mt-6">
-        <Link href="/audit/activity" className="text-sm font-medium text-indigo-600 hover:underline">View audit log →</Link>
+        <Link href="/audit/activity" className="text-sm font-medium text-brand-primary hover:underline">View audit log →</Link>
       </div>
       <ReportsSecurityNotice />
     </>

@@ -1,8 +1,15 @@
 # ClubOps — Features
 
-ClubOps v1.4.4 improves **RBAC demo honesty** with locked and summary-only restricted content previews by demo role. v1.4.1 improves **clarity and accessibility** for non-technical volunteers. v1.4.0 adds **Supabase live foundation prep**. It remains a public demo — not production software.
+ClubOps v1.4.5 brands the public demo as **Arbroath Gymnastics Club** — logo, emerald green theme and club naming. v1.4.4 improves **RBAC demo honesty**. It remains a public demo — not production software.
 
-## v1.4.4 — RBAC honesty and restricted previews (current)
+## v1.4.5 — Arbroath Gymnastics Club branding (current)
+
+- [x] Central branding config and club logo (SVG; PNG-ready path)
+- [x] Branded sidebar, dashboard welcome, demo/about page, report headers
+- [x] Emerald green / charcoal theme on shell, sub-nav and role switcher
+- [x] Communication templates use Arbroath club name
+
+## v1.4.4 — RBAC honesty and restricted previews
 
 - [x] `RestrictedContentPreview`, `PermissionLockedPanel`, `RoleAccessRequired`, `RestrictedExportButton`
 - [x] Locked/summary previews on medical, finance, Gift Aid, wages, exports, sensitive documents

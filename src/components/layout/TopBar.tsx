@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { mainNavigation } from "@/config/navigation";
+import { clubShortName } from "@/config/branding";
 import { DemoRoleSwitcher } from "@/components/rbac/DemoRoleSwitcher";
 import { useDemoRole } from "@/components/rbac/DemoRoleProvider";
 import { useMobileShell } from "@/components/layout/MobileShellContext";
@@ -39,8 +40,8 @@ export function TopBar() {
       </button>
 
       <div className="min-w-0 flex-1">
-        <h2 className="truncate text-base font-semibold text-slate-900 sm:text-lg">
-          {currentPage?.label ?? "ClubOps"}
+        <h2 className="truncate text-base font-semibold text-brand-charcoal sm:text-lg">
+          {currentPage?.label ?? clubShortName}
         </h2>
         {currentPage?.description && (
           <p className="hidden truncate text-sm text-slate-500 sm:block">{currentPage.description}</p>
@@ -54,7 +55,7 @@ export function TopBar() {
             {roleName}
           </span>
           <div
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-soft text-xs font-semibold text-brand-primary"
             aria-hidden="true"
             title={roleName}
           >

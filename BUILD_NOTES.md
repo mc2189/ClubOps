@@ -1,5 +1,29 @@
 # ClubOps — Build Notes
 
+## Iteration 21 — v1.4.5 Arbroath branding refresh (2026-06-27)
+
+### What was built
+
+- Central branding config (`src/config/branding.ts`) and SVG logo asset
+- Branded shell: sidebar logo + club name, green/charcoal theme, mobile nav accents
+- Dashboard welcome card, demo/about hero, settings club card, report brand headers
+- User-facing club name: Arbroath Gymnastics Club (communication templates, Gift Aid preview)
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+- v1.5.0 — private live auth scaffold after private Supabase/Vercel setup
+- Optional: replace `public/branding/arbroath-logo.svg` with supplied PNG if available
+
+---
+
 ## Iteration 20 — v1.4.4 RBAC honesty and restricted previews (2026-06-27)
 
 ### What was built

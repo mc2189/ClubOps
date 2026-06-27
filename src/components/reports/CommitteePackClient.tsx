@@ -1,5 +1,6 @@
 "use client";
 
+import { ReportBrandHeader } from "@/components/branding/ReportBrandHeader";
 import Link from "next/link";
 import { Card, PageHeader, StatCard } from "@/components/ui";
 import { DemoOnlyNotice, ExportSuccessNotice } from "@/components/reports/ReportsNotices";
@@ -18,6 +19,9 @@ export function CommitteePackClient() {
     <>
       <PageHeader title="Committee Pack" description="Pre-meeting summary for club committee — demo only." breadcrumbs={reportsTrail("Committee Pack")} backHref="/reports" />
       <ReportsSubNav active="Committee Pack" />
+      <div className="mt-4">
+        <ReportBrandHeader title="Committee Pack" subtitle="Pre-meeting summary for club committee" />
+      </div>
       <DemoOnlyNotice />
       {lastExportTitle === "Committee Pack" && <ExportSuccessNotice title="Committee Pack" />}
       <StatCard label="Club health score" value={`${p.clubHealthScore}/100`} />

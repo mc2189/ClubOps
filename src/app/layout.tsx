@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { clubName, productName } from "@/config/branding";
 
 export const metadata: Metadata = {
-  title: "ClubOps — Club Management Demo",
-  description:
-    "Demo-first club management application for volunteer-run sports clubs. Fake data only.",
+  title: `${productName} — ${clubName} Demo`,
+  description: `Demo club management for ${clubName}. Fake data only — safe for public demonstration.`,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

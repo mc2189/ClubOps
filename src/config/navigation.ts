@@ -67,4 +67,5 @@ export const navigationGroups: NavGroup[] = [
 /** Flat list for top bar and other lookups */
 export const mainNavigation: NavItem[] = navigationGroups.flatMap((g) => g.items);
 
-export const clubName = "Riverside Gymnastics Club";
+/** @deprecated Import from @/config/branding instead */
+export { clubName } from "@/config/branding";
