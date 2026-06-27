@@ -5,6 +5,8 @@ import { useState } from "react";
 import { clubName, logoPaths } from "@/config/branding";
 import { cn } from "@/lib/utils";
 
+const FALLBACK_CHAIN = [logoPaths.primary, logoPaths.transparent, logoPaths.whiteBg] as const;
+
 interface ClubLogoProps {
   size?: number;
   className?: string;
@@ -20,7 +22,8 @@ export function ClubLogo({
   nameClassName,
   variant = "default",
 }: ClubLogoProps) {
-  const [src, setSrc] = useState<string>(logoPaths.svg);
+  const [srcIndex, setSrcIndex] = useState(0);
+  const src = FALLBACK_CHAIN[srcIndex] ?? logoPaths.primary;
 
   return (
     <div className={cn("flex items-center gap-3", className)}>
@@ -29,9 +32,12 @@ export function ClubLogo({
         alt={`${clubName} logo`}
         width={size}
         height={size}
-        className="shrink-0 object-contain"
+        className={cn(
+          "shrink-0 object-contain",
+          variant === "onDark" && "brightness-0 invert",
+        )}
         onError={() => {
-          if (src !== logoPaths.primary) setSrc(logoPaths.primary);
+          setSrcIndex((i) => Math.min(i + 1, FALLBACK_CHAIN.length - 1));
         }}
         priority={size >= 48}
       />

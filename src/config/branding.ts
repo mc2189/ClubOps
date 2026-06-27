@@ -10,11 +10,12 @@ export const clubTagline = "Volunteer club management — demo for Arbroath Gymn
 
 export const clubLocation = "Arbroath, Scotland";
 
-/** Prefer PNG if added to public/branding/; SVG ships in repo as fallback */
+/** Official club logo assets in public/branding/ */
 export const logoPaths = {
+  /** Cropped transparent — default for light backgrounds */
   primary: "/branding/arbroath-logo.png",
-  svg: "/branding/arbroath-logo.svg",
-  fallbackWhiteBg: "/branding/arbroath-logo-white-bg.png",
+  transparent: "/branding/arbroath-logo-transparent.png",
+  whiteBg: "/branding/arbroath-logo-white-bg.png",
 } as const;
 
 export const brandColors = {
