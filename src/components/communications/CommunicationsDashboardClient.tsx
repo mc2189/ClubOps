@@ -138,7 +138,15 @@ export function CommunicationsDashboardClient() {
           <Card>
             <h2 className="text-sm font-semibold text-slate-900">Simulated sent messages</h2>
             {recentSent.length === 0 ? (
-              <p className="mt-2 text-sm text-slate-500">No simulated sends yet — compose a message to see history here.</p>
+              <div className="mt-2">
+                <p className="text-sm text-slate-500">No simulated sends yet.</p>
+                <Link
+                  href="/communications/compose"
+                  className="mt-2 inline-block text-sm font-medium text-indigo-600 hover:underline"
+                >
+                  Compose message →
+                </Link>
+              </div>
             ) : (
             <ul className="mt-2 divide-y divide-slate-100">
               {recentSent.map((m) => (

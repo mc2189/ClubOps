@@ -156,7 +156,7 @@ export const demoScriptOptionalSteps: DemoScriptStep[] = [
     href: "/demo-roles",
     secondaryHref: "/settings/permissions",
     secondaryLinkLabel: "Permissions matrix",
-    whatToClick: "Switch to Coach → open Finance (see restriction). Switch to Treasurer → open Gift Aid. Switch to Welfare Officer → open member medical tab. Return to Secretary/Admin.",
+    whatToClick: "Switch to Coach → open Finance (see restriction). Switch to Committee Read-Only → open Gift Aid (see restriction). Switch to Coach → open a member medical/welfare tab (see restriction). Return to Secretary/Admin.",
     whatToSay: "Not every volunteer sees everything. Treasurers handle money, welfare officers handle sensitive records, coaches mark attendance — demo role switching shows how live permissions would work.",
     problemSolved: "Committee understands why RBAC matters before any real data is loaded.",
     emphasis: "Demo role switching only — not real security. Real login required before production.",
@@ -183,7 +183,7 @@ export const demoScriptOptionalSteps: DemoScriptStep[] = [
     whatToClick: "Open Auth decision pack → skim stack options. Open Recommended stack for provisional Supabase recommendation.",
     whatToSay: "Before we build live mode, we compare auth and database options. Our provisional recommendation is Supabase for auth, Postgres, row-level security and file storage — on a separate private deployment. The public demo stays fake data forever.",
     problemSolved: "Committee understands we are choosing foundations carefully, not rushing into real data.",
-    emphasis: "Decision pack only — no auth packages, database or keys added yet.",
+    emphasis: "Decision pack only — Supabase packages installed as scaffold but not connected to the public demo.",
     optional: true,
   },
 ];

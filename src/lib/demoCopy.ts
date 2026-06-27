@@ -1,5 +1,8 @@
 /** Shared demo-mode wording — keep simulated actions consistent across modules. */
-export const DEMO_BANNER_TEXT = "Demo mode — fake data only · refresh resets session changes";
+export const DEMO_BANNER_TEXT =
+  "Demo mode — fake data only. If you reload the page, demo changes go back to the starting point.";
+
+export const DEMO_BANNER_TEXT_SHORT = "Demo — fake data only";
 
 export const DEMO_ONLY_LABEL = "Demo only";
 

@@ -24,7 +24,9 @@ export function InboxClient() {
       {inbox.length === 0 ? (
         <EmptyState
           title="No form responses in inbox"
-          description="Simulated replies appear here when parents respond to demo forms. Refresh resets the inbox."
+          description="Simulated replies appear here when parents respond to demo forms."
+          actionLabel="Compose message"
+          actionHref="/communications/compose"
           className="mt-4"
         />
       ) : (

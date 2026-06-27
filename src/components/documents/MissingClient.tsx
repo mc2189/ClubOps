@@ -22,6 +22,8 @@ export function MissingClient() {
         <EmptyState
           title="No missing documents"
           description="All required forms and documents are complete in the demo data."
+          actionLabel="Upload demo document"
+          actionHref="/documents/upload"
           className="mt-4"
         />
       ) : (

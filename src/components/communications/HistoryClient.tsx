@@ -35,6 +35,10 @@ export function HistoryClient() {
         <EmptyState
           title="No message history yet"
           description="Simulated sends and drafts appear here after you compose messages. No real emails are sent."
+          actionLabel="Compose message"
+          actionHref="/communications/compose"
+          secondaryActionLabel="View templates"
+          secondaryActionHref="/communications/templates"
           className="mt-6"
         />
       ) : (

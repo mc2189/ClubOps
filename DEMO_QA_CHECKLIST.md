@@ -1,4 +1,4 @@
-# ClubOps — Demo QA Checklist (v1.4.0)
+# ClubOps — Demo QA Checklist (v1.4.1)
 
 Use this before sharing the Vercel demo link with a club secretary, treasurer or committee member.
 
@@ -14,7 +14,8 @@ Complete these on the **production demo URL** (not localhost):
 - [ ] **Finance import review** — `/finance/import/review` shows match review demo
 - [ ] **Attendance register** — mark Present/Absent on a session register
 - [ ] **Reports export centre** — `/reports/export-centre` generates demo pack (no real file)
-- [ ] Switch demo roles and verify permission preview messages (Coach on Finance, Treasurer on Gift Aid)
+- [ ] Switch demo roles and verify permission preview messages (Coach on Finance, Committee Read-Only on Gift Aid, Coach on member medical tab)
+- [ ] RBAC notices explain demo data remains visible in public demo
 - [ ] Open `/settings/permissions` matrix
 - [ ] **Architecture blueprint (v1.2.0)** — `/settings/live-readiness` loads checklist; `/settings/data-architecture` shows entities
 - [ ] **Supabase prep (v1.4.0)** — `/settings/supabase-prep` shows “not connected”; no login on public demo
@@ -44,7 +45,11 @@ Confirm each sidebar link loads without error:
 - [ ] `/settings/live-readiness`, `/settings/data-architecture`, `/settings/provider-model`, `/settings/production-roadmap` (v1.2.0)
 - [ ] `/settings/auth-decision`, `/settings/recommended-stack` (v1.3.0)
 - [ ] `/settings/supabase-prep`, `/settings/schema-plan`, `/settings/private-deployment` (v1.4.0)
-- [ ] `/demo` (from banner link)
+- [ ] `/demo` (from banner “About demo” link)
+- [ ] Sidebar grouped sections load (Day to day, Money & compliance, etc.)
+- [ ] Settings grouped sub-nav (Club & volunteers vs Technical / going live)
+- [ ] Dashboard shows Today’s priorities (max 3) with show-all toggle
+- [ ] Members list Simple / Detailed toggle works
 
 Spot-check sub-navigation within Finance, Gift Aid, Communications, Documents, Staff, Fundraising, Reports and Audit.
 

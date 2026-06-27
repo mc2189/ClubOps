@@ -1,5 +1,31 @@
 # ClubOps — Build Notes
 
+## Iteration 17 — v1.4.1 Granny-Friendly Quick Wins (2026-06-26)
+
+### What was built
+
+- Grouped sidebar navigation and settings sub-nav with plain-English labels
+- Dashboard priorities (max 3 tasks), health score labels, friendly recent activity
+- Demo banner wording; EmptyState actions; Members Simple/Detailed toggle
+- Accessibility: skip link, aria-current on sub-nav, aria-pressed on filters, sidebar not h1
+- RBAC demo honesty wording; demo script/QA fixes; removed RoleRestrictionPreview
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+- v1.4.2 — mobile/tablet shell (drawer sidebar)
+- v1.4.3 — RBAC honesty / restricted-content preview
+- v1.5.0 — private live auth scaffold after private Supabase/Vercel setup
+
+---
+
 ## Iteration 16 — v1.4.0 Supabase Live Foundation Prep (2026-06-26)
 
 ### What was built

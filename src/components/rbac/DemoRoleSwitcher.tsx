@@ -30,8 +30,8 @@ export function DemoRoleSwitcher() {
           </option>
         ))}
       </select>
-      <span id="demo-role-switcher-note" className="hidden text-[10px] text-amber-700 xl:inline">
-        Demo only — not real security
+      <span id="demo-role-switcher-note" className="text-[11px] font-medium text-amber-800">
+        Demo role only — not a real login
       </span>
     </div>
   );

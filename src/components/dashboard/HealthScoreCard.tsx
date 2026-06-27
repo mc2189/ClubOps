@@ -11,7 +11,13 @@ const statusColors: Record<HealthStatus, { bar: string; text: string; bg: string
 const statusLabels: Record<HealthStatus, string> = {
   good: "Good",
   attention: "Needs attention",
-  critical: "Critical",
+  critical: "Urgent",
+};
+
+const statusPlainSentence: Record<HealthStatus, string> = {
+  good: "Everything looks fine for now.",
+  attention: "Worth a look when you have a moment.",
+  critical: "Please action this soon.",
 };
 
 interface HealthScoreCardProps {
@@ -41,10 +47,11 @@ export function HealthScoreCard({ metric }: HealthScoreCardProps) {
           aria-valuenow={metric.score}
           aria-valuemin={0}
           aria-valuemax={100}
-          aria-label={`${metric.label} health score`}
+          aria-label={`${metric.label}: ${statusLabels[metric.status]}`}
         />
       </div>
-      <p className="mt-2 text-xs text-slate-500">{metric.summary}</p>
+      <p className="mt-2 text-xs font-medium text-slate-700">{statusPlainSentence[metric.status]}</p>
+      <p className="mt-1 text-xs text-slate-500">{metric.summary}</p>
       {metric.suggestedAction && metric.linkedHref && (
         <p className="mt-2 text-xs font-medium text-indigo-600">{metric.suggestedAction} →</p>
       )}

@@ -45,7 +45,12 @@ export function EligibleDonationsClient() {
           <section key={group.title} className="mt-6">
             <h2 className="mb-3 text-lg font-semibold text-slate-900">{group.title}</h2>
             {items.length === 0 ? (
-              <p className="text-sm text-slate-500">None in demo data for this category.</p>
+              <p className="text-sm text-slate-500">
+                None in demo data for this category.{" "}
+                <Link href="/gift-aid/rules" className="font-medium text-indigo-600 hover:underline">
+                  View Gift Aid rules
+                </Link>
+              </p>
             ) : (
             <div className="space-y-3">
               {items.map((d) => (

@@ -51,13 +51,45 @@ interface EmptyStateProps {
   title: string;
   description: string;
   className?: string;
+  actionLabel?: string;
+  actionHref?: string;
+  secondaryActionLabel?: string;
+  secondaryActionHref?: string;
 }
 
-export function EmptyState({ title, description, className }: EmptyStateProps) {
+export function EmptyState({
+  title,
+  description,
+  className,
+  actionLabel,
+  actionHref,
+  secondaryActionLabel,
+  secondaryActionHref,
+}: EmptyStateProps) {
   return (
     <Card className={cn("text-center", className)}>
       <h3 className="text-lg font-medium text-slate-900">{title}</h3>
       <p className="mt-2 text-sm text-slate-500">{description}</p>
+      {(actionLabel && actionHref) || (secondaryActionLabel && secondaryActionHref) ? (
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+          {actionLabel && actionHref && (
+            <a
+              href={actionHref}
+              className="inline-flex rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+            >
+              {actionLabel}
+            </a>
+          )}
+          {secondaryActionLabel && secondaryActionHref && (
+            <a
+              href={secondaryActionHref}
+              className="inline-flex rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+            >
+              {secondaryActionLabel}
+            </a>
+          )}
+        </div>
+      ) : null}
     </Card>
   );
 }

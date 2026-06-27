@@ -48,6 +48,7 @@ git push -u origin main
 - The demo URL can be shared safely with committee members — all data is fake.
 - No environment variables are required for the demo.
 - **v1.4.0:** Supabase prep in repo; public demo Vercel project must have **no** Supabase env vars.
+- **v1.4.1:** UX polish only — same demo safety; `PROVIDER_MODE` remains `"demo"`.
 
 ## 5. Environment variables
 

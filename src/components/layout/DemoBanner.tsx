@@ -13,7 +13,7 @@ export function DemoBanner() {
         href="/demo"
         className="rounded bg-amber-600/30 px-2 py-0.5 text-xs underline-offset-2 hover:underline"
       >
-        Demo safety info
+        About demo
       </Link>
     </div>
   );

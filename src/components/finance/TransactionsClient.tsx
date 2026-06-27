@@ -19,7 +19,9 @@ export function TransactionsClient() {
       {transactions.length === 0 ? (
         <EmptyState
           title="No transactions"
-          description="Demo finance transactions appear here. Refresh resets session changes."
+          description="Demo finance transactions appear here after you import or add payments."
+          actionLabel="Go to import review"
+          actionHref="/finance/import/review"
           className="mt-4"
         />
       ) : (

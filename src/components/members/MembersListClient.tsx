@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { Badge, EmptyState, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/members/MemberNotices";
 import { useMembersDemo } from "@/components/members/MembersDemoProvider";
@@ -16,6 +16,8 @@ import {
 import { formatCurrency } from "@/lib/utils";
 import type { MemberProfile } from "@/data/providers/types";
 import { cn } from "@/lib/utils";
+
+type ViewMode = "simple" | "detailed";
 
 const filters: { key: MemberFilterKey; label: string }[] = [
   { key: "all", label: "All" },
@@ -65,10 +67,43 @@ function GiftAidBadge({ profile }: { profile: MemberProfile }) {
   return <Badge variant={variant}>{label}</Badge>;
 }
 
+function SimpleStatusBadges({ profile }: { profile: MemberProfile }) {
+  const badges: ReactNode[] = [];
+
+  if (profile.hasMedicalFlag) {
+    badges.push(
+      <Badge key="medical" variant="warning">
+        Medical flag
+      </Badge>,
+    );
+  }
+  if (profile.finance.status === "unpaid" || profile.finance.status === "overdue") {
+    badges.push(
+      <Badge key="fees" variant="danger">
+        {profile.finance.status === "overdue" ? "Fees overdue" : "Fees unpaid"}
+      </Badge>,
+    );
+  }
+  if (profile.emergencyContactComplete === "missing" || profile.emergencyContactComplete === "partial") {
+    badges.push(
+      <Badge key="emergency" variant={profile.emergencyContactComplete === "missing" ? "danger" : "warning"}>
+        {profile.emergencyContactComplete === "missing" ? "Missing emergency contact" : "Partial emergency contact"}
+      </Badge>,
+    );
+  }
+
+  if (badges.length === 0) {
+    return <span className="text-slate-400">—</span>;
+  }
+
+  return <div className="flex flex-wrap gap-1">{badges}</div>;
+}
+
 export function MembersListClient() {
   const { profiles } = useMembersDemo();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<MemberFilterKey>("all");
+  const [viewMode, setViewMode] = useState<ViewMode>("simple");
 
   const filtered = useMemo(
     () =>
@@ -96,18 +131,44 @@ export function MembersListClient() {
 
       <DemoOnlyNotice />
 
-      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
-        <input
-          type="search"
-          placeholder="Search by name, class or parent/carer…"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:max-w-sm"
-          aria-label="Search members"
-        />
-        <p className="text-sm text-slate-500">
-          {filtered.length} member{filtered.length !== 1 ? "s" : ""}
-        </p>
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <input
+            type="search"
+            placeholder="Search by name, class or parent/carer…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:max-w-sm"
+            aria-label="Search members"
+          />
+          <p className="text-sm text-slate-500">
+            {filtered.length} member{filtered.length !== 1 ? "s" : ""}
+          </p>
+        </div>
+        <div className="flex rounded-md border border-slate-200 p-0.5" role="group" aria-label="List view">
+          <button
+            type="button"
+            onClick={() => setViewMode("simple")}
+            aria-pressed={viewMode === "simple"}
+            className={cn(
+              "rounded px-3 py-1.5 text-xs font-medium",
+              viewMode === "simple" ? "bg-indigo-600 text-white" : "text-slate-600 hover:bg-slate-50",
+            )}
+          >
+            Simple
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewMode("detailed")}
+            aria-pressed={viewMode === "detailed"}
+            className={cn(
+              "rounded px-3 py-1.5 text-xs font-medium",
+              viewMode === "detailed" ? "bg-indigo-600 text-white" : "text-slate-600 hover:bg-slate-50",
+            )}
+          >
+            Detailed
+          </button>
+        </div>
       </div>
 
       <div className="mt-3 flex flex-wrap gap-2">
@@ -116,6 +177,7 @@ export function MembersListClient() {
             key={f.key}
             type="button"
             onClick={() => setFilter(f.key)}
+            aria-pressed={filter === f.key}
             className={cn(
               "rounded-full px-3 py-1 text-xs font-medium transition-colors",
               filter === f.key
@@ -133,7 +195,51 @@ export function MembersListClient() {
           <EmptyState
             title="No members found"
             description="Try adjusting your search or filter, or add a new member."
+            actionLabel="Add member"
+            actionHref="/members/new"
           />
+        ) : viewMode === "simple" ? (
+          <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
+            <table className="min-w-full divide-y divide-slate-200 text-sm">
+              <thead className="bg-slate-50">
+                <tr>
+                  {["Name", "Class", "Parent/Carer", "Key flags", "Actions"].map((h) => (
+                    <th
+                      key={h}
+                      scope="col"
+                      className="whitespace-nowrap px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
+                    >
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200">
+                {filtered.map((profile) => (
+                  <tr key={profile.id} className="hover:bg-slate-50">
+                    <td className="whitespace-nowrap px-3 py-3 font-medium text-slate-900">
+                      {getMemberDisplayName(profile)}
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-3 text-slate-600">{profile.classGroup}</td>
+                    <td className="whitespace-nowrap px-3 py-3 text-slate-600">
+                      {profile.parentCarer.name !== "N/A" ? profile.parentCarer.name : "—"}
+                    </td>
+                    <td className="px-3 py-3">
+                      <SimpleStatusBadges profile={profile} />
+                    </td>
+                    <td className="whitespace-nowrap px-3 py-3">
+                      <Link
+                        href={`/members/${profile.id}`}
+                        className="text-indigo-600 hover:underline"
+                      >
+                        View
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
           <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
             <table className="min-w-full divide-y divide-slate-200 text-sm">

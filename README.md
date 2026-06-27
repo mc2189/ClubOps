@@ -19,9 +19,11 @@ Open [http://localhost:3000](http://localhost:3000) — the app redirects to the
 
 ## Demo mode
 
-**v1.4.0 adds Supabase foundation prep — scaffold and draft schema only; still demo-only, no keys.**
+**v1.4.1 improves clarity and accessibility — grouped navigation, simpler settings, dashboard priorities, and RBAC demo honesty wording. Still demo-only.**
 
-**v1.3.0 adds auth and live stack decision pack — still demo only, no SDKs active on public demo.**
+**v1.4.0 adds Supabase foundation prep — scaffold and draft schema only; still demo-only, no keys connected.**
+
+**v1.3.0 adds auth and live stack decision pack — still demo only; Supabase packages installed in v1.4.0 but not connected to the public demo.**
 
 **v1.2.0 adds live-ready data architecture blueprint — still demo only, no database.**
 

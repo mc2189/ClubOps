@@ -20,7 +20,9 @@ export function AlertsClient() {
       {open.length === 0 ? (
         <EmptyState
           title="No open alerts"
-          description="All staff and operations alerts are resolved. Session-only changes — refresh resets."
+          description="All staff and operations alerts are resolved."
+          actionLabel="View rota"
+          actionHref="/staff/rota"
           className="mt-4"
         />
       ) : (

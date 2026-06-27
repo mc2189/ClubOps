@@ -26,10 +26,14 @@ ClubOps reduces volunteer admin workload for sports clubs. The first demonstrati
 ## Design principles
 
 1. **Demo-first, live-ready** — works with fake data now, swappable to live data later.
-2. **Volunteer-friendly** — simple UI for non-technical users.
+2. **Volunteer-friendly** — simple UI for non-technical users (v1.4.1: grouped nav, dashboard priorities, plain language).
 3. **Security-conscious** — RBAC, audit trails, soft-delete, no real sensitive data in demo.
 4. **Modular** — each module is independent and reusable.
-5. **Accessible** — responsive, keyboard-navigable, screen-reader friendly.
+5. **Accessible** — responsive, keyboard-navigable, screen-reader friendly (v1.4.1: skip link, aria-current, aria-pressed).
+
+## Current release
+
+**v1.4.1** — UX/clarity polish (grouped navigation, settings simplification, dashboard priorities, RBAC demo honesty wording). Still demo-only.
 
 ## Demo club
 

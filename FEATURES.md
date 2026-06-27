@@ -1,8 +1,22 @@
 # ClubOps — Features
 
-ClubOps v1.4.0 adds **Supabase live foundation prep**. v1.3.0 adds an **auth and live stack decision pack**. It remains a public demo — not production software.
+ClubOps v1.4.1 improves **clarity and accessibility** for non-technical volunteers. v1.4.0 adds **Supabase live foundation prep**. It remains a public demo — not production software.
 
-## v1.4.0 — Supabase foundation prep (current)
+## v1.4.1 — Granny-friendly quick wins (current)
+
+- [x] Grouped sidebar navigation with section headings
+- [x] Settings sub-nav: Club & volunteers vs Technical / going live
+- [x] Dashboard Today’s priorities (max 3 + show all)
+- [x] Plain-English club health labels and friendly recent activity
+- [x] Demo banner plain language + About demo link
+- [x] EmptyState with primary/secondary actions
+- [x] Members Simple / Detailed list toggle
+- [x] Accessibility: skip link, aria-current, aria-pressed, sidebar not h1
+- [x] RBAC demo honesty wording; demo script/QA fixes
+- [ ] Mobile drawer sidebar (v1.4.2)
+- [ ] Hard RBAC content blocking (v1.4.3)
+
+## v1.4.0 — Supabase foundation prep
 
 - [x] @supabase/supabase-js and @supabase/ssr installed (scaffold only)
 - [x] .env.example with placeholder vars
@@ -24,7 +38,7 @@ ClubOps v1.4.0 adds **Supabase live foundation prep**. v1.3.0 adds an **auth and
 - [x] Vendor evaluations: SUPABASE, CLERK, AUTHJS, FIREBASE
 - [x] `stackDecisionData.ts` — matrix and comparison data for UI
 - [x] Optional demo script step for stack decision
-- [ ] Supabase SDK packages (future Stage 2 iteration)
+- [x] Supabase SDK packages installed (v1.4.0 — scaffold only, not connected to public demo)
 - [ ] Real authentication (not in this release)
 
 ## v1.2.0 — Live-ready architecture blueprint

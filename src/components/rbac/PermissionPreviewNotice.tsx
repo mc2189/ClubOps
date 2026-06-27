@@ -30,10 +30,13 @@ export function PermissionPreviewNotice({
     >
       <p className="font-semibold">Permission preview — restricted in live mode</p>
       <p className="mt-1">{message}</p>
+      <p className="mt-2 text-xs text-amber-900">
+        This is a permission preview only. In this public demo, fake data remains visible so you can
+        explore the app. A live version would block or hide this section server-side.
+      </p>
       <p className="mt-2 text-xs text-amber-800">
         Viewing as <strong>{roleName}</strong>. In live mode,{" "}
-        <strong>{getAccessHint(module)}</strong> would typically access this area. Demo role
-        switching only — not real security.
+        <strong>{getAccessHint(module)}</strong> would typically access this area.
       </p>
       <div className="mt-2 flex flex-wrap gap-3 text-xs">
         <Link

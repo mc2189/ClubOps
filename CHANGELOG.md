@@ -2,6 +2,42 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.1] — 2026-06-26
+
+### Added
+
+- Grouped sidebar navigation (Day to day, Money & compliance, People & files, Committee, Help & demo, Settings)
+- Settings sub-nav grouped into Club & volunteers vs Technical / going live with plain-English labels
+- Dashboard “Today’s priorities” section (max 3 tasks + show all toggle)
+- Plain-English club health labels (Good / Needs attention / Urgent)
+- Human-friendly dashboard recent activity copy
+- `EmptyState` primary and secondary action support
+- Members list Simple / Detailed view toggle
+- Skip-to-main-content link
+- `SubNavLink` with `aria-current="page"` for module sub-navigation
+
+### Changed
+
+- Demo banner wording — plainer language about reload resetting demo changes; “About demo” link
+- Settings overview page aligned with grouped sub-nav; technical planning visually secondary
+- RBAC notices clarify permission preview vs public demo visibility
+- Demo role switcher disclaimer always visible: “Demo role only — not a real login”
+- Demo script and QA checklist RBAC examples (Coach on Finance, Committee Read-Only on Gift Aid, Coach on medical)
+- Sidebar club name no longer uses `<h1>` (accessibility)
+- Filter chips and view toggles use `aria-pressed` where relevant
+- Removed unused `RoleRestrictionPreview` component
+
+### Documentation
+
+- README, PROJECT, FEATURES, ROADMAP, SECURITY, BUILD_NOTES, DEPLOYMENT, DEMO_QA_CHECKLIST updated
+- Roadmap notes for v1.4.2 (mobile shell), v1.4.3 (RBAC honesty), v1.5.0 (private live auth scaffold)
+
+### Not included (by design)
+
+- No mobile drawer/sidebar redesign (v1.4.2)
+- No hard RBAC content blocking (v1.4.3)
+- `PROVIDER_MODE` remains `"demo"`; Supabase scaffold unused on public demo routes
+
 ## [1.4.0] — 2026-06-26
 
 ### Added

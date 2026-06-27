@@ -3,3 +3,4 @@ export { HealthScoreCard } from "./HealthScoreCard";
 export { ProgressCard, SnapshotCard, SnapshotRow } from "./ProgressCard";
 export { RecentActivityList } from "./RecentActivityList";
 export { QuickActionCard } from "./QuickActionCard";
+export { DashboardPriorities } from "./DashboardPriorities";

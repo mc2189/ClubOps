@@ -2,7 +2,7 @@
 
 ## Phase 0 — Foundation
 
-**Status: Complete (v1.4.0 Supabase foundation prep — not live)**
+**Status: Complete (v1.4.1 granny-friendly quick wins — still demo-only)**
 
 - Project scaffold and tooling
 - Dashboard layout shell
@@ -16,6 +16,13 @@
 - **v1.2.0** — Live-ready data architecture blueprint (docs + settings UI; no DB/auth)
 - **v1.3.0** — Auth and live stack decision pack (Supabase provisional recommendation; no SDKs active on demo)
 - **v1.4.0** — Supabase scaffold, draft schema/RLS/storage, env docs (no connection)
+- **v1.4.1** — UX/clarity polish: grouped nav, settings simplification, dashboard priorities, accessibility, RBAC honesty wording
+
+### Upcoming (planned)
+
+- **v1.4.2** — Mobile/tablet shell (drawer sidebar)
+- **v1.4.3** — RBAC honesty / restricted-content preview (server-side blocking design)
+- **v1.5.0** — Private live auth scaffold only after private Supabase/Vercel setup
 
 ## Phase 1 — Core CRUD
 
@@ -37,7 +44,7 @@
 
 - [x] Email/notice composition and sending (demo simulation)
 - [x] Document upload and management (demo simulation)
-- [x] Calendar with recurring sessions
+- [x] Calendar with agenda-style events (not full recurring session engine)
 
 ## Phase 3 — Finance & Compliance
 

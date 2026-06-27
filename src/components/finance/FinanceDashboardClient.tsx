@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, StatCard } from "@/components/ui";
+import { SubNavLink } from "@/components/ui/SubNavLink";
 import { DemoOnlyNotice, FinanceSecurityNotice } from "@/components/finance/FinanceNotices";
 import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
@@ -97,28 +98,13 @@ export function FinanceDashboardClient() {
 export function FinanceSubNav({ active }: { active: string }) {
   return (
     <nav className="mb-4 flex flex-wrap gap-2" aria-label="Finance sections">
-      <Link
-        href="/finance"
-        className={`rounded-full px-3 py-1 text-xs font-medium ${
-          active === "Dashboard"
-            ? "bg-indigo-600 text-white"
-            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-        }`}
-      >
+      <SubNavLink href="/finance" active={active === "Dashboard"}>
         Dashboard
-      </Link>
+      </SubNavLink>
       {subNav.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className={`rounded-full px-3 py-1 text-xs font-medium ${
-            active === item.label
-              ? "bg-indigo-600 text-white"
-              : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-          }`}
-        >
+        <SubNavLink key={item.href} href={item.href} active={active === item.label}>
           {item.label}
-        </Link>
+        </SubNavLink>
       ))}
     </nav>
   );
