@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, PageHeader, DataTable, Badge } from "@/components/ui";
+import { TableScrollWrap } from "@/components/ui/TableScrollWrap";
 import { AuditDemoNotice } from "@/components/audit/AuditNotices";
 import { AuditSubNav } from "@/components/audit/AuditSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
@@ -40,8 +41,9 @@ export function AuditActivityClient() {
           <span className="text-sm text-slate-500">Date range: demo placeholder</span>
         </div>
       </Card>
-      <Card className="mt-4 overflow-x-auto">
-        <DataTable headers={["Time", "User", "Module", "Action", "Record", "Risk", "Status", "Details", "Link"]}>
+      <TableScrollWrap className="mt-4">
+        <Card className="overflow-x-auto">
+          <DataTable headers={["Time", "User", "Module", "Action", "Record", "Risk", "Status", "Details", "Link"]}>
           {filtered.map((e) => (
             <tr key={e.id} className="hover:bg-slate-50">
               <td className="px-4 py-3 text-xs text-slate-600">{new Date(e.timestamp).toLocaleString("en-GB")}</td>
@@ -56,7 +58,8 @@ export function AuditActivityClient() {
             </tr>
           ))}
         </DataTable>
-      </Card>
+        </Card>
+      </TableScrollWrap>
     </>
   );
 }

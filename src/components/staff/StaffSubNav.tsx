@@ -1,11 +1,12 @@
 "use client";
 
 import { staffSubNav } from "@/lib/staff";
+import { ModuleSubNav } from "@/components/ui/ModuleSubNav";
 import { SubNavLink } from "@/components/ui/SubNavLink";
 
 export function StaffSubNav({ active }: { active?: string }) {
   return (
-    <nav className="mb-4 flex flex-wrap gap-2" aria-label="Staff sections">
+    <ModuleSubNav label="Staff sections">
       <SubNavLink href="/staff" active={active === "Dashboard"}>
         Dashboard
       </SubNavLink>
@@ -14,6 +15,6 @@ export function StaffSubNav({ active }: { active?: string }) {
           {item.label}
         </SubNavLink>
       ))}
-    </nav>
+    </ModuleSubNav>
   );
 }

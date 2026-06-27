@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Badge, PageHeader } from "@/components/ui";
+import { TableScrollWrap } from "@/components/ui/TableScrollWrap";
 import { DemoOnlyNotice } from "@/components/gift-aid/GiftAidNotices";
 import { DeclarationRequestModal } from "@/components/gift-aid/DeclarationRequestModal";
 import { GiftAidSubNav } from "@/components/gift-aid/GiftAidDashboardClient";
@@ -18,7 +19,8 @@ export function DeclarationsClient() {
       <GiftAidSubNav active="Declarations" />
       <DemoOnlyNotice />
 
-      <div className="mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
+      <TableScrollWrap className="mt-4">
+      <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
         <table className="min-w-full text-sm">
           <thead className="bg-slate-50">
             <tr>
@@ -83,6 +85,7 @@ export function DeclarationsClient() {
           </tbody>
         </table>
       </div>
+      </TableScrollWrap>
 
       {showDeclarationPreview && (
         <DeclarationRequestModal onClose={() => setShowDeclarationPreview(false)} />
@@ -96,7 +99,7 @@ function ActionBtn({ label, onClick }: { label: string; onClick: () => void }) {
     <button
       type="button"
       onClick={onClick}
-      className="rounded border border-slate-300 px-2 py-0.5 text-xs hover:bg-slate-50"
+      className="min-h-[44px] rounded-md border border-slate-300 px-3 py-2 text-sm hover:bg-slate-50 md:min-h-0 md:rounded md:px-2 md:py-0.5 md:text-xs"
     >
       {label}
     </button>

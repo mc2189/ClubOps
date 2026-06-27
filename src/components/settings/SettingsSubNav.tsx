@@ -1,16 +1,17 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { SubNavLink } from "@/components/ui/SubNavLink";
+import { ModuleSubNav } from "@/components/ui/ModuleSubNav";
 
-const clubVolunteerLinks = [
+const clubVolunteerLinks: { href: string; label: string; exact?: boolean }[] = [
   { href: "/settings", label: "Overview", exact: true },
   { href: "/settings/roles", label: "Demo roles" },
   { href: "/settings/permissions", label: "Permissions" },
   { href: "/settings/security", label: "Security summary" },
 ];
 
-const technicalLinks = [
+const technicalLinks: { href: string; label: string }[] = [
   { href: "/settings/live-readiness", label: "Live readiness" },
   { href: "/settings/data-architecture", label: "Data architecture" },
   { href: "/settings/provider-model", label: "Demo vs live data" },
@@ -31,14 +32,46 @@ function isActive(pathname: string, href: string, exact?: boolean) {
 
 export function SettingsSubNav() {
   const pathname = usePathname();
+  const router = useRouter();
+  const current =
+    clubVolunteerLinks.find((link) => isActive(pathname, link.href, link.exact)) ??
+    technicalLinks.find((link) => isActive(pathname, link.href)) ??
+    clubVolunteerLinks[0];
 
   return (
     <div className="mb-6 space-y-4">
-      <div>
+      <div className="md:hidden">
+        <label htmlFor="settings-section-select" className="mb-1 block text-sm font-medium text-slate-700">
+          Settings section
+        </label>
+        <select
+          id="settings-section-select"
+          value={current.href}
+          onChange={(e) => router.push(e.target.value)}
+          className="min-h-[44px] w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+        >
+          <optgroup label="Club & volunteers">
+            {clubVolunteerLinks.map((link) => (
+              <option key={link.href} value={link.href}>
+                {link.label}
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="Technical / going live">
+            {technicalLinks.map((link) => (
+              <option key={link.href} value={link.href}>
+                {link.label}
+              </option>
+            ))}
+          </optgroup>
+        </select>
+      </div>
+
+      <div className="hidden md:block">
         <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
           Club & volunteers
         </p>
-        <nav className="flex flex-wrap gap-2" aria-label="Club and volunteer settings">
+        <ModuleSubNav label="Club and volunteer settings">
           {clubVolunteerLinks.map((link) => (
             <SubNavLink
               key={link.href}
@@ -48,22 +81,23 @@ export function SettingsSubNav() {
               {link.label}
             </SubNavLink>
           ))}
-        </nav>
+        </ModuleSubNav>
       </div>
-      <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+
+      <div className="hidden rounded-lg border border-slate-200 bg-slate-50 p-3 md:block">
         <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
           Technical / going live
         </p>
         <p className="mt-1 text-xs text-slate-600">
           For Mike, developers and committee planning — not everyday club admin.
         </p>
-        <nav className="mt-3 flex flex-wrap gap-2" aria-label="Technical planning settings">
+        <ModuleSubNav label="Technical planning settings" className="mt-3">
           {technicalLinks.map((link) => (
             <SubNavLink key={link.href} href={link.href} active={isActive(pathname, link.href)}>
               {link.label}
             </SubNavLink>
           ))}
-        </nav>
+        </ModuleSubNav>
       </div>
     </div>
   );

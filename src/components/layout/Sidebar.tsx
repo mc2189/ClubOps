@@ -5,11 +5,21 @@ import { usePathname } from "next/navigation";
 import { navigationGroups, clubName } from "@/config/navigation";
 import { cn } from "@/lib/utils";
 
-export function Sidebar() {
+interface SidebarProps {
+  onNavigate?: () => void;
+  className?: string;
+}
+
+export function Sidebar({ onNavigate, className }: SidebarProps) {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-full w-64 flex-col border-r border-slate-200 bg-slate-900 text-white">
+    <aside
+      className={cn(
+        "flex h-full w-64 flex-col border-r border-slate-200 bg-slate-900 text-white",
+        className,
+      )}
+    >
       <div className="border-b border-slate-700 px-5 py-5">
         <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">ClubOps</p>
         <p className="mt-1 text-lg font-bold leading-tight">{clubName}</p>
@@ -28,10 +38,11 @@ export function Sidebar() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
+                      onClick={onNavigate}
                       aria-current={isActive ? "page" : undefined}
                       title={item.description}
                       className={cn(
-                        "block rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                        "block min-h-[44px] rounded-md px-3 py-2.5 text-sm font-medium transition-colors lg:min-h-0 lg:py-2",
                         isActive
                           ? "bg-slate-700 text-white"
                           : "text-slate-300 hover:bg-slate-800 hover:text-white",

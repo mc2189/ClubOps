@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState, type ReactNode } from "react";
 import { Badge, EmptyState, PageHeader } from "@/components/ui";
+import { TableScrollWrap } from "@/components/ui/TableScrollWrap";
 import { DemoOnlyNotice } from "@/components/members/MemberNotices";
 import { useMembersDemo } from "@/components/members/MembersDemoProvider";
 import {
@@ -179,7 +180,7 @@ export function MembersListClient() {
             onClick={() => setFilter(f.key)}
             aria-pressed={filter === f.key}
             className={cn(
-              "rounded-full px-3 py-1 text-xs font-medium transition-colors",
+              "rounded-full px-3 py-2 text-sm font-medium transition-colors min-h-[44px] md:min-h-0 md:py-1 md:text-xs",
               filter === f.key
                 ? "bg-indigo-600 text-white"
                 : "bg-slate-100 text-slate-600 hover:bg-slate-200",
@@ -199,50 +200,80 @@ export function MembersListClient() {
             actionHref="/members/new"
           />
         ) : viewMode === "simple" ? (
-          <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
-            <table className="min-w-full divide-y divide-slate-200 text-sm">
-              <thead className="bg-slate-50">
-                <tr>
-                  {["Name", "Class", "Parent/Carer", "Key flags", "Actions"].map((h) => (
-                    <th
-                      key={h}
-                      scope="col"
-                      className="whitespace-nowrap px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
+          <>
+            <div className="space-y-3 md:hidden">
+              {filtered.map((profile) => (
+                <div
+                  key={profile.id}
+                  className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="min-w-0">
+                      <p className="font-semibold text-slate-900">{getMemberDisplayName(profile)}</p>
+                      <p className="text-sm text-slate-600">{profile.classGroup}</p>
+                      <p className="mt-1 text-sm text-slate-500">
+                        {profile.parentCarer.name !== "N/A" ? profile.parentCarer.name : "No parent/carer"}
+                      </p>
+                      <div className="mt-2">
+                        <SimpleStatusBadges profile={profile} />
+                      </div>
+                    </div>
+                    <Link
+                      href={`/members/${profile.id}`}
+                      className="inline-flex min-h-[44px] shrink-0 items-center rounded-md bg-indigo-50 px-3 text-sm font-medium text-indigo-700"
                     >
-                      {h}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200">
-                {filtered.map((profile) => (
-                  <tr key={profile.id} className="hover:bg-slate-50">
-                    <td className="whitespace-nowrap px-3 py-3 font-medium text-slate-900">
-                      {getMemberDisplayName(profile)}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3 text-slate-600">{profile.classGroup}</td>
-                    <td className="whitespace-nowrap px-3 py-3 text-slate-600">
-                      {profile.parentCarer.name !== "N/A" ? profile.parentCarer.name : "—"}
-                    </td>
-                    <td className="px-3 py-3">
-                      <SimpleStatusBadges profile={profile} />
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3">
-                      <Link
-                        href={`/members/${profile.id}`}
-                        className="text-indigo-600 hover:underline"
+                      View
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="hidden overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm md:block">
+              <table className="min-w-full divide-y divide-slate-200 text-sm">
+                <thead className="bg-slate-50">
+                  <tr>
+                    {["Name", "Class", "Parent/Carer", "Key flags", "Actions"].map((h) => (
+                      <th
+                        key={h}
+                        scope="col"
+                        className="whitespace-nowrap px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
                       >
-                        View
-                      </Link>
-                    </td>
+                        {h}
+                      </th>
+                    ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-slate-200">
+                  {filtered.map((profile) => (
+                    <tr key={profile.id} className="hover:bg-slate-50">
+                      <td className="whitespace-nowrap px-3 py-3 font-medium text-slate-900">
+                        {getMemberDisplayName(profile)}
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-3 text-slate-600">{profile.classGroup}</td>
+                      <td className="whitespace-nowrap px-3 py-3 text-slate-600">
+                        {profile.parentCarer.name !== "N/A" ? profile.parentCarer.name : "—"}
+                      </td>
+                      <td className="px-3 py-3">
+                        <SimpleStatusBadges profile={profile} />
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-3">
+                        <Link
+                          href={`/members/${profile.id}`}
+                          className="text-indigo-600 hover:underline"
+                        >
+                          View
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
         ) : (
-          <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
-            <table className="min-w-full divide-y divide-slate-200 text-sm">
+          <TableScrollWrap>
+            <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
+              <table className="min-w-full divide-y divide-slate-200 text-sm">
               <thead className="bg-slate-50">
                 <tr>
                   {[
@@ -335,7 +366,8 @@ export function MembersListClient() {
                 ))}
               </tbody>
             </table>
-          </div>
+            </div>
+          </TableScrollWrap>
         )}
       </div>
     </>

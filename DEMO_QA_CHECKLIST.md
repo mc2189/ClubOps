@@ -1,4 +1,4 @@
-# ClubOps — Demo QA Checklist (v1.4.1)
+# ClubOps — Demo QA Checklist (v1.4.2)
 
 Use this before sharing the Vercel demo link with a club secretary, treasurer or committee member.
 
@@ -77,7 +77,27 @@ Follow `/demo-script` steps 1–10 in order:
 - [ ] `/communications/compose?template=tpl-competition` — competition template loads
 - [ ] Simulated send shows success message; no real email sent
 
-## Mobile checklist
+## Mobile and tablet checklist (v1.4.2)
+
+Test on phone or narrow browser window (~375px) on the **live Vercel URL**:
+
+- [ ] Demo banner readable (short text on mobile)
+- [ ] Menu button (top left) opens and closes navigation drawer
+- [ ] Drawer closes when tapping a link, outside the drawer, or Escape
+- [ ] Bottom nav works: Home, Members, Attendance, Messages, More
+- [ ] Role switcher usable; “Not a real login” visible
+- [ ] Dashboard readable; Today’s priorities visible
+- [ ] Members list usable (simple view cards on mobile)
+- [ ] Attendance session picker and register usable one-handed
+- [ ] Attendance sticky Save / Mark all present bar visible above bottom nav
+- [ ] Communications compose page usable
+- [ ] Finance import review cards and buttons tappable
+- [ ] Reports export centre readable
+- [ ] Settings section dropdown works on mobile
+- [ ] Skip to main content link works
+- [ ] Desktop layout unchanged at `lg` width (sidebar visible, no bottom nav)
+
+## Mobile content checklist
 
 Test on phone or narrow browser window (~375px):
 

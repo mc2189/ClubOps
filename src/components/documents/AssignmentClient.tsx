@@ -1,6 +1,7 @@
 "use client";
 
 import { Card, PageHeader, DataTable, Badge } from "@/components/ui";
+import { TableScrollWrap } from "@/components/ui/TableScrollWrap";
 import { DemoOnlyNotice } from "@/components/documents/DocumentsNotices";
 import { DocumentsSubNav } from "@/components/documents/DocumentsSubNav";
 import { useDocumentsDemo } from "@/components/documents/DocumentsDemoProvider";
@@ -42,7 +43,8 @@ export function AssignmentClient() {
       />
       <DocumentsSubNav active="Assignment" />
       <DemoOnlyNotice />
-      <Card className="mt-4 overflow-x-auto">
+      <TableScrollWrap className="mt-4">
+        <Card className="overflow-x-auto">
         <DataTable
           headers={[
             "File",
@@ -131,7 +133,8 @@ export function AssignmentClient() {
             ))
           )}
         </DataTable>
-      </Card>
+        </Card>
+      </TableScrollWrap>
     </>
   );
 }

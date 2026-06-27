@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Card, PageHeader, StatCard } from "@/components/ui";
 import { SubNavLink } from "@/components/ui/SubNavLink";
+import { ModuleSubNav } from "@/components/ui/ModuleSubNav";
 import { DemoOnlyNotice, FinanceSecurityNotice } from "@/components/finance/FinanceNotices";
 import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
@@ -97,7 +98,7 @@ export function FinanceDashboardClient() {
 
 export function FinanceSubNav({ active }: { active: string }) {
   return (
-    <nav className="mb-4 flex flex-wrap gap-2" aria-label="Finance sections">
+    <ModuleSubNav label="Finance sections">
       <SubNavLink href="/finance" active={active === "Dashboard"}>
         Dashboard
       </SubNavLink>
@@ -106,6 +107,6 @@ export function FinanceSubNav({ active }: { active: string }) {
           {item.label}
         </SubNavLink>
       ))}
-    </nav>
+    </ModuleSubNav>
   );
 }

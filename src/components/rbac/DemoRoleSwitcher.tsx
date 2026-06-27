@@ -3,11 +3,21 @@
 import { useDemoRole } from "@/components/rbac/DemoRoleProvider";
 import type { DemoRoleId } from "@/lib/permissions";
 
-export function DemoRoleSwitcher() {
+interface DemoRoleSwitcherProps {
+  compact?: boolean;
+}
+
+export function DemoRoleSwitcher({ compact = false }: DemoRoleSwitcherProps) {
   const { role, roleName, roleDescription, setRole, roles } = useDemoRole();
 
   return (
-    <div className="flex flex-col items-end gap-1 sm:flex-row sm:items-center sm:gap-3">
+    <div
+      className={
+        compact
+          ? "flex max-w-[52vw] flex-col items-end gap-0.5 sm:max-w-none sm:flex-row sm:items-center sm:gap-2"
+          : "flex flex-col items-end gap-1 sm:flex-row sm:items-center sm:gap-3"
+      }
+    >
       <div className="hidden text-right lg:block">
         <p className="text-xs font-medium text-slate-700">Current demo role</p>
         <p className="max-w-[180px] truncate text-xs text-slate-500" title={roleDescription}>
@@ -21,7 +31,12 @@ export function DemoRoleSwitcher() {
         id="demo-role-switcher"
         value={role}
         onChange={(e) => setRole(e.target.value as DemoRoleId)}
-        className="max-w-[200px] rounded-md border border-indigo-200 bg-indigo-50 px-2 py-1.5 text-xs font-medium text-indigo-900"
+        title={`Demo role: ${roleName}. Not a real login.`}
+        className={
+          compact
+            ? "min-h-[44px] max-w-full rounded-md border border-indigo-200 bg-indigo-50 px-2 py-2 text-sm font-medium text-indigo-900 sm:max-w-[200px] sm:text-xs sm:py-1.5"
+            : "max-w-[200px] rounded-md border border-indigo-200 bg-indigo-50 px-2 py-1.5 text-xs font-medium text-indigo-900"
+        }
         aria-describedby="demo-role-switcher-note"
       >
         {roles.map((r) => (
@@ -30,8 +45,12 @@ export function DemoRoleSwitcher() {
           </option>
         ))}
       </select>
-      <span id="demo-role-switcher-note" className="text-[11px] font-medium text-amber-800">
-        Demo role only — not a real login
+      <span
+        id="demo-role-switcher-note"
+        className="text-[10px] font-medium leading-tight text-amber-800 sm:text-[11px]"
+      >
+        <span className="sm:hidden">Not a real login</span>
+        <span className="hidden sm:inline">Demo role only — not a real login</span>
       </span>
     </div>
   );

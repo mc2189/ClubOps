@@ -37,10 +37,10 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, description, action }: PageHeaderProps) {
   return (
-    <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-      <div>
-        <h1 className="text-2xl font-bold text-slate-900">{title}</h1>
-        {description && <p className="mt-1 text-slate-500">{description}</p>}
+    <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+      <div className="min-w-0">
+        <h1 className="text-xl font-bold text-slate-900 sm:text-2xl">{title}</h1>
+        {description && <p className="mt-1 text-sm text-slate-500 sm:text-base">{description}</p>}
       </div>
       {action && <div className="shrink-0">{action}</div>}
     </div>
@@ -135,7 +135,7 @@ export function DataTable({ headers, children }: DataTableProps) {
               <th
                 key={header}
                 scope="col"
-                className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
+                className="whitespace-nowrap px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
               >
                 {header}
               </th>

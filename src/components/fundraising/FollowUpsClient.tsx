@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, DataTable, Badge } from "@/components/ui";
+import { TableScrollWrap } from "@/components/ui/TableScrollWrap";
 import { DemoOnlyNotice } from "@/components/fundraising/FundraisingNotices";
 import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
@@ -17,8 +18,9 @@ export function FollowUpsClient() {
       <PageHeader title="Follow-ups" description="Tasks to chase pledges, send thank-yous and renew sponsorships." />
       <FundraisingSubNav active="Follow-ups" />
       <DemoOnlyNotice />
-      <Card className="mt-4 overflow-x-auto">
-        <DataTable headers={["Donor/business", "Task", "Due", "Priority", "Campaign", "Suggested action", "Status", "Actions"]}>
+      <TableScrollWrap className="mt-4">
+        <Card className="overflow-x-auto">
+          <DataTable headers={["Donor/business", "Task", "Due", "Priority", "Campaign", "Suggested action", "Status", "Actions"]}>
           {open.map((f) => (
             <tr key={f.id} className="hover:bg-slate-50">
               <td className="px-4 py-3 font-medium text-slate-900">{f.donorOrBusiness}</td>
@@ -35,7 +37,8 @@ export function FollowUpsClient() {
             </tr>
           ))}
         </DataTable>
-      </Card>
+        </Card>
+      </TableScrollWrap>
     </>
   );
 }

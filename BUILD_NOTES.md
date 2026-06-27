@@ -1,5 +1,30 @@
 # ClubOps — Build Notes
 
+## Iteration 18 — v1.4.2 Mobile and Tablet Shell (2026-06-26)
+
+### What was built
+
+- Responsive shell: drawer sidebar, hamburger menu, bottom nav on mobile/tablet
+- ModuleSubNav scrollable sub-navigation; Settings mobile dropdown
+- Touch target improvements; TableScrollWrap for wide tables
+- Mobile cards: members simple list, staff rota; attendance sticky action bar
+- Demo script tablet tips; mobile QA checklist section
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+- v1.4.3 — RBAC honesty / restricted-content preview
+- v1.5.0 — private live auth scaffold after private Supabase/Vercel setup
+
+---
+
 ## Iteration 17 — v1.4.1 Granny-Friendly Quick Wins (2026-06-26)
 
 ### What was built

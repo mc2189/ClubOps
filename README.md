@@ -19,6 +19,8 @@ Open [http://localhost:3000](http://localhost:3000) — the app redirects to the
 
 ## Demo mode
 
+**v1.4.2 improves mobile and tablet use — drawer navigation, bottom nav, touch targets. Still demo-only.**
+
 **v1.4.1 improves clarity and accessibility — grouped navigation, simpler settings, dashboard priorities, and RBAC demo honesty wording. Still demo-only.**
 
 **v1.4.0 adds Supabase foundation prep — scaffold and draft schema only; still demo-only, no keys connected.**

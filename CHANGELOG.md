@@ -2,6 +2,34 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.2] — 2026-06-26
+
+### Added
+
+- Responsive mobile/tablet shell with hamburger menu and slide-out navigation drawer
+- Mobile bottom navigation (Home, Members, Attendance, Messages, More)
+- `MobileShellContext`, `AppShell`, `MobileDrawer`, `MobileBottomNav` layout components
+- `ModuleSubNav` — horizontally scrollable sub-navigation on mobile
+- `TableScrollWrap` — mobile scroll hint for wide tables
+- Settings section dropdown on mobile
+- Mobile card layouts for members list (simple view) and staff rota
+- Sticky save/mark-all bar on attendance register (mobile/tablet)
+- Demo script tablet/phone presentation tips
+
+### Changed
+
+- Desktop sidebar preserved at `lg` breakpoint; hidden on smaller screens
+- Top bar: menu button, compact role switcher, truncated page title
+- Demo banner shorter text on small screens
+- Sub-nav pills and filter chips use ~44px touch targets on mobile
+- Page headers scale down slightly on mobile
+- Main content padding adjusted for bottom nav clearance
+
+### Not included (by design)
+
+- No new modules, auth, database or Supabase wiring
+- `PROVIDER_MODE` remains `"demo"`
+
 ## [1.4.1] — 2026-06-26
 
 ### Added

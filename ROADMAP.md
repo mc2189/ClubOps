@@ -2,7 +2,7 @@
 
 ## Phase 0 — Foundation
 
-**Status: Complete (v1.4.1 granny-friendly quick wins — still demo-only)**
+**Status: Complete (v1.4.2 mobile/tablet shell — still demo-only)**
 
 - Project scaffold and tooling
 - Dashboard layout shell
@@ -17,10 +17,10 @@
 - **v1.3.0** — Auth and live stack decision pack (Supabase provisional recommendation; no SDKs active on demo)
 - **v1.4.0** — Supabase scaffold, draft schema/RLS/storage, env docs (no connection)
 - **v1.4.1** — UX/clarity polish: grouped nav, settings simplification, dashboard priorities, accessibility, RBAC honesty wording
+- **v1.4.2** — Mobile/tablet shell (drawer sidebar, bottom nav, touch targets, mobile tables)
 
 ### Upcoming (planned)
 
-- **v1.4.2** — Mobile/tablet shell (drawer sidebar)
 - **v1.4.3** — RBAC honesty / restricted-content preview (server-side blocking design)
 - **v1.5.0** — Private live auth scaffold only after private Supabase/Vercel setup
 

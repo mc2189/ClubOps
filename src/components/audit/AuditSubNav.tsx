@@ -1,11 +1,12 @@
 "use client";
 
 import { auditSubNav } from "@/lib/reports";
+import { ModuleSubNav } from "@/components/ui/ModuleSubNav";
 import { SubNavLink } from "@/components/ui/SubNavLink";
 
 export function AuditSubNav({ active }: { active?: string }) {
   return (
-    <nav className="mb-4 flex flex-wrap gap-2" aria-label="Audit sections">
+    <ModuleSubNav label="Audit sections">
       <SubNavLink href="/audit" active={active === "Overview"}>
         Overview
       </SubNavLink>
@@ -14,6 +15,6 @@ export function AuditSubNav({ active }: { active?: string }) {
           {item.label}
         </SubNavLink>
       ))}
-    </nav>
+    </ModuleSubNav>
   );
 }

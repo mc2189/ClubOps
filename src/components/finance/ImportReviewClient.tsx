@@ -98,7 +98,7 @@ export function ImportReviewClient() {
           <button
             type="button"
             onClick={handleApproveImport}
-            className="rounded-md bg-indigo-600 px-6 py-3 text-sm font-medium text-white hover:bg-indigo-700"
+            className="min-h-[48px] rounded-md bg-indigo-600 px-6 py-3 text-sm font-medium text-white hover:bg-indigo-700"
           >
             Approve demo import
           </button>
@@ -173,14 +173,14 @@ function ReviewSection({
               <button
                 type="button"
                 onClick={() => onApprove(item.id)}
-                className="rounded-md bg-green-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-green-700"
+                className="min-h-[44px] rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
               >
                 Approve match
               </button>
               <select
                 value={item.match.category}
                 onChange={(e) => onCategory(item.id, e.target.value as TransactionCategory)}
-                className="rounded-md border border-slate-300 px-2 py-1.5 text-xs"
+                className="min-h-[44px] rounded-md border border-slate-300 px-3 py-2 text-sm"
                 aria-label="Change category"
               >
                 {TRANSACTION_CATEGORIES.map((c) => (

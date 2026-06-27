@@ -21,12 +21,12 @@ export function SessionSelectorClient() {
         }
       />
       <DemoOnlyNotice />
-      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {sessions.map((session) => (
           <Link
             key={session.id}
             href={`/attendance/register/${session.id}`}
-            className="block rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:border-indigo-300 hover:shadow-md"
+            className="block min-h-[88px] rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:border-indigo-300 hover:shadow-md active:bg-slate-50"
           >
             <div className="flex items-start justify-between">
               <h3 className="font-semibold text-slate-900">{session.name}</h3>

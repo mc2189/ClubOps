@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Card, PageHeader, StatCard } from "@/components/ui";
 import { SubNavLink } from "@/components/ui/SubNavLink";
+import { ModuleSubNav } from "@/components/ui/ModuleSubNav";
 import {
   DemoOnlyNotice,
   GiftAidSecurityNotice,
@@ -23,7 +24,7 @@ export const giftAidSubNav = [
 
 export function GiftAidSubNav({ active }: { active?: string }) {
   return (
-    <nav className="mb-4 flex flex-wrap gap-2" aria-label="Gift Aid sections">
+    <ModuleSubNav label="Gift Aid sections">
       <SubNavLink href="/gift-aid" active={active === "Dashboard"}>
         Dashboard
       </SubNavLink>
@@ -32,7 +33,7 @@ export function GiftAidSubNav({ active }: { active?: string }) {
           {item.label}
         </SubNavLink>
       ))}
-    </nav>
+    </ModuleSubNav>
   );
 }
 

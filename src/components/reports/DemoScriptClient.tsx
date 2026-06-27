@@ -25,14 +25,14 @@ function ScriptStepCard({ step }: { step: DemoScriptStep }) {
             <div className="flex flex-wrap gap-2">
               <Link
                 href={step.href}
-                className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700"
+                className="inline-flex min-h-[44px] items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
               >
                 Go to step
               </Link>
               {step.secondaryHref && step.secondaryLinkLabel && (
                 <Link
                   href={step.secondaryHref}
-                  className="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                  className="inline-flex min-h-[44px] items-center rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
                 >
                   {step.secondaryLinkLabel}
                 </Link>
@@ -90,6 +90,15 @@ export function DemoScriptClient({
       <p className="mt-4 text-sm text-slate-600">
         Follow these steps in order. {DEMO_RESET_NOTE}
       </p>
+      <Card className="mt-4 border-indigo-200 bg-indigo-50/50">
+        <h2 className="text-sm font-semibold text-slate-900">Presenting on a phone or tablet</h2>
+        <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-slate-700">
+          <li>Use the menu button (top left) to open navigation — the sidebar is in a drawer on small screens.</li>
+          <li>The bottom bar gives quick access to Home, Members, Attendance and Messages.</li>
+          <li>Step 3 (Attendance register) is designed for tablet or phone use at the gym.</li>
+          <li>Technical planning pages live under Settings → Technical / going live.</li>
+        </ul>
+      </Card>
       <ol className="mt-6 space-y-6">
         {steps.map((step) => (
           <li key={step.step}>

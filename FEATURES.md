@@ -2,7 +2,18 @@
 
 ClubOps v1.4.1 improves **clarity and accessibility** for non-technical volunteers. v1.4.0 adds **Supabase live foundation prep**. It remains a public demo — not production software.
 
-## v1.4.1 — Granny-friendly quick wins (current)
+## v1.4.2 — Mobile and tablet shell (current)
+
+- [x] Hamburger menu and slide-out drawer with grouped navigation
+- [x] Mobile bottom nav (Home, Members, Attendance, Messages, More)
+- [x] Scrollable module sub-nav on mobile; Settings section dropdown
+- [x] Touch targets ~44px on nav, filters, attendance buttons
+- [x] Mobile card layouts (members simple, staff rota); TableScrollWrap for wide tables
+- [x] Attendance register sticky save bar on mobile/tablet
+- [x] Demo script tablet presentation tips
+- [ ] RBAC content blocking preview (v1.4.3)
+
+## v1.4.1 — Granny-friendly quick wins
 
 - [x] Grouped sidebar navigation with section headings
 - [x] Settings sub-nav: Club & volunteers vs Technical / going live
@@ -13,7 +24,6 @@ ClubOps v1.4.1 improves **clarity and accessibility** for non-technical voluntee
 - [x] Members Simple / Detailed list toggle
 - [x] Accessibility: skip link, aria-current, aria-pressed, sidebar not h1
 - [x] RBAC demo honesty wording; demo script/QA fixes
-- [ ] Mobile drawer sidebar (v1.4.2)
 - [ ] Hard RBAC content blocking (v1.4.3)
 
 ## v1.4.0 — Supabase foundation prep

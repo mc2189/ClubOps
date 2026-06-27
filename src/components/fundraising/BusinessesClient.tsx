@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, DataTable, Badge } from "@/components/ui";
+import { TableScrollWrap } from "@/components/ui/TableScrollWrap";
 import { DemoOnlyNotice } from "@/components/fundraising/FundraisingNotices";
 import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
@@ -19,8 +20,9 @@ export function BusinessesClient() {
       <PageHeader title="Business CRM" description="Local businesses, sponsors and follow-up pipeline." />
       <FundraisingSubNav active="Businesses" />
       <DemoOnlyNotice />
-      <Card className="mt-4 overflow-x-auto">
-        <DataTable headers={["Business", "Contact", "Sector", "Status", "Potential", "Pledged", "Received", "Next follow-up", "Actions"]}>
+      <TableScrollWrap className="mt-4">
+        <Card className="overflow-x-auto">
+          <DataTable headers={["Business", "Contact", "Sector", "Status", "Potential", "Pledged", "Received", "Next follow-up", "Actions"]}>
           {businesses.map((b) => (
             <tr key={b.id} className="hover:bg-slate-50">
               <td className="px-4 py-3 font-medium text-slate-900">{b.businessName}</td>
@@ -46,7 +48,8 @@ export function BusinessesClient() {
             </tr>
           ))}
         </DataTable>
-      </Card>
+        </Card>
+      </TableScrollWrap>
     </>
   );
 }

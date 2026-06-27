@@ -4,10 +4,12 @@ import { usePathname } from "next/navigation";
 import { mainNavigation } from "@/config/navigation";
 import { DemoRoleSwitcher } from "@/components/rbac/DemoRoleSwitcher";
 import { useDemoRole } from "@/components/rbac/DemoRoleProvider";
+import { useMobileShell } from "@/components/layout/MobileShellContext";
 
 export function TopBar() {
   const pathname = usePathname();
   const { roleName } = useDemoRole();
+  const { toggleDrawer, drawerOpen } = useMobileShell();
   const currentPage = mainNavigation.find(
     (item) => pathname === item.href || pathname.startsWith(`${item.href}/`),
   );
@@ -20,21 +22,39 @@ export function TopBar() {
     .toUpperCase();
 
   return (
-    <header className="flex h-auto min-h-14 flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-white px-4 py-2 sm:px-6">
-      <div>
-        <h2 className="text-lg font-semibold text-slate-900">
+    <header className="sticky top-0 z-20 flex min-h-14 items-center gap-2 border-b border-slate-200 bg-white px-3 py-2 sm:gap-3 sm:px-6">
+      <button
+        type="button"
+        onClick={toggleDrawer}
+        className="flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-md border border-slate-200 text-slate-700 hover:bg-slate-50 lg:hidden"
+        aria-label="Open menu"
+        aria-controls="mobile-nav-drawer"
+        aria-expanded={drawerOpen}
+      >
+        <span className="flex flex-col gap-1" aria-hidden="true">
+          <span className="block h-0.5 w-5 bg-current" />
+          <span className="block h-0.5 w-5 bg-current" />
+          <span className="block h-0.5 w-5 bg-current" />
+        </span>
+      </button>
+
+      <div className="min-w-0 flex-1">
+        <h2 className="truncate text-base font-semibold text-slate-900 sm:text-lg">
           {currentPage?.label ?? "ClubOps"}
         </h2>
         {currentPage?.description && (
-          <p className="text-sm text-slate-500">{currentPage.description}</p>
+          <p className="hidden truncate text-sm text-slate-500 sm:block">{currentPage.description}</p>
         )}
       </div>
-      <div className="flex flex-wrap items-center gap-3">
-        <DemoRoleSwitcher />
-        <div className="flex items-center gap-2 border-l border-slate-200 pl-3">
-          <span className="hidden text-sm text-slate-500 sm:inline">{roleName}</span>
+
+      <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+        <DemoRoleSwitcher compact />
+        <div className="hidden items-center gap-2 border-l border-slate-200 pl-3 sm:flex">
+          <span className="hidden max-w-[120px] truncate text-sm text-slate-500 lg:inline xl:max-w-none">
+            {roleName}
+          </span>
           <div
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700"
             aria-hidden="true"
             title={roleName}
           >

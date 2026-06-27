@@ -33,6 +33,8 @@ ClubOps reduces volunteer admin workload for sports clubs. The first demonstrati
 
 ## Current release
 
+**v1.4.2** — Mobile/tablet shell (drawer navigation, bottom nav, touch targets). Still demo-only.
+
 **v1.4.1** — UX/clarity polish (grouped navigation, settings simplification, dashboard priorities, RBAC demo honesty wording). Still demo-only.
 
 ## Demo club
