@@ -33,6 +33,12 @@ export const brandAssets = {
   glamLogo: {
     full: "/branding/arbroath_glam_logo_full_transparent.png",
     icon: "/branding/arbroath_glam_icon_transparent.png",
+    header: "/branding/arbroath_glam_logo_web_header_transparent.png",
+  },
+  /** Reference banner artwork — dashboard hero and internal page headers */
+  bannerArt: {
+    dashboardHero: "/branding/banners/dashboard-glam-hero-art.png",
+    pageHeader: "/branding/banners/page-glam-header-art.png",
   },
   /** Official detailed PNGs — reference/fallback only */
   officialLogo: {
@@ -54,6 +60,7 @@ export const logoPaths = {
   glam: {
     full: brandAssets.glamLogo.full,
     icon: brandAssets.glamLogo.icon,
+    header: brandAssets.glamLogo.header,
   },
   official: brandAssets.officialLogo,
 } as const;

@@ -1,5 +1,22 @@
 # ClubOps — Build Notes
 
+## Iteration 28 — v1.4.5h Reference banner art integration (2026-06-27)
+
+### What was built
+
+- Dashboard and page headers use supplied reference PNG banner art as the visual layer
+- Real HTML text/buttons overlaid on left; glam logo and ribbons show from reference on right
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+---
+
 ## Iteration 27 — v1.4.5g Rectangular glam banner system (2026-06-27)
 
 ### What was built

@@ -2,6 +2,19 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.5h] — 2026-06-27
+
+### Added
+
+- Reference banner artwork in `public/branding/banners/` (dashboard hero + page header mockups)
+- `GlamBannerShell` — uses reference art as full banner background with live HTML overlay
+- `arbroath_glam_logo_web_header_transparent.png` asset
+
+### Changed
+
+- Dashboard hero and module page headers now render using supplied reference banner images (logo, ribbons, sparkles from mockups)
+- Left-side gradient mask hides baked-in mockup text; real dynamic copy and buttons remain accessible HTML
+
 ## [1.4.5g] — 2026-06-27
 
 ### Added
