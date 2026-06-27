@@ -82,7 +82,7 @@ export function WebLogo({
   );
 }
 
-/** Sidebar / mobile drawer — clean icon on white tile */
+/** @deprecated Use AppBrandMark for sidebar/shell — presentation logos only elsewhere */
 export function SidebarLogoTile({ className }: { className?: string }) {
   return (
     <WebLogo
@@ -95,20 +95,23 @@ export function SidebarLogoTile({ className }: { className?: string }) {
   );
 }
 
-/** Full clean logo for dashboard, demo, reports — light backgrounds */
+/** Full clean logo for demo, reports, and presentation headers only */
 export function WebLogoFull({
   className,
   width = 220,
   priority = false,
+  decorative = false,
 }: {
   className?: string;
   width?: number;
   priority?: boolean;
+  decorative?: boolean;
 }) {
   return (
     <WebLogo
       variant="clean-full"
       width={width}
+      decorative={decorative}
       className={cn("max-w-[min(100%,280px)]", className)}
       priority={priority}
     />

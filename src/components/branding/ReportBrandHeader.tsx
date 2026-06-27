@@ -1,16 +1,24 @@
 import { WebLogoFull } from "@/components/branding/LogoTile";
-import { clubTagline, productName } from "@/config/branding";
+import { clubName, clubTagline, productName } from "@/config/branding";
+import { cn } from "@/lib/utils";
 
 interface ReportBrandHeaderProps {
   title?: string;
   subtitle?: string;
+  className?: string;
 }
 
-export function ReportBrandHeader({ title, subtitle }: ReportBrandHeaderProps) {
+export function ReportBrandHeader({ title, subtitle, className }: ReportBrandHeaderProps) {
   return (
-    <div className="brand-shimmer rounded-lg border border-brand-primary/15 bg-gradient-to-r from-brand-soft via-white to-brand-accent px-5 py-4">
-      <WebLogoFull width={200} className="max-w-[240px]" />
-      <p className="mt-2 text-xs text-slate-500">
+    <div
+      className={cn(
+        "brand-shimmer rounded-lg border border-brand-primary/15 bg-gradient-to-r from-brand-soft via-white to-brand-accent px-5 py-4",
+        className,
+      )}
+    >
+      <WebLogoFull width={200} className="max-w-[240px]" decorative />
+      <h2 className="mt-2 text-lg font-semibold text-brand-charcoal">{clubName}</h2>
+      <p className="mt-1 text-xs text-slate-500">
         {productName} demo — demonstration document, fake data only
       </p>
       <p className="mt-1 text-sm text-slate-600">{clubTagline}</p>

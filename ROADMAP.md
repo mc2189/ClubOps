@@ -2,7 +2,7 @@
 
 ## Phase 0 — Foundation
 
-**Status: Complete (v1.4.5 Arbroath branding — still demo-only)**
+**Status: Complete (v1.4.5d app brand mark — still demo-only)**
 
 - Project scaffold and tooling
 - Dashboard layout shell
@@ -21,6 +21,7 @@
 - **v1.4.3** — Breadcrumb navigation on all module page headers
 - **v1.4.4** — RBAC honesty: locked/summary restricted content previews by demo role
 - **v1.4.5** — Arbroath Gymnastics Club branding refresh (logo, colours, club naming)
+- **v1.4.5d** — Compact app mark for shell UI; presentation logos on demo/reports only
 
 ### Upcoming (planned)
 

@@ -1,5 +1,23 @@
 # ClubOps — Build Notes
 
+## Iteration 24 — v1.4.5d App brand mark refinement (2026-06-27)
+
+### What was built
+
+- `AppBrandMark` component: emerald AGC badge with sparkle and ribbon swoosh (CSS/SVG, no raster in nav)
+- Sidebar/mobile drawer and dashboard welcome use compact mark; presentation logos only on demo/reports
+- `brandAssets` config: appMark, fullLogo, glamLogo, officialLogo roles
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+---
+
 ## Iteration 23 — v1.4.5c Arbroath web logo replacement (2026-06-27)
 
 ### What was built

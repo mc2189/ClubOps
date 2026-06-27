@@ -4,7 +4,7 @@ import { PageHeader, Card } from "@/components/ui";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { DemoRoleSwitcher } from "@/components/rbac/DemoRoleSwitcher";
-import { LogoTile } from "@/components/branding/LogoTile";
+import { AppBrandMark } from "@/components/branding/AppBrandMark";
 import { clubName } from "@/config/branding";
 import { settingsTrail } from "@/lib/breadcrumbs";
 
@@ -31,7 +31,7 @@ export default function SettingsPage() {
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <Card className="border-brand-primary/10 bg-brand-soft/30">
             <div className="flex items-center gap-3">
-              <LogoTile size="compact" />
+              <AppBrandMark layout="badge-only" size="md" />
               <div>
                 <h3 className="text-base font-semibold text-brand-charcoal">Club details</h3>
                 <p className="text-xs text-slate-500">Branded demo instance</p>

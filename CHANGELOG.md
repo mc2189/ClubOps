@@ -2,6 +2,25 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.5d] — 2026-06-27
+
+### Added
+
+- `AppBrandMark` — compact CSS/vector AGC badge (emerald tile, sparkle, ribbon swoosh) for app shell UI
+- `brandAssets` in branding config separating app mark, full logo, glam, and official reference paths
+
+### Changed
+
+- Sidebar and mobile drawer use compact app mark instead of raster logo tile
+- Dashboard welcome card simplified: AGC badge + heading only (no full presentation logo)
+- Full generated logo retained for `/demo`, `/reports`, export centre, and report pack headers only
+- Settings club card uses compact app mark badge
+- Report headers include visible club name text for accessibility (logo treated as decorative)
+
+### Safety
+
+- `PROVIDER_MODE` remains `"demo"`; no auth, database, or Supabase on public routes
+
 ## [1.4.5c] — 2026-06-27
 
 ### Added

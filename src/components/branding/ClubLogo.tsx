@@ -1,6 +1,7 @@
 /**
- * @deprecated Use WebLogo, WebLogoFull, or SidebarLogoTile from ./LogoTile
+ * @deprecated Use AppBrandMark for shell UI; WebLogoFull for presentation areas
  */
+export { AppBrandMark } from "@/components/branding/AppBrandMark";
 export {
   WebLogo as ClubLogoImage,
   LogoTile,
