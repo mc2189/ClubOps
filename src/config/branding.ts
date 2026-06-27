@@ -10,27 +10,31 @@ export const clubTagline = "Volunteer club management — demo for Arbroath Gymn
 
 export const clubLocation = "Arbroath, Scotland";
 
+export const dashboardWelcomeSubtitle =
+  "Today's priorities and volunteer admin in one place";
+
 /**
- * Brand asset roles — keep UI shell (app mark) separate from presentation logos.
+ * Brand asset roles — generated clean logo is primary identity; AGC mark is compact fallback only.
  */
 export const brandAssets = {
-  /** CSS/vector compact mark for sidebar, dashboard shell, settings */
-  appMark: {
+  /** Generated clean full logo — dashboard, demo, reports, presentation headers */
+  primaryLogo: "/branding/arbroath_clean_logo_full_transparent.png",
+  /** Horizontal web header variant — sidebar / mobile drawer when full stack is too tall */
+  primaryLogoHeader: "/branding/arbroath_clean_logo_web_header_transparent.png",
+  /** Generated clean icon — top bar, compact tiles, mobile fallback */
+  primaryIcon: "/branding/arbroath_clean_icon_transparent.png",
+  primaryLogoMedium: "/branding/arbroath_clean_logo_512_transparent.png",
+  /** CSS/vector AGC badge — favicon-style fallback, not main shell identity */
+  compactMark: {
     initials: "AGC",
     ariaLabel: "Arbroath Gymnastics Club",
   },
-  /** Full generated logos — demo, reports, export/presentation headers only */
-  fullLogo: {
-    clean: "/branding/arbroath_clean_logo_full_transparent.png",
-    cleanMedium: "/branding/arbroath_clean_logo_512_transparent.png",
-    cleanIcon: "/branding/arbroath_clean_icon_transparent.png",
-  },
-  /** Optional decoration — subtle accents, not primary nav branding */
+  /** Optional decoration — subtle accents only */
   glamLogo: {
     full: "/branding/arbroath_glam_logo_full_transparent.png",
     icon: "/branding/arbroath_glam_icon_transparent.png",
   },
-  /** Official detailed PNGs — reference/fallback only, not used in main shell */
+  /** Official detailed PNGs — reference/fallback only */
   officialLogo: {
     primary: "/branding/official/arbroath-logo.png",
     transparent: "/branding/official/arbroath-logo-transparent.png",
@@ -42,9 +46,10 @@ export const brandAssets = {
 /** @deprecated Use brandAssets — kept for WebLogo component paths */
 export const logoPaths = {
   clean: {
-    icon: brandAssets.fullLogo.cleanIcon,
-    full: brandAssets.fullLogo.clean,
-    medium: brandAssets.fullLogo.cleanMedium,
+    icon: brandAssets.primaryIcon,
+    full: brandAssets.primaryLogo,
+    header: brandAssets.primaryLogoHeader,
+    medium: brandAssets.primaryLogoMedium,
   },
   glam: {
     full: brandAssets.glamLogo.full,
@@ -56,6 +61,7 @@ export const logoPaths = {
 export type WebLogoVariant =
   | "clean-icon"
   | "clean-full"
+  | "clean-header"
   | "clean-medium"
   | "glam-full"
   | "glam-icon";

@@ -60,13 +60,13 @@ function AgcBadge({ size }: { size: AppBrandMarkSize }) {
       aria-hidden="true"
     >
       <RibbonSwoosh className="absolute -bottom-1 left-1/2 h-1.5 w-8 -translate-x-1/2 text-emerald-200/80" />
-      <span className="relative z-10">{brandAssets.appMark.initials}</span>
+      <span className="relative z-10">{brandAssets.compactMark.initials}</span>
       <SparkleIcon className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 text-emerald-200" />
     </div>
   );
 }
 
-/** Compact CSS/vector app mark — sidebar, dashboard shell, settings (not presentation logos) */
+/** Compact CSS/vector AGC fallback — favicon-style badge, not primary shell identity */
 export function AppBrandMark({
   size = "md",
   layout = "stacked",
@@ -74,7 +74,7 @@ export function AppBrandMark({
   showProductLabel = true,
   className,
 }: AppBrandMarkProps) {
-  const ariaLabel = brandAssets.appMark.ariaLabel;
+  const ariaLabel = brandAssets.compactMark.ariaLabel;
 
   if (layout === "badge-only") {
     return (

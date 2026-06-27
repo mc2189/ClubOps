@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { clubName, logoPaths, type WebLogoVariant } from "@/config/branding";
+import { clubName, logoPaths, productName, type WebLogoVariant } from "@/config/branding";
 import { cn } from "@/lib/utils";
 
 const VARIANT_SRC: Record<WebLogoVariant, string> = {
   "clean-icon": logoPaths.clean.icon,
   "clean-full": logoPaths.clean.full,
+  "clean-header": logoPaths.clean.header,
   "clean-medium": logoPaths.clean.medium,
   "glam-full": logoPaths.glam.full,
   "glam-icon": logoPaths.glam.icon,
@@ -15,7 +16,8 @@ const VARIANT_SRC: Record<WebLogoVariant, string> = {
 
 const VARIANT_FALLBACK: Partial<Record<WebLogoVariant, WebLogoVariant[]>> = {
   "clean-icon": ["clean-medium"],
-  "clean-full": ["clean-medium"],
+  "clean-full": ["clean-header", "clean-medium"],
+  "clean-header": ["clean-full", "clean-medium"],
   "glam-full": ["glam-icon"],
 };
 
@@ -30,7 +32,7 @@ interface WebLogoProps {
   variant?: WebLogoVariant;
   /** Max render width in px — height follows aspect ratio */
   width?: number;
-  /** White rounded tile — required for icons on dark sidebar */
+  /** White rounded tile — required on dark sidebar backgrounds */
   tile?: boolean;
   /** Use empty alt when visible text already names the club */
   decorative?: boolean;
@@ -39,7 +41,7 @@ interface WebLogoProps {
   priority?: boolean;
 }
 
-/** Web-friendly Arbroath logo — no inversion or colour filters */
+/** Generated Arbroath logo — no inversion or colour filters */
 export function WebLogo({
   variant = "clean-icon",
   width = 96,
@@ -52,13 +54,14 @@ export function WebLogo({
   const [fallbackIndex, setFallbackIndex] = useState(0);
   const src = resolveSrc(variant, fallbackIndex);
   const maxFallbacks = (VARIANT_FALLBACK[variant]?.length ?? 0) + 1;
+  const aspect = variant === "clean-header" ? 0.35 : variant === "clean-icon" ? 1 : 1.1;
 
   const image = (
     <Image
       src={src}
       alt={decorative ? "" : clubName}
       width={width}
-      height={Math.round(width * 1.1)}
+      height={Math.round(width * aspect)}
       className={cn("h-auto w-full max-w-full object-contain", className)}
       onError={() => {
         setFallbackIndex((i) => Math.min(i + 1, maxFallbacks - 1));
@@ -82,20 +85,29 @@ export function WebLogo({
   );
 }
 
-/** @deprecated Use AppBrandMark for sidebar/shell — presentation logos only elsewhere */
-export function SidebarLogoTile({ className }: { className?: string }) {
+/** Sidebar / mobile drawer — generated logo on white tile, ClubOps demo label only */
+export function SidebarBrandLogo({ className }: { className?: string }) {
   return (
-    <WebLogo
-      variant="clean-icon"
-      width={88}
-      tile
-      tileClassName={cn("mx-auto w-[88px] lg:w-[104px]", className)}
-      priority
-    />
+    <div className={cn("mx-auto w-full max-w-[200px]", className)}>
+      <WebLogo
+        variant="clean-header"
+        width={176}
+        tile
+        tileClassName="w-full"
+        priority
+        className="mx-auto"
+      />
+      <p className="mt-2.5 text-center text-xs font-medium text-emerald-200/80">{productName} demo</p>
+    </div>
   );
 }
 
-/** Full clean logo for demo, reports, and presentation headers only */
+/** @deprecated Use SidebarBrandLogo */
+export function SidebarLogoTile({ className }: { className?: string }) {
+  return <SidebarBrandLogo className={className} />;
+}
+
+/** Full clean logo — dashboard, demo, reports */
 export function WebLogoFull({
   className,
   width = 220,
@@ -118,6 +130,35 @@ export function WebLogoFull({
   );
 }
 
+/** Compact clean icon — top bar, settings tiles */
+export function WebLogoIcon({
+  className,
+  width = 36,
+  tile = false,
+  tileClassName,
+  decorative = false,
+  priority = false,
+}: {
+  className?: string;
+  width?: number;
+  tile?: boolean;
+  tileClassName?: string;
+  decorative?: boolean;
+  priority?: boolean;
+}) {
+  return (
+    <WebLogo
+      variant="clean-icon"
+      width={width}
+      tile={tile}
+      decorative={decorative}
+      tileClassName={tileClassName ?? (tile ? "w-10 p-1.5" : undefined)}
+      className={className}
+      priority={priority}
+    />
+  );
+}
+
 /** Optional glam accent — decorative only */
 export function GlamLogoAccent({ className }: { className?: string }) {
   return (
@@ -130,7 +171,6 @@ export function GlamLogoAccent({ className }: { className?: string }) {
   );
 }
 
-/** @deprecated Use WebLogo — kept for settings compact tile */
 export type LogoTileSize = "sidebar" | "drawer" | "dashboard" | "report" | "compact";
 
 export function LogoTile({
@@ -143,7 +183,7 @@ export function LogoTile({
   priority?: boolean;
 }) {
   if (size === "sidebar" || size === "drawer") {
-    return <SidebarLogoTile className={className} />;
+    return <SidebarBrandLogo className={className} />;
   }
   const width = size === "compact" ? 48 : 200;
   return (

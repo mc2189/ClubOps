@@ -1,5 +1,5 @@
 import { WebLogoFull } from "@/components/branding/LogoTile";
-import { clubName, clubTagline, productName } from "@/config/branding";
+import { clubName, productName } from "@/config/branding";
 import { cn } from "@/lib/utils";
 
 interface ReportBrandHeaderProps {
@@ -17,13 +17,12 @@ export function ReportBrandHeader({ title, subtitle, className }: ReportBrandHea
       )}
     >
       <WebLogoFull width={200} className="max-w-[240px]" decorative />
-      <h2 className="mt-2 text-lg font-semibold text-brand-charcoal">{clubName}</h2>
-      <p className="mt-1 text-xs text-slate-500">
+      <span className="sr-only">{clubName}</span>
+      <p className="mt-2 text-xs text-slate-500">
         {productName} demo — demonstration document, fake data only
       </p>
-      <p className="mt-1 text-sm text-slate-600">{clubTagline}</p>
       {(title || subtitle) && (
-        <div className="mt-4 border-t border-brand-primary/10 pt-3">
+        <div className="mt-3 border-t border-brand-primary/10 pt-3">
           {title && <h2 className="text-base font-semibold text-brand-charcoal">{title}</h2>}
           {subtitle && <p className="mt-0.5 text-sm text-slate-600">{subtitle}</p>}
         </div>

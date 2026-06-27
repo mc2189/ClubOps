@@ -2,6 +2,27 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.5e] — 2026-06-27
+
+### Added
+
+- `arbroath_clean_logo_web_header_transparent.png` for sidebar/mobile drawer branding
+- `SidebarBrandLogo`, `WebLogoIcon` components; `dashboardWelcomeSubtitle` copy constant
+- `brandAssets.primaryLogo`, `primaryIcon`, `compactMark` naming (AGC mark demoted to fallback)
+
+### Changed
+
+- Restored generated clean logo as primary brand in sidebar, dashboard, demo, and reports
+- Sidebar: web-header logo on white tile + “ClubOps demo” only (no duplicate club name)
+- Dashboard welcome: full logo + “Welcome back” + priorities subtitle + Demo mode badge
+- Report/demo headers: full logo without visually repeating club name; sr-only labels kept
+- Mobile top bar: compact clean icon beside menu button
+- AGC `AppBrandMark` retained as compact fallback only, not main shell identity
+
+### Safety
+
+- `PROVIDER_MODE` remains `"demo"`; no auth, database, or Supabase on public routes
+
 ## [1.4.5d] — 2026-06-27
 
 ### Added

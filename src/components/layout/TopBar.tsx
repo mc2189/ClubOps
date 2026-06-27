@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { mainNavigation } from "@/config/navigation";
 import { clubShortName } from "@/config/branding";
+import { WebLogoIcon } from "@/components/branding/LogoTile";
 import { DemoRoleSwitcher } from "@/components/rbac/DemoRoleSwitcher";
 import { useDemoRole } from "@/components/rbac/DemoRoleProvider";
 import { useMobileShell } from "@/components/layout/MobileShellContext";
@@ -38,6 +39,8 @@ export function TopBar() {
           <span className="block h-0.5 w-5 bg-current" />
         </span>
       </button>
+
+      <WebLogoIcon width={32} className="shrink-0 lg:hidden" />
 
       <div className="min-w-0 flex-1">
         <h2 className="truncate text-base font-semibold text-brand-charcoal sm:text-lg">

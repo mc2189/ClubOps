@@ -1,5 +1,23 @@
 # ClubOps — Build Notes
 
+## Iteration 25 — v1.4.5e Restore generated logo brand (2026-06-27)
+
+### What was built
+
+- Generated clean logo restored as primary identity (sidebar, dashboard, demo, reports)
+- Web header logo asset for sidebar; simplified welcome/report copy to avoid name duplication
+- AGC `AppBrandMark` demoted to compact fallback; mobile top bar uses clean icon
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+---
+
 ## Iteration 24 — v1.4.5d App brand mark refinement (2026-06-27)
 
 ### What was built

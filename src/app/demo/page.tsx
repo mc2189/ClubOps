@@ -2,7 +2,7 @@ import Link from "next/link";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { PageHeader, Card } from "@/components/ui";
 import { GlamLogoAccent, WebLogoFull } from "@/components/branding/LogoTile";
-import { clubName, clubTagline, productName } from "@/config/branding";
+import { clubName, productName } from "@/config/branding";
 import { DEMO_RESET_NOTE, DEMO_SAFETY_SUMMARY } from "@/lib/demoCopy";
 import { helpTrail } from "@/lib/breadcrumbs";
 
@@ -47,12 +47,15 @@ export default function DemoModePage() {
       <div className="brand-shimmer relative mb-6 overflow-hidden rounded-xl border border-brand-primary/15 bg-gradient-to-br from-brand-soft via-white to-brand-accent px-5 py-6">
         <GlamLogoAccent className="pointer-events-none absolute bottom-4 right-4 hidden opacity-35 md:block" />
         <div className="relative flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5">
-          <WebLogoFull width={220} className="shrink-0 self-start" />
+          <WebLogoFull width={220} className="shrink-0 self-start" decorative />
           <div className="min-w-0">
-            <h2 className="text-xl font-bold text-brand-charcoal sm:text-2xl">{clubName}</h2>
-            <p className="mt-1 text-sm text-slate-600">{clubTagline}</p>
-            <p className="mt-2 text-sm font-medium text-brand-primary">
+            <span className="sr-only">{clubName}</span>
+            <p className="text-sm font-medium text-brand-primary">
               Branded {productName} demonstration — fake data only, not a live system.
+            </p>
+            <p className="mt-2 text-sm text-slate-600">
+              Safe to share with committee members and volunteers. All records, payments and
+              documents in this demo are entirely fictional.
             </p>
           </div>
         </div>
