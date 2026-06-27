@@ -43,6 +43,8 @@ No real member, financial or safeguarding data is used. Live use requires authen
 
 See [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) before sharing the public demo link.
 
+**Sharing with testers:** [TESTER_BRIEF.md](./TESTER_BRIEF.md) — five tasks and feedback questions.
+
 ## Architecture documentation (v1.2.0)
 
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — system layers and module map

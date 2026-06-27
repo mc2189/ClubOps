@@ -2,6 +2,19 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.6] — 2026-06-27
+
+### Added
+
+- [TESTER_BRIEF.md](./TESTER_BRIEF.md) — five tasks and feedback questions for volunteer testers
+- `scripts/smoke-test-demo.sh` — automated live URL smoke test (routes + demo safety content)
+- [SMOKE_TEST_RESULTS.md](./SMOKE_TEST_RESULTS.md) — latest production smoke test (31/31 pass)
+
+### Changed
+
+- [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) — dashboard hero demo messaging; links to tester brief and smoke script
+- [README.md](./README.md) — link to tester brief for sharing
+
 ## [1.4.5i] — 2026-06-27
 
 ### Changed

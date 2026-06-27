@@ -1,6 +1,10 @@
-# ClubOps — Demo QA Checklist (v1.4.4)
+# ClubOps — Demo QA Checklist (v1.4.5)
 
 Use this before sharing the Vercel demo link with a club secretary, treasurer or committee member.
+
+**Tester handout:** [TESTER_BRIEF.md](./TESTER_BRIEF.md) — five tasks and feedback questions to send volunteers.
+
+**Automated smoke test:** `./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app`
 
 ## RBAC honesty checks (v1.4.4)
 
@@ -23,7 +27,8 @@ With demo role switcher in the top bar:
 
 Complete these on the **production demo URL** (not localhost):
 
-- [ ] Open live Vercel URL — loads over HTTPS with demo banner visible
+- [ ] Open live Vercel URL — loads over HTTPS ([https://club-ops-fawn.vercel.app](https://club-ops-fawn.vercel.app))
+- [ ] Demo messaging visible: amber banner on module pages **or** dashboard glam hero + demo info panel on `/dashboard`
 - [ ] Follow `/demo-script` steps 1–10 without broken links
 - [ ] **Communications compose** — `/communications/compose` loads fully (not stuck on loading)
 - [ ] **Gift Aid compose preset** — `/communications/compose?preset=gift-aid` selects group, template, form and shows preview
@@ -131,7 +136,7 @@ Test on phone or narrow browser window (~375px):
 
 ## Data safety checklist
 
-- [ ] Amber demo banner visible on every page
+- [ ] Amber demo banner visible on module pages (dashboard uses hero demo panel instead)
 - [ ] `/demo` page states fake data and session reset
 - [ ] No real emails sent when using “Simulated send”
 - [ ] No real files generated on export buttons
@@ -148,3 +153,9 @@ npm run build
 ```
 
 All three must pass before pushing to `main` for Vercel auto-deploy.
+
+## Latest automated smoke test
+
+Run: `./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app`
+
+See [SMOKE_TEST_RESULTS.md](./SMOKE_TEST_RESULTS.md) for the most recent run.
