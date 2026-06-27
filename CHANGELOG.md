@@ -2,6 +2,25 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.7] — 2026-06-27
+
+### Changed — Mobile-first demo polish
+
+- `GlamDashboardHero` — compact mobile layout: text-first, full-width CTAs, smaller demo panel; thin art accent only (no tall art strip)
+- `GlamBannerShell` — mobile uses CSS glam accents only; reference art hidden under text; page headers thinner on phone
+- `GlamPageHeader` — compact mobile typography, line-clamped subtitles, full-width action buttons on phone
+- `MobileBottomNav` — clearer active state (top border + tint), 56px touch targets
+- `AppShell` — overflow-x hidden; bottom padding accounts for safe area + taller bottom nav
+- Dashboard — hides redundant "Today's overview" header on mobile so priorities appear sooner
+- `DemoBanner` — single demo wording on all breakpoints (no shortened mobile variant)
+- Attendance register sticky bar aligned to taller bottom nav
+- Communications compose — full-width action buttons on mobile
+
+### Added
+
+- [scripts/mobile-viewport-check.md](./scripts/mobile-viewport-check.md) — DevTools + optional Playwright screenshot steps
+- Mobile-first section in [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md)
+
 ## [1.4.6] — 2026-06-27
 
 ### Added

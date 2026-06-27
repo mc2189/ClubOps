@@ -99,9 +99,29 @@ Follow `/demo-script` steps 1–10 in order:
 - [ ] `/communications/compose?template=tpl-competition` — competition template loads
 - [ ] Simulated send shows success message; no real email sent
 
-## Mobile and tablet checklist (v1.4.2)
+## Mobile-first demo polish (v1.4.7)
 
-Test on phone or narrow browser window (~375px) on the **live Vercel URL**:
+Test on phone or narrow browser at **360px**, **390px**, and **430px** on the **live Vercel URL**. Also spot-check **768px** (tablet).
+
+See [scripts/mobile-viewport-check.md](./scripts/mobile-viewport-check.md) for DevTools steps and optional Playwright screenshots.
+
+**Note:** Automated smoke tests do not validate visual mobile layout — use this section for that.
+
+- [ ] **Dashboard (iPhone-sized)** — compact glam hero; demo badge + CTAs readable; Today's priorities visible below hero (not full viewport)
+- [ ] **Members** — thin page header; breadcrumb compact; add member button does not overflow
+- [ ] **Attendance** — register present/absent controls usable; sticky save bar sits above bottom nav
+- [ ] **Communications compose** — recipients/template controls stack; simulated-send messaging obvious; no hang or overflow
+- [ ] **Finance / Gift Aid** — restricted role previews readable; cards/tables stack (horizontal scroll OK for wide tables only)
+- [ ] **Reports / export centre** — export buttons and warnings usable on phone
+- [ ] **Bottom nav** — Home, Members, Attendance, Messages, More; active item obvious; no content hidden behind nav
+- [ ] **No horizontal scroll** at 360px, 390px, 430px on key routes above
+- [ ] **Demo banner** — single wording on module pages: "Demo mode — fake data only. Reloading the page resets demo changes." (dashboard uses hero panel instead)
+- [ ] Menu button opens drawer; drawer closes on link tap / outside / Escape
+- [ ] Role switcher usable; "Not a real login" visible
+- [ ] Skip to main content link works
+- [ ] Desktop layout unchanged at `lg` width (sidebar visible, no bottom nav)
+
+## Mobile and tablet checklist (v1.4.2 — superseded by section above)
 
 - [ ] Demo banner readable (short text on mobile)
 - [ ] Menu button (top left) opens and closes navigation drawer
@@ -159,3 +179,5 @@ All three must pass before pushing to `main` for Vercel auto-deploy.
 Run: `./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app`
 
 See [SMOKE_TEST_RESULTS.md](./SMOKE_TEST_RESULTS.md) for the most recent run.
+
+**Mobile layout:** Smoke tests verify routes and copy only — not visual mobile layout. Use the [mobile-first section](./DEMO_QA_CHECKLIST.md#mobile-first-demo-polish-v147) and [mobile-viewport-check.md](./scripts/mobile-viewport-check.md).

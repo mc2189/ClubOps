@@ -245,18 +245,18 @@ export function ComposeClient({
               rows={10}
               className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 font-mono text-sm"
             />
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
               <button
                 type="button"
                 onClick={handleSaveDraft}
-                className="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                className="min-h-[48px] w-full rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 sm:w-auto"
               >
                 Save draft (simulated)
               </button>
               <button
                 type="button"
                 onClick={handleSimulateSend}
-                className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+                className="min-h-[48px] w-full rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 sm:w-auto"
               >
                 Simulated send
               </button>

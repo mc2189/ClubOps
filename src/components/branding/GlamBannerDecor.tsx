@@ -111,12 +111,18 @@ export function GlamBannerLogo({
   );
 }
 
-function BreadcrumbEyebrow({ items }: { items: BreadcrumbItem[] }) {
+function BreadcrumbEyebrow({ items, compact = false }: { items: BreadcrumbItem[]; compact?: boolean }) {
   const mobileItems = items.length > 2 ? items.slice(-2) : items;
 
   function renderList(list: BreadcrumbItem[], className?: string) {
     return (
-      <ol className={cn("flex min-w-0 flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs font-medium text-brand-primary/80 sm:text-sm", className)}>
+      <ol
+        className={cn(
+          "flex min-w-0 flex-wrap items-center gap-x-1.5 gap-y-0.5 font-medium text-brand-primary/80",
+          compact ? "text-[11px] sm:text-sm" : "text-xs sm:text-sm",
+          className,
+        )}
+      >
         {list.map((item, index) => (
           <li key={`${item.label}-${index}`} className="flex min-w-0 items-center gap-1.5">
             {index > 0 && (
@@ -140,8 +146,14 @@ function BreadcrumbEyebrow({ items }: { items: BreadcrumbItem[] }) {
   }
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-2 flex min-w-0 items-center gap-1.5">
-      <Sparkle className="h-3 w-3 shrink-0 text-pink-400/80" aria-hidden="true" />
+    <nav
+      aria-label="Breadcrumb"
+      className={cn("flex min-w-0 items-center gap-1.5", compact ? "mb-1 sm:mb-2" : "mb-2")}
+    >
+      <Sparkle
+        className={cn("shrink-0 text-pink-400/80", compact ? "hidden h-2.5 w-2.5 sm:block sm:h-3 sm:w-3" : "h-3 w-3")}
+        aria-hidden="true"
+      />
       <div className="min-w-0 sm:hidden">{renderList(mobileItems)}</div>
       <div className="hidden min-w-0 sm:block">{renderList(items)}</div>
     </nav>
@@ -152,17 +164,27 @@ export function GlamBannerTitle({
   id,
   title,
   breadcrumbs,
+  compact = false,
 }: {
   id?: string;
   title: string;
   breadcrumbs?: BreadcrumbItem[];
+  /** Tighter typography for mobile internal page headers */
+  compact?: boolean;
 }) {
   return (
     <div className="min-w-0">
-      {breadcrumbs && breadcrumbs.length > 0 && <BreadcrumbEyebrow items={breadcrumbs} />}
+      {breadcrumbs && breadcrumbs.length > 0 && (
+        <BreadcrumbEyebrow items={breadcrumbs} compact={compact} />
+      )}
       <h1
         id={id}
-        className="flex min-w-0 items-center gap-2 font-serif text-2xl font-bold tracking-tight text-brand-charcoal sm:text-3xl lg:text-4xl"
+        className={cn(
+          "flex min-w-0 items-center gap-2 font-serif font-bold tracking-tight text-brand-charcoal",
+          compact
+            ? "text-xl sm:text-3xl lg:text-4xl"
+            : "text-2xl sm:text-3xl lg:text-4xl",
+        )}
       >
         <Sparkle className="hidden h-3.5 w-3.5 shrink-0 text-pink-400/70 sm:block" aria-hidden="true" />
         <span className="truncate">{title}</span>

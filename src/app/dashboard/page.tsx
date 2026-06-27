@@ -20,10 +20,12 @@ export default async function DashboardPage() {
     <DashboardLayout>
       <GlamDashboardHero />
 
-      <PageHeader
-        title="Today's overview"
-        description="Here's what needs your attention today."
-      />
+      <div className="hidden sm:block">
+        <PageHeader
+          title="Today's overview"
+          description="Here's what needs your attention today."
+        />
+      </div>
 
       <DashboardPriorities tasks={data.tasks} />
 

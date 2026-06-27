@@ -193,7 +193,7 @@ export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
         )}
       </div>
 
-      <div className="fixed inset-x-0 bottom-[52px] z-20 flex gap-2 border-t border-slate-200 bg-white p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-lg lg:hidden">
+      <div className="fixed inset-x-0 bottom-[56px] z-20 flex gap-2 border-t border-slate-200 bg-white p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-lg lg:hidden">
         <button
           type="button"
           onClick={() => setShowMarkAllConfirm(true)}

@@ -26,7 +26,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <TopBar />
             <main
               id="main-content"
-              className="flex-1 overflow-y-auto bg-slate-50 p-4 pb-24 md:p-6 lg:pb-6"
+              className="flex-1 overflow-x-hidden overflow-y-auto bg-slate-50 p-4 pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:p-6 lg:pb-6"
             >
               {children}
             </main>

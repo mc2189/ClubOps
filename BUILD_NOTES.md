@@ -1,5 +1,24 @@
 # ClubOps — Build Notes
 
+## Iteration 30 — v1.4.7 Mobile-first demo polish (2026-06-27)
+
+### What was built
+
+- Compact mobile dashboard hero and internal page headers
+- Bottom nav active state + safe-area padding fixes
+- Unified demo banner copy; mobile QA checklist section
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+```
+
+---
+
 ## Iteration 29 — v1.4.6 Demo tester brief and smoke test (2026-06-27)
 
 ### What was built

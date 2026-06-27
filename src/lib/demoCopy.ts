@@ -2,6 +2,7 @@
 export const DEMO_BANNER_TEXT =
   "Demo mode — fake data only. Reloading the page resets demo changes.";
 
+/** @deprecated Use DEMO_BANNER_TEXT — single wording on all breakpoints */
 export const DEMO_BANNER_TEXT_SHORT = "Demo — fake data only";
 
 export const DEMO_ONLY_LABEL = "Demo only";
