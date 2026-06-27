@@ -9,6 +9,7 @@ import { FinanceSubNav } from "@/components/finance/FinanceDashboardClient";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import type { ImportPreviewData } from "@/data/providers/types";
 import { formatCurrency, formatDate } from "@/lib/utils";
+import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function ImportFlowClient({
   csvPreview,
@@ -44,6 +45,8 @@ export function ImportFlowClient({
       <PageHeader
         title="Import bank statement"
         description="Guided demo flow — fake transactions only."
+        breadcrumbs={moduleBreadcrumb(MODULES.finance, "Import")}
+        backHref={moduleBackHref(MODULES.finance, "Import")}
         action={
           <Link href="/finance" className="text-sm text-slate-500 hover:text-slate-700">
             Back to finance

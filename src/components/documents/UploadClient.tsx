@@ -6,6 +6,7 @@ import { DemoOnlyNotice } from "@/components/documents/DocumentsNotices";
 import { DocumentsSubNav } from "@/components/documents/DocumentsSubNav";
 import { useDocumentsDemo } from "@/components/documents/DocumentsDemoProvider";
 import { sensitivityLabel, sensitivityVariant } from "@/lib/documents";
+import { documentsTrail } from "@/lib/breadcrumbs";
 
 export function UploadClient() {
   const { uploadExamples, simulateUpload } = useDocumentsDemo();
@@ -25,6 +26,8 @@ export function UploadClient() {
       <PageHeader
         title="Upload document"
         description="Choose a demo document example — no real files are uploaded or stored."
+        breadcrumbs={documentsTrail("Upload")}
+        backHref="/documents"
       />
       <DocumentsSubNav active="Upload" />
       <DemoOnlyNotice />

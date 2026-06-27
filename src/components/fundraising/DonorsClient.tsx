@@ -7,13 +7,14 @@ import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
 import { COMMUNICATIONS_LINKS, formatFundraisingCurrency } from "@/lib/fundraising";
 import { formatDate } from "@/lib/utils";
+import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function DonorsClient() {
   const { donors, markThankYouSent } = useFundraisingDemo();
 
   return (
     <>
-      <PageHeader title="Donors" description="Individual, parent, business and community supporters." />
+      <PageHeader title="Donors" description="Individual, parent, business and community supporters." breadcrumbs={moduleBreadcrumb(MODULES.fundraising, "Donors")} backHref={moduleBackHref(MODULES.fundraising, "Donors")} />
       <FundraisingSubNav active="Donors" />
       <DemoOnlyNotice />
       <Card className="mt-4 overflow-x-auto">

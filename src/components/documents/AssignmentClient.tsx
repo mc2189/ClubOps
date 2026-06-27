@@ -7,6 +7,7 @@ import { DocumentsSubNav } from "@/components/documents/DocumentsSubNav";
 import { useDocumentsDemo } from "@/components/documents/DocumentsDemoProvider";
 import { sensitivityLabel, sensitivityVariant } from "@/lib/documents";
 import type { DocumentCategory } from "@/data/providers/types";
+import { documentsTrail } from "@/lib/breadcrumbs";
 
 const categories: DocumentCategory[] = [
   "medical form",
@@ -40,6 +41,8 @@ export function AssignmentClient() {
       <PageHeader
         title="Document assignment"
         description="Review unassigned documents and confirm where they belong."
+        breadcrumbs={documentsTrail("Assignment")}
+        backHref="/documents"
       />
       <DocumentsSubNav active="Assignment" />
       <DemoOnlyNotice />

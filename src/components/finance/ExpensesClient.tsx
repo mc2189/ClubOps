@@ -6,6 +6,7 @@ import { DemoOnlyNotice } from "@/components/finance/FinanceNotices";
 import { FinanceSubNav } from "@/components/finance/FinanceDashboardClient";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import { formatCurrency, formatDate } from "@/lib/utils";
+import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 import type { ExpenseCategory } from "@/data/providers/types";
 
 const EXPENSE_CATEGORIES: ExpenseCategory[] = [
@@ -46,6 +47,8 @@ export function ExpensesClient() {
       <PageHeader
         title="Expenses"
         description="Track club outgoings and receipt status."
+        breadcrumbs={moduleBreadcrumb(MODULES.finance, "Expenses")}
+        backHref={moduleBackHref(MODULES.finance, "Expenses")}
         action={
           <button
             type="button"

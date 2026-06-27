@@ -9,6 +9,7 @@ import {
 import { DocumentsSubNav } from "@/components/documents/DocumentsSubNav";
 import { useDocumentsDemo } from "@/components/documents/DocumentsDemoProvider";
 import { formatDate } from "@/lib/utils";
+import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function DocumentsDashboardClient() {
   const { dashboard, activities } = useDocumentsDemo();
@@ -18,6 +19,8 @@ export function DocumentsDashboardClient() {
       <PageHeader
         title="Documents"
         description="Scan, upload and assign club documents — all simulated in demo mode."
+        breadcrumbs={moduleBreadcrumb(MODULES.documents)}
+        backHref="/dashboard"
       />
       <DocumentsSubNav active="Dashboard" />
       <DemoOnlyNotice />

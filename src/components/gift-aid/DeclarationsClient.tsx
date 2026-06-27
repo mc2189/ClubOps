@@ -9,13 +9,14 @@ import { GiftAidSubNav } from "@/components/gift-aid/GiftAidDashboardClient";
 import { useGiftAidDemo } from "@/components/gift-aid/GiftAidDemoProvider";
 import { declarationStatusLabel, declarationStatusVariant } from "@/lib/giftAid";
 import { formatDate } from "@/lib/utils";
+import { giftAidTrail } from "@/lib/breadcrumbs";
 
 export function DeclarationsClient() {
   const { declarations, updateDeclarationStatus, simulateDeclarationRequest, showDeclarationPreview, setShowDeclarationPreview } = useGiftAidDemo();
 
   return (
     <>
-      <PageHeader title="Gift Aid declarations" description="Parent/carer declarations and status." />
+      <PageHeader title="Gift Aid declarations" description="Parent/carer declarations and status." breadcrumbs={giftAidTrail("Declarations")} backHref="/gift-aid" />
       <GiftAidSubNav active="Declarations" />
       <DemoOnlyNotice />
 

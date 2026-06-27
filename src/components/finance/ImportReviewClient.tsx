@@ -14,6 +14,7 @@ import {
 } from "@/lib/financeMatching";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import type { ImportReviewItem, TransactionCategory } from "@/data/providers/types";
+import { financeImportReviewTrail } from "@/lib/breadcrumbs";
 
 export function ImportReviewClient() {
   const {
@@ -44,7 +45,7 @@ export function ImportReviewClient() {
   if (importItems.length === 0) {
     return (
       <>
-        <PageHeader title="Review import" description="No import loaded yet." />
+        <PageHeader title="Review import" description="No import loaded yet." breadcrumbs={financeImportReviewTrail()} backHref="/finance/import" />
         <FinanceSubNav active="Import" />
         <EmptyState
           title="No statement loaded"
@@ -65,6 +66,8 @@ export function ImportReviewClient() {
       <PageHeader
         title="Review import"
         description={`${importSource?.toUpperCase()} statement — ${importItems.length} transactions`}
+        breadcrumbs={financeImportReviewTrail()}
+        backHref="/finance/import"
         action={
           <Link href="/finance/import" className="text-sm text-slate-500 hover:text-slate-700">
             Re-import

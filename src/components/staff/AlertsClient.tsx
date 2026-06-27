@@ -7,6 +7,7 @@ import { StaffSubNav } from "@/components/staff/StaffSubNav";
 import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
 import { alertSeverityVariant } from "@/lib/staff";
 import { formatDate } from "@/lib/utils";
+import { staffTrail } from "@/lib/breadcrumbs";
 
 export function AlertsClient() {
   const { alerts, resolveAlert } = useStaffDemo();
@@ -14,7 +15,7 @@ export function AlertsClient() {
 
   return (
     <>
-      <PageHeader title="Staff & operations alerts" description="Qualifications, rota gaps, outgoings and compliance needing attention." />
+      <PageHeader title="Staff & operations alerts" description="Qualifications, rota gaps, outgoings and compliance needing attention." breadcrumbs={staffTrail("Alerts")} backHref="/staff" />
       <StaffSubNav active="Alerts" />
       <DemoOnlyNotice />
       {open.length === 0 ? (

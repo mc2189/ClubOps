@@ -5,6 +5,7 @@ import { Card, PageHeader, StatCard } from "@/components/ui";
 import { DemoOnlyNotice, ExportSuccessNotice } from "@/components/reports/ReportsNotices";
 import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
+import { reportsTrail } from "@/lib/breadcrumbs";
 
 export function MemberPackClient() {
   const { memberPack, simulateExport, lastExportTitle } = useReportsAuditDemo();
@@ -12,7 +13,7 @@ export function MemberPackClient() {
 
   return (
     <>
-      <PageHeader title="Member Admin Pack" description="Membership summary — sensitive summary only, no detailed medical notes." />
+      <PageHeader title="Member Admin Pack" description="Membership summary — sensitive summary only, no detailed medical notes." breadcrumbs={reportsTrail("Member Pack")} backHref="/reports" />
       <ReportsSubNav active="Member Pack" />
       <DemoOnlyNotice />
       {lastExportTitle === "Member Admin Pack" && <ExportSuccessNotice title="Member Admin Pack" />}

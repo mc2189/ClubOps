@@ -6,6 +6,7 @@ import { DemoOnlyNotice } from "@/components/documents/DocumentsNotices";
 import { DocumentsSubNav } from "@/components/documents/DocumentsSubNav";
 import { useDocumentsDemo } from "@/components/documents/DocumentsDemoProvider";
 import { priorityVariant } from "@/lib/documents";
+import { documentsTrail } from "@/lib/breadcrumbs";
 
 export function MissingClient() {
   const { missing } = useDocumentsDemo();
@@ -15,6 +16,8 @@ export function MissingClient() {
       <PageHeader
         title="Missing documents"
         description="Documents and forms that are missing or incomplete across the club."
+        breadcrumbs={documentsTrail("Missing")}
+        backHref="/documents"
       />
       <DocumentsSubNav active="Missing" />
       <DemoOnlyNotice />

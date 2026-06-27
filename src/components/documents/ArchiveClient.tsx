@@ -5,6 +5,7 @@ import { DemoOnlyNotice } from "@/components/documents/DocumentsNotices";
 import { DocumentsSubNav } from "@/components/documents/DocumentsSubNav";
 import { useDocumentsDemo } from "@/components/documents/DocumentsDemoProvider";
 import { formatDate } from "@/lib/utils";
+import { documentsTrail } from "@/lib/breadcrumbs";
 
 export function ArchiveClient() {
   const { documents, restoreDocument } = useDocumentsDemo();
@@ -15,6 +16,8 @@ export function ArchiveClient() {
       <PageHeader
         title="Document archive"
         description="Soft-archived documents — restore or view audit trail. No permanent delete."
+        breadcrumbs={documentsTrail("Archive")}
+        backHref="/documents"
       />
       <DocumentsSubNav active="Archive" />
       <DemoOnlyNotice />

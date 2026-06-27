@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader } from "@/components/ui";
+import { settingsTrail } from "@/lib/breadcrumbs";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { SupabasePrepSafetyNotice } from "@/components/settings/SupabasePrepSafetyNotice";
@@ -13,6 +14,8 @@ export function SchemaPlanClient() {
       <PageHeader
         title="Schema plan"
         description="Draft Supabase SQL migrations — not applied to any project."
+        breadcrumbs={settingsTrail("Database plan")}
+        backHref="/settings"
       />
       <SettingsSubNav />
       <DemoRbacNotice />

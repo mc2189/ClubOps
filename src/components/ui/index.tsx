@@ -1,4 +1,6 @@
 import { cn } from "@/lib/utils";
+import { PageHeaderNav } from "@/components/ui/PageHeaderNav";
+import type { BreadcrumbItem } from "@/lib/breadcrumbs";
 
 interface CardProps {
   children: React.ReactNode;
@@ -33,19 +35,34 @@ interface PageHeaderProps {
   title: string;
   description?: string;
   action?: React.ReactNode;
+  breadcrumbs?: BreadcrumbItem[];
+  backHref?: string;
 }
 
-export function PageHeader({ title, description, action }: PageHeaderProps) {
+export function PageHeader({
+  title,
+  description,
+  action,
+  breadcrumbs,
+  backHref,
+}: PageHeaderProps) {
   return (
-    <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-      <div className="min-w-0">
-        <h1 className="text-xl font-bold text-slate-900 sm:text-2xl">{title}</h1>
-        {description && <p className="mt-1 text-sm text-slate-500 sm:text-base">{description}</p>}
+    <div className="mb-6">
+      {breadcrumbs && breadcrumbs.length > 0 && (
+        <PageHeaderNav items={breadcrumbs} backHref={backHref} className="mb-3" />
+      )}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div className="min-w-0">
+          <h1 className="text-xl font-bold text-slate-900 sm:text-2xl">{title}</h1>
+          {description && <p className="mt-1 text-sm text-slate-500 sm:text-base">{description}</p>}
+        </div>
+        {action && <div className="shrink-0">{action}</div>}
       </div>
-      {action && <div className="shrink-0">{action}</div>}
     </div>
   );
 }
+
+export type { BreadcrumbItem } from "@/lib/breadcrumbs";
 
 interface EmptyStateProps {
   title: string;

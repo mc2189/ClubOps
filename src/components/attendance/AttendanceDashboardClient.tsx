@@ -5,6 +5,7 @@ import { Badge, Card, PageHeader, StatCard } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/attendance/AttendanceNotices";
 import { useAttendanceDemo } from "@/components/attendance/AttendanceDemoProvider";
 import { registerStatusLabel } from "@/lib/attendance";
+import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function AttendanceDashboardClient() {
   const { dashboard, sessions, getSessionStatus } = useAttendanceDemo();
@@ -14,6 +15,8 @@ export function AttendanceDashboardClient() {
       <PageHeader
         title="Attendance"
         description="Mark registers, track attendance and follow up absences."
+        breadcrumbs={moduleBreadcrumb(MODULES.attendance)}
+        backHref="/dashboard"
         action={
           <Link
             href="/attendance/register"

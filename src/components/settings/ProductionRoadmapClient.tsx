@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
+import { settingsTrail } from "@/lib/breadcrumbs";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { migrationStages, productionRoadmap } from "@/data/demo/architectureData";
@@ -12,6 +13,8 @@ export function ProductionRoadmapClient() {
       <PageHeader
         title="Production roadmap"
         description="Staged path from demo to live — dependencies, risks and recommended build order."
+        breadcrumbs={settingsTrail("Production roadmap")}
+        backHref="/settings"
       />
       <SettingsSubNav />
       <DemoRbacNotice />

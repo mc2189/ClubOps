@@ -6,6 +6,7 @@ import { DemoOnlyNotice } from "@/components/communications/CommunicationsNotice
 import { CommunicationsSubNav } from "@/components/communications/CommunicationsSubNav";
 import { useCommunicationsDemo } from "@/components/communications/CommunicationsDemoProvider";
 import { formatDate } from "@/lib/utils";
+import { communicationsTrail } from "@/lib/breadcrumbs";
 
 export function GroupsClient() {
   const { groups } = useCommunicationsDemo();
@@ -15,6 +16,8 @@ export function GroupsClient() {
       <PageHeader
         title="Recipient groups"
         description="Dynamic groups built from members, finance, Gift Aid and other demo data."
+        breadcrumbs={communicationsTrail("Groups")}
+        backHref="/communications"
       />
       <CommunicationsSubNav active="Groups" />
       <DemoOnlyNotice />

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Card, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/reports/ReportsNotices";
 import { DEMO_RESET_NOTE } from "@/lib/demoCopy";
+import { helpTrail } from "@/lib/breadcrumbs";
 import type { DemoScriptStep } from "@/data/providers/types";
 
 function ScriptStepCard({ step }: { step: DemoScriptStep }) {
@@ -75,6 +76,8 @@ export function DemoScriptClient({
       <PageHeader
         title="Demo script"
         description="Recommended 10–15 minute walkthrough for showing ClubOps to your club."
+        breadcrumbs={helpTrail("Demo Script")}
+        backHref="/dashboard"
         action={
           <div className="flex flex-wrap gap-3 text-sm">
             <Link href="/demo" className="font-medium text-indigo-600 hover:underline">

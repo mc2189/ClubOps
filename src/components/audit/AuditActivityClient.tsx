@@ -8,6 +8,7 @@ import { AuditDemoNotice } from "@/components/audit/AuditNotices";
 import { AuditSubNav } from "@/components/audit/AuditSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
 import { riskVariant } from "@/lib/reports";
+import { auditTrail } from "@/lib/breadcrumbs";
 
 export function AuditActivityClient() {
   const { auditEvents } = useReportsAuditDemo();
@@ -23,7 +24,7 @@ export function AuditActivityClient() {
 
   return (
     <>
-      <PageHeader title="Audit activity" description="Filterable cross-module activity feed." />
+      <PageHeader title="Audit activity" description="Filterable cross-module activity feed." breadcrumbs={auditTrail("Activity")} backHref="/audit" />
       <AuditSubNav active="Activity" />
       <AuditDemoNotice />
       <Card className="mt-4">

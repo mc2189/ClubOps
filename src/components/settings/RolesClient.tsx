@@ -6,6 +6,7 @@ import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { DemoRoleSwitcher } from "@/components/rbac/DemoRoleSwitcher";
 import { useDemoRole } from "@/components/rbac/DemoRoleProvider";
+import { settingsTrail } from "@/lib/breadcrumbs";
 
 export function RolesClient() {
   const { roles, role, setRole } = useDemoRole();
@@ -15,6 +16,8 @@ export function RolesClient() {
       <PageHeader
         title="Demo roles"
         description="Preview how volunteer roles would restrict access in live mode."
+        breadcrumbs={settingsTrail("Demo roles")}
+        backHref="/settings"
         action={<DemoRoleSwitcher />}
       />
       <SettingsSubNav />

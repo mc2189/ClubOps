@@ -8,6 +8,7 @@ import { DemoOnlyNotice, FinanceSecurityNotice } from "@/components/finance/Fina
 import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import { formatCurrency, formatDate } from "@/lib/utils";
+import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 const subNav = [
   { href: "/finance/fees", label: "Fees" },
@@ -25,6 +26,8 @@ export function FinanceDashboardClient() {
       <PageHeader
         title="Finance"
         description="Treasurer overview — income, fees, expenses and bank import."
+        breadcrumbs={moduleBreadcrumb(MODULES.finance)}
+        backHref="/dashboard"
       />
 
       <DemoOnlyNotice />

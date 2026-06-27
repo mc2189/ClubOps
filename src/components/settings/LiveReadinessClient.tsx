@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
+import { settingsTrail } from "@/lib/breadcrumbs";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import {
@@ -33,6 +34,8 @@ export function LiveReadinessClient() {
       <PageHeader
         title="Live readiness"
         description="What is safe in demo mode and what must exist before real club data."
+        breadcrumbs={settingsTrail("Live readiness")}
+        backHref="/settings"
       />
       <SettingsSubNav />
       <DemoRbacNotice />

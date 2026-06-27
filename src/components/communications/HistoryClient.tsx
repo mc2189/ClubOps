@@ -5,6 +5,7 @@ import { DemoOnlyNotice } from "@/components/communications/CommunicationsNotice
 import { CommunicationsSubNav } from "@/components/communications/CommunicationsSubNav";
 import { useCommunicationsDemo } from "@/components/communications/CommunicationsDemoProvider";
 import { formatDate } from "@/lib/utils";
+import { communicationsTrail } from "@/lib/breadcrumbs";
 
 const statusVariant = (status: string) => {
   switch (status) {
@@ -28,6 +29,8 @@ export function HistoryClient() {
       <PageHeader
         title="Message history"
         description="Audit trail of simulated sends, drafts and scheduled messages."
+        breadcrumbs={communicationsTrail("History")}
+        backHref="/communications"
       />
       <CommunicationsSubNav active="History" />
       <DemoOnlyNotice />

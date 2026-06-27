@@ -8,13 +8,19 @@ import { GiftAidSubNav } from "@/components/gift-aid/GiftAidDashboardClient";
 import { useGiftAidDemo } from "@/components/gift-aid/GiftAidDemoProvider";
 import { eligibilityLabel, eligibilityVariant } from "@/lib/giftAid";
 import { formatCurrency, formatDate } from "@/lib/utils";
+import { giftAidTrail } from "@/lib/breadcrumbs";
 
 export function GiftAidReviewClient() {
   const { reviewItems, updateReviewItem, simulateDeclarationRequest, showDeclarationPreview, setShowDeclarationPreview } = useGiftAidDemo();
 
   return (
     <>
-      <PageHeader title="Gift Aid review" description="Uncertain items requiring treasurer decision." />
+      <PageHeader
+        title="Gift Aid review"
+        description="Uncertain items requiring treasurer decision."
+        breadcrumbs={giftAidTrail("Review")}
+        backHref="/gift-aid"
+      />
       <GiftAidSubNav active="Review" />
       <DemoOnlyNotice />
       <div className="mt-4">

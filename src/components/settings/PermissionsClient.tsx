@@ -12,6 +12,7 @@ import {
   type MatrixLevel,
 } from "@/lib/permissions";
 import { demoRoles } from "@/data/demo/rolesData";
+import { settingsTrail } from "@/lib/breadcrumbs";
 
 const levelVariant: Record<MatrixLevel, "success" | "warning" | "danger" | "info" | "default"> = {
   allowed: "success",
@@ -35,6 +36,8 @@ export function PermissionsClient() {
       <PageHeader
         title="Permissions matrix"
         description="Role-by-module preview — plain English guide for committee discussions."
+        breadcrumbs={settingsTrail("Permissions")}
+        backHref="/settings"
         action={<DemoRoleSwitcher />}
       />
       <SettingsSubNav />

@@ -7,13 +7,14 @@ import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
 import { COMMUNICATIONS_LINKS, formatFundraisingCurrency } from "@/lib/fundraising";
 import { formatDate } from "@/lib/utils";
+import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function SponsorshipsClient() {
   const { sponsorships } = useFundraisingDemo();
 
   return (
     <>
-      <PageHeader title="Sponsorship tiers" description="Bronze, Silver, Gold and event sponsorship packages." />
+      <PageHeader title="Sponsorship tiers" description="Bronze, Silver, Gold and event sponsorship packages." breadcrumbs={moduleBreadcrumb(MODULES.fundraising, "Sponsorships")} backHref={moduleBackHref(MODULES.fundraising, "Sponsorships")} />
       <FundraisingSubNav active="Sponsorships" />
       <DemoOnlyNotice />
       <GiftAidGuidanceNotice />

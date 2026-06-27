@@ -6,6 +6,7 @@ import { DemoOnlyNotice, FundraisingSecurityNotice, GiftAidGuidanceNotice } from
 import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
 import { COMMUNICATIONS_LINKS, formatFundraisingCurrency } from "@/lib/fundraising";
+import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function FundraisingDashboardClient() {
   const { dashboard, campaigns } = useFundraisingDemo();
@@ -13,7 +14,7 @@ export function FundraisingDashboardClient() {
 
   return (
     <>
-      <PageHeader title="Fundraising" description="Campaigns, donors, sponsorships and Gift Aid opportunities — demo only." />
+      <PageHeader title="Fundraising" description="Campaigns, donors, sponsorships and Gift Aid opportunities — demo only." breadcrumbs={moduleBreadcrumb(MODULES.fundraising)} backHref="/dashboard" />
       <FundraisingSubNav active="Dashboard" />
       <DemoOnlyNotice />
       <div className="mt-4 space-y-6">

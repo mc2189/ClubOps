@@ -15,6 +15,7 @@ import {
   statusBadgeVariant,
 } from "@/lib/members";
 import { formatCurrency, formatDate } from "@/lib/utils";
+import { membersMemberTrail } from "@/lib/breadcrumbs";
 import type { MemberProfile } from "@/data/providers/types";
 
 interface MemberProfileClientProps {
@@ -62,6 +63,8 @@ export function MemberProfileClient({ memberId }: MemberProfileClientProps) {
       <PageHeader
         title={name}
         description={`${profile.classGroup} · Joined ${formatDate(profile.joinedDate)}`}
+        breadcrumbs={membersMemberTrail(name)}
+        backHref="/members"
         action={
           <div className="flex flex-wrap gap-2">
             <Link

@@ -4,11 +4,12 @@ import { Card, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice, ComplianceWarnings } from "@/components/gift-aid/GiftAidNotices";
 import { GiftAidSubNav } from "@/components/gift-aid/GiftAidDashboardClient";
 import { GIFT_AID_RULES, GIFT_AID_COMPLIANCE_WARNINGS } from "@/data/demo/giftAid";
+import { giftAidTrail } from "@/lib/breadcrumbs";
 
 export function GiftAidRulesClient() {
   return (
     <>
-      <PageHeader title="Gift Aid rules" description="Plain-English rules for volunteers and treasurers." />
+      <PageHeader title="Gift Aid rules" description="Plain-English rules for volunteers and treasurers." breadcrumbs={giftAidTrail("Rules")} backHref="/gift-aid" />
       <GiftAidSubNav active="Rules" />
       <DemoOnlyNotice />
       <div className="mt-4">

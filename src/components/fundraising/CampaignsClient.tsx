@@ -7,13 +7,14 @@ import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
 import { formatFundraisingCurrency } from "@/lib/fundraising";
 import { formatDate } from "@/lib/utils";
+import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function CampaignsClient() {
   const { campaigns } = useFundraisingDemo();
 
   return (
     <>
-      <PageHeader title="Campaigns" description="What we're raising money for and how we're progressing." />
+      <PageHeader title="Campaigns" description="What we're raising money for and how we're progressing." breadcrumbs={moduleBreadcrumb(MODULES.fundraising, "Campaigns")} backHref={moduleBackHref(MODULES.fundraising, "Campaigns")} />
       <FundraisingSubNav active="Campaigns" />
       <DemoOnlyNotice />
       <div className="mt-6 grid gap-4 lg:grid-cols-2">

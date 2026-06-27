@@ -5,6 +5,7 @@ import { Badge, Card, EmptyState, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/attendance/AttendanceNotices";
 import type { AttendanceReportsData } from "@/data/providers/types";
 import { registerStatusLabel } from "@/lib/attendance";
+import { attendanceTrail } from "@/lib/breadcrumbs";
 
 export function AttendanceReportsClient({ reports }: { reports: AttendanceReportsData }) {
   return (
@@ -12,6 +13,8 @@ export function AttendanceReportsClient({ reports }: { reports: AttendanceReport
       <PageHeader
         title="Attendance reports"
         description="Summary reports for classes, members and follow-ups."
+        breadcrumbs={attendanceTrail("Reports")}
+        backHref="/attendance"
         action={
           <Link href="/attendance" className="text-sm text-slate-500 hover:text-slate-700">
             Back to attendance

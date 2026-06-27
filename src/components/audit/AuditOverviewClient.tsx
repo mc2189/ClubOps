@@ -5,6 +5,7 @@ import { Card, PageHeader, StatCard } from "@/components/ui";
 import { AuditDemoNotice } from "@/components/audit/AuditNotices";
 import { AuditSubNav } from "@/components/audit/AuditSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
+import { auditTrail } from "@/lib/breadcrumbs";
 
 export function AuditOverviewClient() {
   const { auditEvents } = useReportsAuditDemo();
@@ -13,7 +14,7 @@ export function AuditOverviewClient() {
 
   return (
     <>
-      <PageHeader title="Audit Log" description="Cross-module activity and evidence trail — demo only." />
+      <PageHeader title="Audit Log" description="Cross-module activity and evidence trail — demo only." breadcrumbs={auditTrail("Overview")} backHref="/audit" />
       <AuditSubNav active="Overview" />
       <AuditDemoNotice />
       <div className="mt-4 grid gap-4 sm:grid-cols-3">

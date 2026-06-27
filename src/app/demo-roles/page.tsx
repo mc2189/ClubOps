@@ -3,6 +3,7 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { PageHeader, Card } from "@/components/ui";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { DemoRoleSwitcher } from "@/components/rbac/DemoRoleSwitcher";
+import { helpTrail } from "@/lib/breadcrumbs";
 
 export default function DemoRolesPage() {
   return (
@@ -10,6 +11,8 @@ export default function DemoRolesPage() {
       <PageHeader
         title="Demo role switching"
         description="Preview how ClubOps would restrict access by volunteer role — not real security."
+        breadcrumbs={helpTrail("Demo roles")}
+        backHref="/dashboard"
         action={<DemoRoleSwitcher />}
       />
       <DemoRbacNotice />

@@ -9,6 +9,7 @@ import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
 import { formatStaffCurrency, paymentStatusVariant } from "@/lib/staff";
 import type { OutgoingCategory } from "@/data/providers/types";
 import { formatDate } from "@/lib/utils";
+import { staffTrail } from "@/lib/breadcrumbs";
 
 const categories: OutgoingCategory[] = [
   "hall hire", "equipment", "insurance", "training/certifications",
@@ -33,7 +34,7 @@ export function OutgoingsClient() {
 
   return (
     <>
-      <PageHeader title="Outgoings" description="Hall hire, equipment, insurance, wages and operational costs." />
+      <PageHeader title="Outgoings" description="Hall hire, equipment, insurance, wages and operational costs." breadcrumbs={staffTrail("Outgoings")} backHref="/staff" />
       <StaffSubNav active="Outgoings" />
       <DemoOnlyNotice />
       <div className="mt-4 flex gap-2">

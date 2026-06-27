@@ -5,6 +5,7 @@ import { Card, PageHeader } from "@/components/ui";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { demoSecurityRequirements } from "@/data/demo/rolesData";
+import { settingsTrail } from "@/lib/breadcrumbs";
 
 export function SecuritySettingsClient() {
   return (
@@ -12,6 +13,8 @@ export function SecuritySettingsClient() {
       <PageHeader
         title="Security & live mode"
         description="What a real ClubOps deployment would require — educational guide for committees."
+        breadcrumbs={settingsTrail("Security summary")}
+        backHref="/settings"
       />
       <SettingsSubNav />
       <DemoRbacNotice />

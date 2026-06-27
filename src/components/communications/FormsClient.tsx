@@ -5,6 +5,7 @@ import { DemoOnlyNotice } from "@/components/communications/CommunicationsNotice
 import { CommunicationsSubNav } from "@/components/communications/CommunicationsSubNav";
 import { useCommunicationsDemo } from "@/components/communications/CommunicationsDemoProvider";
 import { formatDate } from "@/lib/utils";
+import { communicationsTrail } from "@/lib/breadcrumbs";
 
 export function FormsClient() {
   const { forms } = useCommunicationsDemo();
@@ -14,6 +15,8 @@ export function FormsClient() {
       <PageHeader
         title="Digital forms"
         description="Forms that can be attached to messages and receive simulated responses."
+        breadcrumbs={communicationsTrail("Forms")}
+        backHref="/communications"
       />
       <CommunicationsSubNav active="Forms" />
       <DemoOnlyNotice />

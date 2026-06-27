@@ -6,6 +6,7 @@ import { DemoOnlyNotice } from "@/components/communications/CommunicationsNotice
 import { CommunicationsSubNav } from "@/components/communications/CommunicationsSubNav";
 import { useCommunicationsDemo } from "@/components/communications/CommunicationsDemoProvider";
 import { inboxStatusLabel, inboxStatusVariant } from "@/lib/communications";
+import { communicationsTrail } from "@/lib/breadcrumbs";
 
 export function InboxClient() {
   const { inbox, updateInboxStatus } = useCommunicationsDemo();
@@ -15,6 +16,8 @@ export function InboxClient() {
       <PageHeader
         title="Inbox — form responses"
         description="Simulated incoming responses with auto-matching and suggested actions."
+        breadcrumbs={communicationsTrail("Inbox")}
+        backHref="/communications"
       />
       <CommunicationsSubNav active="Inbox" />
       <DemoOnlyNotice />

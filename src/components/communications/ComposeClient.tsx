@@ -13,6 +13,7 @@ import {
   UNPAID_FEES_COMPOSE_PRESET,
 } from "@/lib/communications";
 import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
+import { communicationsTrail } from "@/lib/breadcrumbs";
 
 export interface ComposeClientProps {
   preset?: string | null;
@@ -112,6 +113,8 @@ export function ComposeClient({
         <PageHeader
           title="Compose message"
           description="Select recipients, choose a template and simulate sending — no real email is sent."
+          breadcrumbs={communicationsTrail("Compose")}
+          backHref="/communications"
         />
         <CommunicationsSubNav active="Compose" />
         <Card className="mt-6 animate-pulse">
@@ -126,6 +129,8 @@ export function ComposeClient({
       <PageHeader
         title="Compose message"
         description="Select recipients, choose a template and simulate sending — no real email is sent."
+        breadcrumbs={communicationsTrail("Compose")}
+        backHref="/communications"
       />
       <CommunicationsSubNav active="Compose" />
       <DemoOnlyNotice />

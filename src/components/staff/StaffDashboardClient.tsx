@@ -6,6 +6,7 @@ import { DemoOnlyNotice, StaffSecurityNotice } from "@/components/staff/StaffNot
 import { StaffSubNav } from "@/components/staff/StaffSubNav";
 import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
 import { formatStaffCurrency } from "@/lib/staff";
+import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function StaffDashboardClient() {
   const { dashboard, staff, alerts } = useStaffDemo();
@@ -16,6 +17,8 @@ export function StaffDashboardClient() {
       <PageHeader
         title="Staff & Volunteers"
         description="Coaches, volunteers, rota, qualifications, wages and operational outgoings."
+        breadcrumbs={moduleBreadcrumb(MODULES.staff)}
+        backHref="/dashboard"
       />
       <StaffSubNav active="Dashboard" />
       <DemoOnlyNotice />

@@ -7,6 +7,7 @@ import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { ClubHealthSummary } from "@/components/reports/ClubHealthSummary";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
 import { formatReportCurrency } from "@/lib/reports";
+import { reportsTrail } from "@/lib/breadcrumbs";
 
 export function CommitteePackClient() {
   const { committeePack, clubHealth, simulateExport, lastExportTitle } = useReportsAuditDemo();
@@ -14,7 +15,7 @@ export function CommitteePackClient() {
 
   return (
     <>
-      <PageHeader title="Committee Pack" description="Pre-meeting summary for club committee — demo only." />
+      <PageHeader title="Committee Pack" description="Pre-meeting summary for club committee — demo only." breadcrumbs={reportsTrail("Committee Pack")} backHref="/reports" />
       <ReportsSubNav active="Committee Pack" />
       <DemoOnlyNotice />
       {lastExportTitle === "Committee Pack" && <ExportSuccessNotice title="Committee Pack" />}

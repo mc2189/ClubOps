@@ -12,6 +12,7 @@ import {
   registerStatusLabel,
 } from "@/lib/attendance";
 import { cn } from "@/lib/utils";
+import { attendanceRegisterTrail, attendanceTrail } from "@/lib/breadcrumbs";
 
 export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
   const { getRegister, setMemberMark, markAllPresent, saveRegister, getSessionStatus, sessions } =
@@ -26,6 +27,8 @@ export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
       <PageHeader
         title="Session not found"
         description="This session does not exist in the demo data."
+        breadcrumbs={attendanceTrail("Select session")}
+        backHref="/attendance/register"
       />
     );
   }
@@ -48,6 +51,8 @@ export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
       <PageHeader
         title={register.sessionName}
         description={`${session.day} · ${session.time} · ${session.venue} · Coach: ${session.coach}`}
+        breadcrumbs={attendanceRegisterTrail(register.sessionName)}
+        backHref="/attendance/register"
         action={
           <Link
             href="/attendance/register"

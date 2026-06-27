@@ -7,6 +7,7 @@ import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNoti
 import { StaffSubNav } from "@/components/staff/StaffSubNav";
 import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
 import { formatStaffCurrency, paymentStatusVariant } from "@/lib/staff";
+import { staffTrail } from "@/lib/breadcrumbs";
 
 export function WagesClient() {
   const { wages, simulateWageExport, wageExportDone } = useStaffDemo();
@@ -14,7 +15,12 @@ export function WagesClient() {
 
   return (
     <>
-      <PageHeader title="Wage preparation" description="Session payment preparation — not payroll." />
+      <PageHeader
+        title="Wage preparation"
+        description="Session payment preparation — not payroll."
+        breadcrumbs={staffTrail("Wages")}
+        backHref="/staff"
+      />
       <StaffSubNav active="Wages" />
       <DemoOnlyNotice />
       <PermissionPreviewNotice module="wage-prep" />

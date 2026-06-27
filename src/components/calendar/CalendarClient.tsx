@@ -6,6 +6,7 @@ import type { CalendarPageData } from "@/data/providers/types";
 import { calendarTypeLabels, calendarTypeColors } from "@/lib/attendance";
 import { formatDate } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function CalendarClient({ data }: { data: CalendarPageData }) {
   const sortedItems = [...data.items].sort(
@@ -29,6 +30,8 @@ export function CalendarClient({ data }: { data: CalendarPageData }) {
       <PageHeader
         title="Calendar"
         description="Sessions, events, reminders and suggested actions across the club."
+        breadcrumbs={moduleBreadcrumb(MODULES.calendar)}
+        backHref="/dashboard"
       />
 
       <Card className="border-amber-200 bg-amber-50">

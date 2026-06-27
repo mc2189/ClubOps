@@ -2,6 +2,20 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.3] — 2026-06-27
+
+### Added
+
+- `PageHeaderNav`, `BackButton`, and `PageBreadcrumbs` components with mobile-friendly shortened trails
+- `src/lib/breadcrumbs.ts` — `MODULES`, `moduleBreadcrumb`, `moduleBackHref`, and trail helpers
+- Breadcrumb navigation and back links on all module page headers (members, attendance, finance, Gift Aid, communications, documents, calendar, staff, fundraising, reports, audit, settings, demo/help)
+
+### Changed
+
+- `PageHeader` accepts optional `breadcrumbs` and `backHref` props
+- Back button uses browser history when safe, otherwise falls back to parent route
+- Mobile shows last two breadcrumb segments; desktop shows full path
+
 ## [1.4.2] — 2026-06-26
 
 ### Added

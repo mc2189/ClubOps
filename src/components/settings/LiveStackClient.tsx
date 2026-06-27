@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
+import { settingsTrail } from "@/lib/breadcrumbs";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { StackDecisionSafetyNotice } from "@/components/settings/StackDecisionSafetyNotice";
@@ -26,6 +27,8 @@ export function LiveStackClient() {
       <PageHeader
         title="Live stack comparison"
         description="Decision matrix scoring each option 1–5 for ClubOps — justification included."
+        breadcrumbs={settingsTrail("Live stack comparison")}
+        backHref="/settings"
       />
       <SettingsSubNav />
       <DemoRbacNotice />

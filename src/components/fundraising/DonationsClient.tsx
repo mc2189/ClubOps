@@ -8,6 +8,7 @@ import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
 import { giftAidEligibilityLabel, giftAidEligibilityVariant, formatFundraisingCurrency } from "@/lib/fundraising";
 import { formatDate } from "@/lib/utils";
+import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function DonationsClient() {
   const { donations, campaigns, addDonation } = useFundraisingDemo();
@@ -33,7 +34,7 @@ export function DonationsClient() {
 
   return (
     <>
-      <PageHeader title="Donations" description="All donations with Gift Aid eligibility and finance links." />
+      <PageHeader title="Donations" description="All donations with Gift Aid eligibility and finance links." breadcrumbs={moduleBreadcrumb(MODULES.fundraising, "Donations")} backHref={moduleBackHref(MODULES.fundraising, "Donations")} />
       <FundraisingSubNav active="Donations" />
       <DemoOnlyNotice />
       <GiftAidGuidanceNotice />

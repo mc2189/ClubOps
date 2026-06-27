@@ -13,6 +13,7 @@ import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNoti
 import { useGiftAidDemo } from "@/components/gift-aid/GiftAidDemoProvider";
 import { DeclarationRequestModal } from "@/components/gift-aid/DeclarationRequestModal";
 import { formatCurrency } from "@/lib/utils";
+import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export const giftAidSubNav = [
   { href: "/gift-aid/declarations", label: "Declarations" },
@@ -45,6 +46,8 @@ export function GiftAidDashboardClient() {
       <PageHeader
         title="Gift Aid"
         description="Track declarations, eligible donations and claim readiness."
+        breadcrumbs={moduleBreadcrumb(MODULES.giftAid)}
+        backHref="/dashboard"
       />
       <GiftAidSubNav active="Dashboard" />
       <DemoOnlyNotice />

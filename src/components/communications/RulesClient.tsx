@@ -4,6 +4,7 @@ import { Card, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/communications/CommunicationsNotices";
 import { CommunicationsSubNav } from "@/components/communications/CommunicationsSubNav";
 import { useCommunicationsDemo } from "@/components/communications/CommunicationsDemoProvider";
+import { communicationsTrail } from "@/lib/breadcrumbs";
 
 export function RulesClient() {
   const { rules } = useCommunicationsDemo();
@@ -13,6 +14,8 @@ export function RulesClient() {
       <PageHeader
         title="Routing rules"
         description="Plain-English rules showing how incoming responses would be routed in live mode."
+        breadcrumbs={communicationsTrail("Rules")}
+        backHref="/communications"
       />
       <CommunicationsSubNav active="Rules" />
       <DemoOnlyNotice />

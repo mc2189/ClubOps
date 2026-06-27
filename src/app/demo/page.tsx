@@ -2,6 +2,7 @@ import Link from "next/link";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { PageHeader, Card } from "@/components/ui";
 import { DEMO_RESET_NOTE, DEMO_SAFETY_SUMMARY } from "@/lib/demoCopy";
+import { helpTrail } from "@/lib/breadcrumbs";
 
 const demoFacts = [
   {
@@ -44,6 +45,8 @@ export default function DemoModePage() {
       <PageHeader
         title="About demo mode"
         description="ClubOps is running with fake data only. Here's what that means."
+        breadcrumbs={helpTrail("About Demo Mode")}
+        backHref="/dashboard"
         action={
           <Link
             href="/dashboard"

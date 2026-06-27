@@ -5,6 +5,7 @@ import { Badge, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/attendance/AttendanceNotices";
 import { useAttendanceDemo } from "@/components/attendance/AttendanceDemoProvider";
 import { registerStatusLabel } from "@/lib/attendance";
+import { attendanceTrail } from "@/lib/breadcrumbs";
 
 export function SessionSelectorClient() {
   const { sessions, getSessionStatus } = useAttendanceDemo();
@@ -14,6 +15,8 @@ export function SessionSelectorClient() {
       <PageHeader
         title="Select session"
         description="Choose a class to mark attendance."
+        breadcrumbs={attendanceTrail("Select session")}
+        backHref="/attendance"
         action={
           <Link href="/attendance" className="text-sm text-slate-500 hover:text-slate-700">
             Back to attendance

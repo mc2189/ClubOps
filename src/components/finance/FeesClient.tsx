@@ -6,6 +6,7 @@ import { DemoOnlyNotice } from "@/components/finance/FinanceNotices";
 import { FinanceSubNav } from "@/components/finance/FinanceDashboardClient";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import { formatCurrency, formatDate } from "@/lib/utils";
+import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 const statusVariant = {
   paid: "success" as const,
@@ -20,7 +21,7 @@ export function FeesClient() {
 
   return (
     <>
-      <PageHeader title="Fee tracking" description="Who has paid and who owes money." />
+      <PageHeader title="Fee tracking" description="Who has paid and who owes money." breadcrumbs={moduleBreadcrumb(MODULES.finance, "Fees")} backHref={moduleBackHref(MODULES.finance, "Fees")} />
       <FinanceSubNav active="Fees" />
       <DemoOnlyNotice />
       <div className="mt-4 overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">

@@ -1,6 +1,7 @@
 "use client";
 
 import { Card, PageHeader, Badge } from "@/components/ui";
+import { settingsTrail } from "@/lib/breadcrumbs";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { dataClassifications, entityGroups } from "@/data/demo/architectureData";
@@ -11,6 +12,8 @@ export function DataArchitectureClient() {
       <PageHeader
         title="Data architecture"
         description="Entity groups, sensitive categories and module ownership for live mode planning."
+        breadcrumbs={settingsTrail("Data architecture")}
+        backHref="/settings"
       />
       <SettingsSubNav />
       <DemoRbacNotice />

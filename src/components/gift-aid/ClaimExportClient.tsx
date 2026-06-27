@@ -8,6 +8,7 @@ import { useGiftAidDemo } from "@/components/gift-aid/GiftAidDemoProvider";
 import { eligibilityLabel, eligibilityVariant } from "@/lib/giftAid";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { GIFT_AID_RATE } from "@/data/demo/giftAid";
+import { giftAidTrail } from "@/lib/breadcrumbs";
 
 export function ClaimExportClient() {
   const { claimExport, simulateExport, exportCompleted } = useGiftAidDemo();
@@ -17,6 +18,8 @@ export function ClaimExportClient() {
       <PageHeader
         title="Claim export"
         description="Prepare Gift Aid claim — demo placeholder, not submitted to HMRC."
+        breadcrumbs={giftAidTrail("Claim export")}
+        backHref="/gift-aid"
       />
       <GiftAidSubNav active="Claim export" />
       <DemoOnlyNotice />

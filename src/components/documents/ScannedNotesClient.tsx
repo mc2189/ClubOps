@@ -7,6 +7,7 @@ import { DocumentsSubNav } from "@/components/documents/DocumentsSubNav";
 import { useDocumentsDemo } from "@/components/documents/DocumentsDemoProvider";
 import type { ScannedNoteType } from "@/data/providers/types";
 import { formatDate } from "@/lib/utils";
+import { documentsTrail } from "@/lib/breadcrumbs";
 
 const noteTypes: ScannedNoteType[] = [
   "progress note",
@@ -56,6 +57,8 @@ export function ScannedNotesClient() {
       <PageHeader
         title="Scanned notes"
         description="Digitise paper gymnast notes — simulated extraction and member matching."
+        breadcrumbs={documentsTrail("Scanned notes")}
+        backHref="/documents"
       />
       <DocumentsSubNav active="Scanned notes" />
       <DemoOnlyNotice />

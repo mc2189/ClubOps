@@ -1,6 +1,7 @@
 "use client";
 
 import { Card, PageHeader, Badge } from "@/components/ui";
+import { settingsTrail } from "@/lib/breadcrumbs";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { providerModelExplanation } from "@/data/demo/architectureData";
@@ -14,6 +15,8 @@ export function ProviderModelClient() {
       <PageHeader
         title="Provider model"
         description="How demo and live data providers share one contract — Demo Mode stays permanent."
+        breadcrumbs={settingsTrail("Demo vs live data")}
+        backHref="/settings"
       />
       <SettingsSubNav />
       <DemoRbacNotice />

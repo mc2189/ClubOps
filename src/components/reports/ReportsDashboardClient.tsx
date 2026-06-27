@@ -7,6 +7,7 @@ import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
 import { sensitivityVariant } from "@/lib/reports";
 import { formatDate } from "@/lib/utils";
+import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function ReportsDashboardClient() {
   const { reportCards } = useReportsAuditDemo();
@@ -14,7 +15,7 @@ export function ReportsDashboardClient() {
 
   return (
     <>
-      <PageHeader title="Reports" description="Generate demo exports for finance, committee, Gift Aid and admin purposes." />
+      <PageHeader title="Reports" description="Generate demo exports for finance, committee, Gift Aid and admin purposes." breadcrumbs={moduleBreadcrumb(MODULES.reports)} backHref="/dashboard" />
       <ReportsSubNav active="Dashboard" />
       <DemoOnlyNotice />
       <div className="mt-4 space-y-8">

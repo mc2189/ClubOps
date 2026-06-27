@@ -6,6 +6,7 @@ import { DemoOnlyNotice } from "@/components/staff/StaffNotices";
 import { StaffSubNav } from "@/components/staff/StaffSubNav";
 import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
 import { formatDate } from "@/lib/utils";
+import { staffTrail } from "@/lib/breadcrumbs";
 
 const AVAILABLE_STAFF = ["Morgan Ellis", "Jamie Hart", "Quinn Shaw"];
 
@@ -14,7 +15,12 @@ export function RotaClient() {
 
   return (
     <>
-      <PageHeader title="Staff rota" description="Session assignments, gaps and availability conflicts." />
+      <PageHeader
+        title="Staff rota"
+        description="Session assignments, gaps and availability conflicts."
+        breadcrumbs={staffTrail("Rota")}
+        backHref="/staff"
+      />
       <StaffSubNav active="Rota" />
       <DemoOnlyNotice />
 

@@ -6,13 +6,14 @@ import { DemoOnlyNotice } from "@/components/staff/StaffNotices";
 import { StaffSubNav } from "@/components/staff/StaffSubNav";
 import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
 import { formatStaffCurrency, paymentStatusVariant } from "@/lib/staff";
+import { staffTrail } from "@/lib/breadcrumbs";
 
 export function VenuesClient() {
   const { venues } = useStaffDemo();
 
   return (
     <>
-      <PageHeader title="Venues & hall hire" description="Training halls, competition venues and recurring bookings." />
+      <PageHeader title="Venues & hall hire" description="Training halls, competition venues and recurring bookings." breadcrumbs={staffTrail("Venues")} backHref="/staff" />
       <StaffSubNav active="Venues" />
       <DemoOnlyNotice />
       <div className="mt-6 grid gap-4 lg:grid-cols-2">

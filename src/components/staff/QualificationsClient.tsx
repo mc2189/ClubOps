@@ -7,13 +7,14 @@ import { StaffSubNav } from "@/components/staff/StaffSubNav";
 import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
 import { statusVariant } from "@/lib/staff";
 import { formatDate } from "@/lib/utils";
+import { staffTrail } from "@/lib/breadcrumbs";
 
 export function QualificationsClient() {
   const { qualifications } = useStaffDemo();
 
   return (
     <>
-      <PageHeader title="Qualifications & compliance" description="Coach qualifications, DBS, safeguarding and first aid — demo only." />
+      <PageHeader title="Qualifications & compliance" description="Coach qualifications, DBS, safeguarding and first aid — demo only." breadcrumbs={staffTrail("Qualifications")} backHref="/staff" />
       <StaffSubNav active="Qualifications" />
       <DemoOnlyNotice />
       <Card className="mt-4 overflow-x-auto">

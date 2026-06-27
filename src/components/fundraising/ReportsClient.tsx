@@ -4,13 +4,14 @@ import { Card, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/fundraising/FundraisingNotices";
 import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
+import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function ReportsClient() {
   const { reports, simulateReportExport, reportExportDone } = useFundraisingDemo();
 
   return (
     <>
-      <PageHeader title="Fundraising reports" description="Summaries and export placeholders — demo only." />
+      <PageHeader title="Fundraising reports" description="Summaries and export placeholders — demo only." breadcrumbs={moduleBreadcrumb(MODULES.fundraising, "Reports")} backHref={moduleBackHref(MODULES.fundraising, "Reports")} />
       <FundraisingSubNav active="Reports" />
       <DemoOnlyNotice />
       {reportExportDone && (

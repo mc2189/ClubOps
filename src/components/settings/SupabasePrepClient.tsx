@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
+import { settingsTrail } from "@/lib/breadcrumbs";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { SupabasePrepSafetyNotice } from "@/components/settings/SupabasePrepSafetyNotice";
@@ -34,6 +35,8 @@ export function SupabasePrepClient() {
       <PageHeader
         title="Supabase foundation prep"
         description="v1.4.0 preparation for a future private live deployment — public demo unchanged."
+        breadcrumbs={settingsTrail("Supabase prep")}
+        backHref="/settings"
       />
       <SettingsSubNav />
       <DemoRbacNotice />

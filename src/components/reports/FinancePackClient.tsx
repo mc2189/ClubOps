@@ -6,6 +6,7 @@ import { DemoOnlyNotice, ReportsSecurityNotice, ExportSuccessNotice } from "@/co
 import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
 import { formatReportCurrency } from "@/lib/reports";
+import { reportsTrail } from "@/lib/breadcrumbs";
 
 export function FinancePackClient() {
   const { financePack, simulateExport, lastExportTitle } = useReportsAuditDemo();
@@ -13,7 +14,7 @@ export function FinancePackClient() {
 
   return (
     <>
-      <PageHeader title="Finance Pack" description="Treasurer summary for accounting and audit." />
+      <PageHeader title="Finance Pack" description="Treasurer summary for accounting and audit." breadcrumbs={reportsTrail("Finance Pack")} backHref="/reports" />
       <ReportsSubNav active="Finance Pack" />
       <DemoOnlyNotice />
       {lastExportTitle === "Finance Pack" && <ExportSuccessNotice title="Finance Pack" />}

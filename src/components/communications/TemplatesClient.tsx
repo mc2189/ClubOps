@@ -6,6 +6,7 @@ import { DemoOnlyNotice } from "@/components/communications/CommunicationsNotice
 import { CommunicationsSubNav } from "@/components/communications/CommunicationsSubNav";
 import { useCommunicationsDemo } from "@/components/communications/CommunicationsDemoProvider";
 import { applyTemplatePlaceholders, DEFAULT_PREVIEW_VARS } from "@/lib/communications";
+import { communicationsTrail } from "@/lib/breadcrumbs";
 
 export function TemplatesClient() {
   const { templates } = useCommunicationsDemo();
@@ -15,6 +16,8 @@ export function TemplatesClient() {
       <PageHeader
         title="Message templates"
         description="Reusable templates with simple placeholders for common club messages."
+        breadcrumbs={communicationsTrail("Templates")}
+        backHref="/communications"
       />
       <CommunicationsSubNav active="Templates" />
       <DemoOnlyNotice />

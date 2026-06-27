@@ -4,6 +4,7 @@ import { Card, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/documents/DocumentsNotices";
 import { DocumentsSubNav } from "@/components/documents/DocumentsSubNav";
 import { useDocumentsDemo } from "@/components/documents/DocumentsDemoProvider";
+import { documentsTrail } from "@/lib/breadcrumbs";
 
 export function RulesClient() {
   const { rules } = useDocumentsDemo();
@@ -13,6 +14,8 @@ export function RulesClient() {
       <PageHeader
         title="Document routing rules"
         description="Plain-English rules showing how documents would be routed in live mode."
+        breadcrumbs={documentsTrail("Rules")}
+        backHref="/documents"
       />
       <DocumentsSubNav active="Rules" />
       <DemoOnlyNotice />

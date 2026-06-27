@@ -8,6 +8,7 @@ import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
 import { COMMUNICATIONS_LINKS } from "@/lib/fundraising";
 import { formatReportCurrency } from "@/lib/reports";
+import { reportsTrail } from "@/lib/breadcrumbs";
 
 export function GiftAidPackClient() {
   const { giftAidPack, simulateExport, lastExportTitle } = useReportsAuditDemo();
@@ -15,7 +16,7 @@ export function GiftAidPackClient() {
 
   return (
     <>
-      <PageHeader title="Gift Aid Pack" description="Declarations, claim-ready donations and compliance summary." />
+      <PageHeader title="Gift Aid Pack" description="Declarations, claim-ready donations and compliance summary." breadcrumbs={reportsTrail("Gift Aid Pack")} backHref="/reports" />
       <ReportsSubNav active="Gift Aid Pack" />
       <DemoOnlyNotice />
       {lastExportTitle === "Gift Aid Pack" && <ExportSuccessNotice title="Gift Aid Pack" />}

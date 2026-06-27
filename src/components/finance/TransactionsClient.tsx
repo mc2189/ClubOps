@@ -6,6 +6,7 @@ import { FinanceSubNav } from "@/components/finance/FinanceDashboardClient";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import { categoryLabels } from "@/lib/financeMatching";
 import { formatCurrency, formatDate } from "@/lib/utils";
+import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 import type { TransactionCategory } from "@/data/providers/types";
 
 export function TransactionsClient() {
@@ -13,7 +14,7 @@ export function TransactionsClient() {
 
   return (
     <>
-      <PageHeader title="Transactions" description="All income and expense transactions." />
+      <PageHeader title="Transactions" description="All income and expense transactions." breadcrumbs={moduleBreadcrumb(MODULES.finance, "Transactions")} backHref={moduleBackHref(MODULES.finance, "Transactions")} />
       <FinanceSubNav active="Transactions" />
       <DemoOnlyNotice />
       {transactions.length === 0 ? (

@@ -9,6 +9,7 @@ import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProv
 import { businessStatusVariant, COMMUNICATIONS_LINKS, formatFundraisingCurrency } from "@/lib/fundraising";
 import type { BusinessLeadStatus } from "@/data/providers/types";
 import { formatDate } from "@/lib/utils";
+import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 const statuses: BusinessLeadStatus[] = ["not contacted", "contacted", "interested", "pledged", "donated", "declined", "renewal due"];
 
@@ -17,7 +18,7 @@ export function BusinessesClient() {
 
   return (
     <>
-      <PageHeader title="Business CRM" description="Local businesses, sponsors and follow-up pipeline." />
+      <PageHeader title="Business CRM" description="Local businesses, sponsors and follow-up pipeline." breadcrumbs={moduleBreadcrumb(MODULES.fundraising, "Businesses")} backHref={moduleBackHref(MODULES.fundraising, "Businesses")} />
       <FundraisingSubNav active="Businesses" />
       <DemoOnlyNotice />
       <TableScrollWrap className="mt-4">

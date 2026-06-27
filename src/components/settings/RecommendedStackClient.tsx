@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
+import { settingsTrail } from "@/lib/breadcrumbs";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { StackDecisionSafetyNotice } from "@/components/settings/StackDecisionSafetyNotice";
@@ -17,6 +18,8 @@ export function RecommendedStackClient() {
       <PageHeader
         title="Recommended live stack"
         description="Provisional technical recommendation — not implemented. Public demo stays on demoProvider."
+        breadcrumbs={settingsTrail("Recommended stack")}
+        backHref="/settings"
       />
       <SettingsSubNav />
       <DemoRbacNotice />

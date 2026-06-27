@@ -8,6 +8,7 @@ import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProv
 import { COMMUNICATIONS_LINKS, formatFundraisingCurrency } from "@/lib/fundraising";
 import type { FundraisingCampaignDetail } from "@/data/providers/types";
 import { formatDate } from "@/lib/utils";
+import { fundraisingCampaignTrail } from "@/lib/breadcrumbs";
 
 export function CampaignDetailClient({ campaign }: { campaign: FundraisingCampaignDetail }) {
   const { donations } = useFundraisingDemo();
@@ -19,7 +20,8 @@ export function CampaignDetailClient({ campaign }: { campaign: FundraisingCampai
       <PageHeader
         title={campaign.name}
         description={campaign.purpose}
-        action={<Link href="/fundraising/campaigns" className="text-sm font-medium text-indigo-600 hover:underline">← All campaigns</Link>}
+        breadcrumbs={fundraisingCampaignTrail(campaign.name)}
+        backHref="/fundraising/campaigns"
       />
       <FundraisingSubNav active="Campaigns" />
       <DemoOnlyNotice />

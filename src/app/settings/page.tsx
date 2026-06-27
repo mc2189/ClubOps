@@ -5,6 +5,7 @@ import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { DemoRoleSwitcher } from "@/components/rbac/DemoRoleSwitcher";
 import { clubName } from "@/config/navigation";
+import { settingsTrail } from "@/lib/breadcrumbs";
 
 export default function SettingsPage() {
   return (
@@ -12,6 +13,8 @@ export default function SettingsPage() {
       <PageHeader
         title="Settings"
         description="Club configuration, demo roles and security guidance."
+        breadcrumbs={settingsTrail("Overview")}
+        backHref="/settings"
         action={<DemoRoleSwitcher />}
       />
       <SettingsSubNav />

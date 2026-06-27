@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
+import { settingsTrail } from "@/lib/breadcrumbs";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { StackDecisionSafetyNotice } from "@/components/settings/StackDecisionSafetyNotice";
@@ -30,6 +31,8 @@ export function AuthDecisionClient() {
       <PageHeader
         title="Auth decision pack"
         description="Compare live-mode authentication foundations before any implementation — demo stays unchanged."
+        breadcrumbs={settingsTrail("Choosing a login system")}
+        backHref="/settings"
       />
       <SettingsSubNav />
       <DemoRbacNotice />

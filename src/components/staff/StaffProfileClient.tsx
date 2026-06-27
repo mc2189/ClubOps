@@ -8,13 +8,14 @@ import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
 import type { StaffProfileRecord } from "@/data/providers/types";
 import { statusVariant } from "@/lib/staff";
 import { formatDate } from "@/lib/utils";
+import { staffProfileTrail, staffTrail } from "@/lib/breadcrumbs";
 
 export function StaffListClient() {
   const { staff } = useStaffDemo();
 
   return (
     <>
-      <PageHeader title="All staff & volunteers" description="Coaches, helpers, committee and admin — demo data only." />
+      <PageHeader title="All staff & volunteers" description="Coaches, helpers, committee and admin — demo data only." breadcrumbs={staffTrail("All staff")} backHref="/staff" />
       <StaffSubNav active="Dashboard" />
       <DemoOnlyNotice />
       <Card className="mt-4 overflow-x-auto">
@@ -47,7 +48,8 @@ export function StaffProfileClient({ profile }: { profile: StaffProfileRecord })
       <PageHeader
         title={profile.name}
         description={`${profile.role} · ${profile.staffType}`}
-        action={<Link href="/staff" className="text-sm font-medium text-indigo-600 hover:underline">← Back to staff</Link>}
+        breadcrumbs={staffProfileTrail(profile.name)}
+        backHref="/staff"
       />
       <StaffSubNav />
       <DemoOnlyNotice />

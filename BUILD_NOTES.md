@@ -1,5 +1,30 @@
 # ClubOps — Build Notes
 
+## Iteration 19 — v1.4.3 Breadcrumb navigation (2026-06-27)
+
+### What was built
+
+- Added `breadcrumbs` and `backHref` props to all remaining `PageHeader` components using `@/lib/breadcrumbs` helpers
+- Module roots use `moduleBreadcrumb(MODULES.*)` with `backHref="/dashboard"`
+- Sub-pages use module-specific trails (`attendanceTrail`, `giftAidTrail`, `communicationsTrail`, etc.) or `moduleBreadcrumb` + `moduleBackHref`
+- Demo/help pages use `helpTrail`; settings pages use `settingsTrail`
+- Skipped root dashboard (`app/dashboard/page.tsx`) and pages already wired
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+- v1.4.4 — RBAC honesty / restricted-content preview
+- v1.5.0 — private live auth scaffold after private Supabase/Vercel setup
+
+---
+
 ## Iteration 18 — v1.4.2 Mobile and Tablet Shell (2026-06-26)
 
 ### What was built

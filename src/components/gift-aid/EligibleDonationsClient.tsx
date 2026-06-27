@@ -11,6 +11,7 @@ import {
   eligibilityLabel,
   eligibilityVariant,
 } from "@/lib/giftAid";
+import { giftAidTrail } from "@/lib/breadcrumbs";
 import { formatCurrency, formatDate } from "@/lib/utils";
 
 export function EligibleDonationsClient() {
@@ -30,6 +31,8 @@ export function EligibleDonationsClient() {
       <PageHeader
         title="Eligible donations"
         description="Income split by Gift Aid eligibility — linked to finance demo data."
+        breadcrumbs={giftAidTrail("Eligible donations")}
+        backHref="/gift-aid"
         action={
           <Link href="/finance/transactions" className="text-sm text-indigo-600 hover:underline">
             View finance transactions →

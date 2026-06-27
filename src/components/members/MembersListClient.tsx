@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState, type ReactNode } from "react";
 import { Badge, EmptyState, PageHeader } from "@/components/ui";
+import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 import { TableScrollWrap } from "@/components/ui/TableScrollWrap";
 import { DemoOnlyNotice } from "@/components/members/MemberNotices";
 import { useMembersDemo } from "@/components/members/MembersDemoProvider";
@@ -120,6 +121,8 @@ export function MembersListClient() {
       <PageHeader
         title="Members"
         description="Manage gymnasts and linked parent/carer records."
+        breadcrumbs={moduleBreadcrumb(MODULES.members)}
+        backHref="/dashboard"
         action={
           <Link
             href="/members/new"

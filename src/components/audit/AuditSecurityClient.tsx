@@ -5,11 +5,12 @@ import { PageHeader } from "@/components/ui";
 import { AuditDemoNotice, AuditSecurityGuidance } from "@/components/audit/AuditNotices";
 import { AuditSubNav } from "@/components/audit/AuditSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
+import { auditTrail } from "@/lib/breadcrumbs";
 
 export function AuditSecurityClient() {
   return (
     <>
-      <PageHeader title="Audit & security" description="Guidance for live-mode audit and access control." />
+      <PageHeader title="Audit & security" description="Guidance for live-mode audit and access control." breadcrumbs={auditTrail("Security")} backHref="/audit" />
       <AuditSubNav active="Security" />
       <AuditDemoNotice />
       <DemoRbacNotice />

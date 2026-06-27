@@ -7,13 +7,19 @@ import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNoti
 import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
 import { sensitivityVariant } from "@/lib/reports";
+import { reportsTrail } from "@/lib/breadcrumbs";
 
 export function ExportCentreClient() {
   const { exportPackItems, simulateExport, lastExportTitle } = useReportsAuditDemo();
 
   return (
     <>
-      <PageHeader title="Export Centre" description="Full Club Admin Pack — simulated export, no real file generated." />
+      <PageHeader
+        title="Export Centre"
+        description="Full Club Admin Pack — simulated export, no real file generated."
+        breadcrumbs={reportsTrail("Export Centre")}
+        backHref="/reports"
+      />
       <ReportsSubNav active="Export Centre" />
       <DemoOnlyNotice />
       <PermissionPreviewNotice module="exports" action="export" />

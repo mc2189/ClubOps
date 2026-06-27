@@ -7,6 +7,7 @@ import { DemoOnlyNotice } from "@/components/finance/FinanceNotices";
 import { FinanceSubNav } from "@/components/finance/FinanceDashboardClient";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import type { FinanceReportsData } from "@/data/providers/types";
+import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function FinanceReportsClient({ reports }: { reports: FinanceReportsData }) {
   const { exportReport } = useFinanceDemo();
@@ -23,6 +24,8 @@ export function FinanceReportsClient({ reports }: { reports: FinanceReportsData 
       <PageHeader
         title="Finance reports"
         description="Export placeholders for accountant, audit and tax purposes."
+        breadcrumbs={moduleBreadcrumb(MODULES.finance, "Reports")}
+        backHref={moduleBackHref(MODULES.finance, "Reports")}
         action={
           <Link href="/finance" className="text-sm text-slate-500 hover:text-slate-700">
             Back to finance

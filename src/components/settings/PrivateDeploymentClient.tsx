@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
+import { settingsTrail } from "@/lib/breadcrumbs";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { SupabasePrepSafetyNotice } from "@/components/settings/SupabasePrepSafetyNotice";
@@ -16,6 +17,8 @@ export function PrivateDeploymentClient() {
       <PageHeader
         title="Private deployment checklist"
         description="Steps for a future live Vercel + Supabase deployment — public demo stays demo-only."
+        breadcrumbs={settingsTrail("Private live deployment")}
+        backHref="/settings"
       />
       <SettingsSubNav />
       <DemoRbacNotice />

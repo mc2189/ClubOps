@@ -9,6 +9,7 @@ import {
 import { CommunicationsSubNav } from "@/components/communications/CommunicationsSubNav";
 import { useCommunicationsDemo } from "@/components/communications/CommunicationsDemoProvider";
 import { formatDate } from "@/lib/utils";
+import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function CommunicationsDashboardClient() {
   const { dashboard, history, drafts } = useCommunicationsDemo();
@@ -23,6 +24,8 @@ export function CommunicationsDashboardClient() {
       <PageHeader
         title="Communications"
         description="Compose messages, manage templates and track form responses — all simulated in demo mode."
+        breadcrumbs={moduleBreadcrumb(MODULES.communications)}
+        backHref="/dashboard"
       />
       <CommunicationsSubNav active="Dashboard" />
       <DemoOnlyNotice />

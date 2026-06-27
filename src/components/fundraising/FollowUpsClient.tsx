@@ -8,6 +8,7 @@ import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
 import { COMMUNICATIONS_LINKS } from "@/lib/fundraising";
 import { formatDate } from "@/lib/utils";
+import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function FollowUpsClient() {
   const { followUps, completeFollowUp } = useFundraisingDemo();
@@ -15,7 +16,7 @@ export function FollowUpsClient() {
 
   return (
     <>
-      <PageHeader title="Follow-ups" description="Tasks to chase pledges, send thank-yous and renew sponsorships." />
+      <PageHeader title="Follow-ups" description="Tasks to chase pledges, send thank-yous and renew sponsorships." breadcrumbs={moduleBreadcrumb(MODULES.fundraising, "Follow-ups")} backHref={moduleBackHref(MODULES.fundraising, "Follow-ups")} />
       <FundraisingSubNav active="Follow-ups" />
       <DemoOnlyNotice />
       <TableScrollWrap className="mt-4">

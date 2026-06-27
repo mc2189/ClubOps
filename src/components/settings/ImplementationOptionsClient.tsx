@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
+import { settingsTrail } from "@/lib/breadcrumbs";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { StackDecisionSafetyNotice } from "@/components/settings/StackDecisionSafetyNotice";
@@ -16,6 +17,8 @@ export function ImplementationOptionsClient() {
       <PageHeader
         title="Implementation options"
         description="When to choose Clerk, Auth.js, Firebase or custom auth — and what each still requires."
+        breadcrumbs={settingsTrail("Implementation options")}
+        backHref="/settings"
       />
       <SettingsSubNav />
       <DemoRbacNotice />
