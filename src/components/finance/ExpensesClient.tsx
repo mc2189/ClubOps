@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { Badge, Card, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/finance/FinanceNotices";
+import { FinanceRestrictedSection } from "@/components/rbac/ModuleRestrictedSections";
 import { FinanceSubNav } from "@/components/finance/FinanceDashboardClient";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import { formatCurrency, formatDate } from "@/lib/utils";
@@ -62,6 +63,7 @@ export function ExpensesClient() {
       <FinanceSubNav active="Expenses" />
       <DemoOnlyNotice />
 
+      <FinanceRestrictedSection className="mt-4">
       {success && (
         <div className="mt-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
           Expense added (demo session only).
@@ -138,6 +140,7 @@ export function ExpensesClient() {
           </tbody>
         </table>
       </div>
+      </FinanceRestrictedSection>
     </>
   );
 }

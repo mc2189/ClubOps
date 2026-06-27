@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Card, PageHeader, StatCard } from "@/components/ui";
 import { DemoOnlyNotice, ReportsSecurityNotice, ExportSuccessNotice } from "@/components/reports/ReportsNotices";
+import { RestrictedExportButton } from "@/components/rbac/RestrictedExportButton";
 import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
 import { formatReportCurrency } from "@/lib/reports";
@@ -41,7 +42,7 @@ export function FinancePackClient() {
           <Link href="/documents/upload" className="text-sm text-indigo-600 hover:underline">Receipts/invoices</Link>
           <Link href="/fundraising/donations" className="text-sm text-indigo-600 hover:underline">Donations</Link>
         </div>
-        <button type="button" onClick={() => simulateExport("Finance Pack")} className="mt-4 rounded-md bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-700">Generate demo export</button>
+        <RestrictedExportButton label="Generate demo export" onExport={() => simulateExport("Finance Pack")} />
       </Card>
       <ReportsSecurityNotice />
     </>

@@ -33,6 +33,10 @@ ClubOps reduces volunteer admin workload for sports clubs. The first demonstrati
 
 ## Current release
 
+**v1.4.4** — RBAC honesty: locked/summary restricted content previews by demo role. Still demo-only; not real security.
+
+**v1.4.3** — Breadcrumb navigation on all module pages.
+
 **v1.4.2** — Mobile/tablet shell (drawer navigation, bottom nav, touch targets). Still demo-only.
 
 **v1.4.1** — UX/clarity polish (grouped navigation, settings simplification, dashboard priorities, RBAC demo honesty wording). Still demo-only.

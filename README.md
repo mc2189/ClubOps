@@ -19,6 +19,10 @@ Open [http://localhost:3000](http://localhost:3000) — the app redirects to the
 
 ## Demo mode
 
+**v1.4.4 improves RBAC demo honesty — locked/summary restricted content previews by role. Still demo-only; not real security.**
+
+**v1.4.3 adds breadcrumb navigation on all module pages for easier wayfinding.**
+
 **v1.4.2 improves mobile and tablet use — drawer navigation, bottom nav, touch targets. Still demo-only.**
 
 **v1.4.1 improves clarity and accessibility — grouped navigation, simpler settings, dashboard priorities, and RBAC demo honesty wording. Still demo-only.**

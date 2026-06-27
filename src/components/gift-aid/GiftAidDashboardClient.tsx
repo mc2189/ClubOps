@@ -9,7 +9,7 @@ import {
   GiftAidSecurityNotice,
   ComplianceWarnings,
 } from "@/components/gift-aid/GiftAidNotices";
-import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
+import { RestrictedContentPreview } from "@/components/rbac/RestrictedContentPreview";
 import { useGiftAidDemo } from "@/components/gift-aid/GiftAidDemoProvider";
 import { DeclarationRequestModal } from "@/components/gift-aid/DeclarationRequestModal";
 import { formatCurrency } from "@/lib/utils";
@@ -51,8 +51,12 @@ export function GiftAidDashboardClient() {
       />
       <GiftAidSubNav active="Dashboard" />
       <DemoOnlyNotice />
-      <PermissionPreviewNotice module="gift-aid" />
-      <div className="mt-4 space-y-4">
+      <RestrictedContentPreview
+        module="gift-aid"
+        auditOnView="restricted Gift Aid preview viewed"
+        className="mt-4 space-y-4"
+      >
+      <div className="space-y-4">
         <GiftAidSecurityNotice />
         <ComplianceWarnings />
       </div>
@@ -101,6 +105,7 @@ export function GiftAidDashboardClient() {
           )}
         </div>
       </Card>
+      </RestrictedContentPreview>
 
       {showDeclarationPreview && (
         <DeclarationRequestModal onClose={() => setShowDeclarationPreview(false)} />

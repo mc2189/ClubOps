@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Badge, Card, EmptyState, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/finance/FinanceNotices";
+import { FinanceRestrictedSection } from "@/components/rbac/ModuleRestrictedSections";
 import { FinanceSubNav } from "@/components/finance/FinanceDashboardClient";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import {
@@ -77,6 +78,7 @@ export function ImportReviewClient() {
       <FinanceSubNav active="Import" />
       <DemoOnlyNotice />
 
+      <FinanceRestrictedSection className="mt-4">
       {success && (
         <div className="mt-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
           Import approved (demo session only). Dashboard updated.
@@ -107,6 +109,7 @@ export function ImportReviewClient() {
           </button>
         </div>
       )}
+      </FinanceRestrictedSection>
     </>
   );
 }

@@ -1,5 +1,35 @@
 # ClubOps — Build Notes
 
+## Iteration 20 — v1.4.4 RBAC honesty and restricted previews (2026-06-27)
+
+### What was built
+
+- Reusable RBAC preview components: `RestrictedContentPreview`, `PermissionLockedPanel`, `PermissionSummaryPanel`, `RoleAccessRequired`, `RestrictedExportButton`, `SensitiveDocumentPreview`
+- Module wrappers: `FinanceRestrictedSection`, `GiftAidRestrictedSection`
+- `src/lib/rbacCopy.ts` and `getPermissionPreviewLevel` in `permissions.ts`
+- Locked/summary previews applied to medical, finance, Gift Aid, wages, exports, sensitive scanned notes
+- Demo script optional “Show permissions honestly”; RBAC QA checklist section
+- Permission matrix alignment: Secretary/Admin full medical detail; Committee summary-only Finance/Gift Aid; Fundraising Lead no finance view
+
+### Security note
+
+- Demo-only permission preview — not real authentication or server-side RBAC
+- Real protection requires auth, server-side RBAC and RLS on a private deployment
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+### Next steps
+
+- v1.5.0 — private live auth scaffold after private Supabase/Vercel setup
+
+---
+
 ## Iteration 19 — v1.4.3 Breadcrumb navigation (2026-06-27)
 
 ### What was built

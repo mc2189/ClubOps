@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
 import { DemoOnlyNotice, ReportsSecurityNotice, ExportSuccessNotice } from "@/components/reports/ReportsNotices";
-import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
+import { RestrictedExportButton } from "@/components/rbac/RestrictedExportButton";
 import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
 import { sensitivityVariant } from "@/lib/reports";
@@ -22,12 +22,14 @@ export function ExportCentreClient() {
       />
       <ReportsSubNav active="Export Centre" />
       <DemoOnlyNotice />
-      <PermissionPreviewNotice module="exports" action="export" />
       {lastExportTitle === "Full Club Admin Pack" && <ExportSuccessNotice title="Full Club Admin Pack" />}
       <Card className="mt-4">
         <h2 className="text-sm font-semibold text-slate-900">Full Club Admin Pack</h2>
         <p className="mt-1 text-sm text-slate-600">A complete summary for audit, accounting and committee purposes.</p>
-        <button type="button" onClick={() => simulateExport("Full Club Admin Pack")} className="mt-4 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700">Generate demo export</button>
+        <RestrictedExportButton
+          label="Generate demo export"
+          onExport={() => simulateExport("Full Club Admin Pack")}
+        />
         <p className="mt-2 text-xs text-amber-700">No real file generated</p>
       </Card>
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

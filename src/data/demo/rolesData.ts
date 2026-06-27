@@ -24,8 +24,8 @@ export const demoRoles: DemoRoleDefinition[] = [
     purpose: "Day-to-day club administration, member records and communications.",
     typicalUser: "Club secretary, chair or designated admin volunteer",
     allowedModules: "Dashboard, members, attendance, documents, communications, reports (view), settings",
-    restrictedModules: "Full medical detail (summary only), finance approval (treasurer-led)",
-    sensitiveAccess: "Medical flags and summaries — full safeguarding notes restricted to Welfare Officer in live mode",
+    restrictedModules: "Finance approval (treasurer-led) — full medical/welfare detail available to Admin in demo",
+    sensitiveAccess: "Full medical and welfare detail in demo — live mode would still require Welfare Officer authorisation for safeguarding notes",
     exportPermissions: "Most admin exports with treasurer oversight for finance packs",
     communicationPermissions: "Bulk parent messages, template sends, form requests",
     canDoExamples: [
@@ -35,7 +35,6 @@ export const demoRoles: DemoRoleDefinition[] = [
     ],
     cannotDoExamples: [
       "Approve bank matches without treasurer role",
-      "View full medical notes without welfare authorisation",
       "Change production security settings (live mode only)",
     ],
     liveModeRequirements: "Real login, MFA recommended, full audit logging, data protection training",

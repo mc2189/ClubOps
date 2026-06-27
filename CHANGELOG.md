@@ -2,6 +2,31 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.4] — 2026-06-27
+
+### Added
+
+- `RestrictedContentPreview`, `PermissionLockedPanel`, `PermissionSummaryPanel`, `RoleAccessRequired`, `RestrictedExportButton`, `SensitiveDocumentPreview`
+- `FinanceRestrictedSection` and `GiftAidRestrictedSection` module wrappers
+- `src/lib/rbacCopy.ts` — consistent demo RBAC honesty wording
+- `getPermissionPreviewLevel`, `view-summary` permission action, `SUGGESTED_ROLES_BY_MODULE`
+- Demo script optional section: “Show permissions honestly”
+- RBAC honesty QA checks in `DEMO_QA_CHECKLIST.md`
+
+### Changed
+
+- High-risk areas now show locked or summary-only previews by demo role: medical/welfare, finance, Gift Aid, wage prep, exports, sensitive documents
+- Secretary/Admin and Demo Super Admin see full demo; Coach, Treasurer, Welfare Officer and Committee Read-Only see role-appropriate restrictions
+- Fundraising Lead no longer has finance module view in permission matrix
+- Committee Read-Only gets summary-only preview for Finance and Gift Aid
+- Permission preview notices use standard “Demo permission preview only — not real security” wording
+- Role switch buttons on locked panels (“Switch to Treasurer”, etc.)
+
+### Security note
+
+- This release improves **demo permission preview honesty** only — not real authentication or server-side RBAC
+- Fake data may still exist in the client bundle; do not use real personal or club data in the public demo
+
 ## [1.4.3] — 2026-06-27
 
 ### Added

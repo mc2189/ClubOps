@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Card, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/finance/FinanceNotices";
+import { FinanceRestrictedSection } from "@/components/rbac/ModuleRestrictedSections";
 import { FinanceSubNav } from "@/components/finance/FinanceDashboardClient";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import type { FinanceReportsData } from "@/data/providers/types";
@@ -35,7 +36,8 @@ export function FinanceReportsClient({ reports }: { reports: FinanceReportsData 
       <FinanceSubNav active="Reports" />
       <DemoOnlyNotice />
 
-      <Card className="mt-4 border-dashed border-slate-300 bg-slate-50">
+      <FinanceRestrictedSection className="mt-4">
+      <Card className="border-dashed border-slate-300 bg-slate-50">
         <p className="text-sm text-slate-600">
           Exports are simulated in demo mode. No files are generated — a success message and audit
           entry are created instead.
@@ -64,6 +66,7 @@ export function FinanceReportsClient({ reports }: { reports: FinanceReportsData 
           </Card>
         ))}
       </div>
+      </FinanceRestrictedSection>
     </>
   );
 }

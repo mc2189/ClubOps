@@ -1,6 +1,23 @@
-# ClubOps — Demo QA Checklist (v1.4.2)
+# ClubOps — Demo QA Checklist (v1.4.4)
 
 Use this before sharing the Vercel demo link with a club secretary, treasurer or committee member.
+
+## RBAC honesty checks (v1.4.4)
+
+With demo role switcher in the top bar:
+
+- [ ] **Default Secretary/Admin** — full demo works normally (Finance, Medical, Gift Aid, Exports)
+- [ ] **Coach on Finance** — `/finance` shows restricted/summary preview, not full payment detail
+- [ ] **Coach on Medical tab** — member profile Medical tab hides detailed notes/allergies content
+- [ ] **Treasurer on Finance** — `/finance` shows full finance dashboard
+- [ ] **Treasurer on Medical tab** — detailed medical notes hidden (locked preview)
+- [ ] **Welfare Officer on Medical tab** — full medical/welfare detail visible
+- [ ] **Committee Read-Only on Gift Aid** — `/gift-aid` shows summary-only preview, not donor claim details
+- [ ] **Coach on Staff Wages** — `/staff/wages` shows locked wage prep preview
+- [ ] **Export Centre** — Coach/Committee see locked export; Secretary/Treasurer can generate demo export
+- [ ] Restricted previews show “Demo permission preview only — not real security”
+- [ ] “Switch to …” role buttons work from locked panels
+- [ ] `/demo-script` optional “Show permissions honestly” section matches behaviour
 
 ## Final pre-share checklist (run on live Vercel URL)
 
@@ -14,8 +31,8 @@ Complete these on the **production demo URL** (not localhost):
 - [ ] **Finance import review** — `/finance/import/review` shows match review demo
 - [ ] **Attendance register** — mark Present/Absent on a session register
 - [ ] **Reports export centre** — `/reports/export-centre` generates demo pack (no real file)
-- [ ] Switch demo roles and verify permission preview messages (Coach on Finance, Committee Read-Only on Gift Aid, Coach on member medical tab)
-- [ ] RBAC notices explain demo data remains visible in public demo
+- [ ] Switch demo roles and verify **restricted content previews** (not just banner notices) on Finance, Medical, Gift Aid, Wages and Exports
+- [ ] RBAC notices explain demo-only preview — not real security
 - [ ] Open `/settings/permissions` matrix
 - [ ] **Architecture blueprint (v1.2.0)** — `/settings/live-readiness` loads checklist; `/settings/data-architecture` shows entities
 - [ ] **Supabase prep (v1.4.0)** — `/settings/supabase-prep` shows “not connected”; no login on public demo

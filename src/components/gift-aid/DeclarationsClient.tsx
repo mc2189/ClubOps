@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Badge, PageHeader } from "@/components/ui";
 import { TableScrollWrap } from "@/components/ui/TableScrollWrap";
 import { DemoOnlyNotice } from "@/components/gift-aid/GiftAidNotices";
+import { GiftAidRestrictedSection } from "@/components/rbac/ModuleRestrictedSections";
 import { DeclarationRequestModal } from "@/components/gift-aid/DeclarationRequestModal";
 import { GiftAidSubNav } from "@/components/gift-aid/GiftAidDashboardClient";
 import { useGiftAidDemo } from "@/components/gift-aid/GiftAidDemoProvider";
@@ -20,7 +21,8 @@ export function DeclarationsClient() {
       <GiftAidSubNav active="Declarations" />
       <DemoOnlyNotice />
 
-      <TableScrollWrap className="mt-4">
+      <GiftAidRestrictedSection className="mt-4">
+      <TableScrollWrap>
       <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
         <table className="min-w-full text-sm">
           <thead className="bg-slate-50">
@@ -87,6 +89,7 @@ export function DeclarationsClient() {
         </table>
       </div>
       </TableScrollWrap>
+      </GiftAidRestrictedSection>
 
       {showDeclarationPreview && (
         <DeclarationRequestModal onClose={() => setShowDeclarationPreview(false)} />

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Card, PageHeader, StatCard } from "@/components/ui";
 import { DemoOnlyNotice, ExportSuccessNotice } from "@/components/reports/ReportsNotices";
+import { RestrictedExportButton } from "@/components/rbac/RestrictedExportButton";
 import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { ClubHealthSummary } from "@/components/reports/ClubHealthSummary";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
@@ -37,7 +38,7 @@ export function CommitteePackClient() {
           <div><dt className="text-slate-500">Missing documents</dt><dd><Link href="/documents/missing" className="text-indigo-600 hover:underline">{p.missingDocuments} items</Link></dd></div>
           <div><dt className="text-slate-500">Upcoming events</dt><dd><Link href="/calendar" className="text-indigo-600 hover:underline">{p.upcomingEvents} on calendar</Link></dd></div>
         </dl>
-        <button type="button" onClick={() => simulateExport("Committee Pack")} className="mt-4 rounded-md bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-700">Generate demo export</button>
+        <RestrictedExportButton label="Generate demo export" onExport={() => simulateExport("Committee Pack")} />
       </Card>
       <div className="mt-8">
         <h2 className="text-sm font-semibold text-slate-900">Club Health summary</h2>

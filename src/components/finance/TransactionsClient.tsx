@@ -2,6 +2,7 @@
 
 import { Badge, PageHeader, EmptyState } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/finance/FinanceNotices";
+import { FinanceRestrictedSection } from "@/components/rbac/ModuleRestrictedSections";
 import { FinanceSubNav } from "@/components/finance/FinanceDashboardClient";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import { categoryLabels } from "@/lib/financeMatching";
@@ -17,6 +18,7 @@ export function TransactionsClient() {
       <PageHeader title="Transactions" description="All income and expense transactions." breadcrumbs={moduleBreadcrumb(MODULES.finance, "Transactions")} backHref={moduleBackHref(MODULES.finance, "Transactions")} />
       <FinanceSubNav active="Transactions" />
       <DemoOnlyNotice />
+      <FinanceRestrictedSection className="mt-4">
       {transactions.length === 0 ? (
         <EmptyState
           title="No transactions"
@@ -55,6 +57,7 @@ export function TransactionsClient() {
         </table>
       </div>
       )}
+      </FinanceRestrictedSection>
     </>
   );
 }

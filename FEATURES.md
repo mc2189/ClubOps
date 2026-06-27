@@ -1,8 +1,21 @@
 # ClubOps — Features
 
-ClubOps v1.4.1 improves **clarity and accessibility** for non-technical volunteers. v1.4.0 adds **Supabase live foundation prep**. It remains a public demo — not production software.
+ClubOps v1.4.4 improves **RBAC demo honesty** with locked and summary-only restricted content previews by demo role. v1.4.1 improves **clarity and accessibility** for non-technical volunteers. v1.4.0 adds **Supabase live foundation prep**. It remains a public demo — not production software.
 
-## v1.4.2 — Mobile and tablet shell (current)
+## v1.4.4 — RBAC honesty and restricted previews (current)
+
+- [x] `RestrictedContentPreview`, `PermissionLockedPanel`, `RoleAccessRequired`, `RestrictedExportButton`
+- [x] Locked/summary previews on medical, finance, Gift Aid, wages, exports, sensitive documents
+- [x] Consistent “Demo permission preview only — not real security” wording
+- [x] Role switch shortcuts on locked panels; demo script “Show permissions honestly” section
+- [x] RBAC honesty QA checklist
+- [ ] Real authentication and server-side RBAC (live mode — v1.5.0+)
+
+## v1.4.3 — Breadcrumb navigation
+
+- [x] Back button and breadcrumbs on all module page headers
+
+## v1.4.2 — Mobile and tablet shell
 
 - [x] Hamburger menu and slide-out drawer with grouped navigation
 - [x] Mobile bottom nav (Home, Members, Attendance, Messages, More)
@@ -11,7 +24,6 @@ ClubOps v1.4.1 improves **clarity and accessibility** for non-technical voluntee
 - [x] Mobile card layouts (members simple, staff rota); TableScrollWrap for wide tables
 - [x] Attendance register sticky save bar on mobile/tablet
 - [x] Demo script tablet presentation tips
-- [ ] RBAC content blocking preview (v1.4.3)
 
 ## v1.4.1 — Granny-friendly quick wins
 
@@ -24,7 +36,7 @@ ClubOps v1.4.1 improves **clarity and accessibility** for non-technical voluntee
 - [x] Members Simple / Detailed list toggle
 - [x] Accessibility: skip link, aria-current, aria-pressed, sidebar not h1
 - [x] RBAC demo honesty wording; demo script/QA fixes
-- [ ] Hard RBAC content blocking (v1.4.3)
+- [x] Hard RBAC content blocking preview (v1.4.4 — demo-only, not real security)
 
 ## v1.4.0 — Supabase foundation prep
 

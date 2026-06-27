@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Badge, Card, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice, ComplianceWarnings } from "@/components/gift-aid/GiftAidNotices";
+import { RestrictedContentPreview } from "@/components/rbac/RestrictedContentPreview";
 import { DeclarationRequestModal } from "@/components/gift-aid/DeclarationRequestModal";
 import { GiftAidSubNav } from "@/components/gift-aid/GiftAidDashboardClient";
 import { useGiftAidDemo } from "@/components/gift-aid/GiftAidDemoProvider";
@@ -23,6 +24,7 @@ export function GiftAidReviewClient() {
       />
       <GiftAidSubNav active="Review" />
       <DemoOnlyNotice />
+      <RestrictedContentPreview module="gift-aid" auditOnView="restricted Gift Aid preview viewed">
       <div className="mt-4">
         <ComplianceWarnings />
       </div>
@@ -53,6 +55,7 @@ export function GiftAidReviewClient() {
           </Card>
         ))}
       </div>
+      </RestrictedContentPreview>
 
       {showDeclarationPreview && (
         <DeclarationRequestModal onClose={() => setShowDeclarationPreview(false)} />

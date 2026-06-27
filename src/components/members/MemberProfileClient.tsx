@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Badge, Card, EmptyState, PageHeader, StatCard } from "@/components/ui";
 import { MemberTabs, useMemberTab, type MemberTabId } from "@/components/members/MemberTabs";
 import { DemoOnlyNotice, SensitiveDataNotice } from "@/components/members/MemberNotices";
-import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
+import { RestrictedContentPreview } from "@/components/rbac/RestrictedContentPreview";
 import { useMembersDemo } from "@/components/members/MembersDemoProvider";
 import {
   calculateAge,
@@ -278,29 +278,34 @@ function MedicalTab({ profile }: { profile: MemberProfile }) {
   return (
     <div className="space-y-4">
       <SensitiveDataNotice area="Medical & welfare" />
-      <PermissionPreviewNotice module="members-sensitive" action="view-sensitive-detail" />
-      <Card>
-        <h3 className="text-sm font-semibold text-slate-900">Medical summary</h3>
-        <p className="mt-2 text-sm text-slate-600">{profile.medicalSummary}</p>
-        {profile.allergies.length > 0 && (
-          <div className="mt-3">
-            <p className="text-xs font-semibold uppercase text-slate-500">Allergies</p>
-            <div className="mt-1 flex flex-wrap gap-2">
-              {profile.allergies.map((a) => (
-                <Badge key={a} variant="warning">
-                  {a}
-                </Badge>
-              ))}
+      <RestrictedContentPreview
+        module="members-sensitive"
+        detailAction="view-sensitive-detail"
+        auditOnView="sensitive medical section previewed by limited role"
+      >
+        <Card>
+          <h3 className="text-sm font-semibold text-slate-900">Medical summary</h3>
+          <p className="mt-2 text-sm text-slate-600">{profile.medicalSummary}</p>
+          {profile.allergies.length > 0 && (
+            <div className="mt-3">
+              <p className="text-xs font-semibold uppercase text-slate-500">Allergies</p>
+              <div className="mt-1 flex flex-wrap gap-2">
+                {profile.allergies.map((a) => (
+                  <Badge key={a} variant="warning">
+                    {a}
+                  </Badge>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-        {profile.medicalNotes && (
-          <div className="mt-4 rounded-md border border-red-100 bg-red-50/50 p-3">
-            <p className="text-xs font-semibold uppercase text-red-700">Detailed notes</p>
-            <p className="mt-1 text-sm text-red-900">{profile.medicalNotes}</p>
-          </div>
-        )}
-      </Card>
+          )}
+          {profile.medicalNotes && (
+            <div className="mt-4 rounded-md border border-red-100 bg-red-50/50 p-3">
+              <p className="text-xs font-semibold uppercase text-red-700">Detailed notes</p>
+              <p className="mt-1 text-sm text-red-900">{profile.medicalNotes}</p>
+            </div>
+          )}
+        </Card>
+      </RestrictedContentPreview>
     </div>
   );
 }
@@ -322,24 +327,28 @@ function FinanceTab({ profile }: { profile: MemberProfile }) {
   return (
     <div className="space-y-4">
       <SensitiveDataNotice area="Finance" />
-      {/* TODO: RBAC — finance data restricted to treasurer/admin roles */}
-      <Card>
-        <h3 className="text-sm font-semibold text-slate-900">Finance summary</h3>
-        <dl className="mt-3 space-y-2 text-sm">
-          <Row label="Status" value={profile.finance.status} />
-          <Row
-            label="Outstanding"
-            value={
-              profile.finance.outstandingAmount > 0
-                ? formatCurrency(profile.finance.outstandingAmount)
-                : "None"
-            }
-          />
-          {profile.finance.lastPaymentDate && (
-            <Row label="Last payment" value={formatDate(profile.finance.lastPaymentDate)} />
-          )}
-        </dl>
-      </Card>
+      <RestrictedContentPreview
+        module="finance"
+        auditOnView="restricted finance preview viewed"
+      >
+        <Card>
+          <h3 className="text-sm font-semibold text-slate-900">Finance summary</h3>
+          <dl className="mt-3 space-y-2 text-sm">
+            <Row label="Status" value={profile.finance.status} />
+            <Row
+              label="Outstanding"
+              value={
+                profile.finance.outstandingAmount > 0
+                  ? formatCurrency(profile.finance.outstandingAmount)
+                  : "None"
+              }
+            />
+            {profile.finance.lastPaymentDate && (
+              <Row label="Last payment" value={formatDate(profile.finance.lastPaymentDate)} />
+            )}
+          </dl>
+        </Card>
+      </RestrictedContentPreview>
     </div>
   );
 }

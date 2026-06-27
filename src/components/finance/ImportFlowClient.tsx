@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Badge, Card, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice, FinanceSecurityNotice } from "@/components/finance/FinanceNotices";
+import { FinanceRestrictedSection } from "@/components/rbac/ModuleRestrictedSections";
 import { FinanceSubNav } from "@/components/finance/FinanceDashboardClient";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import type { ImportPreviewData } from "@/data/providers/types";
@@ -55,7 +56,8 @@ export function ImportFlowClient({
       />
       <FinanceSubNav active="Import" />
       <DemoOnlyNotice />
-      <div className="mt-4">
+      <FinanceRestrictedSection className="mt-4">
+      <div>
         <FinanceSecurityNotice />
       </div>
 
@@ -162,6 +164,7 @@ export function ImportFlowClient({
           </button>
         </Card>
       )}
+      </FinanceRestrictedSection>
     </>
   );
 }

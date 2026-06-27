@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Badge, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice, IneligibleWarning } from "@/components/gift-aid/GiftAidNotices";
+import { RestrictedContentPreview } from "@/components/rbac/RestrictedContentPreview";
 import { GiftAidSubNav } from "@/components/gift-aid/GiftAidDashboardClient";
 import { useGiftAidDemo } from "@/components/gift-aid/GiftAidDemoProvider";
 import {
@@ -42,6 +43,7 @@ export function EligibleDonationsClient() {
       <GiftAidSubNav active="Eligible donations" />
       <DemoOnlyNotice />
 
+      <RestrictedContentPreview module="gift-aid" auditOnView="restricted Gift Aid preview viewed">
       {groups.map((group) => {
         const items = donations.filter(group.filter);
         return (
@@ -99,6 +101,7 @@ export function EligibleDonationsClient() {
           </section>
         );
       })}
+      </RestrictedContentPreview>
     </>
   );
 }

@@ -152,13 +152,30 @@ export const demoScriptSteps: DemoScriptStep[] = [
 export const demoScriptOptionalSteps: DemoScriptStep[] = [
   {
     step: 0,
+    title: "Optional — Show permissions honestly",
+    href: "/finance",
+    secondaryHref: "/members/mem-002?tab=medical",
+    secondaryLinkLabel: "Member medical tab",
+    whatToClick:
+      "Switch to Coach (top bar) → open Finance — show locked preview. Open a member Medical tab — show sensitive info hidden. Switch to Treasurer — show Finance and Gift Aid. Switch to Welfare Officer — show Medical/Welfare detail. Return to Club Secretary/Admin.",
+    whatToSay:
+      "Not every volunteer sees everything. This demo hides sensitive sections by role to show how live permissions would work — but this is demo-only and not real security.",
+    problemSolved: "Committee understands why RBAC matters before any real data is loaded.",
+    emphasis:
+      "Demo permission preview only — not real security. Real login and server-side RBAC required before production.",
+    optional: true,
+  },
+  {
+    step: 0,
     title: "Optional — Switch demo roles",
     href: "/demo-roles",
     secondaryHref: "/settings/permissions",
     secondaryLinkLabel: "Permissions matrix",
-    whatToClick: "Switch to Coach → open Finance (see restriction). Switch to Committee Read-Only → open Gift Aid (see restriction). Switch to Coach → open a member medical/welfare tab (see restriction). Return to Secretary/Admin.",
-    whatToSay: "Not every volunteer sees everything. Treasurers handle money, welfare officers handle sensitive records, coaches mark attendance — demo role switching shows how live permissions would work.",
-    problemSolved: "Committee understands why RBAC matters before any real data is loaded.",
+    whatToClick:
+      "Review the permissions matrix. Switch between Coach, Treasurer, Welfare Officer and Committee Read-Only to see restricted previews on Finance, Medical, Gift Aid, Wages and Exports.",
+    whatToSay:
+      "Treasurers handle money, welfare officers handle sensitive records, coaches mark attendance — the matrix shows who would access what in live mode.",
+    problemSolved: "Committee understands role separation before any real data is loaded.",
     emphasis: "Demo role switching only — not real security. Real login required before production.",
     optional: true,
   },

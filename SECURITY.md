@@ -15,8 +15,9 @@
 
 ## Access control
 
-- Role-based access control (RBAC) is **previewed in demo** (v1.1.0) — client-side only.
-- **v1.4.1:** RBAC notices clarify that the public demo keeps fake data visible for exploration; live mode would block or hide restricted sections server-side.
+- Role-based access control (RBAC) is **previewed in demo** (v1.1.0+) — client-side only.
+- **v1.4.4:** Restricted content previews hide or summarise sensitive sections by demo role (medical, finance, Gift Aid, wages, exports). This is **not real security** — fake data may still exist in the client bundle.
+- **v1.4.1:** RBAC notices clarify that the public demo keeps fake data visible for exploration where not locked; live mode would block server-side.
 - Live mode requires **server-side** RBAC on every request — see [SECURITY_LIVE_REQUIREMENTS.md](./SECURITY_LIVE_REQUIREMENTS.md).
 - TODO markers exist in code for future RBAC enforcement.
 - Sensitive fields (medical notes, safeguarding records, finance details) require restricted access.

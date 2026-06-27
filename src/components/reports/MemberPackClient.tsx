@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Card, PageHeader, StatCard } from "@/components/ui";
 import { DemoOnlyNotice, ExportSuccessNotice } from "@/components/reports/ReportsNotices";
+import { RestrictedExportButton } from "@/components/rbac/RestrictedExportButton";
 import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
 import { reportsTrail } from "@/lib/breadcrumbs";
@@ -35,7 +36,7 @@ export function MemberPackClient() {
           <Link href="/documents/missing" className="text-sm text-indigo-600 hover:underline">Missing documents</Link>
           <Link href="/communications/forms" className="text-sm text-indigo-600 hover:underline">Form actions</Link>
         </div>
-        <button type="button" onClick={() => simulateExport("Member Admin Pack")} className="mt-4 rounded-md bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-700">Generate demo export</button>
+        <RestrictedExportButton label="Generate demo export" onExport={() => simulateExport("Member Admin Pack")} />
       </Card>
     </>
   );

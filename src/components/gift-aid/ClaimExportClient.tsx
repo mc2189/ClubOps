@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Badge, Card, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/gift-aid/GiftAidNotices";
+import { GiftAidRestrictedSection } from "@/components/rbac/ModuleRestrictedSections";
 import { GiftAidSubNav } from "@/components/gift-aid/GiftAidDashboardClient";
 import { useGiftAidDemo } from "@/components/gift-aid/GiftAidDemoProvider";
 import { eligibilityLabel, eligibilityVariant } from "@/lib/giftAid";
@@ -30,7 +31,8 @@ export function ClaimExportClient() {
         </div>
       )}
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-3">
+      <GiftAidRestrictedSection className="mt-6">
+      <div className="grid gap-4 sm:grid-cols-3">
         <Card>
           <p className="text-sm text-slate-500">Claim-ready donations</p>
           <p className="text-2xl font-bold">{formatCurrency(claimExport.claimReadyDonations.reduce((s, d) => s + d.amount, 0))}</p>
@@ -103,6 +105,7 @@ export function ClaimExportClient() {
         <Link href="/finance" className="text-indigo-600 hover:underline">Finance module</Link>
         {" "}— verify transactions before submitting any real claim.
       </p>
+      </GiftAidRestrictedSection>
     </>
   );
 }

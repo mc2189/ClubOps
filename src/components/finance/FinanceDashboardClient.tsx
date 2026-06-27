@@ -5,7 +5,7 @@ import { Card, PageHeader, StatCard } from "@/components/ui";
 import { SubNavLink } from "@/components/ui/SubNavLink";
 import { ModuleSubNav } from "@/components/ui/ModuleSubNav";
 import { DemoOnlyNotice, FinanceSecurityNotice } from "@/components/finance/FinanceNotices";
-import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
+import { FinanceRestrictedSection } from "@/components/rbac/ModuleRestrictedSections";
 import { useFinanceDemo } from "@/components/finance/FinanceDemoProvider";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
@@ -31,10 +31,10 @@ export function FinanceDashboardClient() {
       />
 
       <DemoOnlyNotice />
-      <PermissionPreviewNotice module="finance" />
       <FinanceSubNav active="Dashboard" />
 
-      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <FinanceRestrictedSection className="mt-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Monthly income" value={formatCurrency(dashboard.monthlyIncome)} />
         <StatCard label="Monthly outgoings" value={formatCurrency(dashboard.monthlyOutgoings)} />
         <StatCard label="Net position" value={formatCurrency(dashboard.netPosition)} />
@@ -92,6 +92,7 @@ export function FinanceDashboardClient() {
           ))}
         </div>
       </Card>
+      </FinanceRestrictedSection>
       <div className="mt-6">
         <FinanceSecurityNotice />
       </div>

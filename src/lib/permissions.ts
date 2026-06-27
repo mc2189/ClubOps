@@ -32,6 +32,7 @@ export type PermissionModule =
 
 export type PermissionAction =
   | "view"
+  | "view-summary"
   | "create"
   | "edit"
   | "archive"
@@ -41,6 +42,8 @@ export type PermissionAction =
   | "view-sensitive-summary"
   | "view-sensitive-detail"
   | "manage-settings";
+
+export type PermissionPreviewLevel = "full" | "summary" | "restricted";
 
 export type MatrixLevel = "allowed" | "limited" | "restricted" | "sensitive" | "export-restricted";
 
@@ -70,6 +73,7 @@ export const MODULE_LABELS: Record<PermissionModule, string> = {
 
 const ALL_ACTIONS: PermissionAction[] = [
   "view",
+  "view-summary",
   "create",
   "edit",
   "archive",
@@ -88,13 +92,13 @@ const ROLE_PERMISSIONS: Record<DemoRoleId, RolePermissionMap> = {
   "secretary-admin": {
     dashboard: ["view"],
     members: ["view", "create", "edit", "archive"],
-    "members-sensitive": ["view-sensitive-summary"],
+    "members-sensitive": ["view-sensitive-summary", "view-sensitive-detail"],
     attendance: ["view", "create", "edit"],
     finance: ["view", "approve"],
     "gift-aid": ["view"],
     communications: ["view", "create", "send"],
     documents: ["view", "create", "edit"],
-    "documents-sensitive": ["view-sensitive-summary"],
+    "documents-sensitive": ["view-sensitive-summary", "view-sensitive-detail"],
     staff: ["view"],
     "wage-prep": ["view"],
     fundraising: ["view"],
@@ -154,7 +158,6 @@ const ROLE_PERMISSIONS: Record<DemoRoleId, RolePermissionMap> = {
     dashboard: ["view"],
     members: ["view"],
     attendance: ["view"],
-    finance: ["view"],
     communications: ["view", "create", "send"],
     documents: ["view"],
     fundraising: ["view", "create", "edit"],
@@ -168,8 +171,8 @@ const ROLE_PERMISSIONS: Record<DemoRoleId, RolePermissionMap> = {
     members: ["view"],
     "members-sensitive": [],
     attendance: ["view"],
-    finance: [],
-    "gift-aid": [],
+    finance: ["view-summary"],
+    "gift-aid": ["view-summary"],
     communications: ["view"],
     documents: ["view"],
     staff: ["view"],
@@ -275,6 +278,9 @@ export function getModuleLevel(role: DemoRoleId, module: PermissionModule): Matr
   if (module === "exports" && !actions.includes("export")) {
     return actions.includes("view") ? "export-restricted" : "restricted";
   }
+  if (actions.includes("view-summary") && !actions.includes("view") && !actions.includes("export")) {
+    return "limited";
+  }
   if (actions.includes("export") || actions.includes("approve")) return "allowed";
   if (actions.includes("view") && actions.length === 1) return "limited";
   if (actions.includes("send") || actions.includes("create")) return "allowed";
@@ -316,8 +322,42 @@ export function shouldShowPermissionPreview(
   action: PermissionAction = "view",
 ): boolean {
   if (role === "demo-super-admin") return false;
-  return !can(role, module, action);
+  return getPermissionPreviewLevel(role, module, action) !== "full";
 }
+
+/** Preview access level for demo RBAC honesty — not real security */
+export function getPermissionPreviewLevel(
+  role: DemoRoleId,
+  module: PermissionModule,
+  action: PermissionAction = "view",
+): PermissionPreviewLevel {
+  if (role === "demo-super-admin") return "full";
+
+  if (module === "members-sensitive" || module === "documents-sensitive") {
+    if (can(role, module, "view-sensitive-detail")) return "full";
+    if (can(role, module, "view-sensitive-summary")) return "summary";
+    return "restricted";
+  }
+
+  if (module === "exports" && action === "export") {
+    return can(role, module, "export") ? "full" : "restricted";
+  }
+
+  if (can(role, module, action)) return "full";
+  if (can(role, module, "view-summary")) return "summary";
+  if (can(role, module, "view")) return "full";
+
+  return "restricted";
+}
+
+export const SUGGESTED_ROLES_BY_MODULE: Partial<Record<PermissionModule, DemoRoleId[]>> = {
+  finance: ["treasurer", "secretary-admin"],
+  "gift-aid": ["treasurer", "secretary-admin"],
+  "members-sensitive": ["welfare-officer", "secretary-admin"],
+  "documents-sensitive": ["welfare-officer", "secretary-admin"],
+  "wage-prep": ["treasurer", "secretary-admin"],
+  exports: ["secretary-admin", "treasurer"],
+};
 
 export const ALL_DEMO_ROLE_IDS: DemoRoleId[] = [
   "secretary-admin",

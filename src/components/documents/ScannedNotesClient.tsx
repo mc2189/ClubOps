@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Card, PageHeader, Badge } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/documents/DocumentsNotices";
+import { RestrictedContentPreview } from "@/components/rbac/RestrictedContentPreview";
 import { DocumentsSubNav } from "@/components/documents/DocumentsSubNav";
 import { useDocumentsDemo } from "@/components/documents/DocumentsDemoProvider";
 import type { ScannedNoteType } from "@/data/providers/types";
@@ -111,9 +112,26 @@ export function ScannedNotesClient() {
             <div className="mt-3 rounded-md border border-dashed border-slate-300 bg-slate-100 p-8 text-center text-sm text-slate-500">
               [Scanned note preview placeholder — {selected.fileName}]
             </div>
+            {isRestricted ? (
+            <RestrictedContentPreview
+              module="documents-sensitive"
+              detailAction="view-sensitive-detail"
+              auditOnView="sensitive document preview viewed by limited role"
+              summaryTitle="Sensitive scanned note on file"
+              summaryLines={[
+                `Note type: ${noteType}`,
+                "Extracted text hidden in this demo role.",
+              ]}
+            >
             <pre className="mt-3 whitespace-pre-wrap rounded-md bg-slate-50 p-3 text-xs text-slate-700">
               {selected.extractedPreview}
             </pre>
+            </RestrictedContentPreview>
+            ) : (
+            <pre className="mt-3 whitespace-pre-wrap rounded-md bg-slate-50 p-3 text-xs text-slate-700">
+              {selected.extractedPreview}
+            </pre>
+            )}
             <div className="mt-4 space-y-3">
               <div>
                 <label className="text-xs font-medium text-slate-600">Member match</label>

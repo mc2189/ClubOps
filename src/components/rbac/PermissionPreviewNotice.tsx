@@ -3,6 +3,10 @@
 import Link from "next/link";
 import { useDemoRole } from "@/components/rbac/DemoRoleProvider";
 import type { PermissionModule, PermissionAction } from "@/lib/permissions";
+import {
+  RBAC_DEMO_ONLY_DISCLAIMER,
+  RBAC_PUBLIC_DEMO_EXPLANATION,
+} from "@/lib/rbacCopy";
 
 interface PermissionPreviewNoticeProps {
   module: PermissionModule;
@@ -10,6 +14,7 @@ interface PermissionPreviewNoticeProps {
   className?: string;
 }
 
+/** Lightweight banner when a page is partially accessible — full lock uses RestrictedContentPreview */
 export function PermissionPreviewNotice({
   module,
   action = "view",
@@ -28,19 +33,16 @@ export function PermissionPreviewNotice({
       role="status"
       className={`rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950 ${className}`}
     >
-      <p className="font-semibold">Permission preview — restricted in live mode</p>
+      <p className="font-semibold">{RBAC_DEMO_ONLY_DISCLAIMER}</p>
       <p className="mt-1">{message}</p>
-      <p className="mt-2 text-xs text-amber-900">
-        This is a permission preview only. In this public demo, fake data remains visible so you can
-        explore the app. A live version would block or hide this section server-side.
-      </p>
+      <p className="mt-2 text-xs text-amber-900">{RBAC_PUBLIC_DEMO_EXPLANATION}</p>
       <p className="mt-2 text-xs text-amber-800">
         Viewing as <strong>{roleName}</strong>. In live mode,{" "}
         <strong>{getAccessHint(module)}</strong> would typically access this area.
       </p>
       <div className="mt-2 flex flex-wrap gap-3 text-xs">
         <Link
-          href="/settings/roles"
+          href="/demo-roles"
           className="font-medium text-indigo-700 hover:underline"
           onClick={() => logRbacEvent("permission preview viewed", message, module)}
         >

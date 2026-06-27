@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Card, PageHeader, StatCard } from "@/components/ui";
 import { DemoOnlyNotice, ExportSuccessNotice } from "@/components/reports/ReportsNotices";
+import { RestrictedExportButton } from "@/components/rbac/RestrictedExportButton";
 import { GiftAidGuidanceNotice } from "@/components/fundraising/FundraisingNotices";
 import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
@@ -39,7 +40,7 @@ export function GiftAidPackClient() {
           <Link href="/gift-aid/claim-export" className="text-sm text-indigo-600 hover:underline">Claim export</Link>
           <Link href={COMMUNICATIONS_LINKS.giftAidRequest} className="text-sm text-indigo-600 hover:underline">Declaration request campaign</Link>
         </div>
-        <button type="button" onClick={() => simulateExport("Gift Aid Pack")} className="mt-4 rounded-md bg-indigo-600 px-4 py-2 text-sm text-white hover:bg-indigo-700">Generate demo export</button>
+        <RestrictedExportButton label="Generate demo export" onExport={() => simulateExport("Gift Aid Pack")} />
       </Card>
       <div className="mt-4"><GiftAidGuidanceNotice /></div>
     </>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Card, PageHeader, DataTable, Badge } from "@/components/ui";
 import { DemoOnlyNotice, WagePrepWarning } from "@/components/staff/StaffNotices";
-import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
+import { RestrictedContentPreview } from "@/components/rbac/RestrictedContentPreview";
 import { StaffSubNav } from "@/components/staff/StaffSubNav";
 import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
 import { formatStaffCurrency, paymentStatusVariant } from "@/lib/staff";
@@ -23,13 +23,13 @@ export function WagesClient() {
       />
       <StaffSubNav active="Wages" />
       <DemoOnlyNotice />
-      <PermissionPreviewNotice module="wage-prep" />
       <WagePrepWarning />
       {wageExportDone && (
         <div className="mt-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-900">
           Demo wage summary exported. Audit event recorded. No submission to HMRC.
         </div>
       )}
+      <RestrictedContentPreview module="wage-prep" auditOnView="restricted wage prep preview viewed">
       <Card className="mt-4">
         <p className="text-sm font-medium text-slate-700">Total due this month: {formatStaffCurrency(totalDue)}</p>
         <button
@@ -58,6 +58,7 @@ export function WagesClient() {
           ))}
         </DataTable>
       </Card>
+      </RestrictedContentPreview>
     </>
   );
 }
