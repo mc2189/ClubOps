@@ -2,6 +2,15 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.5a] — 2026-06-27
+
+### Changed
+
+- Logo presentation fix: white rounded tile on dark sidebar (no invert/filter)
+- Sidebar reads as Arbroath Gymnastics Club + ClubOps demo with readable club name text
+- Larger logo tiles: ~104px desktop sidebar, ~88px mobile drawer
+- Dashboard, demo, and report headers use black logo on white tile; club name as primary text
+
 ## [1.4.5] — 2026-06-27
 
 ### Added

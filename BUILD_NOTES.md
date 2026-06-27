@@ -1,5 +1,23 @@
 # ClubOps — Build Notes
 
+## Iteration 22 — v1.4.5a Logo presentation fix (2026-06-27)
+
+### What was built
+
+- `LogoTile` and `ClubLogoImage` — white rounded tile, black transparent logo, no CSS inversion
+- Sidebar: 88–104px logo tile + “Arbroath Gymnastics Club” + “ClubOps demo” text
+- Dashboard welcome, demo hero, report headers updated for readability on mobile
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+---
+
 ## Iteration 21 — v1.4.5 Arbroath branding refresh (2026-06-27)
 
 ### What was built
