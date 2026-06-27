@@ -35,10 +35,11 @@ export const brandAssets = {
     icon: "/branding/arbroath_glam_icon_transparent.png",
     header: "/branding/arbroath_glam_logo_web_header_transparent.png",
   },
-  /** Reference banner artwork — dashboard hero and internal page headers */
+  /** Reference banner artwork — decorative right-side crops (contain baked mockup text on left) */
   bannerArt: {
     dashboardHero: "/branding/banners/dashboard-glam-hero-art.png",
     pageHeader: "/branding/banners/page-glam-header-art.png",
+    /** Future: text-free ribbon/logo-only PNGs can replace the above for full-bleed art */
   },
   /** Official detailed PNGs — reference/fallback only */
   officialLogo: {

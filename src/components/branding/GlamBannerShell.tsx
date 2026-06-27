@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { EmeraldBand, PinkRibbonWave } from "@/components/branding/GlamBannerDecor";
 import { brandAssets } from "@/config/branding";
 import { cn } from "@/lib/utils";
 
@@ -9,8 +10,8 @@ const ART: Record<GlamBannerVariant, string> = {
   page: brandAssets.bannerArt.pageHeader,
 };
 
-/** Reference banner artwork — decorative layer matching supplied mockups */
-export function GlamBannerArt({
+/** Right-side crop of reference art — logo and ribbons only, no baked-in UI text */
+export function GlamBannerArtPanel({
   variant,
   priority = false,
   className,
@@ -19,20 +20,24 @@ export function GlamBannerArt({
   priority?: boolean;
   className?: string;
 }) {
+  const isHero = variant === "hero";
+
   return (
-    <Image
-      src={ART[variant]}
-      alt=""
-      fill
-      priority={priority}
-      sizes={variant === "hero" ? "100vw" : "(max-width: 768px) 100vw, 80vw"}
-      className={cn(
-        "pointer-events-none object-cover",
-        variant === "hero" ? "object-[center_right]" : "object-[75%_center]",
-        className,
-      )}
-      aria-hidden
-    />
+    <div className={cn("relative h-full w-full overflow-hidden", className)} aria-hidden="true">
+      <Image
+        src={ART[variant]}
+        alt=""
+        fill
+        priority={priority}
+        sizes={isHero ? "45vw" : "40vw"}
+        className={cn(
+          "!left-auto !right-0 object-cover object-right",
+          isHero ? "!w-[165%] !max-w-none" : "!w-[175%] !max-w-none",
+        )}
+      />
+      {/* Soft blend into the solid left panel */}
+      <div className="absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white to-transparent sm:w-14" />
+    </div>
   );
 }
 
@@ -44,7 +49,10 @@ interface GlamBannerShellProps {
   children: React.ReactNode;
 }
 
-/** Full-width glam banner frame using reference art + real HTML content overlay */
+/**
+ * Split glam banner: solid content panel (left) + cropped reference art (right).
+ * Avoids ghosting from baked-in mockup text under live HTML.
+ */
 export function GlamBannerShell({
   variant,
   priority = false,
@@ -64,25 +72,38 @@ export function GlamBannerShell({
         className,
       )}
     >
-      <GlamBannerArt variant={variant} priority={priority} />
+      {/* Full-width bottom ribbon accents (CSS/SVG — no duplicate text) */}
+      <PinkRibbonWave className="pointer-events-none absolute bottom-[6%] left-0 z-[1] h-8 w-full text-pink-300/55 sm:h-10" />
+      <EmeraldBand className="pointer-events-none absolute bottom-0 right-0 z-[1] h-[45%] w-[55%] text-brand-primary" />
 
-      <div
-        className={cn(
-          "relative z-10 flex h-full min-h-[inherit] flex-col justify-center",
-          isHero ? "px-5 py-5 sm:px-7 sm:py-6 lg:px-8" : "px-5 py-4 sm:px-6 sm:py-5",
-        )}
-      >
+      <div className="relative z-10 flex min-h-[inherit] flex-col sm:flex-row">
+        {/* Left: solid panel — nothing from the reference image sits underneath */}
         <div
           className={cn(
-            "w-full rounded-xl",
+            "flex flex-1 flex-col justify-center bg-gradient-to-br from-white via-white to-emerald-50/50",
             isHero
-              ? "bg-gradient-to-r from-white/97 from-0% via-white/88 via-[70%] to-transparent to-[100%] pr-2 sm:via-white/92 sm:via-[52%] sm:to-white/0 sm:to-[68%] sm:max-w-[62%] sm:pr-8 lg:max-w-[58%]"
-              : "bg-gradient-to-r from-white/97 from-0% via-white/85 via-[65%] to-transparent to-[100%] pr-1 sm:via-white/90 sm:via-[48%] sm:to-white/0 sm:to-[72%] sm:max-w-[72%] sm:pr-6 lg:max-w-[68%]",
+              ? "px-5 py-5 sm:px-7 sm:py-6 lg:max-w-[56%] lg:px-8"
+              : "px-5 py-4 sm:max-w-[62%] sm:px-6 sm:py-5 lg:max-w-[58%]",
             contentClassName,
           )}
         >
           {children}
         </div>
+
+        {/* Right: cropped glam art (desktop/tablet) */}
+        <div
+          className={cn(
+            "relative hidden shrink-0 sm:block",
+            isHero ? "w-[42%] lg:w-[44%]" : "w-[38%] lg:w-[40%]",
+          )}
+        >
+          <GlamBannerArtPanel variant={variant} priority={priority} />
+        </div>
+      </div>
+
+      {/* Mobile: art strip below content, not under it */}
+      <div className="relative h-28 overflow-hidden border-t border-emerald-100/50 sm:hidden">
+        <GlamBannerArtPanel variant={variant} priority={priority} className="opacity-95" />
       </div>
     </div>
   );

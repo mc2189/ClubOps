@@ -2,6 +2,13 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.5i] — 2026-06-27
+
+### Changed
+
+- Glam banners use split layout: solid left content panel (no image underneath) + cropped reference art on right only
+- Bottom ribbon accents via SVG; eliminates ghosting of baked-in mockup text (e.g. duplicate Demo mode)
+
 ## [1.4.5h] — 2026-06-27
 
 ### Added
