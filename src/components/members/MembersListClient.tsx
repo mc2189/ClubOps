@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useMemo, useState, type ReactNode } from "react";
-import { Badge, EmptyState, PageHeader } from "@/components/ui";
+import { Badge, EmptyState } from "@/components/ui";
+import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 import { TableScrollWrap } from "@/components/ui/TableScrollWrap";
 import { DemoOnlyNotice } from "@/components/members/MemberNotices";
@@ -118,7 +119,7 @@ export function MembersListClient() {
 
   return (
     <>
-      <PageHeader
+      <GlamPageHeader
         title="Members"
         description="Manage gymnasts and linked parent/carer records."
         breadcrumbs={moduleBreadcrumb(MODULES.members)}

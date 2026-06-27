@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Card, PageHeader, StatCard, Badge } from "@/components/ui";
+import { Card, StatCard, Badge } from "@/components/ui";
+import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import {
   DemoOnlyNotice,
   DocumentsSecurityNotice,
@@ -16,7 +17,7 @@ export function DocumentsDashboardClient() {
 
   return (
     <>
-      <PageHeader
+      <GlamPageHeader
         title="Documents"
         description="Scan, upload and assign club documents — all simulated in demo mode."
         breadcrumbs={moduleBreadcrumb(MODULES.documents)}

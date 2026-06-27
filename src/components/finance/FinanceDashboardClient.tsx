@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Card, PageHeader, StatCard } from "@/components/ui";
+import { Card, StatCard } from "@/components/ui";
+import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { SubNavLink } from "@/components/ui/SubNavLink";
 import { ModuleSubNav } from "@/components/ui/ModuleSubNav";
 import { DemoOnlyNotice, FinanceSecurityNotice } from "@/components/finance/FinanceNotices";
@@ -23,7 +24,7 @@ export function FinanceDashboardClient() {
 
   return (
     <>
-      <PageHeader
+      <GlamPageHeader
         title="Finance"
         description="Treasurer overview — income, fees, expenses and bank import."
         breadcrumbs={moduleBreadcrumb(MODULES.finance)}

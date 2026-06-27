@@ -1,5 +1,23 @@
 # ClubOps — Build Notes
 
+## Iteration 27 — v1.4.5g Rectangular glam banner system (2026-06-27)
+
+### What was built
+
+- Wide dashboard glam hero banner with integrated cropped logo art
+- Reusable `GlamPageHeader` for major module landing pages
+- Shared `GlamBannerDecor` ribbon/sparkle/emerald band styling
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+---
+
 ## Iteration 26 — v1.4.5f Glam dashboard hero redesign (2026-06-27)
 
 ### What was built

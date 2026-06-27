@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Card, PageHeader, StatCard } from "@/components/ui";
+import { Card, StatCard } from "@/components/ui";
+import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { DemoOnlyNotice, FundraisingSecurityNotice, GiftAidGuidanceNotice } from "@/components/fundraising/FundraisingNotices";
 import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
@@ -14,7 +15,7 @@ export function FundraisingDashboardClient() {
 
   return (
     <>
-      <PageHeader title="Fundraising" description="Campaigns, donors, sponsorships and Gift Aid opportunities — demo only." breadcrumbs={moduleBreadcrumb(MODULES.fundraising)} backHref="/dashboard" />
+      <GlamPageHeader title="Fundraising" description="Campaigns, donors, sponsorships and Gift Aid opportunities — demo only." breadcrumbs={moduleBreadcrumb(MODULES.fundraising)} backHref="/dashboard" />
       <FundraisingSubNav active="Dashboard" />
       <DemoOnlyNotice />
       <div className="mt-4 space-y-6">

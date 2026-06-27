@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Badge, Card, PageHeader, StatCard } from "@/components/ui";
+import { Badge, Card, StatCard } from "@/components/ui";
+import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { DemoOnlyNotice } from "@/components/attendance/AttendanceNotices";
 import { useAttendanceDemo } from "@/components/attendance/AttendanceDemoProvider";
 import { registerStatusLabel } from "@/lib/attendance";
@@ -12,7 +13,7 @@ export function AttendanceDashboardClient() {
 
   return (
     <>
-      <PageHeader
+      <GlamPageHeader
         title="Attendance"
         description="Mark registers, track attendance and follow up absences."
         breadcrumbs={moduleBreadcrumb(MODULES.attendance)}

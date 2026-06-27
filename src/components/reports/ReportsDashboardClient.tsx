@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Card, PageHeader, Badge } from "@/components/ui";
-import { ReportBrandHeader } from "@/components/branding/ReportBrandHeader";
+import { Card, Badge } from "@/components/ui";
+import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { DemoOnlyNotice, ReportsSecurityNotice } from "@/components/reports/ReportsNotices";
 import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
@@ -16,8 +16,7 @@ export function ReportsDashboardClient() {
 
   return (
     <>
-      <PageHeader title="Reports" description="Generate demo exports for finance, committee, Gift Aid and admin purposes." breadcrumbs={moduleBreadcrumb(MODULES.reports)} backHref="/dashboard" />
-      <ReportBrandHeader className="mt-4" />
+      <GlamPageHeader title="Reports" description="Generate demo exports for finance, committee, Gift Aid and admin purposes." breadcrumbs={moduleBreadcrumb(MODULES.reports)} backHref="/dashboard" />
       <ReportsSubNav active="Dashboard" />
       <DemoOnlyNotice />
       <div className="mt-4 space-y-8">

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Card, PageHeader, StatCard, Badge } from "@/components/ui";
+import { Card, StatCard, Badge } from "@/components/ui";
+import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { DemoOnlyNotice, StaffSecurityNotice } from "@/components/staff/StaffNotices";
 import { StaffSubNav } from "@/components/staff/StaffSubNav";
 import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
@@ -14,7 +15,7 @@ export function StaffDashboardClient() {
 
   return (
     <>
-      <PageHeader
+      <GlamPageHeader
         title="Staff & Volunteers"
         description="Coaches, volunteers, rota, qualifications, wages and operational outgoings."
         breadcrumbs={moduleBreadcrumb(MODULES.staff)}

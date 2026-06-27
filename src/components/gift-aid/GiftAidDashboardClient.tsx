@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Card, PageHeader, StatCard } from "@/components/ui";
+import { Card, StatCard } from "@/components/ui";
+import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { SubNavLink } from "@/components/ui/SubNavLink";
 import { ModuleSubNav } from "@/components/ui/ModuleSubNav";
 import {
@@ -43,7 +44,7 @@ export function GiftAidDashboardClient() {
 
   return (
     <>
-      <PageHeader
+      <GlamPageHeader
         title="Gift Aid"
         description="Track declarations, eligible donations and claim readiness."
         breadcrumbs={moduleBreadcrumb(MODULES.giftAid)}

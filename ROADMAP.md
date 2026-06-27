@@ -2,7 +2,7 @@
 
 ## Phase 0 — Foundation
 
-**Status: Complete (v1.4.5f glam dashboard hero — still demo-only)**
+**Status: Complete (v1.4.5g rectangular glam banners — still demo-only)**
 
 - Project scaffold and tooling
 - Dashboard layout shell
@@ -24,6 +24,7 @@
 - **v1.4.5d** — Compact app mark for shell UI; presentation logos on demo/reports only
 - **v1.4.5e** — Restore generated clean logo as primary brand; AGC mark as fallback only
 - **v1.4.5f** — Glam dashboard hero redesign (mockup-aligned welcome section)
+- **v1.4.5g** — Rectangular glam banner system (dashboard hero + module page headers)
 
 ### Upcoming (planned)
 

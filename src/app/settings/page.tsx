@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
-import { PageHeader, Card } from "@/components/ui";
+import { Card } from "@/components/ui";
+import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { SettingsSubNav } from "@/components/settings/SettingsSubNav";
 import { DemoRbacNotice } from "@/components/rbac/RbacNotices";
 import { DemoRoleSwitcher } from "@/components/rbac/DemoRoleSwitcher";
@@ -11,7 +12,7 @@ import { settingsTrail } from "@/lib/breadcrumbs";
 export default function SettingsPage() {
   return (
     <DashboardLayout>
-      <PageHeader
+      <GlamPageHeader
         title="Settings"
         description="Club configuration, demo roles and security guidance."
         breadcrumbs={settingsTrail("Overview")}

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Card, PageHeader, StatCard, Badge } from "@/components/ui";
+import { Card, StatCard, Badge } from "@/components/ui";
+import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import {
   DemoOnlyNotice,
   CommunicationsSecurityNotice,
@@ -21,7 +22,7 @@ export function CommunicationsDashboardClient() {
 
   return (
     <>
-      <PageHeader
+      <GlamPageHeader
         title="Communications"
         description="Compose messages, manage templates and track form responses — all simulated in demo mode."
         breadcrumbs={moduleBreadcrumb(MODULES.communications)}

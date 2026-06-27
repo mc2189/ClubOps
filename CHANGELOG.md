@@ -2,6 +2,23 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.5g] — 2026-06-27
+
+### Added
+
+- `GlamBannerDecor` — shared ribbon, emerald band, sparkle, and integrated glam logo art
+- `GlamPageHeader` — thin rectangular glam banner for internal module pages
+
+### Changed
+
+- Dashboard hero redesigned as wide horizontal banner (~300–380px) with cropped integrated glam logo
+- Module dashboards use `GlamPageHeader`: Members, Attendance, Communications, Finance, Gift Aid, Documents, Staff, Fundraising, Reports, Settings
+- Reports dashboard: replaced duplicate `ReportBrandHeader` with glam page header
+
+### Safety
+
+- `PROVIDER_MODE` remains `"demo"`; no auth, database, or Supabase on public routes
+
 ## [1.4.5f] — 2026-06-27
 
 ### Added
