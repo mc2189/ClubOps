@@ -10,13 +10,32 @@ export const clubTagline = "Volunteer club management — demo for Arbroath Gymn
 
 export const clubLocation = "Arbroath, Scotland";
 
-/** Official club logo assets in public/branding/ */
+/** Web-friendly generated logos — primary brand assets */
 export const logoPaths = {
-  /** Cropped transparent — default for light backgrounds */
-  primary: "/branding/arbroath-logo.png",
-  transparent: "/branding/arbroath-logo-transparent.png",
-  whiteBg: "/branding/arbroath-logo-white-bg.png",
+  clean: {
+    icon: "/branding/arbroath_clean_icon_transparent.png",
+    full: "/branding/arbroath_clean_logo_full_transparent.png",
+    medium: "/branding/arbroath_clean_logo_512_transparent.png",
+  },
+  glam: {
+    full: "/branding/arbroath_glam_logo_full_transparent.png",
+    icon: "/branding/arbroath_glam_icon_transparent.png",
+  },
+  /** Official detailed PNGs — reference/fallback only, not used in main shell */
+  official: {
+    primary: "/branding/official/arbroath-logo.png",
+    transparent: "/branding/official/arbroath-logo-transparent.png",
+    whiteBg: "/branding/official/arbroath-logo-white-bg.png",
+    medium: "/branding/official/arbroath-logo-512-transparent.png",
+  },
 } as const;
+
+export type WebLogoVariant =
+  | "clean-icon"
+  | "clean-full"
+  | "clean-medium"
+  | "glam-full"
+  | "glam-icon";
 
 export const brandColors = {
   primary: "#157347",

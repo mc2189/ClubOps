@@ -1,5 +1,23 @@
 # ClubOps — Build Notes
 
+## Iteration 23 — v1.4.5c Arbroath web logo replacement (2026-06-27)
+
+### What was built
+
+- Copied five web-friendly PNGs to `public/branding/`; official logos in `public/branding/official/`
+- `WebLogo` variant system: clean icon (sidebar tile), clean full (dashboard/demo/reports), optional glam accent
+- No logo inversion; icons on dark sidebar stay on white tile
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+---
+
 ## Iteration 22 — v1.4.5a Logo presentation fix (2026-06-27)
 
 ### What was built

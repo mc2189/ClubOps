@@ -2,95 +2,157 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { clubName, logoPaths } from "@/config/branding";
+import { clubName, logoPaths, type WebLogoVariant } from "@/config/branding";
 import { cn } from "@/lib/utils";
 
-const FALLBACK_CHAIN = [logoPaths.primary, logoPaths.transparent, logoPaths.whiteBg] as const;
+const VARIANT_SRC: Record<WebLogoVariant, string> = {
+  "clean-icon": logoPaths.clean.icon,
+  "clean-full": logoPaths.clean.full,
+  "clean-medium": logoPaths.clean.medium,
+  "glam-full": logoPaths.glam.full,
+  "glam-icon": logoPaths.glam.icon,
+};
 
-interface ClubLogoImageProps {
-  /** Render width in px — height scales with object-contain */
+const VARIANT_FALLBACK: Partial<Record<WebLogoVariant, WebLogoVariant[]>> = {
+  "clean-icon": ["clean-medium"],
+  "clean-full": ["clean-medium"],
+  "glam-full": ["glam-icon"],
+};
+
+function resolveSrc(variant: WebLogoVariant, fallbackIndex: number): string {
+  if (fallbackIndex === 0) return VARIANT_SRC[variant];
+  const chain = VARIANT_FALLBACK[variant] ?? [];
+  const next = chain[fallbackIndex - 1];
+  return next ? VARIANT_SRC[next] : VARIANT_SRC[variant];
+}
+
+interface WebLogoProps {
+  variant?: WebLogoVariant;
+  /** Max render width in px — height follows aspect ratio */
   width?: number;
+  /** White rounded tile — required for icons on dark sidebar */
+  tile?: boolean;
+  /** Use empty alt when visible text already names the club */
+  decorative?: boolean;
   className?: string;
+  tileClassName?: string;
   priority?: boolean;
 }
 
-/** Black transparent logo — no colour filters or inversion */
-export function ClubLogoImage({ width = 96, className, priority = false }: ClubLogoImageProps) {
-  const [srcIndex, setSrcIndex] = useState(0);
-  const src = FALLBACK_CHAIN[srcIndex] ?? logoPaths.primary;
+/** Web-friendly Arbroath logo — no inversion or colour filters */
+export function WebLogo({
+  variant = "clean-icon",
+  width = 96,
+  tile = false,
+  decorative = false,
+  className,
+  tileClassName,
+  priority = false,
+}: WebLogoProps) {
+  const [fallbackIndex, setFallbackIndex] = useState(0);
+  const src = resolveSrc(variant, fallbackIndex);
+  const maxFallbacks = (VARIANT_FALLBACK[variant]?.length ?? 0) + 1;
 
-  return (
+  const image = (
     <Image
       src={src}
-      alt={`${clubName} logo`}
+      alt={decorative ? "" : clubName}
       width={width}
-      height={width}
-      className={cn("h-auto w-full object-contain", className)}
+      height={Math.round(width * 1.1)}
+      className={cn("h-auto w-full max-w-full object-contain", className)}
       onError={() => {
-        setSrcIndex((i) => Math.min(i + 1, FALLBACK_CHAIN.length - 1));
+        setFallbackIndex((i) => Math.min(i + 1, maxFallbacks - 1));
       }}
+      priority={priority}
+      aria-hidden={decorative ? true : undefined}
+    />
+  );
+
+  if (!tile) return image;
+
+  return (
+    <div
+      className={cn(
+        "rounded-xl bg-white p-2.5 shadow-sm ring-1 ring-black/5 sm:p-3",
+        tileClassName,
+      )}
+    >
+      {image}
+    </div>
+  );
+}
+
+/** Sidebar / mobile drawer — clean icon on white tile */
+export function SidebarLogoTile({ className }: { className?: string }) {
+  return (
+    <WebLogo
+      variant="clean-icon"
+      width={88}
+      tile
+      tileClassName={cn("mx-auto w-[88px] lg:w-[104px]", className)}
+      priority
+    />
+  );
+}
+
+/** Full clean logo for dashboard, demo, reports — light backgrounds */
+export function WebLogoFull({
+  className,
+  width = 220,
+  priority = false,
+}: {
+  className?: string;
+  width?: number;
+  priority?: boolean;
+}) {
+  return (
+    <WebLogo
+      variant="clean-full"
+      width={width}
+      className={cn("max-w-[min(100%,280px)]", className)}
       priority={priority}
     />
   );
 }
 
-export type LogoTileSize = "sidebar" | "drawer" | "dashboard" | "report" | "compact";
-
-const TILE_SIZE: Record<
-  LogoTileSize,
-  { tileClass: string; imageWidth: number; padding: string }
-> = {
-  /** Desktop sidebar — 104px tile */
-  sidebar: { tileClass: "w-[104px]", imageWidth: 96, padding: "p-2.5" },
-  /** Mobile drawer — 88px tile */
-  drawer: { tileClass: "w-[88px]", imageWidth: 80, padding: "p-2" },
-  /** Dashboard welcome — supporting mark beside club name */
-  dashboard: { tileClass: "w-20 sm:w-24", imageWidth: 88, padding: "p-2 sm:p-2.5" },
-  /** Report / export headers */
-  report: { tileClass: "w-[72px] sm:w-20", imageWidth: 72, padding: "p-2" },
-  /** Settings card */
-  compact: { tileClass: "w-14", imageWidth: 48, padding: "p-1.5" },
-};
-
-interface LogoTileProps {
-  size?: LogoTileSize;
-  className?: string;
-  /** Override responsive tile width classes */
-  tileClassName?: string;
-  priority?: boolean;
-}
-
-/** White rounded tile for the official black logo — use on dark or coloured backgrounds */
-export function LogoTile({
-  size = "sidebar",
-  className,
-  tileClassName,
-  priority = false,
-}: LogoTileProps) {
-  const config = TILE_SIZE[size];
-
+/** Optional glam accent — decorative only */
+export function GlamLogoAccent({ className }: { className?: string }) {
   return (
-    <div
-      className={cn(
-        "rounded-xl bg-white shadow-sm ring-1 ring-black/5",
-        config.padding,
-        tileClassName ?? config.tileClass,
-        className,
-      )}
-    >
-      <ClubLogoImage width={config.imageWidth} priority={priority} />
-    </div>
-  );
-}
-
-/** Responsive sidebar/drawer tile: 88px mobile drawer, 104px desktop sidebar */
-export function SidebarLogoTile({ className }: { className?: string }) {
-  return (
-    <LogoTile
-      size="sidebar"
-      className={className}
-      tileClassName="mx-auto w-[88px] lg:w-[104px]"
-      priority
+    <WebLogo
+      variant="glam-icon"
+      width={56}
+      decorative
+      className={cn("opacity-90", className)}
     />
   );
 }
+
+/** @deprecated Use WebLogo — kept for settings compact tile */
+export type LogoTileSize = "sidebar" | "drawer" | "dashboard" | "report" | "compact";
+
+export function LogoTile({
+  size = "compact",
+  className,
+  priority = false,
+}: {
+  size?: LogoTileSize;
+  className?: string;
+  priority?: boolean;
+}) {
+  if (size === "sidebar" || size === "drawer") {
+    return <SidebarLogoTile className={className} />;
+  }
+  const width = size === "compact" ? 48 : 200;
+  return (
+    <WebLogo
+      variant={size === "compact" ? "clean-icon" : "clean-full"}
+      width={width}
+      tile={size === "compact"}
+      tileClassName={size === "compact" ? "w-14" : undefined}
+      className={className}
+      priority={priority}
+    />
+  );
+}
+
+export const ClubLogoImage = WebLogo;

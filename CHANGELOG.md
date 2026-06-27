@@ -2,6 +2,25 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.5c] — 2026-06-27
+
+### Added
+
+- Web-friendly generated logo assets in `public/branding/` (clean icon/full/512, glam icon/full)
+- `WebLogo`, `WebLogoFull`, `GlamLogoAccent` components with variant-based paths
+- Official detailed PNGs moved to `public/branding/official/` for reference only
+
+### Changed
+
+- Sidebar and mobile drawer use clean icon on white tile (not official detailed logo)
+- Dashboard welcome, demo/about hero, and report headers use full clean logo on light backgrounds
+- Optional glam icon accent on dashboard and demo hero (decorative, not in nav/tables)
+- `logoPaths` in branding config: clean/glam primary, official as fallback reference
+
+### Safety
+
+- `PROVIDER_MODE` remains `"demo"`; no auth, database, or Supabase on public routes
+
 ## [1.4.5a] — 2026-06-27
 
 ### Changed
