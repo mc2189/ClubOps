@@ -1,5 +1,23 @@
 # ClubOps — Build Notes
 
+## Iteration 29 — v1.4.6 Demo tester brief and smoke test (2026-06-27)
+
+### What was built
+
+- [TESTER_BRIEF.md](./TESTER_BRIEF.md) for volunteer feedback rounds
+- `scripts/smoke-test-demo.sh` — 31 automated checks on production URL
+
+### Commands run
+
+```bash
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+npm run lint
+npm run typecheck
+npm run build
+```
+
+---
+
 ## Iteration 28 — v1.4.5h Reference banner art integration (2026-06-27)
 
 ### What was built
