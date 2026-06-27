@@ -1,7 +1,13 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { DEMO_BANNER_TEXT, DEMO_BANNER_TEXT_SHORT } from "@/lib/demoCopy";
 
 export function DemoBanner() {
+  const pathname = usePathname();
+  if (pathname === "/dashboard") return null;
+
   return (
     <div
       role="status"

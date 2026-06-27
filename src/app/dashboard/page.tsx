@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { PageHeader, Card, StatCard } from "@/components/ui";
 import {
@@ -11,7 +10,7 @@ import {
   DashboardPriorities,
 } from "@/components/dashboard";
 import { dataProvider } from "@/data/providers";
-import { DashboardWelcomeCard } from "@/components/branding/DashboardWelcomeCard";
+import { GlamDashboardHero } from "@/components/branding/GlamDashboardHero";
 import { formatCurrency } from "@/lib/utils";
 
 export default async function DashboardPage() {
@@ -19,19 +18,11 @@ export default async function DashboardPage() {
 
   return (
     <DashboardLayout>
-      <DashboardWelcomeCard />
+      <GlamDashboardHero />
 
       <PageHeader
         title="Today's overview"
         description="Here's what needs your attention today."
-        action={
-          <Link
-            href="/demo"
-            className="rounded-md border border-brand-primary/30 bg-brand-soft px-3 py-1.5 text-xs font-medium text-brand-primary hover:bg-brand-primary/10"
-          >
-            About demo mode
-          </Link>
-        }
       />
 
       <DashboardPriorities tasks={data.tasks} />

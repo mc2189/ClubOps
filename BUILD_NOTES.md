@@ -1,5 +1,22 @@
 # ClubOps — Build Notes
 
+## Iteration 26 — v1.4.5f Glam dashboard hero redesign (2026-06-27)
+
+### What was built
+
+- `GlamDashboardHero` component — mockup-aligned hero with glam logo, CTAs, demo shield panel, CSS sparkles
+- Dashboard demo banner deduplicated; global banner hidden on dashboard route
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+---
+
 ## Iteration 25 — v1.4.5e Restore generated logo brand (2026-06-27)
 
 ### What was built

@@ -2,6 +2,24 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.5f] — 2026-06-27
+
+### Added
+
+- `GlamDashboardHero` — website-style dashboard hero with glam logo, CTAs, and demo info panel
+
+### Changed
+
+- Dashboard top section redesigned to match glam hero mockup (rounded card, mint/emerald gradient, sparkle accents)
+- Glam full logo as right-side hero visual; sidebar branding unchanged
+- Dashboard copy simplified — no visible duplicate club name beside logo
+- Global demo banner hidden on `/dashboard` (hero carries demo messaging); banner text updated
+- Removed duplicate “About demo mode” link from dashboard overview header
+
+### Safety
+
+- `PROVIDER_MODE` remains `"demo"`; no auth, database, or Supabase on public routes
+
 ## [1.4.5e] — 2026-06-27
 
 ### Added
