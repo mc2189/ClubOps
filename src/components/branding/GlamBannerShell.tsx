@@ -2,6 +2,7 @@ import Image from "next/image";
 import {
   EmeraldBand,
   GlamBannerBackground,
+  GlamBannerBackgroundMobileMinimal,
   PinkRibbonWave,
 } from "@/components/branding/GlamBannerDecor";
 import { brandAssets } from "@/config/branding";
@@ -39,7 +40,6 @@ export function GlamBannerArtPanel({
           isHero ? "!w-[165%] !max-w-none" : "!w-[175%] !max-w-none",
         )}
       />
-      {/* Soft blend into the solid left panel */}
       <div className="absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white to-transparent sm:w-14" />
     </div>
   );
@@ -54,8 +54,8 @@ interface GlamBannerShellProps {
 }
 
 /**
- * Split glam banner: solid content panel (left) + cropped reference art (right).
- * Mobile: compact text-first layout with CSS glam accents — no tall art strip.
+ * Split glam banner: solid content panel (left) + cropped reference art (right) on tablet+.
+ * Mobile: compact text-first card — CSS ribbon accents only, no reference art under text.
  */
 export function GlamBannerShell({
   variant,
@@ -69,48 +69,36 @@ export function GlamBannerShell({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-emerald-100/70 shadow-md ring-1 ring-emerald-900/5",
+        "relative overflow-hidden",
+        isHero
+          ? "rounded-xl border border-emerald-100/70 shadow-sm ring-1 ring-emerald-900/5 sm:rounded-2xl sm:shadow-md"
+          : "rounded-lg border border-emerald-100/50 shadow-sm sm:rounded-2xl sm:border-emerald-100/70 sm:shadow-md sm:ring-1 sm:ring-emerald-900/5",
         isHero
           ? "sm:min-h-[340px] lg:min-h-[360px] lg:max-h-[400px]"
           : "sm:min-h-[150px] lg:min-h-[170px] lg:max-h-[210px]",
         className,
       )}
     >
-      {/* Desktop/tablet ribbon accents */}
       <PinkRibbonWave className="pointer-events-none absolute bottom-[6%] left-0 z-[1] hidden h-8 w-full text-pink-300/55 sm:block sm:h-10" />
       <EmeraldBand className="pointer-events-none absolute bottom-0 right-0 z-[1] hidden h-[45%] w-[55%] text-brand-primary sm:block" />
 
-      {/* Mobile: subtle CSS glam background (no reference art under text) */}
       <div className="pointer-events-none absolute inset-0 sm:hidden" aria-hidden="true">
-        <GlamBannerBackground dense />
+        {isHero ? <GlamBannerBackground dense /> : <GlamBannerBackgroundMobileMinimal />}
       </div>
 
-      {/* Hero mobile: thin decorative art strip — bottom-right accent only */}
-      {isHero && (
-        <div
-          className="pointer-events-none absolute bottom-0 right-0 z-[1] h-12 w-[48%] overflow-hidden opacity-40 sm:hidden"
-          aria-hidden="true"
-        >
-          <GlamBannerArtPanel variant="hero" priority={priority} />
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/70 to-white" />
-        </div>
-      )}
-
       <div className="relative z-10 flex min-h-[inherit] flex-col sm:flex-row">
-        {/* Left: solid panel — reference image never sits under live HTML on mobile */}
         <div
           className={cn(
             "relative flex flex-1 flex-col justify-center",
             isHero
-              ? "bg-white/95 px-4 py-4 sm:bg-gradient-to-br sm:from-white sm:via-white sm:to-emerald-50/50 sm:px-7 sm:py-6 lg:max-w-[56%] lg:px-8"
-              : "bg-white/95 px-4 py-3 sm:bg-gradient-to-br sm:from-white sm:via-white sm:to-emerald-50/50 sm:max-w-[62%] sm:px-6 sm:py-5 lg:max-w-[58%]",
+              ? "bg-white/95 px-3 py-3 sm:bg-gradient-to-br sm:from-white sm:via-white sm:to-emerald-50/50 sm:px-7 sm:py-6 lg:max-w-[56%] lg:px-8"
+              : "bg-white/95 px-3 py-2.5 sm:bg-gradient-to-br sm:from-white sm:via-white sm:to-emerald-50/50 sm:max-w-[62%] sm:px-6 sm:py-5 lg:max-w-[58%]",
             contentClassName,
           )}
         >
           {children}
         </div>
 
-        {/* Right: cropped glam art (tablet/desktop only) */}
         <div
           className={cn(
             "relative hidden shrink-0 sm:block",

@@ -16,20 +16,32 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       >
         Skip to main content
       </a>
-      <div className="flex min-h-screen flex-col">
-        <DemoBanner />
-        <div className="flex flex-1">
+      <div className="flex min-h-[100dvh] flex-col">
+        {/* Desktop: demo banner stays above the shell column */}
+        <div className="hidden shrink-0 lg:block">
+          <DemoBanner />
+        </div>
+        <div className="flex min-h-0 flex-1">
           <div className="hidden lg:block lg:sticky lg:top-0 lg:h-[calc(100dvh-2.5rem)] lg:min-h-0">
             <Sidebar />
           </div>
-          <div className="flex min-w-0 flex-1 flex-col">
-            <TopBar />
-            <main
-              id="main-content"
-              className="flex-1 overflow-x-hidden overflow-y-auto bg-slate-50 p-4 pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:p-6 lg:pb-6"
-            >
-              {children}
-            </main>
+          <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+            {/*
+              Mobile: single scroll column — demo banner, top bar and page content scroll together.
+              Desktop: sticky top bar + scrolling main only.
+            */}
+            <div className="flex min-h-0 flex-1 flex-col overflow-x-hidden overflow-y-auto lg:overflow-hidden">
+              <div className="shrink-0 lg:hidden">
+                <DemoBanner />
+              </div>
+              <TopBar />
+              <main
+                id="main-content"
+                className="flex-1 bg-slate-50 p-3 pb-[calc(5rem+env(safe-area-inset-bottom))] sm:p-4 md:p-6 lg:min-h-0 lg:overflow-y-auto lg:pb-6"
+              >
+                {children}
+              </main>
+            </div>
           </div>
         </div>
         <MobileDrawer />

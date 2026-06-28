@@ -57,28 +57,28 @@ function ClipboardIcon({ className }: { className?: string }) {
   );
 }
 
-/** Dashboard wide hero — compact on mobile, full glam split panel on tablet/desktop */
+/** Dashboard hero — ultra-compact on mobile, full glam split panel on tablet/desktop */
 export function GlamDashboardHero() {
   return (
-    <section aria-labelledby="dashboard-hero-heading" className="mb-4 sm:mb-6">
+    <section aria-labelledby="dashboard-hero-heading" className="mb-3 sm:mb-6">
       <GlamBannerShell variant="hero" priority>
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-pink-200/90 bg-pink-50/95 px-2.5 py-0.5 text-[11px] font-semibold text-pink-700 shadow-sm sm:px-3 sm:py-1 sm:text-xs">
-          <Sparkle className="h-2.5 w-2.5 shrink-0 sm:h-3 sm:w-3" />
+        <span className="inline-flex items-center gap-1 rounded-full border border-pink-200/90 bg-pink-50/95 px-2 py-0.5 text-[10px] font-semibold text-pink-700 shadow-sm sm:gap-1.5 sm:px-3 sm:py-1 sm:text-xs">
+          <Sparkle className="h-2 w-2 shrink-0 sm:h-3 sm:w-3" />
           Demo mode
         </span>
 
         <h1
           id="dashboard-hero-heading"
-          className="mt-2 font-serif text-2xl font-bold tracking-tight text-brand-charcoal sm:mt-3 sm:text-3xl lg:text-[2.6rem] lg:leading-[1.1]"
+          className="mt-1.5 font-serif text-3xl font-bold leading-tight tracking-tight text-brand-charcoal sm:mt-3 sm:text-3xl lg:text-[2.6rem] lg:leading-[1.1]"
         >
           Welcome back
         </h1>
         <p className="mt-1 max-w-md text-sm leading-snug text-slate-600">{dashboardWelcomeSubtitle}</p>
 
-        <div className="mt-3 flex flex-col gap-2 sm:mt-4 sm:flex-row sm:flex-wrap">
+        <div className="mt-2.5 flex flex-col gap-1.5 sm:mt-4 sm:flex-row sm:flex-wrap sm:gap-2.5">
           <Link
             href="#priorities-heading"
-            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-brand-primary px-4 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-brand-primary-hover sm:w-auto sm:px-5"
+            className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-brand-primary px-4 py-2.5 text-sm font-semibold text-white shadow-md hover:bg-brand-primary-hover sm:min-h-[44px] sm:w-auto sm:px-5"
           >
             <ClipboardIcon className="h-4 w-4" />
             View today&apos;s priorities
@@ -86,18 +86,18 @@ export function GlamDashboardHero() {
           </Link>
           <Link
             href="/demo"
-            className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-brand-charcoal shadow-sm hover:bg-slate-50 sm:w-auto sm:px-5"
+            className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-brand-charcoal shadow-sm hover:bg-slate-50 sm:min-h-[44px] sm:w-auto sm:px-5"
           >
             <InfoIcon className="h-4 w-4 text-brand-primary" />
             About this {productName} demo
           </Link>
         </div>
 
-        <div className="mt-3 flex max-w-md gap-2.5 rounded-lg border border-emerald-200/80 bg-emerald-50/90 px-3 py-2 shadow-sm sm:mt-4 sm:gap-3 sm:rounded-xl sm:px-3.5 sm:py-2.5">
+        <div className="mt-2.5 flex gap-2 rounded-lg border border-emerald-200/80 bg-emerald-50/90 px-2.5 py-1.5 shadow-sm sm:mt-4 sm:max-w-md sm:gap-3 sm:px-3.5 sm:py-2.5">
           <ShieldIcon className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary sm:h-5 sm:w-5" />
-          <div className="min-w-0 text-xs leading-snug sm:text-sm">
-            <p className="font-semibold text-brand-charcoal">You&apos;re viewing a demo club</p>
-            <p className="mt-0.5 text-slate-600">
+          <div className="min-w-0 text-[11px] leading-snug sm:text-sm">
+            <p className="font-semibold text-brand-charcoal">Demo club — changes not saved</p>
+            <p className="mt-0.5 hidden text-slate-600 sm:block">
               Changes are not saved and do not affect real data.
             </p>
           </div>

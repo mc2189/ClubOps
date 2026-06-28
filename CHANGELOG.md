@@ -2,6 +2,21 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.5j] — 2026-06-27
+
+### Changed — Final mobile banner and layout polish
+
+- **Mobile scroll model** — demo banner, top bar and page content scroll together on phone; only bottom nav stays fixed; top bar sticky on desktop (`lg`) only
+- **Dashboard hero** — tighter mobile padding, `text-3xl` heading, 48px CTAs, one-line demo info panel; no reference art on mobile
+- **Internal page headers** — ultra-compact on phone (~96–140px): hidden breadcrumbs, `text-lg` title, line-clamped subtitle, minimal ribbon accent only
+- **Bottom safe area** — increased main bottom padding; export/compose buttons full width on mobile
+- **Demo page** — logo hidden on phone; shorter intro block
+
+### Added
+
+- Mobile screenshot checklist in [scripts/mobile-viewport-check.md](./scripts/mobile-viewport-check.md)
+- Scroll/sticky behaviour checks in [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md)
+
 ## [1.4.7] — 2026-06-27
 
 ### Changed — Mobile-first demo polish

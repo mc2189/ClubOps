@@ -36,7 +36,7 @@ Automated smoke test does **not** replace human verification of:
 
 - Role switcher / RBAC previews (Coach vs Treasurer vs Secretary)
 - Communications compose interactive flow (not stuck loading)
-- **Mobile layout** — visual checks at 360/390/430px (see [mobile-viewport-check.md](./scripts/mobile-viewport-check.md))
+- **Mobile layout** — visual checks at 360/390/430px; top banners must scroll away (not sticky). See [mobile-viewport-check.md](./scripts/mobile-viewport-check.md).
 - Attendance register mark Present/Absent
 - Export centre generate button (simulated success message)
 

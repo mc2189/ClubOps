@@ -1,5 +1,23 @@
 # ClubOps — Build Notes
 
+## Iteration 31 — v1.4.5j Final mobile banner and layout polish (2026-06-27)
+
+### What was built
+
+- Mobile unified scroll (no frozen top banner); compact dashboard hero and page headers
+- Bottom nav safe-area padding; export/compose mobile button sizing
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+```
+
+---
+
 ## Iteration 30 — v1.4.7 Mobile-first demo polish (2026-06-27)
 
 ### What was built

@@ -58,15 +58,28 @@ export function GlamBannerBackground({ dense = false }: { dense?: boolean }) {
       <div
         className={cn(
           "pointer-events-none absolute inset-0 bg-gradient-to-r from-white via-emerald-50/70 to-emerald-100/40",
-          dense && "via-white to-emerald-50/50",
+          dense && "via-white to-emerald-50/40",
         )}
         aria-hidden="true"
       />
-      <EmeraldBand className="pointer-events-none absolute bottom-0 right-0 h-[55%] w-[70%] text-brand-primary" />
-      <PinkRibbonWave className="pointer-events-none absolute bottom-[8%] left-0 h-8 w-[85%] text-pink-300/60 sm:h-10" />
+      <EmeraldBand className="pointer-events-none absolute bottom-0 right-0 h-[40%] w-[60%] text-brand-primary opacity-80 sm:h-[55%] sm:w-[70%] sm:opacity-100" />
+      <PinkRibbonWave className="pointer-events-none absolute bottom-[6%] left-0 h-6 w-[80%] text-pink-300/50 sm:bottom-[8%] sm:h-8 sm:w-[85%] sm:text-pink-300/60 md:h-10" />
       <Sparkle className="pointer-events-none absolute left-[12%] top-[18%] hidden h-2.5 w-2.5 text-pink-300/70 sm:block" />
       <Sparkle className="pointer-events-none absolute right-[38%] top-[22%] hidden h-2 w-2 text-emerald-400/50 lg:block" />
       <Sparkle className="pointer-events-none absolute bottom-[35%] left-[42%] hidden h-1.5 w-1.5 text-pink-200/80 md:block" />
+    </>
+  );
+}
+
+/** Ultra-light glam accent for mobile internal page headers */
+export function GlamBannerBackgroundMobileMinimal() {
+  return (
+    <>
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white via-white to-emerald-50/35"
+        aria-hidden="true"
+      />
+      <PinkRibbonWave className="pointer-events-none absolute -bottom-0.5 right-0 h-4 w-[65%] text-pink-200/35" />
     </>
   );
 }
@@ -165,28 +178,33 @@ export function GlamBannerTitle({
   title,
   breadcrumbs,
   compact = false,
+  hideBreadcrumbsOnMobile = false,
 }: {
   id?: string;
   title: string;
   breadcrumbs?: BreadcrumbItem[];
   /** Tighter typography for mobile internal page headers */
   compact?: boolean;
+  /** Hide breadcrumb trail on phone when space is tight */
+  hideBreadcrumbsOnMobile?: boolean;
 }) {
   return (
     <div className="min-w-0">
       {breadcrumbs && breadcrumbs.length > 0 && (
-        <BreadcrumbEyebrow items={breadcrumbs} compact={compact} />
+        <div className={cn(hideBreadcrumbsOnMobile && "hidden sm:block")}>
+          <BreadcrumbEyebrow items={breadcrumbs} compact={compact} />
+        </div>
       )}
       <h1
         id={id}
         className={cn(
-          "flex min-w-0 items-center gap-2 font-serif font-bold tracking-tight text-brand-charcoal",
+          "min-w-0 font-serif font-bold tracking-tight text-brand-charcoal",
           compact
-            ? "text-xl sm:text-3xl lg:text-4xl"
-            : "text-2xl sm:text-3xl lg:text-4xl",
+            ? "flex items-center gap-1.5 text-lg leading-tight sm:gap-2 sm:text-3xl lg:text-4xl"
+            : "flex items-center gap-2 text-2xl sm:text-3xl lg:text-4xl",
         )}
       >
-        <Sparkle className="hidden h-3.5 w-3.5 shrink-0 text-pink-400/70 sm:block" aria-hidden="true" />
+        <Sparkle className="hidden h-3 w-3 shrink-0 text-pink-400/70 sm:block" aria-hidden="true" />
         <span className="truncate">{title}</span>
         <Sparkle className="hidden h-3 w-3 shrink-0 text-pink-300/60 lg:block" aria-hidden="true" />
       </h1>

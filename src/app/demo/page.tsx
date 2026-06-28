@@ -44,16 +44,16 @@ const notIncluded = [
 export default function DemoModePage() {
   return (
     <DashboardLayout>
-      <div className="brand-shimmer relative mb-6 overflow-hidden rounded-xl border border-brand-primary/15 bg-gradient-to-br from-brand-soft via-white to-brand-accent px-5 py-6">
+      <div className="brand-shimmer relative mb-4 overflow-hidden rounded-xl border border-brand-primary/15 bg-gradient-to-br from-brand-soft via-white to-brand-accent px-4 py-4 sm:mb-6 sm:px-5 sm:py-6">
         <GlamLogoAccent className="pointer-events-none absolute bottom-4 right-4 hidden opacity-35 md:block" />
-        <div className="relative flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5">
-          <WebLogoFull width={220} className="shrink-0 self-start" decorative />
+        <div className="relative flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-5">
+          <WebLogoFull width={220} className="hidden shrink-0 self-start sm:block" decorative />
           <div className="min-w-0">
             <span className="sr-only">{clubName}</span>
             <p className="text-sm font-medium text-brand-primary">
               Branded {productName} demonstration — fake data only, not a live system.
             </p>
-            <p className="mt-2 text-sm text-slate-600">
+            <p className="mt-1.5 text-sm leading-snug text-slate-600 sm:mt-2">
               Safe to share with committee members and volunteers. All records, payments and
               documents in this demo are entirely fictional.
             </p>

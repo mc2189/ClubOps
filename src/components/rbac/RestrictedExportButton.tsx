@@ -13,7 +13,7 @@ interface RestrictedExportButtonProps {
 export function RestrictedExportButton({
   label,
   onExport,
-  className = "rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50",
+  className = "mt-4 flex min-h-[48px] w-full items-center justify-center rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50 sm:mt-0 sm:w-auto sm:justify-start",
 }: RestrictedExportButtonProps) {
   const { can, logRbacEvent, roleName } = useDemoRole();
   const allowed = can("exports", "export");

@@ -99,27 +99,37 @@ Follow `/demo-script` steps 1–10 in order:
 - [ ] `/communications/compose?template=tpl-competition` — competition template loads
 - [ ] Simulated send shows success message; no real email sent
 
-## Mobile-first demo polish (v1.4.7)
+## Mobile-first demo polish (v1.4.7 / v1.4.5j)
 
 Test on phone or narrow browser at **360px**, **390px**, and **430px** on the **live Vercel URL**. Also spot-check **768px** (tablet).
 
-See [scripts/mobile-viewport-check.md](./scripts/mobile-viewport-check.md) for DevTools steps and optional Playwright screenshots.
+See [scripts/mobile-viewport-check.md](./scripts/mobile-viewport-check.md) for DevTools steps, screenshot checklist, and optional Playwright commands.
 
 **Note:** Automated smoke tests do not validate visual mobile layout — use this section for that.
 
-- [ ] **Dashboard (iPhone-sized)** — compact glam hero; demo badge + CTAs readable; Today's priorities visible below hero (not full viewport)
-- [ ] **Members** — thin page header; breadcrumb compact; add member button does not overflow
-- [ ] **Attendance** — register present/absent controls usable; sticky save bar sits above bottom nav
-- [ ] **Communications compose** — recipients/template controls stack; simulated-send messaging obvious; no hang or overflow
-- [ ] **Finance / Gift Aid** — restricted role previews readable; cards/tables stack (horizontal scroll OK for wide tables only)
-- [ ] **Reports / export centre** — export buttons and warnings usable on phone
-- [ ] **Bottom nav** — Home, Members, Attendance, Messages, More; active item obvious; no content hidden behind nav
-- [ ] **No horizontal scroll** at 360px, 390px, 430px on key routes above
+### Scroll and sticky behaviour (v1.4.5j)
+
+- [ ] **Top banner not sticky on mobile** — dashboard hero, page headers and amber demo banner scroll away; only bottom nav stays fixed
+- [ ] Top bar (menu + role switcher) scrolls with content on phone; sticky top bar only on desktop (`lg`)
+
+### Layout checklist
+
+- [ ] **360px dashboard** — compact hero; Today's priorities visible without excessive scroll
+- [ ] **390px dashboard** — same
+- [ ] **430px dashboard** — same
+- [ ] **Members mobile** — compact header (~96–140px); list/cards readable; actions don't overflow
+- [ ] **Attendance mobile** — register controls tappable; sticky save bar above bottom nav
+- [ ] **Communications compose mobile** — form stacks; Save draft / Simulated send full width; warning clear
+- [ ] **Reports / export mobile** — export button reachable; safety copy visible
+- [ ] **Demo page mobile** — intro not too tall; safety wording scannable
+- [ ] **No horizontal scroll** at 360px, 390px, 430px on key routes
+- [ ] **No content hidden** behind bottom nav
+- [ ] **Bottom nav** — active item obvious; 56px touch targets
 - [ ] **Demo banner** — single wording on module pages: "Demo mode — fake data only. Reloading the page resets demo changes." (dashboard uses hero panel instead)
-- [ ] Menu button opens drawer; drawer closes on link tap / outside / Escape
-- [ ] Role switcher usable; "Not a real login" visible
-- [ ] Skip to main content link works
+- [ ] Menu drawer, role switcher, skip link still work
 - [ ] Desktop layout unchanged at `lg` width (sidebar visible, no bottom nav)
+
+## Mobile-first demo polish (v1.4.7 — superseded by section above)
 
 ## Mobile and tablet checklist (v1.4.2 — superseded by section above)
 

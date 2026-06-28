@@ -161,7 +161,7 @@ export function ComposeClient({
         </div>
       )}
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-2">
+      <div className="mt-6 grid gap-6 pb-4 lg:grid-cols-2 lg:pb-0">
         <div className="space-y-4">
           <Card>
             <h2 className="text-sm font-semibold text-slate-900">Recipients</h2>

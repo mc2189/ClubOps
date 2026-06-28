@@ -51,6 +51,7 @@ export function ExportCentreClient() {
         <Link href="/audit/activity" className="text-sm font-medium text-brand-primary hover:underline">View audit log →</Link>
       </div>
       <ReportsSecurityNotice />
+      <div className="h-2 lg:hidden" aria-hidden="true" />
     </>
   );
 }
