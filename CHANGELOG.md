@@ -2,6 +2,24 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.6b] — 2026-06-27
+
+### Added — Member profile summary and missing information
+
+- Member list status badges: class, fees, attendance tier, documents, Gift Aid (text labels)
+- Quick filters: Needs attention, Missing forms, Low attendance
+- Member profile summary panel: identity, status tiles, needs-attention warnings, recent activity timeline
+- Quick cross-module links (Finance, Attendance, Communications, Documents, Gift Aid)
+- Fee impact-style summaries and role-aware medical summary line
+- `lib/memberProfileSummary.ts` — attention items, status tiles, activity builder
+- Contact safety notice on profile and parent tab
+
+### Changed
+
+- Member profile actions full-width on mobile; parent tab shows preferred contact method
+- Attendance/Finance/Documents tabs link to related modules
+- Demo safety copy on Members pages
+
 ## [1.4.6a] — 2026-06-27
 
 ### Added — Finance guided bank statement review

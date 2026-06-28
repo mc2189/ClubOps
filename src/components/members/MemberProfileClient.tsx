@@ -5,14 +5,18 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Badge, Card, EmptyState, PageHeader, StatCard } from "@/components/ui";
 import { MemberTabs, useMemberTab, type MemberTabId } from "@/components/members/MemberTabs";
-import { DemoOnlyNotice, SensitiveDataNotice } from "@/components/members/MemberNotices";
+import {
+  DemoOnlyNotice,
+  SensitiveDataNotice,
+  ContactSafetyNotice,
+} from "@/components/members/MemberNotices";
+import { MemberProfileSummaryPanel } from "@/components/members/MemberProfileSummaryPanel";
 import { RestrictedContentPreview } from "@/components/rbac/RestrictedContentPreview";
 import { useMembersDemo } from "@/components/members/MembersDemoProvider";
+import { communicationsSummary } from "@/lib/memberProfileSummary";
 import {
   calculateAge,
   getMemberDisplayName,
-  getMemberInitials,
-  statusBadgeVariant,
 } from "@/lib/members";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { membersMemberTrail } from "@/lib/breadcrumbs";
@@ -62,14 +66,14 @@ export function MemberProfileClient({ memberId }: MemberProfileClientProps) {
     <>
       <PageHeader
         title={name}
-        description={`${profile.classGroup} · Joined ${formatDate(profile.joinedDate)}`}
+        description={`${profile.classGroup} · ${profile.membershipType} · Joined ${formatDate(profile.joinedDate)}`}
         breadcrumbs={membersMemberTrail(name)}
         backHref="/members"
         action={
-          <div className="flex flex-wrap gap-2">
+          <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:flex-wrap">
             <Link
               href={`/members/${memberId}/edit`}
-              className="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
               Edit
             </Link>
@@ -77,14 +81,14 @@ export function MemberProfileClient({ memberId }: MemberProfileClientProps) {
               <button
                 type="button"
                 onClick={() => setShowArchiveConfirm(true)}
-                className="rounded-md border border-amber-300 bg-amber-50 px-4 py-2 text-sm font-medium text-amber-800 hover:bg-amber-100"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-md border border-amber-300 bg-amber-50 px-4 py-2 text-sm font-medium text-amber-800 hover:bg-amber-100"
               >
                 Archive
               </button>
             )}
             <Link
               href="/members"
-              className="rounded-md px-4 py-2 text-sm font-medium text-slate-500 hover:text-slate-700"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-slate-500 hover:text-slate-700"
             >
               Back to list
             </Link>
@@ -111,22 +115,13 @@ export function MemberProfileClient({ memberId }: MemberProfileClientProps) {
         />
       )}
 
-      <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-start">
-        <div
-          className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-2xl font-bold text-indigo-600"
-          aria-hidden="true"
-        >
-          {getMemberInitials(profile)}
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <Badge variant={statusBadgeVariant(profile.status)}>{profile.status}</Badge>
-          {profile.hasMedicalFlag && <Badge variant="warning">Medical flag</Badge>}
-          <Badge variant="info">Age {calculateAge(profile.dateOfBirth)}</Badge>
-          <Badge variant="default">{profile.consentStatus} consent</Badge>
-        </div>
-      </div>
+      <MemberProfileSummaryPanel
+        profile={profile}
+        auditEvents={allAudit}
+        onNavigateTab={setActiveTab}
+      />
 
-      <div className="mt-6">
+      <div className="mt-6 pb-4">
         <MemberTabs activeTab={activeTab} onTabChange={setActiveTab} />
         <div className="mt-6" role="tabpanel">
           <TabContent tab={activeTab} profile={profile} auditEvents={allAudit} />
@@ -153,18 +148,18 @@ function ArchiveConfirmDialog({
           Archive <strong>{name}</strong>? This is a soft archive — the record is marked as
           archived, not permanently deleted. Demo changes reset on page refresh.
         </p>
-        <div className="mt-4 flex gap-3">
+        <div className="mt-4 flex flex-col gap-2 sm:flex-row">
           <button
             type="button"
             onClick={onConfirm}
-            className="rounded-md bg-amber-600 px-4 py-2 text-sm font-medium text-white hover:bg-amber-700"
+            className="min-h-[48px] rounded-md bg-amber-600 px-4 py-2 text-sm font-medium text-white hover:bg-amber-700"
           >
             Archive member
           </button>
           <button
             type="button"
             onClick={onCancel}
-            className="rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700"
+            className="min-h-[48px] rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700"
           >
             Cancel
           </button>
@@ -209,26 +204,27 @@ function OverviewTab({ profile }: { profile: MemberProfile }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <StatCard label="Age" value={calculateAge(profile.dateOfBirth)} hint={`DOB: ${formatDate(profile.dateOfBirth)}`} />
-      <StatCard label="Class / group" value={profile.classGroup} />
-      <StatCard label="Attendance" value={`${profile.attendance.percentage}%`} hint={`${profile.attendance.sessionsAttended} of ${profile.attendance.sessionsTotal} sessions`} />
+      <StatCard label="Class / session" value={profile.classGroup} />
+      <StatCard
+        label="Attendance"
+        value={`${profile.attendance.percentage}%`}
+        hint={`${profile.attendance.sessionsAttended} of ${profile.attendance.sessionsTotal} sessions`}
+      />
       <StatCard label="Gift Aid" value={profile.giftAidStatus} />
       <StatCard
         label="Finance"
         value={profile.finance.status}
-        hint={profile.finance.outstandingAmount > 0 ? formatCurrency(profile.finance.outstandingAmount) + " outstanding" : undefined}
+        hint={
+          profile.finance.outstandingAmount > 0
+            ? formatCurrency(profile.finance.outstandingAmount) + " outstanding"
+            : undefined
+        }
       />
       <StatCard label="Emergency contact" value={profile.emergencyContactComplete} />
       <Card className="sm:col-span-2 lg:col-span-3">
-        <h3 className="text-sm font-semibold text-slate-900">Parent / carer</h3>
-        <p className="mt-2 text-sm text-slate-600">
-          {profile.parentCarer.name !== "N/A" ? (
-            <>
-              {profile.parentCarer.name} · {profile.parentCarer.email || "No email"} ·{" "}
-              {profile.parentCarer.phone || "No phone"}
-            </>
-          ) : (
-            "Self (adult member)"
-          )}
+        <p className="text-sm text-slate-600">
+          See the summary panel above for needs-attention items, quick links and recent activity.
+          Use the tabs for full parent, medical, finance and document detail.
         </p>
       </Card>
     </div>
@@ -238,6 +234,7 @@ function OverviewTab({ profile }: { profile: MemberProfile }) {
 function ParentsTab({ profile }: { profile: MemberProfile }) {
   return (
     <div className="space-y-4">
+      <ContactSafetyNotice />
       <Card>
         <h3 className="text-sm font-semibold text-slate-900">Primary parent / carer</h3>
         <dl className="mt-3 space-y-2 text-sm">
@@ -245,6 +242,7 @@ function ParentsTab({ profile }: { profile: MemberProfile }) {
           <Row label="Email" value={profile.parentCarer.email || "—"} />
           <Row label="Phone" value={profile.parentCarer.phone || "—"} />
           <Row label="Relationship" value={profile.parentCarer.relationship} />
+          <Row label="Preferred contact" value={communicationsSummary(profile)} />
         </dl>
       </Card>
       <Card>
@@ -254,6 +252,11 @@ function ParentsTab({ profile }: { profile: MemberProfile }) {
           <Row label="Phone" value={profile.emergencyContact.phone || "—"} />
           <Row label="Completeness" value={profile.emergencyContactComplete} />
         </dl>
+        {profile.emergencyContactComplete !== "complete" && (
+          <p className="mt-3 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-900">
+            Emergency contact needs checking — confirm details with parent at next session.
+          </p>
+        )}
       </Card>
       <Card>
         <h3 className="text-sm font-semibold text-slate-900">Authorised pickup</h3>
@@ -269,6 +272,15 @@ function ParentsTab({ profile }: { profile: MemberProfile }) {
             ))}
           </ul>
         )}
+      </Card>
+      <Card>
+        <h3 className="text-sm font-semibold text-slate-900">Consent</h3>
+        <p className="mt-2 text-sm text-slate-600">
+          Photo/media consent status:{" "}
+          <Badge variant={profile.consentStatus === "complete" ? "success" : "warning"}>
+            {profile.consentStatus}
+          </Badge>
+        </p>
       </Card>
     </div>
   );
@@ -319,6 +331,12 @@ function AttendanceTab({ profile }: { profile: MemberProfile }) {
         <Row label="Sessions attended" value={profile.attendance.sessionsAttended} />
         <Row label="Total sessions" value={profile.attendance.sessionsTotal} />
       </dl>
+      <Link
+        href="/attendance"
+        className="mt-4 inline-flex min-h-[44px] items-center text-sm font-medium text-indigo-600 hover:underline"
+      >
+        Open attendance register →
+      </Link>
     </Card>
   );
 }
@@ -347,6 +365,12 @@ function FinanceTab({ profile }: { profile: MemberProfile }) {
               <Row label="Last payment" value={formatDate(profile.finance.lastPaymentDate)} />
             )}
           </dl>
+          <Link
+            href="/finance/fees"
+            className="mt-4 inline-flex min-h-[44px] items-center text-sm font-medium text-indigo-600 hover:underline"
+          >
+            View fee record →
+          </Link>
         </Card>
       </RestrictedContentPreview>
     </div>
@@ -358,14 +382,16 @@ function DocumentsTab({ profile }: { profile: MemberProfile }) {
     return (
       <EmptyState
         title="No documents linked"
-        description="Documents linked to this member will appear here."
+        description="Documents linked to this member will appear here. Check Documents module for club-wide forms."
+        actionLabel="Open documents"
+        actionHref="/documents"
       />
     );
   }
   return (
     <ul className="divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white">
       {profile.documents.map((doc) => (
-        <li key={doc.id} className="flex items-center justify-between px-4 py-3 text-sm">
+        <li key={doc.id} className="flex flex-col gap-1 px-4 py-3 text-sm sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="font-medium text-slate-900">{doc.title}</p>
             <p className="text-slate-500">{doc.category}</p>
@@ -404,7 +430,6 @@ function AuditTab({ events }: { events: MemberProfile["auditEvents"] }) {
   return (
     <div className="space-y-4">
       <SensitiveDataNotice area="Audit log" />
-      {/* TODO: RBAC — audit logs restricted to admin roles */}
       {events.length === 0 ? (
         <EmptyState title="No audit events" description="Changes to this member will be logged here." />
       ) : (

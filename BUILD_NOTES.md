@@ -1,5 +1,23 @@
 # ClubOps — Build Notes
 
+## Iteration 33 — v1.4.6b Member profile summary (2026-06-27)
+
+### What was built
+
+- Member list scan badges and attention filters
+- Profile summary panel, needs-attention section, activity timeline, cross-module links
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+```
+
+---
+
 ## Iteration 32 — v1.4.6a Finance guided statement review (2026-06-27)
 
 ### What was built

@@ -1,4 +1,9 @@
 import type { MemberProfile, MemberFormData, AuditEvent, MemberStatus } from "@/data/providers/types";
+import {
+  attendanceTier,
+  documentsStatusLabel,
+  profileNeedsAttention,
+} from "@/lib/memberProfileSummary";
 
 export function calculateAge(dateOfBirth: string): number {
   const today = new Date();
@@ -152,7 +157,10 @@ export type MemberFilterKey =
   | "medical"
   | "unpaid"
   | "missing-gift-aid"
-  | "incomplete-emergency";
+  | "incomplete-emergency"
+  | "needs-attention"
+  | "missing-forms"
+  | "low-attendance";
 
 export function matchesFilter(profile: MemberProfile, filter: MemberFilterKey): boolean {
   switch (filter) {
@@ -172,6 +180,12 @@ export function matchesFilter(profile: MemberProfile, filter: MemberFilterKey): 
       return profile.giftAidStatus === "missing";
     case "incomplete-emergency":
       return profile.emergencyContactComplete !== "complete";
+    case "needs-attention":
+      return profileNeedsAttention(profile);
+    case "missing-forms":
+      return profile.consentStatus !== "complete" || documentsStatusLabel(profile) === "Missing forms";
+    case "low-attendance":
+      return attendanceTier(profile) === "Low";
     default:
       return true;
   }

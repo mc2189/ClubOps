@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState } from "react";
 import { Badge, EmptyState } from "@/components/ui";
 import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
@@ -18,17 +18,21 @@ import {
 } from "@/lib/members";
 import { formatCurrency } from "@/lib/utils";
 import type { MemberProfile } from "@/data/providers/types";
+import { MemberListStatusBadges, MemberAttendanceCell } from "@/components/members/MemberListStatusBadges";
 import { cn } from "@/lib/utils";
 
 type ViewMode = "simple" | "detailed";
 
 const filters: { key: MemberFilterKey; label: string }[] = [
   { key: "all", label: "All" },
+  { key: "needs-attention", label: "Needs attention" },
+  { key: "missing-forms", label: "Missing forms" },
+  { key: "unpaid", label: "Owes fees" },
+  { key: "low-attendance", label: "Low attendance" },
   { key: "active", label: "Active" },
   { key: "inactive", label: "Inactive" },
   { key: "archived", label: "Archived" },
   { key: "medical", label: "Medical flag" },
-  { key: "unpaid", label: "Unpaid fees" },
   { key: "missing-gift-aid", label: "Missing Gift Aid" },
   { key: "incomplete-emergency", label: "Incomplete emergency" },
 ];
@@ -71,35 +75,7 @@ function GiftAidBadge({ profile }: { profile: MemberProfile }) {
 }
 
 function SimpleStatusBadges({ profile }: { profile: MemberProfile }) {
-  const badges: ReactNode[] = [];
-
-  if (profile.hasMedicalFlag) {
-    badges.push(
-      <Badge key="medical" variant="warning">
-        Medical flag
-      </Badge>,
-    );
-  }
-  if (profile.finance.status === "unpaid" || profile.finance.status === "overdue") {
-    badges.push(
-      <Badge key="fees" variant="danger">
-        {profile.finance.status === "overdue" ? "Fees overdue" : "Fees unpaid"}
-      </Badge>,
-    );
-  }
-  if (profile.emergencyContactComplete === "missing" || profile.emergencyContactComplete === "partial") {
-    badges.push(
-      <Badge key="emergency" variant={profile.emergencyContactComplete === "missing" ? "danger" : "warning"}>
-        {profile.emergencyContactComplete === "missing" ? "Missing emergency contact" : "Partial emergency contact"}
-      </Badge>,
-    );
-  }
-
-  if (badges.length === 0) {
-    return <span className="text-slate-400">—</span>;
-  }
-
-  return <div className="flex flex-wrap gap-1">{badges}</div>;
+  return <MemberListStatusBadges profile={profile} />;
 }
 
 export function MembersListClient() {
@@ -224,9 +200,9 @@ export function MembersListClient() {
                     </div>
                     <Link
                       href={`/members/${profile.id}`}
-                      className="inline-flex min-h-[44px] shrink-0 items-center rounded-md bg-indigo-50 px-3 text-sm font-medium text-indigo-700"
+                      className="inline-flex min-h-[44px] w-full items-center justify-center rounded-md bg-indigo-600 px-3 text-sm font-medium text-white sm:w-auto sm:bg-indigo-50 sm:text-indigo-700"
                     >
-                      View
+                      View profile
                     </Link>
                   </div>
                 </div>
@@ -340,7 +316,7 @@ export function MembersListClient() {
                       <GiftAidBadge profile={profile} />
                     </td>
                     <td className="whitespace-nowrap px-3 py-3 text-slate-600">
-                      {profile.attendance.percentage}%
+                      <MemberAttendanceCell profile={profile} />
                     </td>
                     <td className="whitespace-nowrap px-3 py-3">
                       <div className="flex gap-2">

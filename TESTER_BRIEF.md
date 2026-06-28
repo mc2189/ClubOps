@@ -25,9 +25,10 @@ Click **View today’s priorities** or open one priority card.
 
 ### 2. Members
 Go to **Members** → open any member (e.g. Jordan Reeves).  
-Check the profile tabs (parent/carer, medical flag, finance).
+Check the **summary panel** at the top (fees, attendance, Gift Aid, needs-attention).  
+Try the **Needs attention** filter on the list. Switch to **Coach** and open a medical-flag member — confirm restricted medical text.
 
-**We want to know:** Can you find member information easily? Is anything confusing or missing for a real club?
+**We want to know:** Can you quickly see who needs follow-up? Is the profile useful for a volunteer secretary?
 
 ### 3. Finance and Gift Aid (treasurer view)
 Use the role switcher → choose **Treasurer** (or Club Treasurer).  

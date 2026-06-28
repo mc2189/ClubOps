@@ -117,6 +117,20 @@ On live URL with **Treasurer** role (or Secretary):
 - [ ] Communications follow-up links present (simulated — no real send)
 - [ ] Mobile (390px): review cards stack; action buttons full width; no page horizontal scroll
 
+## Member profile summary (v1.4.6b)
+
+On live URL:
+
+- [ ] `/members` — status badges on cards (Fees, Attendance, Documents, Gift Aid) with text labels
+- [ ] Quick filters: Needs attention, Missing forms, Owes fees, Low attendance
+- [ ] `/members/mem-002` (Jordan Reeves) — summary panel with status tiles and recent activity
+- [ ] `/members/mem-005` or `/members/mem-008` — **Needs attention** section with plain-English actions
+- [ ] Parent/contact section shows demo safety wording; no real data prompt
+- [ ] Quick links to Finance, Attendance, Communications (simulated), Documents, Gift Aid
+- [ ] **Coach role** on medical-flag member — medical summary shows restricted message, not full notes
+- [ ] **Welfare Officer role** — full medical detail visible on Medical tab
+- [ ] Mobile (390px): list badges wrap; profile summary stacks; action buttons full width
+
 ## Mobile-first demo polish (v1.4.7 / v1.4.5j)
 
 Test on phone or narrow browser at **360px**, **390px**, and **430px** on the **live Vercel URL**. Also spot-check **768px** (tablet).
