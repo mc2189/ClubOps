@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Card, PageHeader, DataTable, Badge, EmptyState } from "@/components/ui";
+import { LocalSafetyNote } from "@/components/demo/LocalSafetyNote";
 import { DemoOnlyNotice } from "@/components/documents/DocumentsNotices";
 import { DocumentsSubNav } from "@/components/documents/DocumentsSubNav";
 import { useDocumentsDemo } from "@/components/documents/DocumentsDemoProvider";
@@ -9,6 +10,7 @@ import { priorityVariant } from "@/lib/documents";
 import {
   missingDocumentActionHref,
   missingDocumentActionLabel,
+  missingDocumentSecondaryHref,
 } from "@/lib/missingDocumentCompose";
 import { documentsTrail } from "@/lib/breadcrumbs";
 import type { MissingDocumentItem } from "@/data/providers/types";
@@ -16,6 +18,7 @@ import type { MissingDocumentItem } from "@/data/providers/types";
 function MissingDocumentMobileCard({ item }: { item: MissingDocumentItem }) {
   const actionHref = missingDocumentActionHref(item);
   const actionLabel = missingDocumentActionLabel(item);
+  const secondaryHref = missingDocumentSecondaryHref(item);
 
   return (
     <Card className="p-4">
@@ -37,12 +40,22 @@ function MissingDocumentMobileCard({ item }: { item: MissingDocumentItem }) {
           <dd className="text-slate-700">{item.suggestedAction}</dd>
         </div>
       </dl>
-      <Link
-        href={actionHref}
-        className="mt-4 inline-flex min-h-[48px] w-full items-center justify-center rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700"
-      >
-        {actionLabel}
-      </Link>
+      <div className="mt-4 flex flex-col gap-2">
+        <Link
+          href={actionHref}
+          className="inline-flex min-h-[48px] w-full items-center justify-center rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700"
+        >
+          {actionLabel}
+        </Link>
+        {secondaryHref && (
+          <Link
+            href={secondaryHref}
+            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
+          >
+            Assign demo document
+          </Link>
+        )}
+      </div>
     </Card>
   );
 }
@@ -60,6 +73,7 @@ export function MissingClient() {
       />
       <DocumentsSubNav active="Missing" />
       <DemoOnlyNotice />
+      <LocalSafetyNote className="mt-4">Demo only. Real uploads are disabled.</LocalSafetyNote>
       {missing.length === 0 ? (
         <EmptyState
           title="No missing documents"

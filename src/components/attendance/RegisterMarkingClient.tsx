@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Badge, PageHeader } from "@/components/ui";
 import { DemoOnlyNotice, MedicalFlagNotice } from "@/components/attendance/AttendanceNotices";
 import { useAttendanceDemo } from "@/components/attendance/AttendanceDemoProvider";
@@ -12,6 +12,7 @@ import {
   registerStatusLabel,
 } from "@/lib/attendance";
 import { cn } from "@/lib/utils";
+import { InlineActionFeedback } from "@/components/demo/InlineActionFeedback";
 import { attendanceRegisterTrail, attendanceTrail } from "@/lib/breadcrumbs";
 
 export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
@@ -21,6 +22,7 @@ export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
   const session = sessions.find((s) => s.id === sessionId);
   const [showMarkAllConfirm, setShowMarkAllConfirm] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const saveFeedbackRef = useRef<HTMLDivElement>(null);
 
   if (!session) {
     return (
@@ -37,6 +39,7 @@ export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
     saveRegister(sessionId);
     setSaveSuccess(true);
     setTimeout(() => setSaveSuccess(false), 4000);
+    saveFeedbackRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   function handleMarkAllPresent() {
@@ -75,9 +78,10 @@ export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
       </div>
 
       {saveSuccess && (
-        <div className="mt-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
-          Register saved successfully (demo session only).
-        </div>
+        <InlineActionFeedback
+          className="mt-4 hidden lg:block"
+          message="Register saved successfully (demo session only)."
+        />
       )}
 
       <div className="mt-4 hidden flex-wrap gap-3 lg:flex">
@@ -170,14 +174,14 @@ export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
                 </div>
               </div>
 
-              <div className="mt-4 grid grid-cols-2 gap-2 lg:grid-cols-5">
+              <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {ATTENDANCE_MARKS.map((mark) => (
                   <button
                     key={mark}
                     type="button"
                     onClick={() => setMemberMark(sessionId, entry.memberId, mark)}
                     className={cn(
-                      "min-h-[52px] rounded-lg border px-3 py-3 text-sm font-semibold ring-2 ring-offset-1 transition-all sm:min-h-[48px]",
+                      "min-h-[48px] rounded-lg border px-2 py-3 text-sm font-semibold ring-2 ring-offset-1 transition-all",
                       entry.mark === mark
                         ? markButtonStyles[mark]
                         : "border-slate-200 bg-white text-slate-600 ring-transparent hover:bg-slate-50",
@@ -193,21 +197,29 @@ export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
         )}
       </div>
 
-      <div className="fixed inset-x-0 bottom-[56px] z-20 flex gap-2 border-t border-slate-200 bg-white p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-lg lg:hidden">
-        <button
-          type="button"
-          onClick={() => setShowMarkAllConfirm(true)}
-          className="min-h-[48px] flex-1 rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-        >
-          Mark all present
-        </button>
-        <button
-          type="button"
-          onClick={handleSave}
-          className="min-h-[48px] flex-1 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
-        >
-          Save register
-        </button>
+      <div
+        ref={saveFeedbackRef}
+        className="fixed inset-x-0 bottom-[56px] z-20 flex flex-col gap-2 border-t border-slate-200 bg-white p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-lg lg:hidden"
+      >
+        {saveSuccess && (
+          <InlineActionFeedback message="Register saved successfully (demo session only)." />
+        )}
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => setShowMarkAllConfirm(true)}
+            className="min-h-[48px] flex-1 rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+          >
+            Mark all present
+          </button>
+          <button
+            type="button"
+            onClick={handleSave}
+            className="min-h-[48px] flex-1 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+          >
+            Save register
+          </button>
+        </div>
       </div>
     </>
   );

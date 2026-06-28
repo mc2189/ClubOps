@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
 import { DemoLoadingCard } from "@/components/demo/DemoLoadingCard";
+import { InlineActionFeedback } from "@/components/demo/InlineActionFeedback";
 import { DemoOnlyNotice } from "@/components/communications/CommunicationsNotices";
 import { CommunicationsSubNav } from "@/components/communications/CommunicationsSubNav";
 import { ComposeReasonPanel } from "@/components/communications/ComposeReasonPanel";
@@ -75,6 +76,7 @@ export function ComposeClient({
   const [sentRef, setSentRef] = useState<string | null>(null);
   const [initialized, setInitialized] = useState(false);
   const [loadTimedOut, setLoadTimedOut] = useState(false);
+  const sendFeedbackRef = useRef<HTMLDivElement>(null);
 
   const selectedGroup = groups.find((g) => g.id === groupId);
   const selectedTemplate = templates.find((t) => t.id === templateId);
@@ -141,6 +143,11 @@ export function ComposeClient({
     });
     setSentRef(ref);
   };
+
+  useEffect(() => {
+    if (!sentRef || !sendFeedbackRef.current) return;
+    sendFeedbackRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [sentRef]);
 
   if (!initialized || groups.length === 0) {
     if (loadTimedOut) {
@@ -229,15 +236,6 @@ export function ComposeClient({
                 Try: {p.label}
               </Link>
             ))}
-        </div>
-      )}
-
-      {sentRef && (
-        <div
-          role="status"
-          className="mt-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-900"
-        >
-          {SIMULATED_SEND_CONFIRMATION} Audit reference: {sentRef}.
         </div>
       )}
 
@@ -360,6 +358,14 @@ export function ComposeClient({
               >
                 Simulate send
               </button>
+            </div>
+            <div ref={sendFeedbackRef}>
+              {sentRef && (
+                <InlineActionFeedback
+                  className="mt-3"
+                  message={`${SIMULATED_SEND_CONFIRMATION} Demo reference: ${sentRef}.`}
+                />
+              )}
             </div>
             <p className="mt-2 text-xs text-amber-800">
               Demo only — no real emails or texts sent. No contact data is real.

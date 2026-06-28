@@ -180,4 +180,4 @@ export const COMMUNICATIONS_START_HERE = {
 };
 
 export const SIMULATED_SEND_CONFIRMATION =
-  "Demo message prepared. No real emails or texts were sent.";
+  "Demo message prepared. No real email or text was sent.";

@@ -56,6 +56,21 @@ export function FinanceDashboardClient() {
           ]}
         />
 
+        <div className="grid gap-2 sm:grid-cols-2">
+          <Link
+            href="/finance/fees"
+            className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+          >
+            View unpaid fees
+          </Link>
+          <Link
+            href="/finance/import"
+            className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-2.5 text-sm font-semibold text-indigo-900 hover:bg-indigo-100"
+          >
+            Use sample statement
+          </Link>
+        </div>
+
         <div className="grid gap-4 lg:grid-cols-2">
           <Card>
             <h2 className="text-sm font-semibold text-slate-900">Expenses awaiting receipt</h2>
@@ -79,7 +94,11 @@ export function FinanceDashboardClient() {
           </Card>
         </div>
 
-        <ModuleMoreTools title="More finance tools">
+        <ModuleMoreTools
+          title="More finance tools"
+          itemCount={5}
+          helperText="Open this for transactions, expenses, reports and other treasurer tools."
+        >
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { href: "/finance/fees", label: "Fees" },

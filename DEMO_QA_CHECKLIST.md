@@ -1,10 +1,24 @@
-# ClubOps — Demo QA Checklist (v1.4.6g)
+# ClubOps — Demo QA Checklist (v1.4.6h)
 
 Use this before sharing the Vercel demo link with a club secretary, treasurer or committee member.
 
 **Tester handout:** [TESTER_BRIEF.md](./TESTER_BRIEF.md) — five tasks and feedback questions to send volunteers.
 
 **Automated smoke test:** `./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app`
+
+## Mobile and granny usability (v1.4.6h)
+
+- [ ] **Members mobile cards** — stacked cards at 360–430px with status badges and View profile CTA
+- [ ] **Members filter** — mobile dropdown wraps cleanly (no horizontal page scroll from filters)
+- [ ] **Finance fees mobile cards** — amount due/paid/balance visible; Draft reminder for unpaid
+- [ ] **Documents missing mobile cards** — active below md; safety note visible
+- [ ] **Communications inline send confirmation** — appears under Simulate send button, not only at top
+- [ ] **Finance match feedback** — confirmation message appears on the transaction card
+- [ ] **Attendance save feedback** — visible in mobile sticky bar above bottom nav
+- [ ] **Role-aware navigation** — Finance/Gift Aid show restricted label for Coach role
+- [ ] **No horizontal scrolling** — check 360, 390, 430px on members, fees, staff, export centre
+- [ ] **Bottom nav** — does not cover primary CTAs (pb-24 padding on action pages)
+- [ ] **Local safety notes** — fees, staff, missing documents, gift-aid review, export centre
 
 ## Granny-mode hardening (v1.4.6g)
 

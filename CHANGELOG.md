@@ -2,6 +2,21 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.6h] — 2026-06-28
+
+### Changed — Mobile and granny usability fixes
+
+- Members list: mobile card layout always on small screens; filter dropdown; **Search members** placeholder; needs-attention badges
+- Finance fees: mobile fee cards with View fee record / Draft reminder CTAs and local safety note
+- Documents missing: safety note confirmed; secondary **Assign demo document** on mobile cards
+- Staff dashboard: quick tools and volunteer list visible outside collapsed sections; local safety note
+- Export centre: inline export confirmation near buttons; sensitive export helper text; local safety note
+- Communications compose: simulated-send confirmation inline under the button with scroll-into-view
+- Finance import review: green inline feedback on each transaction card; unmatched payment helper text
+- Attendance register: larger tap targets; save confirmation in mobile sticky action bar
+- Role-aware sidebar navigation with lock icon and restricted/summary labels; demo roles note in nav
+- Module **More tools** sections show counts and helper text; key presets/links visible outside accordions
+
 ## [1.4.6g] — 2026-06-27
 
 ### Changed — Granny-mode flow hardening

@@ -15,6 +15,7 @@ import {
   giftAidActionButtonClass,
   type GiftAidReviewAction,
 } from "@/lib/giftAidReviewActions";
+import { GIFT_AID_EXCEPTION_HELP } from "@/lib/terminologyHelp";
 import { formatCurrency, formatDate } from "@/lib/utils";
 import { giftAidTrail } from "@/lib/breadcrumbs";
 
@@ -54,6 +55,7 @@ export function GiftAidReviewClient() {
           <p className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
             {GIFT_AID_HMRC_SAFETY_LINE}
           </p>
+          <p className="text-xs text-slate-500">{GIFT_AID_EXCEPTION_HELP}</p>
         </div>
 
         <div className="mt-6 space-y-4 pb-24 lg:pb-6">

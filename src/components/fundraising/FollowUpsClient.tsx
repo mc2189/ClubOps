@@ -7,6 +7,7 @@ import { DemoOnlyNotice } from "@/components/fundraising/FundraisingNotices";
 import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
 import { COMMUNICATIONS_LINKS } from "@/lib/fundraising";
+import { BUSINESS_FOLLOWUP_HELP, PLEDGE_HELP } from "@/lib/terminologyHelp";
 import { formatDate } from "@/lib/utils";
 import { MODULES, moduleBackHref, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
@@ -19,6 +20,8 @@ export function FollowUpsClient() {
       <PageHeader title="Follow-ups" description="Tasks to chase pledges, send thank-yous and renew sponsorships." breadcrumbs={moduleBreadcrumb(MODULES.fundraising, "Follow-ups")} backHref={moduleBackHref(MODULES.fundraising, "Follow-ups")} />
       <FundraisingSubNav active="Follow-ups" />
       <DemoOnlyNotice />
+      <p className="mt-4 text-xs text-slate-500">{BUSINESS_FOLLOWUP_HELP}</p>
+      <p className="mt-1 text-xs text-slate-500">{PLEDGE_HELP}</p>
       <TableScrollWrap className="mt-4">
         <Card className="overflow-x-auto">
           <DataTable headers={["Donor/business", "Task", "Due", "Priority", "Campaign", "Suggested action", "Status", "Actions"]}>

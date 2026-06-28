@@ -52,15 +52,22 @@ export function CommunicationsDashboardClient() {
           ]}
         />
 
-        <ModuleMoreTools title="Suggested message presets">
-          <ul className="space-y-2">
+        <Card>
+          <h2 className="text-sm font-semibold text-slate-900">Suggested message presets</h2>
+          <p className="mt-1 text-xs text-slate-500">
+            Start from a common volunteer task — each preset fills the composer for you.
+          </p>
+          <ul className="mt-3 space-y-2">
             {dashboard.unpaidFeeCampaignPending && (
               <li className="flex flex-col gap-2 rounded-md border border-slate-200 px-3 py-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-900">Fee reminder</p>
                   <p className="text-xs text-slate-500">Source: Finance unpaid fees</p>
                 </div>
-                <Link href="/communications/compose?preset=unpaid-fees" className="text-sm font-medium text-indigo-600 hover:underline">
+                <Link
+                  href="/communications/compose?preset=unpaid-fees"
+                  className="inline-flex min-h-[44px] items-center text-sm font-medium text-indigo-600 hover:underline"
+                >
                   Open preset →
                 </Link>
               </li>
@@ -71,7 +78,10 @@ export function CommunicationsDashboardClient() {
                   <p className="text-sm font-medium text-slate-900">Gift Aid declaration request</p>
                   <p className="text-xs text-slate-500">Source: Gift Aid</p>
                 </div>
-                <Link href="/communications/compose?preset=gift-aid" className="text-sm font-medium text-indigo-600 hover:underline">
+                <Link
+                  href="/communications/compose?preset=gift-aid"
+                  className="inline-flex min-h-[44px] items-center text-sm font-medium text-indigo-600 hover:underline"
+                >
                   Open preset →
                 </Link>
               </li>
@@ -81,12 +91,15 @@ export function CommunicationsDashboardClient() {
                 <p className="text-sm font-medium text-slate-900">Missing consent forms</p>
                 <p className="text-xs text-slate-500">Source: Documents</p>
               </div>
-              <Link href="/communications/compose?preset=missing-forms" className="text-sm font-medium text-indigo-600 hover:underline">
+              <Link
+                href="/communications/compose?preset=missing-forms"
+                className="inline-flex min-h-[44px] items-center text-sm font-medium text-indigo-600 hover:underline"
+              >
                 Open preset →
               </Link>
             </li>
           </ul>
-        </ModuleMoreTools>
+        </Card>
 
         {recentSent.length > 0 && (
           <Card>
@@ -108,7 +121,11 @@ export function CommunicationsDashboardClient() {
           </Card>
         )}
 
-        <ModuleMoreTools title="More communications tools">
+        <ModuleMoreTools
+          title="More communications tools"
+          itemCount={6}
+          helperText="Open this for templates, groups, forms, inbox and message history."
+        >
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { href: "/communications/templates", label: "Templates" },

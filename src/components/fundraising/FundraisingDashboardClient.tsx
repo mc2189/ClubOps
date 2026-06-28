@@ -8,6 +8,7 @@ import { FundraisingSecurityNotice } from "@/components/fundraising/FundraisingN
 import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
 import { COMMUNICATIONS_LINKS, formatFundraisingCurrency } from "@/lib/fundraising";
+import { BUSINESS_FOLLOWUP_HELP } from "@/lib/terminologyHelp";
 import { FUNDRAISING_LANDING } from "@/lib/moduleTaskFlow";
 import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
@@ -44,6 +45,14 @@ export function FundraisingDashboardClient() {
           ]}
         />
 
+        <Link
+          href="/fundraising/follow-ups"
+          className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 sm:w-auto"
+        >
+          Review follow-ups
+        </Link>
+        <p className="text-xs text-slate-500">{BUSINESS_FOLLOWUP_HELP}</p>
+
         <Card>
           <h2 className="text-sm font-semibold text-slate-900">Active campaigns</h2>
           <ul className="mt-2 space-y-3">
@@ -66,7 +75,11 @@ export function FundraisingDashboardClient() {
           </ul>
         </Card>
 
-        <ModuleMoreTools title="More fundraising tools">
+        <ModuleMoreTools
+          title="More fundraising tools"
+          itemCount={6}
+          helperText="Open this for donations, campaigns, business leads and sponsorship messages."
+        >
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { href: "/fundraising/donations", label: "Donations" },

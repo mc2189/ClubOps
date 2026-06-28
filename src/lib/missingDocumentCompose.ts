@@ -21,7 +21,18 @@ export function missingDocumentComposeHref(item: MissingDocumentItem): string {
 export function missingDocumentActionLabel(item: MissingDocumentItem): string {
   if (item.linkedModule === "Finance") return "Upload demo document";
   if (item.linkedModule === "Staff") return "View staff record";
+  if (item.linkedModule === "Documents" || item.suggestedAction.includes("Upload")) {
+    return "Assign demo document";
+  }
   return "Open message draft";
+}
+
+export function missingDocumentSecondaryHref(item: MissingDocumentItem): string | null {
+  if (item.linkedModule === "Finance" || item.linkedModule === "Staff") return null;
+  if (missingDocumentActionLabel(item) === "Open message draft") {
+    return "/documents/assignment";
+  }
+  return null;
 }
 
 export function missingDocumentActionHref(item: MissingDocumentItem): string {

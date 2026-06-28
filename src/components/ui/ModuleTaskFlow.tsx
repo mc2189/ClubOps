@@ -85,20 +85,33 @@ export function ModuleStatusStrip({ items, className }: ModuleStatusStripProps) 
 
 interface ModuleMoreToolsProps {
   title?: string;
+  itemCount?: number;
+  helperText?: string;
+  defaultOpen?: boolean;
   children: ReactNode;
   className?: string;
 }
 
 export function ModuleMoreTools({
   title = "More tools",
+  itemCount,
+  helperText,
+  defaultOpen = false,
   children,
   className,
 }: ModuleMoreToolsProps) {
+  const summaryTitle =
+    itemCount != null && itemCount > 0 ? `${title} (${itemCount})` : title;
+
   return (
-    <details className={`rounded-lg border border-slate-200 bg-white p-4 ${className ?? ""}`}>
+    <details
+      open={defaultOpen || undefined}
+      className={`rounded-lg border border-slate-200 bg-white p-4 ${className ?? ""}`}
+    >
       <summary className="cursor-pointer text-sm font-semibold text-slate-900 hover:text-indigo-700">
-        {title}
+        {summaryTitle}
       </summary>
+      {helperText && <p className="mt-2 text-xs text-slate-500">{helperText}</p>}
       <div className="mt-3">{children}</div>
     </details>
   );

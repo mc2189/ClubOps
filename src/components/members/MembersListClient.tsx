@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Badge, EmptyState } from "@/components/ui";
+import { LocalSafetyNote } from "@/components/demo/LocalSafetyNote";
 import { ModulePrimaryPanel, ModuleStatusStrip } from "@/components/ui/ModuleTaskFlow";
 import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
@@ -139,11 +140,15 @@ export function MembersListClient() {
           ]}
         />
 
+        <LocalSafetyNote className="mt-2">
+          Demo data only. Do not enter real child, parent or contact information.
+        </LocalSafetyNote>
+
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <input
             type="search"
-            placeholder="Search by name, class or parent/carer…"
+            placeholder="Search members"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:max-w-sm"
@@ -153,7 +158,7 @@ export function MembersListClient() {
             {filtered.length} member{filtered.length !== 1 ? "s" : ""}
           </p>
         </div>
-        <div className="flex rounded-md border border-slate-200 p-0.5" role="group" aria-label="List view">
+        <div className="hidden rounded-md border border-slate-200 p-0.5 sm:flex" role="group" aria-label="List view">
           <button
             type="button"
             onClick={() => setViewMode("simple")}
@@ -179,7 +184,23 @@ export function MembersListClient() {
         </div>
       </div>
 
-      <div className="flex gap-2 overflow-x-auto pb-1">
+      <label htmlFor="member-filter-mobile" className="sr-only">
+        Filter members
+      </label>
+      <select
+        id="member-filter-mobile"
+        value={filter}
+        onChange={(e) => setFilter(e.target.value as MemberFilterKey)}
+        className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-sm md:hidden"
+      >
+        {filters.map((f) => (
+          <option key={f.key} value={f.key}>
+            {f.label}
+          </option>
+        ))}
+      </select>
+
+      <div className="hidden flex-wrap gap-2 md:flex">
         {filters.map((f) => (
           <button
             key={f.key}
@@ -187,7 +208,7 @@ export function MembersListClient() {
             onClick={() => setFilter(f.key)}
             aria-pressed={filter === f.key}
             className={cn(
-              "shrink-0 rounded-full px-3 py-1.5 text-xs font-medium",
+              "rounded-full px-3 py-1.5 text-xs font-medium",
               filter === f.key
                 ? "bg-indigo-600 text-white"
                 : "bg-slate-100 text-slate-700 hover:bg-slate-200",
@@ -207,40 +228,84 @@ export function MembersListClient() {
 
       {filtered.length === 0 ? (
         <EmptyState title="No members match" description="Try a different filter or search term." />
-      ) : viewMode === "simple" ? (
-        <ul className="space-y-3">
-          {filtered.map((profile) => (
-            <li
-              key={profile.id}
-              className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
-            >
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                <div>
+      ) : (
+        <>
+          <ul className="space-y-3 md:hidden">
+            {filtered.map((profile) => (
+              <li
+                key={profile.id}
+                className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
+              >
+                <div className="flex flex-col gap-3">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <Link
+                        href={`/members/${profile.id}`}
+                        className="text-base font-semibold text-slate-900 hover:text-indigo-600"
+                      >
+                        {getMemberDisplayName(profile)}
+                      </Link>
+                      {profileNeedsAttention(profile) && (
+                        <Badge variant="warning">Needs attention</Badge>
+                      )}
+                    </div>
+                    <p className="text-sm text-slate-500">
+                      {profile.classGroup} · Age {calculateAge(profile.dateOfBirth)}
+                    </p>
+                    <div className="mt-2">
+                      <SimpleStatusBadges profile={profile} />
+                    </div>
+                  </div>
                   <Link
                     href={`/members/${profile.id}`}
-                    className="text-base font-semibold text-slate-900 hover:text-indigo-600"
+                    className="inline-flex min-h-[48px] w-full items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
                   >
-                    {getMemberDisplayName(profile)}
+                    View profile
                   </Link>
-                  <p className="text-sm text-slate-500">
-                    {profile.classGroup} · Age {calculateAge(profile.dateOfBirth)}
-                  </p>
-                  <div className="mt-2">
-                    <SimpleStatusBadges profile={profile} />
-                  </div>
                 </div>
-                <Link
-                  href={`/members/${profile.id}`}
-                  className="inline-flex min-h-[44px] w-full items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 sm:w-auto"
+              </li>
+            ))}
+          </ul>
+
+          {viewMode === "simple" ? (
+            <ul className="hidden space-y-3 md:block">
+              {filtered.map((profile) => (
+                <li
+                  key={profile.id}
+                  className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
                 >
-                  View profile
-                </Link>
-              </div>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <TableScrollWrap>
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <Link
+                          href={`/members/${profile.id}`}
+                          className="text-base font-semibold text-slate-900 hover:text-indigo-600"
+                        >
+                          {getMemberDisplayName(profile)}
+                        </Link>
+                        {profileNeedsAttention(profile) && (
+                          <Badge variant="warning">Needs attention</Badge>
+                        )}
+                      </div>
+                      <p className="text-sm text-slate-500">
+                        {profile.classGroup} · Age {calculateAge(profile.dateOfBirth)}
+                      </p>
+                      <div className="mt-2">
+                        <SimpleStatusBadges profile={profile} />
+                      </div>
+                    </div>
+                    <Link
+                      href={`/members/${profile.id}`}
+                      className="inline-flex min-h-[44px] w-full items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 sm:w-auto"
+                    >
+                      View profile
+                    </Link>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <TableScrollWrap className="hidden md:block">
           <table className="min-w-full text-sm">
             <thead>
               <tr className="border-b border-slate-200 text-left text-xs uppercase text-slate-500">
@@ -289,6 +354,8 @@ export function MembersListClient() {
             </tbody>
           </table>
         </TableScrollWrap>
+          )}
+        </>
       )}
       </div>
     </>

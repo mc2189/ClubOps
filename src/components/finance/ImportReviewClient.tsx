@@ -21,6 +21,7 @@ import { formatCurrency, formatDate } from "@/lib/utils";
 import type { FeeRecord, ImportReviewItem } from "@/data/providers/types";
 import { financeImportReviewTrail } from "@/lib/breadcrumbs";
 import { cn } from "@/lib/utils";
+import { UNMATCHED_PAYMENT_HELP } from "@/lib/terminologyHelp";
 
 type ReviewTab = "ready" | "checking" | "unmatched" | "confirmed";
 
@@ -130,6 +131,7 @@ export function ImportReviewClient() {
       <FinanceRestrictedSection className="mt-4 space-y-4">
         <FinanceImportStepper currentStep={4} />
         <HowMatchingWorksPanel />
+        <p className="text-xs text-slate-500">{UNMATCHED_PAYMENT_HELP}</p>
 
         {summary && (
           <Card>
@@ -428,7 +430,11 @@ function TransactionReviewCard({
       )}
 
       {message && (
-        <p className="mt-3 rounded-md bg-slate-100 px-3 py-2 text-sm text-slate-800" role="status">
+        <p
+          className="mt-3 rounded-md border border-green-200 bg-green-50 px-3 py-2.5 text-sm text-green-900"
+          role="status"
+          aria-live="polite"
+        >
           {message}
         </p>
       )}

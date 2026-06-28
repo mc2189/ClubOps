@@ -1,5 +1,26 @@
 # ClubOps — Build Notes
 
+## Iteration 39 — v1.4.6h Mobile granny usability fixes (2026-06-28)
+
+### What was built
+
+- Mobile card layouts for members, finance fees; documents missing cards verified
+- Inline action feedback for compose, finance matching, attendance save, exports
+- Role-aware sidebar labels (restricted/summary + lock icon)
+- Discoverability improvements for More tools sections; visible quick links on staff/finance/comms
+- Local safety notes and plain-English terminology helpers on sensitive pages
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+```
+
+---
+
 ## Iteration 38 — v1.4.6g Granny-mode flow hardening (2026-06-27)
 
 ### What was built
