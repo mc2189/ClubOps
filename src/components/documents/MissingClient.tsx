@@ -21,9 +21,9 @@ function MissingDocumentMobileCard({ item }: { item: MissingDocumentItem }) {
   const secondaryHref = missingDocumentSecondaryHref(item);
 
   return (
-    <Card className="p-4">
-      <p className="font-semibold text-slate-900">{item.linkedPerson}</p>
-      <p className="mt-1 text-sm text-slate-700">{item.missingDocument}</p>
+    <Card className="min-w-0 max-w-full p-4">
+      <p className="break-words font-semibold text-slate-900">{item.linkedPerson}</p>
+      <p className="mt-1 break-words text-sm text-slate-700">{item.missingDocument}</p>
       <dl className="mt-3 space-y-2 text-sm">
         <div>
           <dt className="text-xs font-medium uppercase text-slate-500">Priority</dt>
@@ -33,11 +33,11 @@ function MissingDocumentMobileCard({ item }: { item: MissingDocumentItem }) {
         </div>
         <div>
           <dt className="text-xs font-medium uppercase text-slate-500">Source module</dt>
-          <dd className="text-slate-700">{item.linkedModule}</dd>
+          <dd className="break-words text-slate-700">{item.linkedModule}</dd>
         </div>
         <div>
           <dt className="text-xs font-medium uppercase text-slate-500">Suggested action</dt>
-          <dd className="text-slate-700">{item.suggestedAction}</dd>
+          <dd className="break-words text-slate-700">{item.suggestedAction}</dd>
         </div>
       </dl>
       <div className="mt-4 flex flex-col gap-2">
@@ -84,13 +84,16 @@ export function MissingClient() {
         />
       ) : (
         <>
-          <div className="mt-4 space-y-3 pb-24 md:hidden">
+          <div className="mt-4 min-w-0 space-y-3 pb-24 md:hidden" data-layout="missing-mobile-cards">
             {missing.map((item) => (
               <MissingDocumentMobileCard key={item.id} item={item} />
             ))}
           </div>
 
-          <Card className="mt-4 hidden overflow-x-auto md:block">
+          <div
+            className="mt-4 hidden min-w-0 overflow-x-auto md:block"
+            data-layout="missing-desktop-table"
+          >
             <DataTable
               headers={[
                 "Person / record",
@@ -120,7 +123,7 @@ export function MissingClient() {
                 </tr>
               ))}
             </DataTable>
-          </Card>
+          </div>
         </>
       )}
     </>

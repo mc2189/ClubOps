@@ -200,6 +200,7 @@ export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
       <div
         ref={saveFeedbackRef}
         className="fixed inset-x-0 bottom-[56px] z-20 flex flex-col gap-2 border-t border-slate-200 bg-white p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-lg lg:hidden"
+        data-layout="attendance-mobile-actions"
       >
         {saveSuccess && (
           <InlineActionFeedback message="Register saved successfully (demo session only)." />

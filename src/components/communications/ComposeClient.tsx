@@ -363,7 +363,7 @@ export function ComposeClient({
               {sentRef && (
                 <InlineActionFeedback
                   className="mt-3"
-                  message={`${SIMULATED_SEND_CONFIRMATION} Demo reference: ${sentRef}.`}
+                  message={`${SIMULATED_SEND_CONFIRMATION} Simulated audit reference: ${sentRef}.`}
                 />
               )}
             </div>

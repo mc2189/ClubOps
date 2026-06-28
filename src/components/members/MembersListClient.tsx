@@ -230,11 +230,11 @@ export function MembersListClient() {
         <EmptyState title="No members match" description="Try a different filter or search term." />
       ) : (
         <>
-          <ul className="space-y-3 md:hidden">
+          <ul className="min-w-0 space-y-3 md:hidden" data-layout="members-mobile-cards">
             {filtered.map((profile) => (
               <li
                 key={profile.id}
-                className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
+                className="min-w-0 max-w-full rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
               >
                 <div className="flex flex-col gap-3">
                   <div>
@@ -268,7 +268,7 @@ export function MembersListClient() {
           </ul>
 
           {viewMode === "simple" ? (
-            <ul className="hidden space-y-3 md:block">
+            <ul className="hidden min-w-0 space-y-3 md:block" data-layout="members-desktop-simple">
               {filtered.map((profile) => (
                 <li
                   key={profile.id}
@@ -305,7 +305,7 @@ export function MembersListClient() {
               ))}
             </ul>
           ) : (
-            <TableScrollWrap className="hidden md:block">
+            <TableScrollWrap className="hidden min-w-0 md:block" data-layout="members-desktop-table">
           <table className="min-w-full text-sm">
             <thead>
               <tr className="border-b border-slate-200 text-left text-xs uppercase text-slate-500">

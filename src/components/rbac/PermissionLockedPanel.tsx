@@ -13,6 +13,7 @@ import {
   RBAC_DEMO_ONLY_DISCLAIMER,
   RBAC_LOCKED_SECTION_EXPLANATION,
   RBAC_PUBLIC_DEMO_EXPLANATION,
+  RBAC_ROLE_SWITCHER_HINT,
 } from "@/lib/rbacCopy";
 import type { DemoRoleId, PermissionModule } from "@/lib/permissions";
 
@@ -59,6 +60,7 @@ export function PermissionLockedPanel({
         <strong>{RBAC_DEMO_ONLY_DISCLAIMER}</strong> {RBAC_PUBLIC_DEMO_EXPLANATION}
       </p>
       <p className="mt-2 text-xs text-amber-900">{RBAC_LOCKED_SECTION_EXPLANATION}</p>
+      <p className="mt-2 text-xs text-slate-600">{RBAC_ROLE_SWITCHER_HINT}</p>
       <RoleAccessRequired module={module} suggestedRoles={suggestedRoles} className="mt-3" />
       <div className="mt-2 flex flex-wrap gap-3 text-xs">
         <Link href="/settings/permissions" className="font-medium text-indigo-700 hover:underline">
@@ -108,6 +110,7 @@ export function PermissionSummaryPanel({
       <p className="mt-3 text-sm text-slate-700">
         <strong>{RBAC_DEMO_ONLY_DISCLAIMER}</strong> {RBAC_PUBLIC_DEMO_EXPLANATION}
       </p>
+      <p className="mt-2 text-xs text-slate-600">{RBAC_ROLE_SWITCHER_HINT}</p>
       <RoleAccessRequired module={module} suggestedRoles={suggestedRoles} className="mt-3" />
     </Card>
     </div>

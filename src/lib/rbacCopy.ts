@@ -10,6 +10,9 @@ export const RBAC_PUBLIC_DEMO_EXPLANATION =
 export const RBAC_LOCKED_SECTION_EXPLANATION =
   "This section is hidden in this demo role to show how live permissions would work. No real security is provided until authentication and server-side RBAC are implemented.";
 
+export const RBAC_ROLE_SWITCHER_HINT =
+  "This is restricted for the current demo role. You can change role using the Demo role selector in the top bar.";
+
 export const RBAC_SUMMARY_BY_MODULE: Partial<
   Record<
     PermissionModule,

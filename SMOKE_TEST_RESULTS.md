@@ -1,12 +1,36 @@
 # Smoke test results — live demo
 
 **URL:** https://club-ops-fawn.vercel.app  
-**Date:** 2026-06-28 (pre-deploy check for v1.4.6h local build)  
+**Date:** 2026-06-26 (v1.4.6i pre-deploy)  
 **Script:** `./scripts/smoke-test-demo.sh`
 
-## Result: PASS (31/31)
+## Result: PASS (31/31) — prior deploy (v1.4.6h)
 
-Note: Run again after v1.4.6h deploy to verify mobile usability changes on production.
+Re-run after v1.4.6i deploy to verify production.
+
+## Responsive check (v1.4.6i, local)
+
+**Script:** `BASE_URL=http://localhost:3000 npm run responsive-check`  
+**Result:** PASS (46/46)
+
+| Check | Result |
+|-------|--------|
+| No horizontal overflow at 360/390/430px (10 priority routes) | PASS (30) |
+| Mobile cards below md (members, fees, missing) | PASS (12) |
+| Desktop layout at 1280px (members, fees, missing) | PASS (4) |
+
+### Routes verified for overflow
+
+- `/members`, `/members?filter=needs-attention`
+- `/finance/fees`, `/documents/missing`, `/staff`, `/reports/export-centre`
+- `/attendance`, `/attendance/register/ses-mon-beginners`
+- `/communications/compose?preset=unpaid-fees`, `/settings`
+
+### Layout switching verified
+
+- Members: mobile cards / desktop simple or table at md+
+- Finance fees: mobile cards / desktop table at md+
+- Documents missing: mobile cards / desktop table at md+
 
 | Area | Result |
 |------|--------|
@@ -48,4 +72,5 @@ See [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) and [TESTER_BRIEF.md](./TESTE
 
 ```bash
 ./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+BASE_URL=http://localhost:3000 npm run responsive-check
 ```

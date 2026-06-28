@@ -1,10 +1,24 @@
-# ClubOps — Demo QA Checklist (v1.4.6h)
+# ClubOps — Demo QA Checklist (v1.4.6i)
 
 Use this before sharing the Vercel demo link with a club secretary, treasurer or committee member.
 
 **Tester handout:** [TESTER_BRIEF.md](./TESTER_BRIEF.md) — five tasks and feedback questions to send volunteers.
 
 **Automated smoke test:** `./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app`
+
+**Automated responsive check (v1.4.6i):** `BASE_URL=http://localhost:3000 npm run responsive-check` — verifies no horizontal overflow at 360/390/430px and mobile card vs desktop table switching on members, fees, and missing documents.
+
+## Responsive breakpoints (v1.4.6i)
+
+- [ ] **360 / 390 / 430px** — no page-level horizontal scroll on members, fees, missing documents, staff, export centre, attendance, compose, settings
+- [ ] **Finance fees** — mobile cards below md; desktop table at md+; safety note at top
+- [ ] **Documents missing** — stacked cards below md; desktop table at md+; long suggested actions wrap
+- [ ] **Members** — mobile cards below md; filter dropdown and search visible without overflow
+- [ ] **Export centre** — single-column cards on mobile; full-width action buttons
+- [ ] **768px** — sensible transition between mobile cards and desktop layouts
+- [ ] **Desktop (1280px+)** — tables remain on fees and missing documents where appropriate
+- [ ] **Bottom nav** — sticky save bars and primary CTAs sit above bottom nav (pb-24)
+- [ ] **Role switcher hint** — restricted previews mention Demo role selector in top bar
 
 ## Mobile and granny usability (v1.4.6h)
 

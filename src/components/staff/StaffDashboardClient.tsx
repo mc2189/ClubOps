@@ -41,7 +41,7 @@ export function StaffDashboardClient() {
       />
       <StaffSubNav active="Dashboard" />
 
-      <div className="mt-4 space-y-4 pb-24 lg:pb-6">
+      <div className="mt-4 min-w-0 max-w-full space-y-4 pb-24 lg:pb-6">
         <ModulePrimaryPanel config={STAFF_LANDING} />
         <ModuleStatusStrip
           items={[

@@ -102,6 +102,7 @@ export function CommunicationsDemoProvider({
   }, []);
 
   const simulateSend = useCallback((payload: SendPayload) => {
+    let demoRef = "DEMO-COMMS-001";
     const audit = createCommunicationsAuditEvent(
       "Simulated send",
       `To: ${payload.groupName} — ${payload.subject}`,
@@ -120,11 +121,15 @@ export function CommunicationsDemoProvider({
         : payload.templateId === "tpl-fee-reminder"
           ? "Finance"
           : "Communications",
-      auditReference: audit.id,
+      auditReference: demoRef,
     };
-    setHistory((prev) => [record, ...prev]);
+    setHistory((prev) => {
+      demoRef = `DEMO-COMMS-${String(prev.length + 1).padStart(3, "0")}`;
+      record.auditReference = demoRef;
+      return [record, ...prev];
+    });
     setLocalAuditEvents((prev) => [audit, ...prev]);
-    return audit.id;
+    return demoRef;
   }, []);
 
   const updateInboxStatus = useCallback((id: string, status: InboxResponseStatus) => {

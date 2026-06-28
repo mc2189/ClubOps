@@ -36,7 +36,7 @@ function ExportItemCard({
   }
 
   return (
-    <Card className="flex flex-col p-4">
+    <Card className="flex min-w-0 max-w-full flex-col overflow-hidden p-4">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <h3 className="text-sm font-medium text-brand-charcoal">{item.name}</h3>
         <Badge variant={sensitivityVariant[item.sensitivity]}>
@@ -52,8 +52,8 @@ function ExportItemCard({
         <p className="mt-2 text-xs text-slate-500">{SENSITIVE_EXPORT_HELP}</p>
       ) : null}
       {restricted && (
-        <p className="mt-2 text-xs text-amber-800">
-          Your current demo role cannot preview this export. Switch role to see a safe summary.
+        <p className="mt-2 break-words text-xs text-amber-800">
+          Restricted for your demo role — switch role in the top bar to preview this export.
         </p>
       )}
       {summaryOnly && !restricted && (
@@ -140,7 +140,7 @@ export function ExportCentreClient() {
         {grouped.map(({ category, items }) => (
           <section key={category}>
             <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">{category}</h2>
-            <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3" data-layout="export-centre-grid">
               {items.map((item) => (
                 <ExportItemCard key={item.id} item={item} onPreview={simulateExport} />
               ))}

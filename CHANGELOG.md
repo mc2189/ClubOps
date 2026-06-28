@@ -2,6 +2,24 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.6i] — 2026-06-26
+
+### Changed — Responsive verification and mobile table hardening
+
+- Verified mobile card / desktop table switching at 360, 390, 430, 768px and desktop width on priority routes
+- Finance fees: mobile cards with due date/overdue note, full-width CTAs, top and bottom demo safety notes
+- Documents missing: desktop table wrapper fixed for layout markers; `break-words` on long suggested actions
+- Members: mobile card layout markers; filter/search overflow fixes
+- Export centre: single-column mobile cards, full-width buttons, restricted-state wording
+- Staff and attendance: overflow fixes; 48px tap targets; sticky save bar above bottom nav
+- Communications compose: simulated audit reference labelled clearly (`Simulated audit reference: DEMO-COMMS-NNN`)
+- Restricted previews: plain-English role-switcher hint on locked panels
+- Added `scripts/responsive-check.mjs` and `npm run responsive-check` (Playwright scrollWidth + layout markers)
+
+### Safety (unchanged)
+
+- `PROVIDER_MODE` remains `"demo"`; no auth, database, or Supabase on public routes
+
 ## [1.4.6h] — 2026-06-28
 
 ### Changed — Mobile and granny usability fixes

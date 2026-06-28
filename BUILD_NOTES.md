@@ -1,5 +1,26 @@
 # ClubOps — Build Notes
 
+## Iteration 40 — v1.4.6i Responsive verification and mobile hardening (2026-06-26)
+
+### What was built
+
+- Playwright responsive check script (`npm run responsive-check`) — scrollWidth vs innerWidth and mobile/desktop layout markers
+- Verified priority routes at 360/390/430/768px and 1280px desktop
+- Documents missing desktop table layout marker on wrapper div (Card did not forward `data-layout`)
+- Polish on fees cards, export centre overflow, compose audit reference wording, RBAC role-switcher hint
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+BASE_URL=http://localhost:3000 npm run responsive-check
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+```
+
+---
+
 ## Iteration 39 — v1.4.6h Mobile granny usability fixes (2026-06-28)
 
 ### What was built

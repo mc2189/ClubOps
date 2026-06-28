@@ -21,11 +21,17 @@ const statusVariant = {
 
 function FeeMobileCard({ fee }: { fee: FeeRecord }) {
   const showReminder = fee.amountOutstanding > 0;
+  const overdueNote =
+    fee.status === "overdue"
+      ? "Overdue — follow up in this demo session"
+      : fee.amountOutstanding > 0
+        ? `Due ${formatDate(fee.dueDate)}`
+        : null;
 
   return (
-    <Card className="p-4">
-      <p className="font-semibold text-slate-900">{fee.memberName}</p>
-      <p className="text-sm text-slate-500">{fee.classGroup}</p>
+    <Card className="min-w-0 max-w-full p-4">
+      <p className="break-words font-semibold text-slate-900">{fee.memberName}</p>
+      <p className="break-words text-sm text-slate-500">{fee.classGroup}</p>
       <dl className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 text-sm">
         <div>
           <dt className="text-xs font-medium uppercase text-slate-500">Fee period</dt>
@@ -51,6 +57,12 @@ function FeeMobileCard({ fee }: { fee: FeeRecord }) {
             {fee.amountOutstanding > 0 ? formatCurrency(fee.amountOutstanding) : "Nothing owed"}
           </dd>
         </div>
+        {overdueNote && (
+          <div className="col-span-2">
+            <dt className="text-xs font-medium uppercase text-slate-500">Due date</dt>
+            <dd className="text-slate-700">{overdueNote}</dd>
+          </div>
+        )}
       </dl>
       <div className="mt-4 flex flex-col gap-2">
         <Link
@@ -85,16 +97,19 @@ export function FeesClient() {
       />
       <FinanceSubNav active="Fees" />
       <DemoOnlyNotice />
-      <FinanceRestrictedSection className="mt-4 space-y-4 pb-24 lg:pb-6">
+      <FinanceRestrictedSection className="mt-4 min-w-0 max-w-full space-y-4 pb-24 lg:pb-6">
         <LocalSafetyNote>Demo data only. No real payments are processed.</LocalSafetyNote>
 
-        <div className="space-y-3 md:hidden">
+        <div className="space-y-3 md:hidden" data-layout="fees-mobile-cards">
           {fees.map((fee) => (
             <FeeMobileCard key={fee.id} fee={fee} />
           ))}
         </div>
 
-        <div className="hidden overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm md:block">
+        <div
+          className="hidden min-w-0 overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm md:block"
+          data-layout="fees-desktop-table"
+        >
           <table className="min-w-full text-sm">
             <thead className="bg-slate-50">
               <tr>
@@ -152,6 +167,8 @@ export function FeesClient() {
             </tbody>
           </table>
         </div>
+
+        <p className="text-xs text-slate-500 md:hidden">Demo session only — reload resets fee changes.</p>
       </FinanceRestrictedSection>
     </>
   );

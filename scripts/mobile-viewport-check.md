@@ -1,4 +1,17 @@
-# Mobile viewport check (manual)
+# Mobile viewport check
+
+## Automated (v1.4.6i)
+
+After starting the app locally:
+
+```bash
+npm run build && npm run start
+BASE_URL=http://localhost:3000 npm run responsive-check
+```
+
+Checks `document.documentElement.scrollWidth <= window.innerWidth` and mobile/desktop layout markers on priority routes.
+
+## Manual
 
 Automated smoke tests (`./scripts/smoke-test-demo.sh`) verify HTTP routes and demo safety copy — they do **not** validate visual mobile layout, touch targets, horizontal scroll, or sticky header behaviour.
 
