@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
+import { DemoLoadingCard } from "@/components/demo/DemoLoadingCard";
 import { DemoOnlyNotice } from "@/components/communications/CommunicationsNotices";
 import { CommunicationsSubNav } from "@/components/communications/CommunicationsSubNav";
 import { ComposeReasonPanel } from "@/components/communications/ComposeReasonPanel";
@@ -73,6 +74,7 @@ export function ComposeClient({
   const [body, setBody] = useState("");
   const [sentRef, setSentRef] = useState<string | null>(null);
   const [initialized, setInitialized] = useState(false);
+  const [loadTimedOut, setLoadTimedOut] = useState(false);
 
   const selectedGroup = groups.find((g) => g.id === groupId);
   const selectedTemplate = templates.find((t) => t.id === templateId);
@@ -90,7 +92,14 @@ export function ComposeClient({
     setFormId(next.formId);
     setSentRef(null);
     setInitialized(true);
+    setLoadTimedOut(false);
   }, [preset, templateParam, groupParam, fallbackGroupId]);
+
+  useEffect(() => {
+    if (initialized && groups.length > 0) return;
+    const timer = window.setTimeout(() => setLoadTimedOut(true), 2500);
+    return () => window.clearTimeout(timer);
+  }, [initialized, groups.length]);
 
   useEffect(() => {
     if (!templateId) return;
@@ -134,6 +143,41 @@ export function ComposeClient({
   };
 
   if (!initialized || groups.length === 0) {
+    if (loadTimedOut) {
+      return (
+        <>
+          <PageHeader
+            title="Compose message"
+            description="Prepare a demo message with clear recipient reasons — nothing is really sent."
+            breadcrumbs={communicationsTrail("Compose")}
+            backHref="/communications"
+          />
+          <CommunicationsSubNav active="Compose" />
+          <DemoLoadingCard
+            title="Could not prepare this demo message"
+            description="The composer did not load in time. Choose a template, go back to Communications, or try the unpaid fees example."
+            backHref="/communications"
+            backLabel="Back to Communications"
+          >
+            <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+              <Link
+                href="/communications/templates"
+                className="inline-flex min-h-[44px] items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                Choose template
+              </Link>
+              <Link
+                href="/communications/compose?preset=unpaid-fees"
+                className="inline-flex min-h-[44px] items-center justify-center rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-indigo-700"
+              >
+                Use unpaid fees preset
+              </Link>
+            </div>
+          </DemoLoadingCard>
+        </>
+      );
+    }
+
     return (
       <>
         <PageHeader
@@ -143,9 +187,12 @@ export function ComposeClient({
           backHref="/communications"
         />
         <CommunicationsSubNav active="Compose" />
-        <Card className="mt-6 animate-pulse">
-          <p className="text-sm text-slate-500">Preparing composer…</p>
-        </Card>
+        <DemoLoadingCard
+          title="Preparing the demo message…"
+          description="This demo message is being filled from the selected task. No real email or text will be sent."
+          backHref="/communications"
+          backLabel="Back to Communications"
+        />
       </>
     );
   }

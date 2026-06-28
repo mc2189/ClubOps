@@ -1,10 +1,4 @@
-export function DemoOnlyNotice() {
-  return (
-    <div role="status" className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-      <strong>Demo only</strong> — no real files are generated. Exports are simulated and create audit events only.
-    </div>
-  );
-}
+export { DemoOnlyNotice } from "@/components/demo/DemoOnlyNotice";
 
 export function ReportsSecurityNotice() {
   return (

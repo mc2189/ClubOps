@@ -1,16 +1,6 @@
 import { MATCHING_STEPS } from "@/lib/financeImportCopy";
 
-export function DemoOnlyNotice() {
-  return (
-    <div
-      role="status"
-      className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900"
-    >
-      <strong>Demo only</strong> — no real bank connected, no payments processed, and no data is
-      sent anywhere. Refresh the page to reset all finance changes.
-    </div>
-  );
-}
+export { DemoOnlyNotice } from "@/components/demo/DemoOnlyNotice";
 
 export function FinanceSecurityNotice() {
   return (

@@ -1,14 +1,4 @@
-export function DemoOnlyNotice() {
-  return (
-    <div
-      role="status"
-      className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900"
-    >
-      <strong>Demo only</strong> — no real Gift Aid declarations are stored. Refresh the page to
-      reset all changes.
-    </div>
-  );
-}
+export { DemoOnlyNotice } from "@/components/demo/DemoOnlyNotice";
 
 export function GiftAidSecurityNotice() {
   return (

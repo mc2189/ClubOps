@@ -15,11 +15,11 @@ export type ModuleLandingConfig = {
 export const FINANCE_LANDING: ModuleLandingConfig = {
   title: "Review payments",
   description:
-    "Check suggested matches from the sample statement and deal with anything unmatched.",
-  primaryHref: "/finance/import/review",
-  primaryLabel: "Start review",
-  secondaryHref: "/finance/import",
-  secondaryLabel: "View unmatched",
+    "Load the sample statement, then check suggested matches and deal with anything unmatched.",
+  primaryHref: "/finance/import",
+  primaryLabel: "Use sample statement",
+  secondaryHref: "/finance/import/review",
+  secondaryLabel: "Review matches",
   safetyLine: "Demo only. No real bank is connected.",
   howItWorks:
     "Use the sample statement, review suggested matches, then confirm or reject each payment in the demo queue.",

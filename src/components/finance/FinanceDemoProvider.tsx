@@ -24,6 +24,7 @@ import {
   matchAllTransactions,
   createFinanceAuditEvent,
 } from "@/lib/financeMatching";
+import { getImportPreview } from "@/data/demo/financeData";
 
 interface FinanceDemoContextValue {
   dashboard: FinanceDashboardData;
@@ -35,6 +36,7 @@ interface FinanceDemoContextValue {
   importApproved: boolean;
   localAuditEvents: AuditEvent[];
   loadImport: (source: "csv" | "pdf", rawTransactions: RawBankTransaction[]) => void;
+  loadDefaultSample: () => void;
   approveMatch: (transactionId: string) => void;
   rejectMatch: (transactionId: string) => void;
   markUnknown: (transactionId: string) => void;
@@ -85,6 +87,11 @@ export function FinanceDemoProvider({
     },
     [fees, members],
   );
+
+  const loadDefaultSample = useCallback(() => {
+    const preview = getImportPreview("pdf");
+    loadImport("pdf", preview.normalizedTransactions);
+  }, [loadImport]);
 
   const approveMatch = useCallback((transactionId: string) => {
     setImportItems((prev) => {
@@ -229,6 +236,7 @@ export function FinanceDemoProvider({
       importApproved,
       localAuditEvents,
       loadImport,
+      loadDefaultSample,
       approveMatch,
       rejectMatch,
       markUnknown,
@@ -248,6 +256,7 @@ export function FinanceDemoProvider({
       importApproved,
       localAuditEvents,
       loadImport,
+      loadDefaultSample,
       approveMatch,
       rejectMatch,
       markUnknown,

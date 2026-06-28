@@ -107,11 +107,14 @@ export default function SettingsPage() {
         </div>
       </section>
 
-      <section aria-labelledby="technical-settings-heading" className="mt-10">
-        <h2 id="technical-settings-heading" className="text-lg font-semibold text-slate-700">
-          Technical / going live
-        </h2>
-        <p className="mt-1 max-w-3xl text-sm text-slate-500">
+      <details className="group mt-10 rounded-lg border border-slate-200 bg-slate-50/40 p-4 open:pb-6">
+        <summary className="cursor-pointer list-none text-lg font-semibold text-slate-700 marker:content-none [&::-webkit-details-marker]:hidden">
+          <span className="inline-flex items-center gap-2">
+            Developer planning
+            <span className="text-sm font-normal text-slate-500">(technical — optional)</span>
+          </span>
+        </summary>
+        <p className="mt-3 max-w-3xl text-sm text-slate-500">
           These pages are for Mike, developers and committee planning — not everyday club admin.
         </p>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -176,7 +179,7 @@ export default function SettingsPage() {
             </div>
           </Card>
         </div>
-      </section>
+      </details>
     </DashboardLayout>
   );
 }

@@ -1,4 +1,4 @@
-# ClubOps — Demo QA Checklist (v1.4.5)
+# ClubOps — Demo QA Checklist (v1.4.6g)
 
 Use this before sharing the Vercel demo link with a club secretary, treasurer or committee member.
 
@@ -6,9 +6,25 @@ Use this before sharing the Vercel demo link with a club secretary, treasurer or
 
 **Automated smoke test:** `./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app`
 
+## Granny-mode hardening (v1.4.6g)
+
+- [ ] **No finance dead end** — dashboard “Review payments” opens `/finance/import`; `/finance/import/review` without sample shows recovery panel (not error)
+- [ ] **Use sample statement** — recovery button loads demo matches in-session
+- [ ] **Members fallback** — `/members` shows “Getting demo members ready…” card if slow; reload/back links work
+- [ ] **Members filter** — `/members?filter=needs-attention` works from dashboard links
+- [ ] **Communications fallback** — compose shows “Preparing the demo message…” then loads; timeout shows template/preset recovery
+- [ ] **Compose presets** — unpaid-fees, gift-aid, missing-forms presets load with reason panel
+- [ ] **Gift Aid safe actions** — ineligible items show Confirm excluded / Keep out of claim (not Mark eligible as primary)
+- [ ] **Gift Aid HMRC line** — “This demo does not submit anything to HMRC…” visible on review
+- [ ] **Missing documents mobile** — stacked cards at 360–430px; one CTA per card; no page horizontal scroll
+- [ ] **Single demo banner** — one amber banner on module pages (not duplicated with page notices); dashboard uses hero only
+- [ ] **Demo role compact** — top bar shows small “Demo role” control; does not dominate page task
+- [ ] **Developer planning** — Settings technical links collapsed under details summary
+- [ ] **Mobile checked (360, 390, 430, 768px)** — dashboard, finance, import, review, members, compose, gift-aid review, documents missing, reports, settings
+
 ## Module task flow (v1.4.6e)
 
-- [ ] **Finance** — Start here: Review payments; status strip visible; stats in More tools
+- [ ] **Finance** — Start here: Use sample statement; status strip visible; stats in More tools
 - [ ] **Members** — Start here: Check records needing attention; needs-attention count visible
 - [ ] **Attendance** — Start here: Take today's register; today's sessions compact
 - [ ] **Communications** — Start here: Compose demo message; presets in More tools
@@ -58,7 +74,7 @@ Complete these on the **production demo URL** (not localhost):
 - [ ] **Missing forms preset** — `/communications/compose?preset=missing-forms` loads consent form request with Documents source
 - [ ] **Communications compose (v1.4.6d)** — recipient count and why-included visible; simulated-send warning clear; message preview readable
 - [ ] **Communications landing** — Start here panel with compose CTA and “does not send real emails or texts” wording
-- [ ] **Finance import review** — `/finance/import/review` shows match review demo
+- [ ] **Finance import review** — `/finance/import/review` shows match review demo **or** friendly recovery panel
 - [ ] **Attendance register** — mark Present/Absent on a session register
 - [ ] **Reports export centre** — `/reports/export-centre` generates demo pack (no real file)
 - [ ] Switch demo roles and verify **restricted content previews** (not just banner notices) on Finance, Medical, Gift Aid, Wages and Exports

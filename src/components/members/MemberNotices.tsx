@@ -1,14 +1,4 @@
-export function DemoOnlyNotice() {
-  return (
-    <div
-      role="status"
-      className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900"
-    >
-      <strong>Demo data only</strong> — do not enter real child, parent, medical or contact
-      information. Changes are not stored permanently; refresh the page to reset member data.
-    </div>
-  );
-}
+export { DemoOnlyNotice } from "@/components/demo/DemoOnlyNotice";
 
 export function ContactSafetyNotice() {
   return (

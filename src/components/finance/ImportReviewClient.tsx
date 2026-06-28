@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { Badge, Card, EmptyState, PageHeader } from "@/components/ui";
+import { Badge, Card, PageHeader } from "@/components/ui";
 import {
   DemoOnlyNotice,
   HowMatchingWorksPanel,
@@ -107,25 +107,7 @@ export function ImportReviewClient() {
 
   if (importItems.length === 0) {
     return (
-      <>
-        <PageHeader
-          title="Review payments"
-          description="Confirm suggested matches — sample statement only."
-          breadcrumbs={financeImportReviewTrail()}
-          backHref="/finance/import"
-        />
-        <FinanceSubNav active="Import" />
-        <EmptyState
-          title="No sample statement loaded"
-          description="Start with the guided import wizard to load the demo bank statement."
-        />
-        <Link
-          href="/finance/import"
-          className="mt-4 inline-flex min-h-[48px] items-center font-medium text-indigo-600 hover:underline"
-        >
-          Use sample statement →
-        </Link>
-      </>
+      <ImportReviewRecoveryPanel />
     );
   }
 
@@ -286,6 +268,50 @@ export function ImportReviewClient() {
           </Card>
         )}
       </FinanceRestrictedSection>
+    </>
+  );
+}
+
+function ImportReviewRecoveryPanel() {
+  const { loadDefaultSample } = useFinanceDemo();
+
+  return (
+    <>
+      <PageHeader
+        title="Review payments"
+        description="Confirm suggested matches — sample statement only."
+        breadcrumbs={financeImportReviewTrail()}
+        backHref="/finance/import"
+      />
+      <FinanceSubNav active="Import" />
+      <Card className="mt-4 max-w-xl border-indigo-100 bg-indigo-50/40">
+        <h2 className="text-lg font-semibold text-slate-900">Start with the sample statement</h2>
+        <p className="mt-2 text-sm text-slate-700">
+          This demo needs the sample statement loaded before matches can be reviewed. No real bank
+          data is used.
+        </p>
+        <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+          <button
+            type="button"
+            onClick={loadDefaultSample}
+            className="inline-flex min-h-[48px] items-center justify-center rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700"
+          >
+            Use sample statement
+          </button>
+          <Link
+            href="/finance/import"
+            className="inline-flex min-h-[48px] items-center justify-center rounded-md border border-indigo-200 bg-white px-4 py-2.5 text-sm font-medium text-indigo-700 hover:bg-indigo-50"
+          >
+            Open import wizard
+          </Link>
+          <Link
+            href="/finance"
+            className="inline-flex min-h-[48px] items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
+          >
+            Back to Finance
+          </Link>
+        </div>
+      </Card>
     </>
   );
 }

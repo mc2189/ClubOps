@@ -1,5 +1,34 @@
 # ClubOps — Build Notes
 
+## Iteration 38 — v1.4.6g Granny-mode flow hardening (2026-06-27)
+
+### What was built
+
+- Finance dead-end fix: dashboard/import-first flow; review recovery panel loads sample statement
+- Friendly loading/fallback cards on Members and Communications compose
+- Gift Aid review compliance-safe action buttons by eligibility
+- Missing documents mobile card layout
+- Single AppShell demo banner; compact demo role switcher; Settings developer planning collapsed
+
+### QA focus
+
+- No finance review dead end without sample loaded
+- Members and compose fallbacks friendly (not vague loading text)
+- Gift Aid ineligible items cannot be marked eligible as primary action
+- Missing documents readable on mobile without horizontal scroll
+- One demo banner visible; role switcher secondary to page tasks
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+```
+
+---
+
 ## Iteration 37 — v1.4.6f Reports committee pack preview (2026-06-27)
 
 ### What was built

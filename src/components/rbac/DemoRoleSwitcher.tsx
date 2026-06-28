@@ -8,19 +8,43 @@ interface DemoRoleSwitcherProps {
 }
 
 export function DemoRoleSwitcher({ compact = false }: DemoRoleSwitcherProps) {
-  const { role, roleName, roleDescription, setRole, roles } = useDemoRole();
+  const { role, roleName, setRole, roles } = useDemoRole();
+
+  if (compact) {
+    return (
+      <div className="flex items-center gap-1.5 sm:gap-2">
+        <label
+          htmlFor="demo-role-switcher"
+          className="shrink-0 text-[11px] font-medium text-slate-500 sm:text-xs"
+        >
+          Demo role
+        </label>
+        <select
+          id="demo-role-switcher"
+          value={role}
+          onChange={(e) => setRole(e.target.value as DemoRoleId)}
+          title={`Demo role: ${roleName}. Not a real login.`}
+          aria-describedby="demo-role-switcher-note"
+          className="min-h-[40px] max-w-[38vw] rounded-md border border-slate-200 bg-slate-50 px-2 py-1.5 text-xs font-medium text-slate-700 sm:max-w-[11rem] sm:text-sm"
+        >
+          {roles.map((r) => (
+            <option key={r.id} value={r.id}>
+              {r.shortName}
+            </option>
+          ))}
+        </select>
+        <span id="demo-role-switcher-note" className="sr-only">
+          Demo role only — not a real login
+        </span>
+      </div>
+    );
+  }
 
   return (
-    <div
-      className={
-        compact
-          ? "flex max-w-[52vw] flex-col items-end gap-0.5 sm:max-w-none sm:flex-row sm:items-center sm:gap-2"
-          : "flex flex-col items-end gap-1 sm:flex-row sm:items-center sm:gap-3"
-      }
-    >
+    <div className="flex flex-col items-end gap-1 sm:flex-row sm:items-center sm:gap-3">
       <div className="hidden text-right lg:block">
-        <p className="text-xs font-medium text-slate-700">Current demo role</p>
-        <p className="max-w-[180px] truncate text-xs text-slate-500" title={roleDescription}>
+        <p className="text-xs font-medium text-slate-700">Demo role</p>
+        <p className="max-w-[180px] truncate text-xs text-slate-500" title={roleName}>
           {roleName}
         </p>
       </div>
@@ -32,11 +56,7 @@ export function DemoRoleSwitcher({ compact = false }: DemoRoleSwitcherProps) {
         value={role}
         onChange={(e) => setRole(e.target.value as DemoRoleId)}
         title={`Demo role: ${roleName}. Not a real login.`}
-        className={
-          compact
-            ? "min-h-[44px] max-w-full rounded-md border border-brand-primary/30 bg-brand-soft px-2 py-2 text-sm font-medium text-brand-primary sm:max-w-[200px] sm:text-xs sm:py-1.5"
-            : "max-w-[200px] rounded-md border border-brand-primary/30 bg-brand-soft px-2 py-1.5 text-xs font-medium text-brand-primary"
-        }
+        className="max-w-[200px] rounded-md border border-slate-200 bg-slate-50 px-2 py-1.5 text-xs font-medium text-slate-700"
         aria-describedby="demo-role-switcher-note"
       >
         {roles.map((r) => (
@@ -45,12 +65,8 @@ export function DemoRoleSwitcher({ compact = false }: DemoRoleSwitcherProps) {
           </option>
         ))}
       </select>
-      <span
-        id="demo-role-switcher-note"
-        className="text-[10px] font-medium leading-tight text-amber-800 sm:text-[11px]"
-      >
-        <span className="sm:hidden">Not a real login</span>
-        <span className="hidden sm:inline">Demo role only — not a real login</span>
+      <span id="demo-role-switcher-note" className="sr-only">
+        Demo role only — not a real login
       </span>
     </div>
   );

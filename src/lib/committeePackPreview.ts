@@ -83,7 +83,7 @@ export function buildCommitteePackPreview(exportPreviewed = false): CommitteePac
         `${DEMO_OUTSTANDING_FEE_COUNT} unpaid fee records in demo`,
       ],
       attention: "Unmatched payments should be reviewed before fee reminders are sent.",
-      moduleHref: "/finance/import/review",
+      moduleHref: "/finance/import",
       actionLabel: "Review payments",
       permissionModule: "finance",
     },
@@ -160,7 +160,7 @@ export function buildCommitteePackPreview(exportPreviewed = false): CommitteePac
     {
       id: "note-finance",
       text: "Unmatched payments should be reviewed before fee reminders are sent.",
-      href: "/finance/import/review",
+      href: "/finance/import",
     },
     {
       id: "note-members",

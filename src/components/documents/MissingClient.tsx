@@ -6,7 +6,46 @@ import { DemoOnlyNotice } from "@/components/documents/DocumentsNotices";
 import { DocumentsSubNav } from "@/components/documents/DocumentsSubNav";
 import { useDocumentsDemo } from "@/components/documents/DocumentsDemoProvider";
 import { priorityVariant } from "@/lib/documents";
+import {
+  missingDocumentActionHref,
+  missingDocumentActionLabel,
+} from "@/lib/missingDocumentCompose";
 import { documentsTrail } from "@/lib/breadcrumbs";
+import type { MissingDocumentItem } from "@/data/providers/types";
+
+function MissingDocumentMobileCard({ item }: { item: MissingDocumentItem }) {
+  const actionHref = missingDocumentActionHref(item);
+  const actionLabel = missingDocumentActionLabel(item);
+
+  return (
+    <Card className="p-4">
+      <p className="font-semibold text-slate-900">{item.linkedPerson}</p>
+      <p className="mt-1 text-sm text-slate-700">{item.missingDocument}</p>
+      <dl className="mt-3 space-y-2 text-sm">
+        <div>
+          <dt className="text-xs font-medium uppercase text-slate-500">Priority</dt>
+          <dd className="mt-0.5">
+            <Badge variant={priorityVariant[item.priority]}>{item.priority}</Badge>
+          </dd>
+        </div>
+        <div>
+          <dt className="text-xs font-medium uppercase text-slate-500">Source module</dt>
+          <dd className="text-slate-700">{item.linkedModule}</dd>
+        </div>
+        <div>
+          <dt className="text-xs font-medium uppercase text-slate-500">Suggested action</dt>
+          <dd className="text-slate-700">{item.suggestedAction}</dd>
+        </div>
+      </dl>
+      <Link
+        href={actionHref}
+        className="mt-4 inline-flex min-h-[48px] w-full items-center justify-center rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700"
+      >
+        {actionLabel}
+      </Link>
+    </Card>
+  );
+}
 
 export function MissingClient() {
   const { missing } = useDocumentsDemo();
@@ -30,55 +69,45 @@ export function MissingClient() {
           className="mt-4"
         />
       ) : (
-      <Card className="mt-4 overflow-x-auto">
-        <DataTable
-          headers={[
-            "Person / record",
-            "Missing document",
-            "Priority",
-            "Module",
-            "Suggested action",
-          ]}
-        >
-          {missing.map((item) => (
-            <tr key={item.id} className="hover:bg-slate-50">
-              <td className="px-4 py-3 font-medium text-slate-900">{item.linkedPerson}</td>
-              <td className="px-4 py-3 text-slate-600">{item.missingDocument}</td>
-              <td className="px-4 py-3">
-                <Badge variant={priorityVariant[item.priority]}>{item.priority}</Badge>
-              </td>
-              <td className="px-4 py-3 text-slate-600">{item.linkedModule}</td>
-              <td className="px-4 py-3 text-sm text-slate-600">
-                {item.suggestedAction}
-                {item.linkedModule === "Communications" ||
-                item.suggestedAction.includes("Communications") ||
-                item.suggestedAction.includes("form") ? (
-                  <Link
-                    href="/communications/compose"
-                    className="ml-2 text-xs font-medium text-indigo-600 hover:underline"
-                  >
-                    Open Communications
-                  </Link>
-                ) : item.linkedModule === "Gift Aid" ? (
-                  <Link
-                    href="/communications/compose?preset=gift-aid"
-                    className="ml-2 text-xs font-medium text-indigo-600 hover:underline"
-                  >
-                    Request declaration
-                  </Link>
-                ) : item.linkedModule === "Finance" ? (
-                  <Link
-                    href="/documents/upload"
-                    className="ml-2 text-xs font-medium text-indigo-600 hover:underline"
-                  >
-                    Upload demo
-                  </Link>
-                ) : null}
-              </td>
-            </tr>
-          ))}
-        </DataTable>
-      </Card>
+        <>
+          <div className="mt-4 space-y-3 pb-24 md:hidden">
+            {missing.map((item) => (
+              <MissingDocumentMobileCard key={item.id} item={item} />
+            ))}
+          </div>
+
+          <Card className="mt-4 hidden overflow-x-auto md:block">
+            <DataTable
+              headers={[
+                "Person / record",
+                "Missing document",
+                "Priority",
+                "Module",
+                "Suggested action",
+              ]}
+            >
+              {missing.map((item) => (
+                <tr key={item.id} className="hover:bg-slate-50">
+                  <td className="px-4 py-3 font-medium text-slate-900">{item.linkedPerson}</td>
+                  <td className="px-4 py-3 text-slate-600">{item.missingDocument}</td>
+                  <td className="px-4 py-3">
+                    <Badge variant={priorityVariant[item.priority]}>{item.priority}</Badge>
+                  </td>
+                  <td className="px-4 py-3 text-slate-600">{item.linkedModule}</td>
+                  <td className="px-4 py-3 text-sm text-slate-600">
+                    {item.suggestedAction}
+                    <Link
+                      href={missingDocumentActionHref(item)}
+                      className="ml-2 text-xs font-medium text-indigo-600 hover:underline"
+                    >
+                      {missingDocumentActionLabel(item)}
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </DataTable>
+          </Card>
+        </>
       )}
     </>
   );

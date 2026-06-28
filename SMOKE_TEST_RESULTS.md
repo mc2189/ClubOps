@@ -1,10 +1,12 @@
 # Smoke test results — live demo
 
 **URL:** https://club-ops-fawn.vercel.app  
-**Date:** 2026-06-27  
+**Date:** 2026-06-27 (pre-deploy check for v1.4.6g local build)  
 **Script:** `./scripts/smoke-test-demo.sh`
 
 ## Result: PASS (31/31)
+
+Note: Run again after v1.4.6g deploy to verify granny-mode UI on production.
 
 | Area | Result |
 |------|--------|

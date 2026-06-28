@@ -25,7 +25,7 @@ export const demoDashboardTasks: DashboardTask[] = [
     actionLabel: "Review payments",
     whatHappensNext:
       "Confirmed matches update the demo fee status and reduce the unpaid fees list.",
-    href: "/finance/import/review",
+    href: "/finance/import",
     category: "Finance",
     permissionModule: "finance",
   },
@@ -262,7 +262,7 @@ export const demoQuickActions: QuickAction[] = [
     id: "qa-001",
     label: "Review payments",
     description: "Check pending transactions",
-    href: "/finance/import/review",
+    href: "/finance/import",
   },
   {
     id: "qa-002",

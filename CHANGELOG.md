@@ -2,6 +2,19 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.6g] — 2026-06-27
+
+### Changed — Granny-mode flow hardening
+
+- Dashboard finance priority and Finance landing now start at `/finance/import` (sample statement wizard) instead of review dead end
+- Finance import review shows friendly recovery panel with **Use sample statement** (loads demo data in-session) when no statement loaded
+- Members page Suspense fallback: helpful loading card with reload and back links
+- Communications compose loading/fallback: plain-English copy and recovery links (templates, unpaid fees preset)
+- Gift Aid review: compliance-safe actions per eligibility — no equal **Mark eligible** on ineligible items; HMRC safety line added
+- Missing documents: stacked mobile cards with one clear CTA; desktop table unchanged
+- Single demo banner via AppShell — module-level duplicate amber notices removed (screen reader friendly)
+- Compact **Demo role** switcher in top bar; Settings technical links collapsed under **Developer planning**
+
 ## [1.4.6f] — 2026-06-27
 
 ### Added — Reports committee pack preview
