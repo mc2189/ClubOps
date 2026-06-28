@@ -2,6 +2,13 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.8] — 2026-06-28
+
+### Fixed — Gift Aid demo state consistency
+
+- Gift Aid declaration status changes now refresh linked donation declaration badges, dashboard totals, and claim export lists together.
+- Gift Aid review decisions now update the matching donation and claim export exceptions so review, eligible-donation, and export screens stay consistent.
+
 ## [1.4.7] — 2026-06-27
 
 ### Changed — Mobile-first demo polish

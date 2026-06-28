@@ -25,6 +25,7 @@
 - **v1.4.5e** — Restore generated clean logo as primary brand; AGC mark as fallback only
 - **v1.4.5f** — Glam dashboard hero redesign (mockup-aligned welcome section)
 - **v1.4.5g** — Rectangular glam banner system (dashboard hero + module page headers)
+- **v1.4.8** — Gift Aid demo state consistency fix for declaration, review, and claim export flows
 
 ### Upcoming (planned)
 
@@ -58,6 +59,7 @@
 - Fee tracking and reminders
 - Financial reports
 - Audit log auto-generation on data changes
+- Gift Aid declaration/review actions keep demo dashboard and claim export data synchronized (v1.4.8)
 
 ## Phase 4 — Staff & Fundraising
 
