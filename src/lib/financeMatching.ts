@@ -4,6 +4,7 @@ import type {
   TransactionCategory,
   MatchReviewStatus,
   FeeRecord,
+  ImportReviewItem,
 } from "@/data/providers/types";
 import type { MemberProfile } from "@/data/providers/types";
 import { MONTHLY_JUNIOR_FEE } from "@/data/demo/fees";
@@ -210,6 +211,86 @@ export function confidenceLabel(confidence: number): string {
   if (confidence >= 95) return "Auto-match";
   if (confidence >= 70) return "Suggested";
   return "Unmatched";
+}
+
+/** Human-readable confidence tier for volunteer review cards */
+export function confidenceTier(confidence: number): "High" | "Medium" | "Low" {
+  if (confidence >= 95) return "High";
+  if (confidence >= 70) return "Medium";
+  return "Low";
+}
+
+export function matchTypeLabel(
+  category: TransactionCategory,
+  warnings: string[],
+): "Member fee" | "Donation" | "Possible duplicate" | "Unknown" | "Club expense" {
+  if (warnings.some((w) => w.toLowerCase().includes("duplicate"))) return "Possible duplicate";
+  if (category === "voluntary donation" || category === "fundraising income") return "Donation";
+  if (category === "member fee") return "Member fee";
+  if (category === "unknown") return "Unknown";
+  if (
+    category === "hall hire" ||
+    category === "equipment" ||
+    category === "insurance" ||
+    category === "wages/session payment"
+  ) {
+    return "Club expense";
+  }
+  return "Unknown";
+}
+
+export interface ImportSummary {
+  totalPayments: number;
+  highConfidence: number;
+  possibleMatches: number;
+  unmatched: number;
+  matchedToFeesAmount: number;
+  possibleDonationsAmount: number;
+}
+
+export function computeImportSummary(items: ImportReviewItem[]): ImportSummary {
+  const credits = items.filter((i) => i.type === "credit");
+  const highConfidence = items.filter(
+    (i) => i.match.reviewStatus === "auto-matched" || i.match.confidence >= 95,
+  ).length;
+  const possibleMatches = items.filter(
+    (i) =>
+      i.match.reviewStatus === "suggested" ||
+      (i.match.confidence >= 70 && i.match.confidence < 95 && i.match.reviewStatus !== "approved"),
+  ).length;
+  const unmatched = items.filter(
+    (i) => i.match.reviewStatus === "unmatched" || i.match.reviewStatus === "flagged",
+  ).length;
+
+  const matchedToFeesAmount = credits
+    .filter(
+      (i) =>
+        i.match.category === "member fee" &&
+        (i.match.reviewStatus === "auto-matched" || i.match.confidence >= 70),
+    )
+    .reduce((sum, i) => sum + i.amount, 0);
+
+  const possibleDonationsAmount = credits
+    .filter(
+      (i) =>
+        i.match.category === "voluntary donation" ||
+        i.description.toUpperCase().includes("DONATION"),
+    )
+    .reduce((sum, i) => sum + i.amount, 0);
+
+  return {
+    totalPayments: items.length,
+    highConfidence,
+    possibleMatches,
+    unmatched,
+    matchedToFeesAmount,
+    possibleDonationsAmount,
+  };
+}
+
+export function formatMatchReason(reason: string): string {
+  const first = reason.split(";")[0]?.trim();
+  return first || "Insufficient match signals";
 }
 
 export function confidenceVariant(confidence: number): "success" | "warning" | "danger" {

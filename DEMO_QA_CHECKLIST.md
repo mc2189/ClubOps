@@ -99,6 +99,24 @@ Follow `/demo-script` steps 1–10 in order:
 - [ ] `/communications/compose?template=tpl-competition` — competition template loads
 - [ ] Simulated send shows success message; no real email sent
 
+## Finance guided statement review (v1.4.6a)
+
+On live URL with **Treasurer** role (or Secretary):
+
+- [ ] `/finance` — **Start here** panel visible; “Use sample statement” is the primary action
+- [ ] Copy states no real bank connected; secondary tools (Fees, Transactions) are not equal prominence
+- [ ] `/finance/import` — 4-step wizard; sample PDF/CSV only; upload disabled with warning
+- [ ] “Do not upload real bank statements” warning visible
+- [ ] Step 2 shows payment summary (counts + estimated fee/donation totals)
+- [ ] `/finance/import/review` — tabs: Ready to confirm, Needs checking, Unmatched, Confirmed
+- [ ] Each card shows amount, date, reference, match type, confidence (High/Medium/Low), reason
+- [ ] **Confirm match**, **Not this member**, **Mark unknown** actions work with clear result messages
+- [ ] Member fee cards show fee impact preview (before/after/balance)
+- [ ] Unmatched queue shows why unmatched + demo next-step buttons
+- [ ] “How matching works” panel visible on import/review
+- [ ] Communications follow-up links present (simulated — no real send)
+- [ ] Mobile (390px): review cards stack; action buttons full width; no page horizontal scroll
+
 ## Mobile-first demo polish (v1.4.7 / v1.4.5j)
 
 Test on phone or narrow browser at **360px**, **390px**, and **430px** on the **live Vercel URL**. Also spot-check **768px** (tablet).

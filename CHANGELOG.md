@@ -2,6 +2,25 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.6a] — 2026-06-27
+
+### Added — Finance guided bank statement review
+
+- Finance landing **Start here** panel — primary “Use sample statement”, secondary “Review unmatched payments”
+- Guided import wizard (4 steps): choose sample → payments found → suggested matches → review page
+- Sample PDF/CSV statement only — file upload disabled with strong warnings
+- Review page tabs: Ready to confirm, Needs checking, Unmatched, Confirmed
+- Transaction cards with match type, confidence tier (High/Medium/Low), reason, and fee impact preview
+- Actions: Confirm match, Not this member, Mark unknown — with plain-English result messages
+- Unmatched queue with demo next-step suggestions
+- “How matching works” helper panel; simulated Communications follow-up links
+- `computeImportSummary`, `confidenceTier`, `matchTypeLabel` helpers in `financeMatching.ts`
+
+### Changed
+
+- `FinanceDemoProvider` — `rejectMatch`, `markUnknown`; session fee paid on confirm
+- Finance safety copy — no real bank, no upload, no payment processing
+
 ## [1.4.5j] — 2026-06-27
 
 ### Changed — Final mobile banner and layout polish

@@ -36,6 +36,8 @@ interface FinanceDemoContextValue {
   localAuditEvents: AuditEvent[];
   loadImport: (source: "csv" | "pdf", rawTransactions: RawBankTransaction[]) => void;
   approveMatch: (transactionId: string) => void;
+  rejectMatch: (transactionId: string) => void;
+  markUnknown: (transactionId: string) => void;
   setCategory: (transactionId: string, category: TransactionCategory) => void;
   setReviewStatus: (transactionId: string, status: MatchReviewStatus) => void;
   approveImport: () => void;
@@ -61,7 +63,7 @@ export function FinanceDemoProvider({
   children: ReactNode;
 }) {
   const [dashboard, setDashboard] = useState(initialDashboard);
-  const [fees] = useState(initialFees);
+  const [fees, setFees] = useState(initialFees);
   const [expenses, setExpenses] = useState(initialExpenses);
   const [transactions, setTransactions] = useState(initialTransactions);
   const [importItems, setImportItems] = useState<ImportReviewItem[]>([]);
@@ -85,17 +87,74 @@ export function FinanceDemoProvider({
   );
 
   const approveMatch = useCallback((transactionId: string) => {
+    setImportItems((prev) => {
+      const item = prev.find((i) => i.id === transactionId);
+      if (item?.match.suggestedMemberId && item.match.category === "member fee") {
+        setFees((feePrev) =>
+          feePrev.map((fee) =>
+            fee.memberId === item.match.suggestedMemberId
+              ? {
+                  ...fee,
+                  status: "paid" as const,
+                  amountPaid: fee.monthlyFee,
+                  amountOutstanding: 0,
+                  lastPaymentDate: item.date,
+                }
+              : fee,
+          ),
+        );
+      }
+      return prev.map((row) =>
+        row.id === transactionId
+          ? {
+              ...row,
+              match: { ...row.match, reviewStatus: "approved" as MatchReviewStatus },
+            }
+          : row,
+      );
+    });
+    const audit = createFinanceAuditEvent("approve", `Payment match confirmed — transaction ${transactionId.slice(-3)}`);
+    setLocalAuditEvents((prev) => [audit, ...prev]);
+  }, []);
+
+  const rejectMatch = useCallback((transactionId: string) => {
     setImportItems((prev) =>
       prev.map((item) =>
         item.id === transactionId
           ? {
               ...item,
-              match: { ...item.match, reviewStatus: "approved" as MatchReviewStatus },
+              match: {
+                ...item.match,
+                reviewStatus: "flagged" as MatchReviewStatus,
+                reason: `${item.match.reason}; Volunteer rejected the suggested match`,
+              },
             }
           : item,
       ),
     );
-    const audit = createFinanceAuditEvent("approve", `Payment match approved — transaction ${transactionId.slice(-3)}`);
+    const audit = createFinanceAuditEvent("update", `Match suggestion rejected — transaction ${transactionId.slice(-3)}`);
+    setLocalAuditEvents((prev) => [audit, ...prev]);
+  }, []);
+
+  const markUnknown = useCallback((transactionId: string) => {
+    setImportItems((prev) =>
+      prev.map((item) =>
+        item.id === transactionId
+          ? {
+              ...item,
+              match: {
+                ...item.match,
+                category: "unknown" as TransactionCategory,
+                reviewStatus: "unmatched" as MatchReviewStatus,
+                suggestedMemberId: undefined,
+                suggestedMemberName: undefined,
+                reason: "Marked unknown by volunteer — reference does not match a current member or expected fee amount",
+              },
+            }
+          : item,
+      ),
+    );
+    const audit = createFinanceAuditEvent("update", `Payment marked unknown — transaction ${transactionId.slice(-3)}`);
     setLocalAuditEvents((prev) => [audit, ...prev]);
   }, []);
 
@@ -171,6 +230,8 @@ export function FinanceDemoProvider({
       localAuditEvents,
       loadImport,
       approveMatch,
+      rejectMatch,
+      markUnknown,
       setCategory,
       setReviewStatus,
       approveImport,
@@ -188,6 +249,8 @@ export function FinanceDemoProvider({
       localAuditEvents,
       loadImport,
       approveMatch,
+      rejectMatch,
+      markUnknown,
       setCategory,
       setReviewStatus,
       approveImport,

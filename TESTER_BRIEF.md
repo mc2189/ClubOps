@@ -31,9 +31,9 @@ Check the profile tabs (parent/carer, medical flag, finance).
 
 ### 3. Finance and Gift Aid (treasurer view)
 Use the role switcher → choose **Treasurer** (or Club Treasurer).  
-Open **Finance** → **Import**, then **Gift Aid**.
+Open **Finance** → use **Use sample statement** on the Start here panel → follow the guided import wizard → confirm or reject matches on the review page. Then open **Gift Aid**.
 
-**We want to know:** Would a treasurer understand the flow? Is anything misleading for a demo?
+**We want to know:** Is the bank statement review journey clear? Do you understand no real bank is connected? Would a treasurer trust this as a demo?
 
 ### 4. Communications
 Go to **Communications** → **Compose** (or open [/communications/compose?preset=gift-aid](https://club-ops-fawn.vercel.app/communications/compose?preset=gift-aid)).  

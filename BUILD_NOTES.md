@@ -1,5 +1,24 @@
 # ClubOps — Build Notes
 
+## Iteration 32 — v1.4.6a Finance guided statement review (2026-06-27)
+
+### What was built
+
+- Finance Start here panel and 4-step import wizard
+- Guided review with tabs, confidence/reason cards, confirm/reject/unknown actions
+- Unmatched queue and Communications follow-up links (simulated)
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+```
+
+---
+
 ## Iteration 31 — v1.4.5j Final mobile banner and layout polish (2026-06-27)
 
 ### What was built
