@@ -2,53 +2,74 @@
 
 import Link from "next/link";
 import { Card, Badge } from "@/components/ui";
+import { ModuleMoreTools, ModulePrimaryPanel, ModuleStatusStrip } from "@/components/ui/ModuleTaskFlow";
 import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
-import { DemoOnlyNotice, ReportsSecurityNotice } from "@/components/reports/ReportsNotices";
+import { ReportsSecurityNotice } from "@/components/reports/ReportsNotices";
 import { ReportsSubNav } from "@/components/reports/ReportsSubNav";
 import { useReportsAuditDemo } from "@/components/reports/ReportsAuditDemoProvider";
 import { sensitivityVariant } from "@/lib/reports";
 import { formatDate } from "@/lib/utils";
+import { REPORTS_LANDING } from "@/lib/moduleTaskFlow";
 import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function ReportsDashboardClient() {
   const { reportCards } = useReportsAuditDemo();
+  const committeePack = reportCards.find((r) => r.id === "rc-committee");
   const categories = [...new Set(reportCards.map((r) => r.category))];
 
   return (
     <>
-      <GlamPageHeader title="Reports" description="Generate demo exports for finance, committee, Gift Aid and admin purposes." breadcrumbs={moduleBreadcrumb(MODULES.reports)} backHref="/dashboard" />
+      <GlamPageHeader
+        title="Reports"
+        description="Generate demo exports for committee and treasurer review."
+        breadcrumbs={moduleBreadcrumb(MODULES.reports)}
+        backHref="/dashboard"
+      />
       <ReportsSubNav active="Dashboard" />
-      <DemoOnlyNotice />
-      <div className="mt-4 space-y-8">
-        {categories.map((cat) => (
-          <section key={cat}>
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-500">{cat}</h2>
-            <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {reportCards.filter((r) => r.category === cat).map((r) => (
-                <Card key={r.id}>
-                  <div className="flex items-start justify-between gap-2">
-                    <h3 className="font-semibold text-slate-900">{r.name}</h3>
-                    <Badge variant={sensitivityVariant[r.sensitivity]}>{r.sensitivity === "restricted" ? "Restricted in live mode" : r.sensitivity}</Badge>
-                  </div>
-                  <p className="mt-2 text-sm text-slate-600">{r.purpose}</p>
-                  <p className="mt-2 text-xs text-slate-500">Modules: {r.linkedModules.join(", ")}</p>
-                  {r.lastGenerated && <p className="mt-1 text-xs text-slate-400">Last generated: {formatDate(r.lastGenerated)}</p>}
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {r.href ? (
-                      <Link href={r.href} className="rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-indigo-700">Open report</Link>
-                    ) : (
-                      <Link href={r.href ?? "#"} className="rounded-md border border-slate-200 px-3 py-1.5 text-xs text-slate-600 hover:bg-slate-50">
-                        Open module →
+
+      <div className="mt-4 space-y-4 pb-24 lg:pb-6">
+        <ModulePrimaryPanel config={REPORTS_LANDING} />
+        <ModuleStatusStrip
+          items={[
+            {
+              id: "committee",
+              value: committeePack?.exportStatus === "ready" ? "Committee summary ready to preview" : "Committee summary demo",
+              label: "status",
+              tone: committeePack?.exportStatus === "ready" ? "resolved" : "neutral",
+            },
+          ]}
+        />
+
+        <ModuleMoreTools title="All report packs">
+          {categories.map((cat) => (
+            <section key={cat} className="mt-4 first:mt-0">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">{cat}</h3>
+              <div className="mt-2 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {reportCards.filter((r) => r.category === cat).map((r) => (
+                  <Card key={r.id}>
+                    <div className="flex items-start justify-between gap-2">
+                      <h4 className="font-semibold text-slate-900">{r.name}</h4>
+                      <Badge variant={sensitivityVariant[r.sensitivity]}>{r.sensitivity}</Badge>
+                    </div>
+                    <p className="mt-1 text-xs text-slate-600">{r.purpose}</p>
+                    {r.lastGenerated && (
+                      <p className="mt-1 text-xs text-slate-400">Last: {formatDate(r.lastGenerated)}</p>
+                    )}
+                    {r.href && (
+                      <Link href={r.href} className="mt-2 inline-block text-sm font-medium text-indigo-600 hover:underline">
+                        Open →
                       </Link>
                     )}
-                    <Badge variant={r.exportStatus === "ready" ? "success" : r.exportStatus === "demo" ? "info" : "default"}>{r.exportStatus}</Badge>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </section>
-        ))}
-        <ReportsSecurityNotice />
+                  </Card>
+                ))}
+              </div>
+            </section>
+          ))}
+        </ModuleMoreTools>
+
+        <ModuleMoreTools title="Reports safety notes">
+          <ReportsSecurityNotice />
+        </ModuleMoreTools>
       </div>
     </>
   );

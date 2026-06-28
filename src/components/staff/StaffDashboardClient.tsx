@@ -2,84 +2,107 @@
 
 import Link from "next/link";
 import { Card, StatCard, Badge } from "@/components/ui";
+import { ModuleMoreTools, ModulePrimaryPanel, ModuleStatusStrip } from "@/components/ui/ModuleTaskFlow";
 import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
-import { DemoOnlyNotice, StaffSecurityNotice } from "@/components/staff/StaffNotices";
+import { StaffSecurityNotice } from "@/components/staff/StaffNotices";
 import { StaffSubNav } from "@/components/staff/StaffSubNav";
 import { useStaffDemo } from "@/components/staff/StaffDemoProvider";
 import { formatStaffCurrency } from "@/lib/staff";
+import { STAFF_LANDING } from "@/lib/moduleTaskFlow";
 import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function StaffDashboardClient() {
   const { dashboard, staff, alerts } = useStaffDemo();
-  const openAlerts = alerts.filter((a) => a.status !== "resolved").slice(0, 4);
+  const openAlerts = alerts.filter((a) => a.status !== "resolved");
 
   return (
     <>
       <GlamPageHeader
         title="Staff & Volunteers"
-        description="Coaches, volunteers, rota, qualifications, wages and operational outgoings."
+        description="Coaches, rota, qualifications and operational alerts."
         breadcrumbs={moduleBreadcrumb(MODULES.staff)}
         backHref="/dashboard"
       />
       <StaffSubNav active="Dashboard" />
-      <DemoOnlyNotice />
-      <div className="mt-4 space-y-6">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard label="Active coaches" value={dashboard.activeCoaches} />
-          <StatCard label="Active volunteers" value={dashboard.activeVolunteers} />
-          <StatCard label="Committee/admin" value={dashboard.committeeAdminPlaceholder} hint="Demo placeholder" />
-          <StatCard label="Qualifications expiring" value={dashboard.qualificationsExpiringSoon} />
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard label="DBS review due" value={dashboard.dbsReviewDue} />
-          <StatCard label="Sessions needing staff" value={dashboard.sessionsNeedingStaff} />
-          <StatCard label="Wage prep this month" value={formatStaffCurrency(dashboard.wagePrepTotalThisMonth)} />
-          <StatCard label="Outgoings due" value={formatStaffCurrency(dashboard.outgoingsDueThisMonth)} />
-        </div>
-        <StatCard label="Venue bookings this week" value={dashboard.venueBookingsThisWeek} />
 
-        <div className="grid gap-4 lg:grid-cols-2">
-          <Card>
-            <h2 className="text-sm font-semibold text-slate-900">Quick actions</h2>
-            <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              <Link href="/staff/rota" className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">View rota</Link>
-              <Link href="/staff/qualifications" className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">Review qualifications</Link>
-              <Link href="/staff/wages" className="rounded-md border border-indigo-200 bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-800 hover:bg-indigo-100">Prepare wages</Link>
-              <Link href="/staff/venues" className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">View venues</Link>
-              <Link href="/staff/outgoings" className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">Add outgoing</Link>
-              <Link href="/staff/alerts" className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">View alerts</Link>
-            </div>
-          </Card>
+      <div className="mt-4 space-y-4 pb-24 lg:pb-6">
+        <ModulePrimaryPanel config={STAFF_LANDING} />
+        <ModuleStatusStrip
+          items={[
+            {
+              id: "rota",
+              value: `${dashboard.sessionsNeedingStaff} rota gap${dashboard.sessionsNeedingStaff !== 1 ? "s" : ""}`,
+              label: "pending",
+              tone: dashboard.sessionsNeedingStaff > 0 ? "pending" : "resolved",
+            },
+            {
+              id: "quals",
+              value: `${dashboard.qualificationsExpiringSoon} qualifications expiring`,
+              label: "review",
+              tone: dashboard.qualificationsExpiringSoon > 0 ? "pending" : "neutral",
+            },
+          ]}
+        />
+
+        {openAlerts.length > 0 && (
           <Card>
             <h2 className="text-sm font-semibold text-slate-900">Open alerts</h2>
-            <ul className="mt-3 divide-y divide-slate-100">
-              {openAlerts.map((a) => (
+            <ul className="mt-2 divide-y divide-slate-100">
+              {openAlerts.slice(0, 3).map((a) => (
                 <li key={a.id} className="py-2 text-sm">
                   <p className="font-medium text-slate-900">{a.title}</p>
-                  <p className="text-slate-500">{a.suggestedAction}</p>
+                  <p className="text-xs text-slate-500">{a.suggestedAction}</p>
                 </li>
               ))}
             </ul>
-            <Link href="/staff/alerts" className="mt-2 inline-block text-xs font-medium text-indigo-600 hover:underline">View all alerts</Link>
+            <Link href="/staff/alerts" className="mt-2 inline-block text-sm text-indigo-600 hover:underline">
+              View all alerts →
+            </Link>
           </Card>
-        </div>
+        )}
 
-        <Card>
-          <h2 className="text-sm font-semibold text-slate-900">Staff & volunteers</h2>
-          <ul className="mt-3 divide-y divide-slate-100">
-            {staff.filter((s) => s.status === "active").slice(0, 5).map((person) => (
+        <ModuleMoreTools title="More staff tools">
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { href: "/staff/rota", label: "Rota" },
+              { href: "/staff/qualifications", label: "Qualifications" },
+              { href: "/staff/wages", label: "Wages" },
+              { href: "/staff/venues", label: "Venues" },
+              { href: "/staff/outgoings", label: "Outgoings" },
+              { href: "/staff/alerts", label: "Alerts" },
+            ].map((item) => (
+              <Link key={item.href} href={item.href} className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium hover:bg-slate-50">
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <ul className="mt-4 divide-y divide-slate-100">
+            {staff.filter((s) => s.status === "active").slice(0, 4).map((person) => (
               <li key={person.id} className="flex items-center justify-between py-2 text-sm">
                 <div>
-                  <Link href={`/staff/${person.id}`} className="font-medium text-indigo-600 hover:underline">{person.name}</Link>
-                  <p className="text-slate-500">{person.role} · {person.staffType}</p>
+                  <Link href={`/staff/${person.id}`} className="font-medium text-indigo-600 hover:underline">
+                    {person.name}
+                  </Link>
+                  <p className="text-xs text-slate-500">{person.role}</p>
                 </div>
                 <Badge variant="success">Active</Badge>
               </li>
             ))}
           </ul>
-        </Card>
+        </ModuleMoreTools>
 
-        <StaffSecurityNotice />
+        <ModuleMoreTools title="Staff summary stats">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <StatCard label="Active coaches" value={dashboard.activeCoaches} />
+            <StatCard label="Active volunteers" value={dashboard.activeVolunteers} />
+            <StatCard label="Wage prep (month)" value={formatStaffCurrency(dashboard.wagePrepTotalThisMonth)} />
+            <StatCard label="Venue bookings" value={dashboard.venueBookingsThisWeek} />
+          </div>
+        </ModuleMoreTools>
+
+        <ModuleMoreTools title="Staff safety notes">
+          <StaffSecurityNotice />
+        </ModuleMoreTools>
       </div>
     </>
   );

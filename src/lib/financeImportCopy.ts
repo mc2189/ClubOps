@@ -1,12 +1,6 @@
 /** Plain-English copy for the guided bank statement review demo */
 
-export const FINANCE_START_HERE = {
-  title: "Review club payments",
-  description:
-    "Use a sample bank statement to see how payments could be matched against member fees, donations and unknown items. No real bank is connected.",
-  primaryCta: "Use sample statement",
-  secondaryCta: "Review unmatched payments",
-} as const;
+export { FINANCE_LANDING as FINANCE_START_HERE } from "@/lib/moduleTaskFlow";
 
 export const PDF_STATEMENT_DEMO = {
   title: "PDF statement demo",

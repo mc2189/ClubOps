@@ -6,6 +6,20 @@ Use this before sharing the Vercel demo link with a club secretary, treasurer or
 
 **Automated smoke test:** `./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app`
 
+## Module task flow (v1.4.6e)
+
+- [ ] **Finance** — Start here: Review payments; status strip visible; stats in More tools
+- [ ] **Members** — Start here: Check records needing attention; needs-attention count visible
+- [ ] **Attendance** — Start here: Take today's register; today's sessions compact
+- [ ] **Communications** — Start here: Compose demo message; presets in More tools
+- [ ] **Gift Aid** — Start here: Review claim readiness; claim status strip
+- [ ] **Documents** — Start here: Check missing paperwork; missing forms count
+- [ ] **Staff** — Start here: Check volunteer cover; rota gap indicator
+- [ ] **Fundraising** — Start here: Review campaign follow-ups
+- [ ] **Reports** — Start here: Build committee summary; report packs collapsed
+- [ ] **Mobile module landings (360–430px)** — primary task visible without excessive scroll; no horizontal overflow
+- [ ] **Role switcher** — still works on simplified module pages
+
 ## RBAC honesty checks (v1.4.4)
 
 With demo role switcher in the top bar:

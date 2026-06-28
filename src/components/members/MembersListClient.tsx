@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Badge, EmptyState } from "@/components/ui";
+import { ModulePrimaryPanel, ModuleStatusStrip } from "@/components/ui/ModuleTaskFlow";
 import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 import { TableScrollWrap } from "@/components/ui/TableScrollWrap";
-import { DemoOnlyNotice } from "@/components/members/MemberNotices";
 import { useMembersDemo } from "@/components/members/MembersDemoProvider";
 import {
   calculateAge,
@@ -17,6 +17,8 @@ import {
   statusBadgeVariant,
   type MemberFilterKey,
 } from "@/lib/members";
+import { profileNeedsAttention } from "@/lib/memberProfileSummary";
+import { MEMBERS_LANDING } from "@/lib/moduleTaskFlow";
 import { formatCurrency } from "@/lib/utils";
 import type { MemberProfile } from "@/data/providers/types";
 import { MemberListStatusBadges, MemberAttendanceCell } from "@/components/members/MemberListStatusBadges";
@@ -93,6 +95,11 @@ export function MembersListClient() {
   );
   const [viewMode, setViewMode] = useState<ViewMode>("simple");
 
+  const needsAttentionCount = useMemo(
+    () => profiles.filter((p) => profileNeedsAttention(p)).length,
+    [profiles],
+  );
+
   const filtered = useMemo(
     () =>
       profiles
@@ -112,16 +119,27 @@ export function MembersListClient() {
         action={
           <Link
             href="/members/new"
-            className="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+            className="hidden min-h-[44px] items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 sm:inline-flex"
           >
             Add member
           </Link>
         }
       />
 
-      <DemoOnlyNotice />
+      <div className="mt-4 space-y-4 pb-24 lg:pb-6">
+        <ModulePrimaryPanel config={MEMBERS_LANDING} />
+        <ModuleStatusStrip
+          items={[
+            {
+              id: "attention",
+              value: `${needsAttentionCount} records need attention`,
+              label: "pending",
+              tone: needsAttentionCount > 0 ? "pending" : "resolved",
+            },
+          ]}
+        />
 
-      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <input
             type="search"
@@ -161,7 +179,7 @@ export function MembersListClient() {
         </div>
       </div>
 
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="flex gap-2 overflow-x-auto pb-1">
         {filters.map((f) => (
           <button
             key={f.key}
@@ -169,10 +187,10 @@ export function MembersListClient() {
             onClick={() => setFilter(f.key)}
             aria-pressed={filter === f.key}
             className={cn(
-              "rounded-full px-3 py-2 text-sm font-medium transition-colors min-h-[44px] md:min-h-0 md:py-1 md:text-xs",
+              "shrink-0 rounded-full px-3 py-1.5 text-xs font-medium",
               filter === f.key
                 ? "bg-indigo-600 text-white"
-                : "bg-slate-100 text-slate-600 hover:bg-slate-200",
+                : "bg-slate-100 text-slate-700 hover:bg-slate-200",
             )}
           >
             {f.label}
@@ -180,184 +198,98 @@ export function MembersListClient() {
         ))}
       </div>
 
-      <div className="mt-6">
-        {filtered.length === 0 ? (
-          <EmptyState
-            title="No members found"
-            description="Try adjusting your search or filter, or add a new member."
-            actionLabel="Add member"
-            actionHref="/members/new"
-          />
-        ) : viewMode === "simple" ? (
-          <>
-            <div className="space-y-3 md:hidden">
-              {filtered.map((profile) => (
-                <div
-                  key={profile.id}
-                  className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="min-w-0">
-                      <p className="font-semibold text-slate-900">{getMemberDisplayName(profile)}</p>
-                      <p className="text-sm text-slate-600">{profile.classGroup}</p>
-                      <p className="mt-1 text-sm text-slate-500">
-                        {profile.parentCarer.name !== "N/A" ? profile.parentCarer.name : "No parent/carer"}
-                      </p>
-                      <div className="mt-2">
-                        <SimpleStatusBadges profile={profile} />
-                      </div>
-                    </div>
-                    <Link
-                      href={`/members/${profile.id}`}
-                      className="inline-flex min-h-[44px] w-full items-center justify-center rounded-md bg-indigo-600 px-3 text-sm font-medium text-white sm:w-auto sm:bg-indigo-50 sm:text-indigo-700"
-                    >
-                      View profile
-                    </Link>
+      <Link
+        href="/members/new"
+        className="inline-flex min-h-[44px] w-full items-center justify-center rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 sm:hidden"
+      >
+        Add member
+      </Link>
+
+      {filtered.length === 0 ? (
+        <EmptyState title="No members match" description="Try a different filter or search term." />
+      ) : viewMode === "simple" ? (
+        <ul className="space-y-3">
+          {filtered.map((profile) => (
+            <li
+              key={profile.id}
+              className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
+            >
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <Link
+                    href={`/members/${profile.id}`}
+                    className="text-base font-semibold text-slate-900 hover:text-indigo-600"
+                  >
+                    {getMemberDisplayName(profile)}
+                  </Link>
+                  <p className="text-sm text-slate-500">
+                    {profile.classGroup} · Age {calculateAge(profile.dateOfBirth)}
+                  </p>
+                  <div className="mt-2">
+                    <SimpleStatusBadges profile={profile} />
                   </div>
                 </div>
-              ))}
-            </div>
-            <div className="hidden overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm md:block">
-              <table className="min-w-full divide-y divide-slate-200 text-sm">
-                <thead className="bg-slate-50">
-                  <tr>
-                    {["Name", "Class", "Parent/Carer", "Key flags", "Actions"].map((h) => (
-                      <th
-                        key={h}
-                        scope="col"
-                        className="whitespace-nowrap px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
-                      >
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200">
-                  {filtered.map((profile) => (
-                    <tr key={profile.id} className="hover:bg-slate-50">
-                      <td className="whitespace-nowrap px-3 py-3 font-medium text-slate-900">
-                        {getMemberDisplayName(profile)}
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-3 text-slate-600">{profile.classGroup}</td>
-                      <td className="whitespace-nowrap px-3 py-3 text-slate-600">
-                        {profile.parentCarer.name !== "N/A" ? profile.parentCarer.name : "—"}
-                      </td>
-                      <td className="px-3 py-3">
-                        <SimpleStatusBadges profile={profile} />
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-3">
-                        <Link
-                          href={`/members/${profile.id}`}
-                          className="text-indigo-600 hover:underline"
-                        >
-                          View
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </>
-        ) : (
-          <TableScrollWrap>
-            <div className="rounded-lg border border-slate-200 bg-white shadow-sm">
-              <table className="min-w-full divide-y divide-slate-200 text-sm">
-              <thead className="bg-slate-50">
-                <tr>
-                  {[
-                    "Name",
-                    "Age",
-                    "Class",
-                    "Status",
-                    "Parent/Carer",
-                    "Emergency",
-                    "Medical",
-                    "Finance",
-                    "Gift Aid",
-                    "Attendance",
-                    "Actions",
-                  ].map((h) => (
-                    <th
-                      key={h}
-                      scope="col"
-                      className="whitespace-nowrap px-3 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
-                    >
-                      {h}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200">
-                {filtered.map((profile) => (
-                  <tr key={profile.id} className="hover:bg-slate-50">
-                    <td className="whitespace-nowrap px-3 py-3 font-medium text-slate-900">
+                <Link
+                  href={`/members/${profile.id}`}
+                  className="inline-flex min-h-[44px] w-full items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 sm:w-auto"
+                >
+                  View profile
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <TableScrollWrap>
+          <table className="min-w-full text-sm">
+            <thead>
+              <tr className="border-b border-slate-200 text-left text-xs uppercase text-slate-500">
+                <th className="pb-2 pr-4">Member</th>
+                <th className="pb-2 pr-4">Class</th>
+                <th className="pb-2 pr-4">Status</th>
+                <th className="pb-2 pr-4">Fees</th>
+                <th className="pb-2 pr-4">Attendance</th>
+                <th className="pb-2 pr-4">Emergency</th>
+                <th className="pb-2 pr-4">Gift Aid</th>
+                <th className="pb-2">Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {filtered.map((profile) => (
+                <tr key={profile.id}>
+                  <td className="py-3 pr-4">
+                    <Link href={`/members/${profile.id}`} className="font-medium text-indigo-600 hover:underline">
                       {getMemberDisplayName(profile)}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3 text-slate-600">
-                      {calculateAge(profile.dateOfBirth)}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3 text-slate-600">
-                      {profile.classGroup}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3">
-                      <Badge variant={statusBadgeVariant(profile.status)}>
-                        {profile.status}
-                      </Badge>
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3 text-slate-600">
-                      {profile.parentCarer.name !== "N/A" ? profile.parentCarer.name : "—"}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3">
-                      <EmergencyBadge profile={profile} />
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3">
-                      {profile.hasMedicalFlag ? (
-                        <Badge variant="warning">Flag</Badge>
-                      ) : (
-                        <span className="text-slate-400">—</span>
-                      )}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3">
-                      <FinanceBadge profile={profile} />
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3">
-                      <GiftAidBadge profile={profile} />
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3 text-slate-600">
-                      <MemberAttendanceCell profile={profile} />
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-3">
-                      <div className="flex gap-2">
-                        <Link
-                          href={`/members/${profile.id}`}
-                          className="text-indigo-600 hover:underline"
-                        >
-                          View
-                        </Link>
-                        <Link
-                          href={`/members/${profile.id}/edit`}
-                          className="text-slate-600 hover:underline"
-                        >
-                          Edit
-                        </Link>
-                        {profile.status !== "archived" && (
-                          <Link
-                            href={`/members/${profile.id}?archive=1`}
-                            className="text-amber-600 hover:underline"
-                          >
-                            Archive
-                          </Link>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            </div>
-          </TableScrollWrap>
-        )}
+                    </Link>
+                    <p className="text-xs text-slate-500">{profile.parentCarer.name}</p>
+                  </td>
+                  <td className="py-3 pr-4 text-slate-600">{profile.classGroup}</td>
+                  <td className="py-3 pr-4">
+                    <Badge variant={statusBadgeVariant(profile.status)}>{profile.status}</Badge>
+                  </td>
+                  <td className="py-3 pr-4">
+                    <FinanceBadge profile={profile} />
+                  </td>
+                  <td className="py-3 pr-4">
+                    <MemberAttendanceCell profile={profile} />
+                  </td>
+                  <td className="py-3 pr-4">
+                    <EmergencyBadge profile={profile} />
+                  </td>
+                  <td className="py-3 pr-4">
+                    <GiftAidBadge profile={profile} />
+                  </td>
+                  <td className="py-3">
+                    <Link href={`/members/${profile.id}`} className="text-indigo-600 hover:underline">
+                      View
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </TableScrollWrap>
+      )}
       </div>
     </>
   );

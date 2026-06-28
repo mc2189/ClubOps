@@ -2,18 +2,16 @@
 
 import Link from "next/link";
 import { Card, StatCard } from "@/components/ui";
+import { ModuleMoreTools, ModulePrimaryPanel, ModuleStatusStrip } from "@/components/ui/ModuleTaskFlow";
 import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { SubNavLink } from "@/components/ui/SubNavLink";
 import { ModuleSubNav } from "@/components/ui/ModuleSubNav";
-import {
-  DemoOnlyNotice,
-  GiftAidSecurityNotice,
-  ComplianceWarnings,
-} from "@/components/gift-aid/GiftAidNotices";
+import { DemoOnlyNotice, GiftAidSecurityNotice } from "@/components/gift-aid/GiftAidNotices";
 import { RestrictedContentPreview } from "@/components/rbac/RestrictedContentPreview";
 import { useGiftAidDemo } from "@/components/gift-aid/GiftAidDemoProvider";
 import { DeclarationRequestModal } from "@/components/gift-aid/DeclarationRequestModal";
 import { formatCurrency } from "@/lib/utils";
+import { GIFT_AID_LANDING } from "@/lib/moduleTaskFlow";
 import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export const giftAidSubNav = [
@@ -41,6 +39,7 @@ export function GiftAidSubNav({ active }: { active?: string }) {
 
 export function GiftAidDashboardClient() {
   const { dashboard, showDeclarationPreview, setShowDeclarationPreview } = useGiftAidDemo();
+  const claimReady = dashboard.claimReadyAmount > 0;
 
   return (
     <>
@@ -55,57 +54,70 @@ export function GiftAidDashboardClient() {
       <RestrictedContentPreview
         module="gift-aid"
         auditOnView="restricted Gift Aid preview viewed"
-        className="mt-4 space-y-4"
+        className="mt-4 space-y-4 pb-24 lg:pb-6"
       >
-      <div className="space-y-4">
-        <GiftAidSecurityNotice />
-        <ComplianceWarnings />
-      </div>
+        <ModulePrimaryPanel config={GIFT_AID_LANDING} />
+        <ModuleStatusStrip
+          items={[
+            {
+              id: "claim",
+              value: claimReady ? "Partially claim ready" : "Claim not ready",
+              label: "status",
+              tone: claimReady ? "reviewed" : "pending",
+            },
+            {
+              id: "declarations",
+              value: `${dashboard.missingDeclarations + dashboard.needsReviewDeclarations} declarations need checking`,
+              label: "pending",
+              tone: "pending",
+            },
+          ]}
+        />
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Valid declarations" value={dashboard.validDeclarations} />
-        <StatCard label="Missing declarations" value={dashboard.missingDeclarations} />
-        <StatCard label="Returned" value={dashboard.returnedDeclarations} />
-        <StatCard label="Needs review" value={dashboard.needsReviewDeclarations} />
-        <StatCard label="Eligible donations (month)" value={formatCurrency(dashboard.eligibleDonationsThisMonth)} />
-        <StatCard label="Ineligible income (month)" value={formatCurrency(dashboard.ineligibleIncomeThisMonth)} />
-        <StatCard label="Estimated reclaim" value={formatCurrency(dashboard.estimatedReclaim)} />
-        <StatCard label="Claim-ready amount" value={formatCurrency(dashboard.claimReadyAmount)} />
-        <StatCard label="Possible missed Gift Aid" value={formatCurrency(dashboard.possibleMissedGiftAid)} />
-        <StatCard label="Donations needing review" value={dashboard.donationsRequiringReview} />
-      </div>
+        <Card>
+          <h2 className="text-sm font-semibold text-slate-900">Quick follow-up</h2>
+          <p className="mt-1 text-sm text-slate-600">
+            Request missing declarations via Communications (simulated send only).
+          </p>
+          <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+            <Link
+              href="/communications/compose?preset=gift-aid"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
+            >
+              Draft declaration request
+            </Link>
+            <button
+              type="button"
+              onClick={() => setShowDeclarationPreview(true)}
+              className="inline-flex min-h-[44px] items-center justify-center rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+            >
+              Preview form
+            </button>
+          </div>
+        </Card>
 
-      <Card className="mt-6">
-        <h2 className="text-lg font-semibold text-slate-900">Quick actions</h2>
-        <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { href: "/gift-aid/declarations", label: "Review declarations" },
-            { href: "/gift-aid/eligible-donations", label: "Review eligible donations" },
-            { href: "/gift-aid/declarations", label: "Prepare declaration request", onClick: () => setShowDeclarationPreview(true) },
-            { href: "/gift-aid/claim-export", label: "Generate claim report" },
-            { href: "/gift-aid/rules", label: "View Gift Aid rules" },
-          ].map((action) =>
-            action.onClick ? (
-              <button
-                key={action.label}
-                type="button"
-                onClick={action.onClick}
-                className="rounded-lg border border-slate-200 p-4 text-left hover:border-indigo-300 hover:bg-indigo-50/50"
-              >
-                <p className="font-medium text-slate-900">{action.label}</p>
-              </button>
-            ) : (
-              <Link
-                key={action.href}
-                href={action.href}
-                className="rounded-lg border border-slate-200 p-4 hover:border-indigo-300 hover:bg-indigo-50/50"
-              >
-                <p className="font-medium text-slate-900">{action.label}</p>
+        <ModuleMoreTools title="More Gift Aid tools">
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {giftAidSubNav.map((item) => (
+              <Link key={item.href} href={item.href} className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium hover:bg-slate-50">
+                {item.label}
               </Link>
-            ),
-          )}
-        </div>
-      </Card>
+            ))}
+          </div>
+        </ModuleMoreTools>
+
+        <ModuleMoreTools title="Gift Aid summary stats">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <StatCard label="Valid declarations" value={dashboard.validDeclarations} />
+            <StatCard label="Missing declarations" value={dashboard.missingDeclarations} />
+            <StatCard label="Estimated reclaim" value={formatCurrency(dashboard.estimatedReclaim)} />
+            <StatCard label="Claim-ready amount" value={formatCurrency(dashboard.claimReadyAmount)} />
+          </div>
+        </ModuleMoreTools>
+
+        <ModuleMoreTools title="Gift Aid safety notes">
+          <GiftAidSecurityNotice />
+        </ModuleMoreTools>
       </RestrictedContentPreview>
 
       {showDeclarationPreview && (

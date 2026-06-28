@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { Card, StatCard } from "@/components/ui";
+import { ModuleMoreTools, ModulePrimaryPanel, ModuleStatusStrip } from "@/components/ui/ModuleTaskFlow";
 import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
-import { DemoOnlyNotice, FundraisingSecurityNotice, GiftAidGuidanceNotice } from "@/components/fundraising/FundraisingNotices";
+import { FundraisingSecurityNotice } from "@/components/fundraising/FundraisingNotices";
 import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
 import { COMMUNICATIONS_LINKS, formatFundraisingCurrency } from "@/lib/fundraising";
+import { FUNDRAISING_LANDING } from "@/lib/moduleTaskFlow";
 import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
 export function FundraisingDashboardClient() {
@@ -15,58 +17,84 @@ export function FundraisingDashboardClient() {
 
   return (
     <>
-      <GlamPageHeader title="Fundraising" description="Campaigns, donors, sponsorships and Gift Aid opportunities — demo only." breadcrumbs={moduleBreadcrumb(MODULES.fundraising)} backHref="/dashboard" />
+      <GlamPageHeader
+        title="Fundraising"
+        description="Campaigns, donors and follow-ups — demo only."
+        breadcrumbs={moduleBreadcrumb(MODULES.fundraising)}
+        backHref="/dashboard"
+      />
       <FundraisingSubNav active="Dashboard" />
-      <DemoOnlyNotice />
-      <div className="mt-4 space-y-6">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard label="Raised this month" value={formatFundraisingCurrency(dashboard.raisedThisMonth)} />
-          <StatCard label="Raised this year" value={formatFundraisingCurrency(dashboard.raisedThisYear)} />
-          <StatCard label="Active campaigns" value={dashboard.activeCampaigns} />
-          <StatCard label="Potential Gift Aid" value={formatFundraisingCurrency(dashboard.potentialGiftAid)} hint="From eligible donations" />
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard label="Businesses contacted" value={dashboard.businessesContacted} />
-          <StatCard label="Pledges outstanding" value={dashboard.pledgesOutstanding} />
-          <StatCard label="Follow-ups due" value={dashboard.followUpsDue} />
-          <StatCard label="Thank-yous outstanding" value={dashboard.thankYouOutstanding} />
-        </div>
 
-        <div className="grid gap-4 lg:grid-cols-2">
-          <Card>
-            <h2 className="text-sm font-semibold text-slate-900">Campaign progress</h2>
-            <ul className="mt-3 space-y-3">
-              {active.slice(0, 4).map((c) => {
-                const pct = Math.round((c.raised / c.target) * 100);
-                return (
-                  <li key={c.id}>
-                    <div className="flex justify-between text-sm">
-                      <Link href={`/fundraising/campaigns/${c.id}`} className="font-medium text-indigo-600 hover:underline">{c.name}</Link>
-                      <span className="text-slate-600">{formatFundraisingCurrency(c.raised)} / {formatFundraisingCurrency(c.target)}</span>
-                    </div>
-                    <div className="mt-1 h-2 overflow-hidden rounded-full bg-slate-100">
-                      <div className="h-full rounded-full bg-indigo-500" style={{ width: `${Math.min(pct, 100)}%` }} />
-                    </div>
-                    <p className="mt-0.5 text-xs text-slate-500">{pct}% complete</p>
-                  </li>
-                );
-              })}
-            </ul>
-          </Card>
-          <Card>
-            <h2 className="text-sm font-semibold text-slate-900">Quick actions</h2>
-            <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              <Link href="/fundraising/donations" className="rounded-md border border-indigo-200 bg-indigo-50 px-3 py-2 text-sm font-medium text-indigo-800 hover:bg-indigo-100">Add demo donation</Link>
-              <Link href="/fundraising/campaigns" className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">View campaigns</Link>
-              <Link href="/fundraising/businesses" className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">View business leads</Link>
-              <Link href="/fundraising/follow-ups" className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">Review follow-ups</Link>
-              <Link href={COMMUNICATIONS_LINKS.sponsorshipRequest} className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">Prepare sponsorship request</Link>
-              <Link href="/fundraising/reports" className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">View donor report</Link>
-            </div>
-          </Card>
-        </div>
-        <GiftAidGuidanceNotice />
-        <FundraisingSecurityNotice />
+      <div className="mt-4 space-y-4 pb-24 lg:pb-6">
+        <ModulePrimaryPanel config={FUNDRAISING_LANDING} />
+        <ModuleStatusStrip
+          items={[
+            {
+              id: "followups",
+              value: `${dashboard.followUpsDue} follow-ups due`,
+              label: "pending",
+              tone: dashboard.followUpsDue > 0 ? "pending" : "resolved",
+            },
+            {
+              id: "thankyou",
+              value: `${dashboard.thankYouOutstanding} thank-yous outstanding`,
+              label: "pending",
+              tone: dashboard.thankYouOutstanding > 0 ? "pending" : "neutral",
+            },
+          ]}
+        />
+
+        <Card>
+          <h2 className="text-sm font-semibold text-slate-900">Active campaigns</h2>
+          <ul className="mt-2 space-y-3">
+            {active.slice(0, 3).map((c) => {
+              const pct = Math.round((c.raised / c.target) * 100);
+              return (
+                <li key={c.id}>
+                  <div className="flex justify-between text-sm">
+                    <Link href={`/fundraising/campaigns/${c.id}`} className="font-medium text-indigo-600 hover:underline">
+                      {c.name}
+                    </Link>
+                    <span className="text-slate-600">{pct}%</span>
+                  </div>
+                  <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-100">
+                    <div className="h-full rounded-full bg-indigo-500" style={{ width: `${Math.min(pct, 100)}%` }} />
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </Card>
+
+        <ModuleMoreTools title="More fundraising tools">
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { href: "/fundraising/donations", label: "Donations" },
+              { href: "/fundraising/campaigns", label: "Campaigns" },
+              { href: "/fundraising/businesses", label: "Business leads" },
+              { href: "/fundraising/follow-ups", label: "Follow-ups" },
+              { href: COMMUNICATIONS_LINKS.sponsorshipRequest, label: "Sponsorship message" },
+              { href: "/fundraising/reports", label: "Reports" },
+            ].map((item) => (
+              <Link key={item.href} href={item.href} className="rounded-md border border-slate-200 px-3 py-2 text-sm font-medium hover:bg-slate-50">
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </ModuleMoreTools>
+
+        <ModuleMoreTools title="Fundraising summary stats">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <StatCard label="Raised this month" value={formatFundraisingCurrency(dashboard.raisedThisMonth)} />
+            <StatCard label="Active campaigns" value={dashboard.activeCampaigns} />
+            <StatCard label="Pledges outstanding" value={dashboard.pledgesOutstanding} />
+            <StatCard label="Potential Gift Aid" value={formatFundraisingCurrency(dashboard.potentialGiftAid)} />
+          </div>
+        </ModuleMoreTools>
+
+        <ModuleMoreTools title="Fundraising safety notes">
+          <FundraisingSecurityNotice />
+        </ModuleMoreTools>
       </div>
     </>
   );

@@ -2,6 +2,16 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.6e] — 2026-06-27
+
+### Changed — Module simplification and task flow polish
+
+- Shared **Start here** primary task panels across Finance, Members, Attendance, Communications, Gift Aid, Documents, Staff, Fundraising and Reports
+- Demo status strips (pending / reviewed / resolved) on module landings
+- Secondary tools, stats and safety notes moved into collapsible **More tools** sections
+- Shorter copy; progressive disclosure via **How this works** / **What happens next** details
+- `ModulePrimaryPanel`, `ModuleStatusStrip`, `ModuleMoreTools` components; `lib/moduleTaskFlow.ts` configs
+
 ## [1.4.6d] — 2026-06-27
 
 ### Added — Communications reason-based message flow

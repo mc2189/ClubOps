@@ -1,5 +1,24 @@
 # ClubOps — Build Notes
 
+## Iteration 36 — v1.4.6e Module simplification polish (2026-06-27)
+
+### What was built
+
+- One primary task per module landing with max two CTAs
+- Status strips and collapsed secondary tools/stats/safety notes
+- Mobile-first shorter above-the-fold on module dashboards
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+```
+
+---
+
 ## Iteration 35 — v1.4.6d Communications reason-based flow (2026-06-27)
 
 ### What was built
