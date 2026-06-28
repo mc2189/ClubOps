@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Badge, EmptyState } from "@/components/ui";
 import { GlamPageHeader } from "@/components/branding/GlamPageHeader";
 import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
@@ -36,6 +37,11 @@ const filters: { key: MemberFilterKey; label: string }[] = [
   { key: "missing-gift-aid", label: "Missing Gift Aid" },
   { key: "incomplete-emergency", label: "Incomplete emergency" },
 ];
+
+function parseFilterParam(value: string | null): MemberFilterKey {
+  if (!value) return "all";
+  return filters.some((f) => f.key === value) ? (value as MemberFilterKey) : "all";
+}
 
 function EmergencyBadge({ profile }: { profile: MemberProfile }) {
   const map = {
@@ -80,8 +86,11 @@ function SimpleStatusBadges({ profile }: { profile: MemberProfile }) {
 
 export function MembersListClient() {
   const { profiles } = useMembersDemo();
+  const searchParams = useSearchParams();
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState<MemberFilterKey>("all");
+  const [filter, setFilter] = useState<MemberFilterKey>(() =>
+    parseFilterParam(searchParams.get("filter")),
+  );
   const [viewMode, setViewMode] = useState<ViewMode>("simple");
 
   const filtered = useMemo(

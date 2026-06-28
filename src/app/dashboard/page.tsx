@@ -27,7 +27,7 @@ export default async function DashboardPage() {
         />
       </div>
 
-      <DashboardPriorities tasks={data.tasks} />
+      <DashboardPriorities tasks={data.tasks} resolvedItems={data.resolvedItems} />
 
       <section aria-labelledby="health-heading" className="mt-8">
         <h2 id="health-heading" className="mb-1 text-lg font-semibold text-slate-900">

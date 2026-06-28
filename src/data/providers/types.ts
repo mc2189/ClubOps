@@ -1158,13 +1158,35 @@ export interface DashboardStats {
 
 export type TaskPriority = "high" | "medium" | "low";
 
+export type DashboardTaskSeverity =
+  | "High"
+  | "Medium"
+  | "Low"
+  | "Needs review"
+  | "Ready to confirm";
+
 export interface DashboardTask {
   id: string;
   title: string;
+  /** Short fallback line; prefer whyItMatters in UI */
   description: string;
   priority: TaskPriority;
+  severityLabel?: DashboardTaskSeverity;
+  whyItMatters?: string;
+  suggestedAction?: string;
+  linkedModules?: string[];
+  actionLabel?: string;
+  whatHappensNext?: string;
   href?: string;
   category: string;
+  /** Demo RBAC — hide task when role cannot view this module */
+  permissionModule?: import("@/lib/permissions").PermissionModule;
+}
+
+export interface DashboardResolvedItem {
+  id: string;
+  text: string;
+  module?: string;
 }
 
 export type HealthStatus = "good" | "attention" | "critical";
@@ -1224,6 +1246,7 @@ export interface DashboardHighlights {
 
 export interface DashboardData {
   tasks: DashboardTask[];
+  resolvedItems?: DashboardResolvedItem[];
   healthMetrics: ClubHealthMetric[];
   finance: FinanceSnapshot;
   attendance: AttendanceSnapshot;

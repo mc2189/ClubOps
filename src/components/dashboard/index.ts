@@ -4,3 +4,4 @@ export { ProgressCard, SnapshotCard, SnapshotRow } from "./ProgressCard";
 export { RecentActivityList } from "./RecentActivityList";
 export { QuickActionCard } from "./QuickActionCard";
 export { DashboardPriorities } from "./DashboardPriorities";
+export { DashboardRecentlyResolved } from "./DashboardRecentlyResolved";

@@ -19,9 +19,11 @@ About demo mode: [/demo](https://club-ops-fawn.vercel.app/demo)
 
 ### 1. Dashboard and priorities
 Open the dashboard. Read the welcome banner, then scroll to **Today’s priorities**.  
-Click **View today’s priorities** or open one priority card.
+Each card should explain **why it matters**, a **suggested action**, **linked modules**, and a button (e.g. **Review payments**, **Draft reminder**).  
+Try **Review payments** → Finance review; **Open members needing attention** → filtered member list.  
+Switch to **Coach** — finance/Gift Aid priorities should disappear; operational tasks remain.
 
-**We want to know:** Is it obvious what to do first? Does the dashboard feel useful for a busy volunteer?
+**We want to know:** Is it obvious what to do first? Do the cards feel like a practical control centre, not just alerts?
 
 ### 2. Members
 Go to **Members** → open any member (e.g. Jordan Reeves).  

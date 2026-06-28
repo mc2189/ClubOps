@@ -1,5 +1,24 @@
 # ClubOps — Build Notes
 
+## Iteration 34 — v1.4.6c Dashboard priority explanations (2026-06-27)
+
+### What was built
+
+- Rich priority cards: severity label, why it matters, suggested action, linked module tags, CTA button, what happens next
+- Role-filtered priorities and Committee Read-Only summary note on finance tasks
+- Recently resolved demo examples; members URL filter `?filter=needs-attention`
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+```
+
+---
+
 ## Iteration 33 — v1.4.6b Member profile summary (2026-06-27)
 
 ### What was built

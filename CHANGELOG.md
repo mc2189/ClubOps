@@ -2,6 +2,21 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.6c] — 2026-06-27
+
+### Added — Dashboard priority card explanations
+
+- Priority cards explain why each task matters, suggested action, linked modules, and what happens next
+- Primary action buttons on each card (full-width on mobile) linking to guided module flows
+- “Recently resolved in demo” examples below priorities
+- Role-aware priority filtering via existing demo RBAC (Coach hides finance/Gift Aid tasks; Committee Read-Only sees summary note)
+- Members list accepts `?filter=needs-attention` from dashboard link
+
+### Changed
+
+- Today’s priorities copy: “Start here. These are the demo tasks most likely to save volunteer time.”
+- Dashboard demo tasks aligned with Finance, Members, Gift Aid, Communications, and Staff journeys
+
 ## [1.4.6b] — 2026-06-27
 
 ### Added — Member profile summary and missing information

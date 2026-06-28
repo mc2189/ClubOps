@@ -12,6 +12,8 @@ With demo role switcher in the top bar:
 
 - [ ] **Default Secretary/Admin** — full demo works normally (Finance, Medical, Gift Aid, Exports)
 - [ ] **Coach on Finance** — `/finance` shows restricted/summary preview, not full payment detail
+- [ ] **Coach on dashboard priorities** — finance and Gift Aid priority cards hidden; staff/members/comms remain
+- [ ] **Committee Read-Only on dashboard** — finance/Gift Aid cards show summary note for role
 - [ ] **Coach on Medical tab** — member profile Medical tab hides detailed notes/allergies content
 - [ ] **Treasurer on Finance** — `/finance` shows full finance dashboard
 - [ ] **Treasurer on Medical tab** — detailed medical notes hidden (locked preview)
@@ -149,6 +151,9 @@ See [scripts/mobile-viewport-check.md](./scripts/mobile-viewport-check.md) for D
 - [ ] **360px dashboard** — compact hero; Today's priorities visible without excessive scroll
 - [ ] **390px dashboard** — same
 - [ ] **430px dashboard** — same
+- [ ] **Dashboard priority cards (v1.4.6c)** — each card shows why it matters, suggested action, linked modules, and action button
+- [ ] **Priority card links** — Review payments → `/finance/import/review`; members → `/members?filter=needs-attention`; Draft reminder → `/communications/compose?preset=unpaid-fees`; Gift Aid → `/gift-aid`
+- [ ] **Mobile priority buttons** — full-width, no horizontal overflow; bottom nav does not cover card actions
 - [ ] **Members mobile** — compact header (~96–140px); list/cards readable; actions don't overflow
 - [ ] **Attendance mobile** — register controls tappable; sticky save bar above bottom nav
 - [ ] **Communications compose mobile** — form stacks; Save draft / Simulated send full width; warning clear
