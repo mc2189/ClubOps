@@ -1,5 +1,25 @@
 # ClubOps — Build Notes
 
+## Iteration 35 — v1.4.6d Communications reason-based flow (2026-06-27)
+
+### What was built
+
+- Communications Start here panel and reason-based preset list
+- Compose reason panel, source module links, recipient why-included copy
+- Enhanced groups/templates metadata; simulate send confirmation wording
+- `lib/communicationsCompose.ts` — preset configs and compose context helpers
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+```
+
+---
+
 ## Iteration 34 — v1.4.6c Dashboard priority explanations (2026-06-27)
 
 ### What was built

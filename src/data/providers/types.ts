@@ -466,9 +466,13 @@ export interface RecipientGroup {
   id: string;
   name: string;
   description: string;
+  /** Plain-English reason recipients are in this group */
+  whyIncluded?: string;
   recipientCount: number;
   sourceModule: string;
   exampleRecipients: string[];
+  /** Simulated dynamic group built from other demo modules */
+  isDynamic?: boolean;
   lastContacted?: string;
 }
 
@@ -479,6 +483,13 @@ export interface MessageTemplate {
   subject: string;
   body: string;
   linkedFormId?: string;
+  /** What this template is for */
+  purpose?: string;
+  /** When a volunteer should use it */
+  whenToUse?: string;
+  linkedModule?: string;
+  /** Volunteer should review before simulated send */
+  needsReviewBeforeSend?: boolean;
 }
 
 export interface DemoForm {

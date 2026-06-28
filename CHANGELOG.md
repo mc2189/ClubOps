@@ -2,6 +2,22 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.6d] — 2026-06-27
+
+### Added — Communications reason-based message flow
+
+- Communications landing **Start here** panel — compose demo message, view recipient groups, safety line
+- Compose **Why this message** panel — template, group, recipient count, why included, linked module, source task
+- Compose presets with reason metadata: unpaid fees, Gift Aid, missing forms, low attendance, competition, sponsorship
+- Recipient groups show why included, source module, dynamic/simulated type, examples
+- Templates show purpose, when to use, linked module, review-before-send flag, sample preview
+- Message preview with demo safety footer; **Simulate send** confirmation wording
+
+### Changed
+
+- `/communications/compose?preset=*` pre-fills template, group, reason and source links
+- Dashboard reason-based preset list on Communications landing
+
 ## [1.4.6c] — 2026-06-27
 
 ### Added — Dashboard priority card explanations

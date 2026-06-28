@@ -42,21 +42,19 @@ export const communicationsSubNav = [
   { href: "/communications/rules", label: "Rules" },
 ];
 
-export const GIFT_AID_COMPOSE_PRESET = {
-  groupId: "grp-missing-giftaid",
-  templateId: "tpl-giftaid",
-  formId: "form-giftaid",
-};
-
-export const UNPAID_FEES_COMPOSE_PRESET = {
-  groupId: "grp-unpaid-fees",
-  templateId: "tpl-fee-reminder",
-};
-
-export const SPONSORSHIP_COMPOSE_PRESET = {
-  groupId: "grp-business-followup",
-  templateId: "tpl-sponsorship",
-};
+export {
+  GIFT_AID_COMPOSE_PRESET,
+  UNPAID_FEES_COMPOSE_PRESET,
+  SPONSORSHIP_COMPOSE_PRESET,
+  COMPOSE_PRESETS,
+  getComposePreset,
+  isComposePresetId,
+  buildComposeContext,
+  DEMO_PREVIEW_FOOTER,
+  COMMUNICATIONS_START_HERE,
+  SIMULATED_SEND_CONFIRMATION,
+} from "@/lib/communicationsCompose";
+export type { ComposePresetId, ComposePresetConfig, ComposeContext } from "@/lib/communicationsCompose";
 
 export const inboxStatusLabel = {
   "auto-filed": "Auto-filed",

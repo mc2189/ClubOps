@@ -34,7 +34,11 @@ Complete these on the **production demo URL** (not localhost):
 - [ ] Follow `/demo-script` steps 1–10 without broken links
 - [ ] **Communications compose** — `/communications/compose` loads fully (not stuck on loading)
 - [ ] **Gift Aid compose preset** — `/communications/compose?preset=gift-aid` selects group, template, form and shows preview
-- [ ] **Unpaid fees preset** — `/communications/compose?preset=unpaid-fees` loads fee reminder template
+- [ ] **Unpaid fees preset** — `/communications/compose?preset=unpaid-fees` shows fee reminder template, recipient reason, Finance source, and preview
+- [ ] **Gift Aid preset** — `/communications/compose?preset=gift-aid` shows declaration request, recipient reason and Gift Aid source
+- [ ] **Missing forms preset** — `/communications/compose?preset=missing-forms` loads consent form request with Documents source
+- [ ] **Communications compose (v1.4.6d)** — recipient count and why-included visible; simulated-send warning clear; message preview readable
+- [ ] **Communications landing** — Start here panel with compose CTA and “does not send real emails or texts” wording
 - [ ] **Finance import review** — `/finance/import/review` shows match review demo
 - [ ] **Attendance register** — mark Present/Absent on a session register
 - [ ] **Reports export centre** — `/reports/export-centre` generates demo pack (no real file)
@@ -156,7 +160,7 @@ See [scripts/mobile-viewport-check.md](./scripts/mobile-viewport-check.md) for D
 - [ ] **Mobile priority buttons** — full-width, no horizontal overflow; bottom nav does not cover card actions
 - [ ] **Members mobile** — compact header (~96–140px); list/cards readable; actions don't overflow
 - [ ] **Attendance mobile** — register controls tappable; sticky save bar above bottom nav
-- [ ] **Communications compose mobile** — form stacks; Save draft / Simulated send full width; warning clear
+- [ ] **Communications compose mobile** — form stacks; reason panel readable; Simulate send full width; warning clear
 - [ ] **Reports / export mobile** — export button reachable; safety copy visible
 - [ ] **Demo page mobile** — intro not too tall; safety wording scannable
 - [ ] **No horizontal scroll** at 360px, 390px, 430px on key routes

@@ -27,19 +27,39 @@ export function TemplatesClient() {
             <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <h2 className="font-semibold text-slate-900">{tpl.name}</h2>
-                <p className="text-sm text-slate-500">{tpl.category}</p>
+                <div className="mt-1 flex flex-wrap items-center gap-2">
+                  <Badge variant="default">{tpl.category}</Badge>
+                  {tpl.linkedModule && (
+                    <span className="text-xs text-slate-500">Linked to {tpl.linkedModule}</span>
+                  )}
+                  {tpl.needsReviewBeforeSend && (
+                    <Badge variant="warning">Review before send</Badge>
+                  )}
+                </div>
               </div>
               <Link
                 href={`/communications/compose?template=${tpl.id}`}
-                className="text-sm font-medium text-indigo-600 hover:underline"
+                className="inline-flex min-h-[44px] w-full items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700 sm:w-auto"
               >
                 Use template
               </Link>
             </div>
+            {tpl.purpose && (
+              <p className="mt-3 text-sm text-slate-700">
+                <span className="font-medium">What it is for: </span>
+                {tpl.purpose}
+              </p>
+            )}
+            {tpl.whenToUse && (
+              <p className="mt-1 text-sm text-slate-600">
+                <span className="font-medium">When to use: </span>
+                {tpl.whenToUse}
+              </p>
+            )}
             <p className="mt-3 text-sm font-medium text-slate-700">
-              Subject: {applyTemplatePlaceholders(tpl.subject, DEFAULT_PREVIEW_VARS)}
+              Sample subject: {applyTemplatePlaceholders(tpl.subject, DEFAULT_PREVIEW_VARS)}
             </p>
-            <pre className="mt-2 max-h-32 overflow-auto whitespace-pre-wrap rounded-md bg-slate-50 p-3 text-xs text-slate-600">
+            <pre className="mt-2 max-h-36 overflow-auto whitespace-pre-wrap rounded-md bg-slate-50 p-3 text-xs text-slate-600">
               {applyTemplatePlaceholders(tpl.body, DEFAULT_PREVIEW_VARS)}
             </pre>
             {tpl.linkedFormId && (

@@ -21,33 +21,47 @@ export function GroupsClient() {
       />
       <CommunicationsSubNav active="Groups" />
       <DemoOnlyNotice />
-      <div className="mt-6 grid gap-4 lg:grid-cols-2">
+      <p className="mt-4 text-sm text-slate-600">
+        Each group shows why recipients are included and which demo module built the list. Groups are
+        simulated — no real contact data is used.
+      </p>
+      <div className="mt-4 grid gap-4 lg:grid-cols-2">
         {groups.map((group) => (
           <Card key={group.id}>
-            <div className="flex items-start justify-between gap-2">
+            <div className="flex flex-wrap items-start justify-between gap-2">
               <h2 className="font-semibold text-slate-900">{group.name}</h2>
               <Badge variant="info">{group.recipientCount} recipients</Badge>
             </div>
             <p className="mt-1 text-sm text-slate-600">{group.description}</p>
-            <dl className="mt-3 space-y-1 text-xs text-slate-500">
-              <div className="flex gap-2">
-                <dt className="font-medium">Source:</dt>
+            {group.whyIncluded && (
+              <p className="mt-2 text-xs text-slate-700">
+                <span className="font-medium">Why included: </span>
+                {group.whyIncluded}
+              </p>
+            )}
+            <dl className="mt-3 space-y-1.5 text-xs text-slate-600">
+              <div className="flex flex-wrap gap-x-2">
+                <dt className="font-medium text-slate-700">Source module:</dt>
                 <dd>{group.sourceModule}</dd>
               </div>
-              <div className="flex gap-2">
-                <dt className="font-medium">Examples:</dt>
+              <div className="flex flex-wrap gap-x-2">
+                <dt className="font-medium text-slate-700">Type:</dt>
+                <dd>{group.isDynamic === false ? "Static demo list" : "Dynamic (simulated)"}</dd>
+              </div>
+              <div className="flex flex-wrap gap-x-2">
+                <dt className="font-medium text-slate-700">Examples:</dt>
                 <dd>{group.exampleRecipients.join(", ")}</dd>
               </div>
               {group.lastContacted && (
-                <div className="flex gap-2">
-                  <dt className="font-medium">Last contacted:</dt>
+                <div className="flex flex-wrap gap-x-2">
+                  <dt className="font-medium text-slate-700">Last contacted:</dt>
                   <dd>{formatDate(group.lastContacted)}</dd>
                 </div>
               )}
             </dl>
             <Link
               href={`/communications/compose?group=${group.id}`}
-              className="mt-3 inline-block text-sm font-medium text-indigo-600 hover:underline"
+              className="mt-3 inline-flex min-h-[44px] w-full items-center justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700 sm:w-auto"
             >
               Message this group
             </Link>

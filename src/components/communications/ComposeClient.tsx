@@ -1,17 +1,24 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { Card, PageHeader, Badge } from "@/components/ui";
 import { DemoOnlyNotice } from "@/components/communications/CommunicationsNotices";
 import { CommunicationsSubNav } from "@/components/communications/CommunicationsSubNav";
+import { ComposeReasonPanel } from "@/components/communications/ComposeReasonPanel";
 import { useCommunicationsDemo } from "@/components/communications/CommunicationsDemoProvider";
 import {
   applyTemplatePlaceholders,
   DEFAULT_PREVIEW_VARS,
-  GIFT_AID_COMPOSE_PRESET,
-  SPONSORSHIP_COMPOSE_PRESET,
-  UNPAID_FEES_COMPOSE_PRESET,
 } from "@/lib/communications";
+import {
+  buildComposeContext,
+  COMPOSE_PRESETS,
+  DEMO_PREVIEW_FOOTER,
+  getComposePreset,
+  isComposePresetId,
+  SIMULATED_SEND_CONFIRMATION,
+} from "@/lib/communicationsCompose";
 import { PermissionPreviewNotice } from "@/components/rbac/PermissionPreviewNotice";
 import { communicationsTrail } from "@/lib/breadcrumbs";
 
@@ -21,6 +28,30 @@ export interface ComposeClientProps {
   groupParam?: string | null;
 }
 
+function resolveInitialIds(
+  preset: string | null,
+  templateParam: string | null,
+  groupParam: string | null,
+  fallbackGroupId: string,
+) {
+  const presetConfig = getComposePreset(preset);
+
+  let groupId = groupParam ?? fallbackGroupId;
+  let templateId = templateParam ?? "";
+  let formId = "";
+
+  if (presetConfig) {
+    groupId = presetConfig.groupId;
+    templateId = presetConfig.templateId;
+    formId = presetConfig.formId ?? "";
+  } else if (templateParam === "tpl-competition") {
+    groupId = COMPOSE_PRESETS.competition.groupId;
+    templateId = "tpl-competition";
+  }
+
+  return { groupId, templateId, formId };
+}
+
 export function ComposeClient({
   preset = null,
   templateParam = null,
@@ -28,30 +59,16 @@ export function ComposeClient({
 }: ComposeClientProps) {
   const { groups, templates, forms, saveDraft, simulateSend } = useCommunicationsDemo();
 
-  const initialGroupId = useMemo(() => {
-    if (groupParam) return groupParam;
-    if (preset === "gift-aid") return GIFT_AID_COMPOSE_PRESET.groupId;
-    if (preset === "unpaid-fees") return UNPAID_FEES_COMPOSE_PRESET.groupId;
-    if (preset === "sponsorship-request") return SPONSORSHIP_COMPOSE_PRESET.groupId;
-    return groups[0]?.id ?? "";
-  }, [preset, groupParam, groups]);
+  const fallbackGroupId = groups[0]?.id ?? "";
 
-  const initialTemplateId = useMemo(() => {
-    if (preset === "gift-aid") return GIFT_AID_COMPOSE_PRESET.templateId;
-    if (preset === "unpaid-fees") return UNPAID_FEES_COMPOSE_PRESET.templateId;
-    if (preset === "sponsorship-request") return SPONSORSHIP_COMPOSE_PRESET.templateId;
-    if (templateParam) return templateParam;
-    return "";
-  }, [preset, templateParam]);
+  const initial = useMemo(
+    () => resolveInitialIds(preset, templateParam, groupParam, fallbackGroupId),
+    [preset, templateParam, groupParam, fallbackGroupId],
+  );
 
-  const initialFormId = useMemo(() => {
-    if (preset === "gift-aid") return GIFT_AID_COMPOSE_PRESET.formId;
-    return "";
-  }, [preset]);
-
-  const [groupId, setGroupId] = useState(initialGroupId);
-  const [templateId, setTemplateId] = useState(initialTemplateId);
-  const [formId, setFormId] = useState(initialFormId);
+  const [groupId, setGroupId] = useState(initial.groupId);
+  const [templateId, setTemplateId] = useState(initial.templateId);
+  const [formId, setFormId] = useState(initial.formId);
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [sentRef, setSentRef] = useState<string | null>(null);
@@ -61,12 +78,19 @@ export function ComposeClient({
   const selectedTemplate = templates.find((t) => t.id === templateId);
   const selectedForm = forms.find((f) => f.id === formId);
 
+  const composeContext = useMemo(
+    () => buildComposeContext(preset, selectedGroup, selectedTemplate),
+    [preset, selectedGroup, selectedTemplate],
+  );
+
   useEffect(() => {
-    setGroupId(initialGroupId);
-    setTemplateId(initialTemplateId);
-    setFormId(initialFormId);
+    const next = resolveInitialIds(preset, templateParam, groupParam, fallbackGroupId);
+    setGroupId(next.groupId);
+    setTemplateId(next.templateId);
+    setFormId(next.formId);
+    setSentRef(null);
     setInitialized(true);
-  }, [initialGroupId, initialTemplateId, initialFormId]);
+  }, [preset, templateParam, groupParam, fallbackGroupId]);
 
   useEffect(() => {
     if (!templateId) return;
@@ -81,10 +105,17 @@ export function ComposeClient({
   }, [templateId, templates]);
 
   const previewSubject = applyTemplatePlaceholders(subject, DEFAULT_PREVIEW_VARS);
-  const previewBody = applyTemplatePlaceholders(body, DEFAULT_PREVIEW_VARS);
+  const previewBody =
+    applyTemplatePlaceholders(body, DEFAULT_PREVIEW_VARS) + DEMO_PREVIEW_FOOTER;
 
   const handleSaveDraft = () => {
-    saveDraft({ groupId, templateId: templateId || undefined, formId: formId || undefined, subject, body });
+    saveDraft({
+      groupId,
+      templateId: templateId || undefined,
+      formId: formId || undefined,
+      subject,
+      body,
+    });
   };
 
   const handleSimulateSend = () => {
@@ -102,17 +133,12 @@ export function ComposeClient({
     setSentRef(ref);
   };
 
-  const isGiftAidFlow = preset === "gift-aid" || groupId === GIFT_AID_COMPOSE_PRESET.groupId;
-  const isUnpaidFeesFlow = preset === "unpaid-fees" || groupId === UNPAID_FEES_COMPOSE_PRESET.groupId;
-  const isSponsorshipFlow =
-    preset === "sponsorship-request" || templateId === SPONSORSHIP_COMPOSE_PRESET.templateId;
-
   if (!initialized || groups.length === 0) {
     return (
       <>
         <PageHeader
           title="Compose message"
-          description="Select recipients, choose a template and simulate sending — no real email is sent."
+          description="Prepare a demo message with clear recipient reasons — nothing is really sent."
           breadcrumbs={communicationsTrail("Compose")}
           backHref="/communications"
         />
@@ -128,7 +154,7 @@ export function ComposeClient({
     <>
       <PageHeader
         title="Compose message"
-        description="Select recipients, choose a template and simulate sending — no real email is sent."
+        description="Prepare a demo message with clear recipient reasons — nothing is really sent."
         breadcrumbs={communicationsTrail("Compose")}
         backHref="/communications"
       />
@@ -136,32 +162,39 @@ export function ComposeClient({
       <DemoOnlyNotice />
       <PermissionPreviewNotice module="communications" action="send" />
 
-      {isGiftAidFlow && (
-        <div className="mt-4 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-3 text-sm text-indigo-900">
-          <strong>Gift Aid declaration request</strong> — recipients: Parents missing Gift Aid
-          declarations. Form attached: Gift Aid declaration. Simulated send only — no real email sent.
-        </div>
-      )}
+      <ComposeReasonPanel
+        context={composeContext}
+        template={selectedTemplate}
+        group={selectedGroup}
+      />
 
-      {isUnpaidFeesFlow && (
-        <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-          <strong>Fee reminder</strong> — recipients: Parents with unpaid fees. Simulated send only.
-        </div>
-      )}
-
-      {isSponsorshipFlow && (
-        <div className="mt-4 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800">
-          <strong>Sponsorship request</strong> — demo template for fundraising outreach. Simulated send only.
+      {isComposePresetId(preset) && (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {Object.values(COMPOSE_PRESETS)
+            .filter((p) => p.id !== preset)
+            .slice(0, 3)
+            .map((p) => (
+              <Link
+                key={p.id}
+                href={`/communications/compose?preset=${p.id}`}
+                className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600 hover:bg-slate-50"
+              >
+                Try: {p.label}
+              </Link>
+            ))}
         </div>
       )}
 
       {sentRef && (
-        <div className="mt-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-900">
-          Simulated send complete. Audit reference recorded. No real email was sent.
+        <div
+          role="status"
+          className="mt-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-900"
+        >
+          {SIMULATED_SEND_CONFIRMATION} Audit reference: {sentRef}.
         </div>
       )}
 
-      <div className="mt-6 grid gap-6 pb-4 lg:grid-cols-2 lg:pb-0">
+      <div className="mt-6 grid gap-6 pb-24 lg:grid-cols-2 lg:pb-6">
         <div className="space-y-4">
           <Card>
             <h2 className="text-sm font-semibold text-slate-900">Recipients</h2>
@@ -181,14 +214,24 @@ export function ComposeClient({
               ))}
             </select>
             {selectedGroup && (
-              <p className="mt-2 text-xs text-slate-500">
-                Example names (demo only): {selectedGroup.exampleRecipients.join(", ")}
-              </p>
+              <div className="mt-2 space-y-1 text-xs text-slate-600">
+                <p>
+                  <span className="font-medium text-slate-700">Why included: </span>
+                  {selectedGroup.whyIncluded ?? selectedGroup.description}
+                </p>
+                <p>
+                  <span className="font-medium text-slate-700">Examples (demo): </span>
+                  {selectedGroup.exampleRecipients.join(", ")}
+                </p>
+                {selectedGroup.isDynamic && (
+                  <p className="text-slate-500">Dynamic group (simulated from demo records)</p>
+                )}
+              </div>
             )}
           </Card>
 
           <Card>
-            <h2 className="text-sm font-semibold text-slate-900">Template & form</h2>
+            <h2 className="text-sm font-semibold text-slate-900">Template &amp; form</h2>
             <label htmlFor="compose-template" className="mt-3 block text-xs font-medium text-slate-600">
               Template
             </label>
@@ -205,6 +248,16 @@ export function ComposeClient({
                 </option>
               ))}
             </select>
+            {selectedTemplate && (
+              <p className="mt-2 text-xs text-slate-600">
+                {selectedTemplate.whenToUse ?? selectedTemplate.purpose}
+                {selectedTemplate.needsReviewBeforeSend && (
+                  <span className="mt-1 block font-medium text-amber-800">
+                    Volunteer should review before sending.
+                  </span>
+                )}
+              </p>
+            )}
             <label htmlFor="compose-form" className="mt-3 block text-xs font-medium text-slate-600">
               Attach form
             </label>
@@ -242,44 +295,50 @@ export function ComposeClient({
               id="compose-body"
               value={body}
               onChange={(e) => setBody(e.target.value)}
-              rows={10}
-              className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 font-mono text-sm"
+              rows={8}
+              className="mt-1 w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
             />
-            <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+            <div className="mt-4 flex flex-col gap-2">
               <button
                 type="button"
                 onClick={handleSaveDraft}
-                className="min-h-[48px] w-full rounded-md border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 sm:w-auto"
+                className="min-h-[48px] w-full rounded-md border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
               >
                 Save draft (simulated)
               </button>
               <button
                 type="button"
                 onClick={handleSimulateSend}
-                className="min-h-[48px] w-full rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 sm:w-auto"
+                className="min-h-[48px] w-full rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-indigo-700"
               >
-                Simulated send
+                Simulate send
               </button>
             </div>
-            <p className="mt-2 text-xs text-amber-700">Demo only — no real email is sent.</p>
+            <p className="mt-2 text-xs text-amber-800">
+              Demo only — no real emails or texts sent. No contact data is real.
+            </p>
           </Card>
         </div>
 
-        <Card>
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-slate-900">Preview</h2>
-            <Badge variant="warning">No real email sent</Badge>
+        <Card className="h-fit">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 className="text-sm font-semibold text-slate-900">Message preview</h2>
+            <Badge variant="warning">Simulated only</Badge>
           </div>
           <p className="mt-1 text-xs text-slate-500">
-            Placeholders replaced with demo values for preview.
+            Placeholders replaced with demo values. Footer added for safety.
           </p>
           <div className="mt-4 rounded-md border border-slate-200 bg-slate-50 p-4 text-sm">
-            <p className="font-medium text-slate-900">To: {selectedGroup?.name}</p>
-            <p className="mt-2 font-medium">Subject: {previewSubject || "(no subject)"}</p>
+            <p className="text-xs text-slate-500">
+              To: {selectedGroup?.name} ({selectedGroup?.recipientCount ?? 0} demo parents)
+            </p>
+            <p className="mt-3 font-medium text-slate-900">
+              Subject: {previewSubject || "(no subject)"}
+            </p>
             {selectedForm && (
               <p className="mt-1 text-indigo-700">Form attached: {selectedForm.name}</p>
             )}
-            <pre className="mt-4 whitespace-pre-wrap font-sans text-slate-700">{previewBody}</pre>
+            <div className="mt-4 whitespace-pre-wrap text-slate-700">{previewBody}</div>
           </div>
         </Card>
       </div>

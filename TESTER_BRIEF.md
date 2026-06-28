@@ -39,10 +39,11 @@ Open **Finance** → use **Use sample statement** on the Start here panel → fo
 **We want to know:** Is the bank statement review journey clear? Do you understand no real bank is connected? Would a treasurer trust this as a demo?
 
 ### 4. Communications
-Go to **Communications** → **Compose** (or open [/communications/compose?preset=gift-aid](https://club-ops-fawn.vercel.app/communications/compose?preset=gift-aid)).  
-Review the preview — do **not** expect a real email to send.
+Go to **Communications** → read the **Start here** panel → open **Compose demo message** or use **Draft reminder** from the dashboard.  
+Try `/communications/compose?preset=unpaid-fees` — check template, recipient count, **why these recipients**, linked Finance source, and message preview.  
+Press **Simulate send** — confirm the message says no real email was sent.
 
-**We want to know:** Is composing a parent message clear? Would secretaries trust this workflow?
+**We want to know:** Does it feel connected to club admin tasks (fees, forms, Gift Aid)? Would secretaries trust this as a time-saving demo?
 
 ### 5. Reports and permissions
 Switch role to **Coach**, open **Finance** and **Reports → Export centre**.  
