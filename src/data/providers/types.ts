@@ -1067,6 +1067,19 @@ export interface ExportPackItem {
   name: string;
   description: string;
   sensitivity: "normal" | "sensitive" | "restricted";
+  /** Group heading in export centre */
+  category:
+    | "Committee pack"
+    | "Finance"
+    | "Gift Aid"
+    | "Attendance"
+    | "Members"
+    | "Audit/security"
+    | "Fundraising"
+    | "Staff";
+  /** Who would use this export */
+  audience: string;
+  previewHref?: string;
 }
 
 export interface FinancePackData {

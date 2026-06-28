@@ -1,5 +1,24 @@
 # ClubOps — Build Notes
 
+## Iteration 37 — v1.4.6f Reports committee pack preview (2026-06-27)
+
+### What was built
+
+- Committee pack preview on `/reports` with 8 module summary cards and readiness checklist
+- Export centre grouped by purpose with role-aware preview buttons
+- Shared `CommitteePackPreview` on landing and `/reports/committee-pack`
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+```
+
+---
+
 ## Iteration 36 — v1.4.6e Module simplification polish (2026-06-27)
 
 ### What was built

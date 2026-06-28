@@ -105,14 +105,14 @@ export const FUNDRAISING_LANDING: ModuleLandingConfig = {
 };
 
 export const REPORTS_LANDING: ModuleLandingConfig = {
-  title: "Build committee summary",
-  description: "Preview a demo committee pack covering finance, members and club health.",
+  title: "Preview committee pack",
+  description: "Review the main demo summaries before sharing a committee update.",
   primaryHref: "/reports/committee-pack",
   primaryLabel: "Preview committee pack",
   secondaryHref: "/reports/export-centre",
-  secondaryLabel: "Export centre",
-  safetyLine: "Demo only. No real files are generated or shared.",
-  whatHappensNext: "Exports show a simulated pack — download is disabled in the public demo.",
+  secondaryLabel: "Open export centre",
+  safetyLine: "Demo only. No real files are created or sent.",
+  whatHappensNext: "Preview sections link to each module — exports are simulated only.",
 };
 
 export type ModuleStatusTone = "pending" | "reviewed" | "resolved" | "neutral";

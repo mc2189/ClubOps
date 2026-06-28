@@ -46,10 +46,11 @@ Press **Simulate send** — confirm the message says no real email was sent.
 **We want to know:** Does it feel connected to club admin tasks (fees, forms, Gift Aid)? Would secretaries trust this as a time-saving demo?
 
 ### 5. Reports and permissions
-Switch role to **Coach**, open **Finance** and **Reports → Export centre**.  
-Then switch to **Club Secretary/Admin** and try Export centre again.
+Open **Reports** — read the **Committee summary** and module cards (Membership, Finance, Gift Aid, etc.).  
+Open **Preview committee pack** or **Export centre** — check grouped exports and readiness checklist.  
+Switch role to **Coach** — finance/Gift Aid sections should show restricted summaries. Switch to **Treasurer** for full finance detail.
 
-**We want to know:** Do restricted areas feel honest (locked/summary vs full)? Any areas that should be hidden but aren’t?
+**We want to know:** Does the committee pack feel useful before a meeting? Are role restrictions honest?
 
 ---
 

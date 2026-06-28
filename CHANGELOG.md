@@ -2,6 +2,21 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.6f] — 2026-06-27
+
+### Added — Reports committee pack preview
+
+- Reports landing leads with committee pack preview: summary, module cards, readiness checklist, things to note
+- `CommitteePackPreview` component and `lib/committeePackPreview.ts` demo summary builder
+- Export centre grouped by purpose (Committee, Finance, Gift Aid, etc.) with audience and sensitivity labels
+- Role-aware section summaries and export item access on Reports pages
+
+### Changed
+
+- `/reports` primary task: Preview committee pack; secondary: Open export centre
+- Committee pack page uses shared preview plus headline figures and club health
+- Export buttons use safe wording: Preview demo export, Prepare demo file, View report pack
+
 ## [1.4.6e] — 2026-06-27
 
 ### Changed — Module simplification and task flow polish

@@ -1,4 +1,6 @@
-import type { AuditEvent } from "@/data/providers/types";
+import type { AuditEvent, ExportPackItem } from "@/data/providers/types";
+import type { DemoRoleId, PermissionModule, PermissionPreviewLevel } from "@/lib/permissions";
+import { getPermissionPreviewLevel } from "@/lib/permissions";
 
 export function createReportsAuditEvent(action: string, details: string): AuditEvent {
   return {
@@ -38,3 +40,39 @@ export const riskVariant = sensitivityVariant;
 
 export const formatReportCurrency = (amount: number) =>
   new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(amount);
+
+export function exportItemPermissionModule(item: ExportPackItem): PermissionModule {
+  switch (item.category) {
+    case "Finance":
+      return "finance";
+    case "Gift Aid":
+      return "gift-aid";
+    case "Members":
+      return item.sensitivity === "restricted" ? "members-sensitive" : "members";
+    case "Staff":
+      return "staff";
+    case "Fundraising":
+      return "fundraising";
+    case "Attendance":
+      return "attendance";
+    case "Audit/security":
+      return item.sensitivity === "restricted" ? "documents-sensitive" : "audit";
+    default:
+      return "reports";
+  }
+}
+
+export function exportItemAccessLevel(
+  role: DemoRoleId,
+  item: ExportPackItem,
+): PermissionPreviewLevel {
+  const permissionModule = exportItemPermissionModule(item);
+  const level = getPermissionPreviewLevel(role, permissionModule);
+  if (level === "restricted" && item.sensitivity === "restricted") {
+    return "restricted";
+  }
+  if (item.category === "Finance" || item.category === "Gift Aid") {
+    return getPermissionPreviewLevel(role, permissionModule);
+  }
+  return level;
+}

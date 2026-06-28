@@ -16,7 +16,12 @@ Use this before sharing the Vercel demo link with a club secretary, treasurer or
 - [ ] **Documents** — Start here: Check missing paperwork; missing forms count
 - [ ] **Staff** — Start here: Check volunteer cover; rota gap indicator
 - [ ] **Fundraising** — Start here: Review campaign follow-ups
-- [ ] **Reports** — Start here: Build committee summary; report packs collapsed
+- [ ] **Reports** — Start here: Preview committee pack; committee preview visible on landing
+- [ ] **Committee pack preview (v1.4.6f)** — module summary cards link correctly; readiness checklist visible
+- [ ] **Things committee should note** — visible on reports landing or committee pack
+- [ ] **Export centre grouped** — exports grouped by purpose; Preview demo export buttons work
+- [ ] **Reports role restrictions** — Coach sees finance/Gift Aid sections restricted; Committee Read-Only sees summaries
+- [ ] **Mobile reports (360–430px)** — pack cards stack; export buttons full width; no horizontal overflow
 - [ ] **Mobile module landings (360–430px)** — primary task visible without excessive scroll; no horizontal overflow
 - [ ] **Role switcher** — still works on simplified module pages
 
