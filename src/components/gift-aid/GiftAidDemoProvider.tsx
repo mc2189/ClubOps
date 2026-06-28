@@ -40,6 +40,81 @@ interface GiftAidDemoContextValue {
 
 const GiftAidDemoContext = createContext<GiftAidDemoContextValue | null>(null);
 
+function roundCurrency(amount: number): number {
+  return Math.round(amount * 100) / 100;
+}
+
+function getLinkedDeclarationStatus(
+  donation: GiftAidDonationRecord,
+  declarations: GiftAidDeclarationRecord[],
+): DeclarationStatus | "n/a" {
+  if (donation.declarationStatus === "n/a") return "n/a";
+
+  const declaration = declarations.find((d) => {
+    if (donation.linkedParentMember && d.parentCarerName === donation.linkedParentMember) {
+      return true;
+    }
+
+    return Boolean(donation.linkedMemberId && d.linkedMemberIds.includes(donation.linkedMemberId));
+  });
+
+  return declaration?.status ?? donation.declarationStatus;
+}
+
+function syncDonationDeclarationStatuses(
+  donations: GiftAidDonationRecord[],
+  declarations: GiftAidDeclarationRecord[],
+): GiftAidDonationRecord[] {
+  return donations.map((donation) => ({
+    ...donation,
+    declarationStatus: getLinkedDeclarationStatus(donation, declarations),
+  }));
+}
+
+function buildClaimExport(
+  donations: GiftAidDonationRecord[],
+  declarations: GiftAidDeclarationRecord[],
+  reviewItems: GiftAidReviewItem[],
+  checklist: GiftAidPageData["claimExport"]["checklist"],
+): GiftAidPageData["claimExport"] {
+  const claimReadyDonations = donations.filter(
+    (d) => d.eligibility === "eligible" && d.declarationStatus === "valid",
+  );
+  const reviewExceptions = reviewItems.filter((r) => r.eligibility === "needs-review");
+
+  return {
+    claimReadyDonations,
+    estimatedReclaim: roundCurrency(
+      claimReadyDonations.reduce((s, d) => s + d.amount, 0) * GIFT_AID_RATE,
+    ),
+    missingDeclarations: declarations.filter((d) => d.status === "missing"),
+    excludedIncome: donations.filter((d) => d.eligibility === "not-eligible"),
+    reviewExceptions,
+    checklist: checklist.map((item) =>
+      item.label === "Review exceptions resolved"
+        ? { ...item, complete: reviewExceptions.length === 0 }
+        : item,
+    ),
+  };
+}
+
+function updateLinkedReviewDonation(
+  donations: GiftAidDonationRecord[],
+  reviewItem: GiftAidReviewItem | undefined,
+  eligibility: GiftAidEligibility,
+): GiftAidDonationRecord[] {
+  if (!reviewItem) return donations;
+
+  return donations.map((donation) => {
+    const matchesReviewItem =
+      donation.amount === reviewItem.amount &&
+      donation.date === reviewItem.date &&
+      (!reviewItem.linkedMemberId || donation.linkedMemberId === reviewItem.linkedMemberId);
+
+    return matchesReviewItem ? { ...donation, eligibility } : donation;
+  });
+}
+
 function recalcDashboard(
   donations: GiftAidDonationRecord[],
   declarations: GiftAidDeclarationRecord[],
@@ -64,9 +139,9 @@ function recalcDashboard(
     needsReviewDeclarations: declarations.filter((d) => d.status === "needs-review").length,
     eligibleDonationsThisMonth: eligibleTotal,
     ineligibleIncomeThisMonth: ineligibleTotal,
-    estimatedReclaim: Math.round(eligibleTotal * GIFT_AID_RATE * 100) / 100,
+    estimatedReclaim: roundCurrency(eligibleTotal * GIFT_AID_RATE),
     claimReadyAmount: claimReady,
-    possibleMissedGiftAid: Math.round(missed * GIFT_AID_RATE * 100) / 100,
+    possibleMissedGiftAid: roundCurrency(missed * GIFT_AID_RATE),
     donationsRequiringReview: donations.filter((d) => d.eligibility === "needs-review").length,
   };
 }
@@ -90,45 +165,42 @@ export function GiftAidDemoProvider({
   const updateDeclarationStatus = useCallback((id: string, status: DeclarationStatus) => {
     setDeclarations((prev) => {
       const updated = prev.map((d) => (d.id === id ? { ...d, status } : d));
-      setDashboard(recalcDashboard(donations, updated));
+      const syncedDonations = syncDonationDeclarationStatuses(donations, updated);
+      setDonations(syncedDonations);
+      setDashboard(recalcDashboard(syncedDonations, updated));
+      setClaimExport((ce) => buildClaimExport(syncedDonations, updated, reviewItems, ce.checklist));
       return updated;
     });
     const audit = createGiftAidAuditEvent("update", `Declaration status changed to ${status}`);
     setLocalAuditEvents((prev) => [audit, ...prev]);
-  }, [donations]);
+  }, [donations, reviewItems]);
 
   const updateDonationEligibility = useCallback((id: string, eligibility: GiftAidEligibility) => {
     setDonations((prev) => {
       const updated = prev.map((d) => (d.id === id ? { ...d, eligibility } : d));
       setDashboard(recalcDashboard(updated, declarations));
-      setClaimExport((ce) => ({
-        ...ce,
-        claimReadyDonations: updated.filter(
-          (d) => d.eligibility === "eligible" && d.declarationStatus === "valid",
-        ),
-        estimatedReclaim:
-          Math.round(
-            updated
-              .filter((d) => d.eligibility === "eligible" && d.declarationStatus === "valid")
-              .reduce((s, d) => s + d.amount, 0) *
-              GIFT_AID_RATE *
-              100,
-          ) / 100,
-        excludedIncome: updated.filter((d) => d.eligibility === "not-eligible"),
-      }));
+      setClaimExport((ce) => buildClaimExport(updated, declarations, reviewItems, ce.checklist));
       return updated;
     });
     const audit = createGiftAidAuditEvent("update", `Donation marked as ${eligibility}`);
     setLocalAuditEvents((prev) => [audit, ...prev]);
-  }, [declarations]);
+  }, [declarations, reviewItems]);
 
   const updateReviewItem = useCallback((id: string, eligibility: GiftAidEligibility) => {
-    setReviewItems((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, eligibility } : r)),
-    );
+    const reviewItem = reviewItems.find((r) => r.id === id);
+    const updatedReviewItems = reviewItems.map((r) => (r.id === id ? { ...r, eligibility } : r));
+    setReviewItems(updatedReviewItems);
+    setDonations((prev) => {
+      const updatedDonations = updateLinkedReviewDonation(prev, reviewItem, eligibility);
+      setDashboard(recalcDashboard(updatedDonations, declarations));
+      setClaimExport((ce) =>
+        buildClaimExport(updatedDonations, declarations, updatedReviewItems, ce.checklist),
+      );
+      return updatedDonations;
+    });
     const audit = createGiftAidAuditEvent("review", `Review item resolved — ${eligibility}`);
     setLocalAuditEvents((prev) => [audit, ...prev]);
-  }, []);
+  }, [declarations, reviewItems]);
 
   const simulateExport = useCallback(() => {
     setExportCompleted(true);

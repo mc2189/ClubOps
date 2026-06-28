@@ -1,5 +1,22 @@
 # ClubOps — Build Notes
 
+## Iteration 31 — v1.4.8 Gift Aid state consistency fix (2026-06-28)
+
+### What was built
+
+- Gift Aid declaration updates now synchronize linked donations, dashboard totals, and claim export state
+- Gift Aid review resolutions now propagate to the matching donation and remove resolved review exceptions from the export pack
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+---
+
 ## Iteration 30 — v1.4.7 Mobile-first demo polish (2026-06-27)
 
 ### What was built
