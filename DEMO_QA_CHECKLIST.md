@@ -1,4 +1,4 @@
-# ClubOps — Demo QA Checklist (v1.4.6i)
+# ClubOps — Demo QA Checklist (v1.4.6j)
 
 Use this before sharing the Vercel demo link with a club secretary, treasurer or committee member.
 
@@ -6,7 +6,17 @@ Use this before sharing the Vercel demo link with a club secretary, treasurer or
 
 **Automated smoke test:** `./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app`
 
-**Automated responsive check (v1.4.6i):** `BASE_URL=http://localhost:3000 npm run responsive-check` — verifies no horizontal overflow at 360/390/430px and mobile card vs desktop table switching on members, fees, and missing documents.
+**Automated responsive check:** `BASE_URL=http://localhost:3000 npm run responsive-check`
+
+## Final tester polish (v1.4.6j)
+
+- [ ] **Compose preset loading** — skeleton / “Preparing the demo message…” on preset routes before form appears
+- [ ] **Finance transactions mobile** — stacked cards at 360–430px; no page horizontal scroll
+- [ ] **Finance expenses mobile** — stacked cards at 360–430px; safety note visible
+- [ ] **Attendance save feedback** — confirmation visible in mobile sticky bar after save
+- [ ] **Fundraising quick actions** — Review follow-ups, View campaigns, View supporters, Draft message visible without opening More tools
+- [ ] **Add member reassurance** — demo-only note at top of `/members/new`
+- [ ] **Export centre helper** — “Preview demo report packs…” wording on page
 
 ## Responsive breakpoints (v1.4.6i)
 

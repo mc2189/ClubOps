@@ -76,7 +76,11 @@ export function ComposeClient({
   const [sentRef, setSentRef] = useState<string | null>(null);
   const [initialized, setInitialized] = useState(false);
   const [loadTimedOut, setLoadTimedOut] = useState(false);
+  const [contentReady, setContentReady] = useState(false);
   const sendFeedbackRef = useRef<HTMLDivElement>(null);
+
+  const presetConfig = getComposePreset(preset);
+  const expectsTemplateContent = Boolean(presetConfig?.templateId || templateParam);
 
   const selectedGroup = groups.find((g) => g.id === groupId);
   const selectedTemplate = templates.find((t) => t.id === templateId);
@@ -92,9 +96,12 @@ export function ComposeClient({
     setGroupId(next.groupId);
     setTemplateId(next.templateId);
     setFormId(next.formId);
+    setSubject("");
+    setBody("");
     setSentRef(null);
     setInitialized(true);
     setLoadTimedOut(false);
+    setContentReady(!next.templateId);
   }, [preset, templateParam, groupParam, fallbackGroupId]);
 
   useEffect(() => {
@@ -104,7 +111,10 @@ export function ComposeClient({
   }, [initialized, groups.length]);
 
   useEffect(() => {
-    if (!templateId) return;
+    if (!templateId) {
+      setContentReady(true);
+      return;
+    }
     const tpl = templates.find((t) => t.id === templateId);
     if (tpl) {
       setSubject(tpl.subject);
@@ -112,6 +122,7 @@ export function ComposeClient({
       if (tpl.linkedFormId) {
         setFormId(tpl.linkedFormId);
       }
+      setContentReady(true);
     }
   }, [templateId, templates]);
 
@@ -196,9 +207,34 @@ export function ComposeClient({
         <CommunicationsSubNav active="Compose" />
         <DemoLoadingCard
           title="Preparing the demo message…"
-          description="This demo message is being filled from the selected task. No real email or text will be sent."
+          description="The template and recipient group are being filled from the selected demo task. No real email or text will be sent."
           backHref="/communications"
           backLabel="Back to Communications"
+          preparing
+        />
+      </>
+    );
+  }
+
+  const isPreparingPreset =
+    initialized && groups.length > 0 && expectsTemplateContent && templateId && !contentReady;
+
+  if (isPreparingPreset) {
+    return (
+      <>
+        <PageHeader
+          title="Compose message"
+          description="Prepare a demo message with clear recipient reasons — nothing is really sent."
+          breadcrumbs={communicationsTrail("Compose")}
+          backHref="/communications"
+        />
+        <CommunicationsSubNav active="Compose" />
+        <DemoLoadingCard
+          title="Preparing the demo message…"
+          description="The template and recipient group are being filled from the selected demo task. No real email or text will be sent."
+          backHref="/communications"
+          backLabel="Back to Communications"
+          preparing
         />
       </>
     );

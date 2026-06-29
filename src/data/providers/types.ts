@@ -246,6 +246,9 @@ export interface FinanceTransaction {
   category: string;
   amount: number;
   type: "income" | "expense";
+  reference?: string;
+  memberName?: string;
+  ledgerStatus?: "matched" | "unmatched" | "recorded";
   // TODO: RBAC — finance data restricted to treasurer/admin roles
 }
 

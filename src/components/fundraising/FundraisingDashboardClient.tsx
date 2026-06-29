@@ -8,7 +8,7 @@ import { FundraisingSecurityNotice } from "@/components/fundraising/FundraisingN
 import { FundraisingSubNav } from "@/components/fundraising/FundraisingSubNav";
 import { useFundraisingDemo } from "@/components/fundraising/FundraisingDemoProvider";
 import { COMMUNICATIONS_LINKS, formatFundraisingCurrency } from "@/lib/fundraising";
-import { BUSINESS_FOLLOWUP_HELP } from "@/lib/terminologyHelp";
+import { BUSINESS_FOLLOWUP_HELP, PLEDGE_HELP } from "@/lib/terminologyHelp";
 import { FUNDRAISING_LANDING } from "@/lib/moduleTaskFlow";
 import { MODULES, moduleBreadcrumb } from "@/lib/breadcrumbs";
 
@@ -45,12 +45,33 @@ export function FundraisingDashboardClient() {
           ]}
         />
 
-        <Link
-          href="/fundraising/follow-ups"
-          className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 sm:w-auto"
-        >
-          Review follow-ups
-        </Link>
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          <Link
+            href="/fundraising/follow-ups"
+            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+          >
+            Review follow-ups
+          </Link>
+          <Link
+            href="/fundraising/campaigns"
+            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+          >
+            View campaigns
+          </Link>
+          <Link
+            href="/fundraising/donors"
+            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+          >
+            View supporters
+          </Link>
+          <Link
+            href={COMMUNICATIONS_LINKS.campaignUpdate}
+            className="inline-flex min-h-[48px] w-full items-center justify-center rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-700"
+          >
+            Draft fundraising message
+          </Link>
+        </div>
+        <p className="text-xs text-slate-500">{PLEDGE_HELP}</p>
         <p className="text-xs text-slate-500">{BUSINESS_FOLLOWUP_HELP}</p>
 
         <Card>

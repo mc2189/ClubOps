@@ -39,18 +39,31 @@ const CARD_TABLE_ROUTES = [
     mobile: '[data-layout="missing-mobile-cards"]',
     desktop: '[data-layout="missing-desktop-table"]',
   },
+  {
+    path: "/finance/transactions",
+    mobile: '[data-layout="transactions-mobile-cards"]',
+    desktop: '[data-layout="transactions-desktop-table"]',
+  },
+  {
+    path: "/finance/expenses",
+    mobile: '[data-layout="expenses-mobile-cards"]',
+    desktop: '[data-layout="expenses-desktop-table"]',
+  },
 ];
 
 const OVERFLOW_ROUTES = [
   "/members",
   "/members?filter=needs-attention",
   "/finance/fees",
+  "/finance/transactions",
+  "/finance/expenses",
   "/documents/missing",
   "/staff",
   "/reports/export-centre",
   "/attendance",
   "/attendance/register/ses-mon-beginners",
   "/communications/compose?preset=unpaid-fees",
+  "/fundraising",
   "/settings",
 ];
 

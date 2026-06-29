@@ -2,6 +2,21 @@
 
 All notable changes to ClubOps are documented here.
 
+## [1.4.6j] — 2026-06-26
+
+### Changed — Final tester polish
+
+- Communications compose: skeleton loading state while preset template and recipients prepare; updated preparing copy
+- Finance transactions and expenses: mobile cards below `md`; desktop tables at `md+`; local safety notes
+- Attendance register: save confirmation in sticky mobile bar and inline near desktop Save button
+- Fundraising landing: visible action buttons for follow-ups, campaigns, supporters and draft message; pledge/follow-up helper text
+- Add member form: demo-only reassurance note at top of `/members/new`
+- Export centre: softer helper wording; audit log summary description clarified
+
+### Safety (unchanged)
+
+- `PROVIDER_MODE` remains `"demo"`; no auth, database, or Supabase on public routes
+
 ## [1.4.6i] — 2026-06-26
 
 ### Changed — Responsive verification and mobile table hardening

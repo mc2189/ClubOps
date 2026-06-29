@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { PageHeader } from "@/components/ui";
+import { LocalSafetyNote } from "@/components/demo/LocalSafetyNote";
 import { MemberForm } from "@/components/members/MemberForm";
 import { useMembersDemo } from "@/components/members/MembersDemoProvider";
 import { profileToFormData } from "@/lib/members";
@@ -19,6 +20,10 @@ export function AddMemberClient() {
         breadcrumbs={membersAddTrail()}
         backHref="/members"
       />
+      <LocalSafetyNote className="mt-4">
+        Demo only. Do not enter real child, parent, contact or medical information. Nothing entered
+        here is saved permanently.
+      </LocalSafetyNote>
       <MemberForm
         submitLabel="Add member"
         onSubmit={(data) => {

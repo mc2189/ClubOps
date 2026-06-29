@@ -1,5 +1,28 @@
 # ClubOps — Build Notes
 
+## Iteration 41 — v1.4.6j Final tester polish (2026-06-26)
+
+### What was built
+
+- Compose preset skeleton loading with friendly preparing copy
+- Finance transactions/expenses mobile card layouts
+- Attendance save confirmation visible in sticky bar and near Save on desktop
+- Fundraising quick actions visible outside collapsed tools
+- Add member demo reassurance note
+- Export centre and audit pack helper wording
+
+### Commands run
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+BASE_URL=http://localhost:3000 npm run responsive-check
+./scripts/smoke-test-demo.sh https://club-ops-fawn.vercel.app
+```
+
+---
+
 ## Iteration 40 — v1.4.6i Responsive verification and mobile hardening (2026-06-26)
 
 ### What was built

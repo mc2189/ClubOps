@@ -15,6 +15,9 @@ import { cn } from "@/lib/utils";
 import { InlineActionFeedback } from "@/components/demo/InlineActionFeedback";
 import { attendanceRegisterTrail, attendanceTrail } from "@/lib/breadcrumbs";
 
+const SAVE_CONFIRMATION =
+  "Register saved in this demo session. No live attendance record was changed.";
+
 export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
   const { getRegister, setMemberMark, markAllPresent, saveRegister, getSessionStatus, sessions } =
     useAttendanceDemo();
@@ -78,13 +81,10 @@ export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
       </div>
 
       {saveSuccess && (
-        <InlineActionFeedback
-          className="mt-4 hidden lg:block"
-          message="Register saved successfully (demo session only)."
-        />
+        <InlineActionFeedback className="mt-4 hidden lg:block" message={SAVE_CONFIRMATION} />
       )}
 
-      <div className="mt-4 hidden flex-wrap gap-3 lg:flex">
+      <div className="mt-4 hidden flex-wrap items-center gap-3 lg:flex">
         <button
           type="button"
           onClick={() => setShowMarkAllConfirm(true)}
@@ -99,6 +99,9 @@ export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
         >
           Save register
         </button>
+        {saveSuccess && (
+          <InlineActionFeedback className="max-w-md flex-1" message={SAVE_CONFIRMATION} />
+        )}
       </div>
 
       {showMarkAllConfirm && (
@@ -202,9 +205,7 @@ export function RegisterMarkingClient({ sessionId }: { sessionId: string }) {
         className="fixed inset-x-0 bottom-[56px] z-20 flex flex-col gap-2 border-t border-slate-200 bg-white p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-lg lg:hidden"
         data-layout="attendance-mobile-actions"
       >
-        {saveSuccess && (
-          <InlineActionFeedback message="Register saved successfully (demo session only)." />
-        )}
+        {saveSuccess && <InlineActionFeedback message={SAVE_CONFIRMATION} />}
         <div className="flex gap-2">
           <button
             type="button"

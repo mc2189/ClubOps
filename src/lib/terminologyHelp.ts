@@ -13,7 +13,7 @@ export const RESTRICTED_VIEW_HELP =
   "Restricted view shows what this demo role would see — not real security.";
 
 export const PLEDGE_HELP =
-  "Pledge means a promised donation that has not been received yet in the demo.";
+  "Pledges are promised donations or sponsorship that still need followed up.";
 
 export const BUSINESS_FOLLOWUP_HELP =
-  "Business follow-up means checking in with a local sponsor or donor contact (simulated only).";
+  "Business follow-ups are demo reminders to contact local sponsors.";

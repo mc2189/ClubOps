@@ -8,6 +8,8 @@ export const demoFinance: FinanceTransaction[] = [
     category: "Membership",
     amount: 2450.0,
     type: "income",
+    reference: "MEM-JUN-BATCH",
+    ledgerStatus: "matched",
   },
   {
     id: "fin-002",
@@ -16,6 +18,8 @@ export const demoFinance: FinanceTransaction[] = [
     category: "Venue",
     amount: 680.0,
     type: "expense",
+    reference: "INV-HALL-JUN-680",
+    ledgerStatus: "recorded",
   },
   {
     id: "fin-003",
@@ -24,6 +28,8 @@ export const demoFinance: FinanceTransaction[] = [
     category: "Equipment",
     amount: 125.5,
     type: "expense",
+    reference: "EQ-MAINT-JUN",
+    ledgerStatus: "recorded",
   },
   {
     id: "fin-004",
@@ -32,6 +38,9 @@ export const demoFinance: FinanceTransaction[] = [
     category: "Events",
     amount: 890.0,
     type: "income",
+    reference: "CAMP-DEP-001",
+    memberName: "Multiple members",
+    ledgerStatus: "matched",
   },
   {
     id: "fin-005",
@@ -40,5 +49,17 @@ export const demoFinance: FinanceTransaction[] = [
     category: "Insurance",
     amount: 340.0,
     type: "expense",
+    reference: "INS-2026-Q2",
+    ledgerStatus: "recorded",
+  },
+  {
+    id: "fin-006",
+    date: "2026-06-22",
+    description: "FASTER PAYMENT UNKNOWN",
+    category: "Unknown",
+    amount: 35.0,
+    type: "income",
+    reference: "UNMATCHED-35",
+    ledgerStatus: "unmatched",
   },
 ];

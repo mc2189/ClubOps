@@ -100,7 +100,7 @@ export function ExportCentreClient() {
     <>
       <PageHeader
         title="Export Centre"
-        description="Grouped demo exports — preview only, no real files."
+        description="Preview demo report packs for committee discussion. No real files are created."
         breadcrumbs={reportsTrail("Export Centre")}
         backHref="/reports"
       />
