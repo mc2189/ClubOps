@@ -1,56 +1,42 @@
-/** Arbroath Gymnastics Club — demo branding (public demo only, fake data) */
+/**
+ * ClubOps concept-demo branding.
+ * Portfolio project only: not affiliated with or endorsed by any real club.
+ */
 
 export const clubName = "Arbroath Gymnastics Club";
-
 export const clubShortName = "Arbroath Gymnastics";
-
 export const productName = "ClubOps";
-
-export const clubTagline = "Volunteer club management — demo for Arbroath Gymnastics Club";
-
+export const clubTagline = "Volunteer club management - concept demo";
 export const clubLocation = "Arbroath, Scotland";
 
 export const dashboardWelcomeSubtitle =
   "Today's priorities and volunteer admin in one place";
 
 /**
- * Brand asset roles — generated clean logo is primary identity; AGC mark is compact fallback only.
+ * Portfolio-generated brand assets only. Official third-party logo copies are
+ * intentionally not part of the public-facing asset configuration.
  */
 export const brandAssets = {
-  /** Generated clean full logo — dashboard, demo, reports, presentation headers */
   primaryLogo: "/branding/arbroath_clean_logo_full_transparent.png",
-  /** Horizontal web header variant — sidebar / mobile drawer when full stack is too tall */
   primaryLogoHeader: "/branding/arbroath_clean_logo_web_header_transparent.png",
-  /** Generated clean icon — top bar, compact tiles, mobile fallback */
   primaryIcon: "/branding/arbroath_clean_icon_transparent.png",
   primaryLogoMedium: "/branding/arbroath_clean_logo_512_transparent.png",
-  /** CSS/vector AGC badge — favicon-style fallback, not main shell identity */
   compactMark: {
     initials: "AGC",
-    ariaLabel: "Arbroath Gymnastics Club",
+    ariaLabel: "Arbroath Gymnastics Club concept demo",
   },
-  /** Optional decoration — subtle accents only */
   glamLogo: {
     full: "/branding/arbroath_glam_logo_full_transparent.png",
     icon: "/branding/arbroath_glam_icon_transparent.png",
     header: "/branding/arbroath_glam_logo_web_header_transparent.png",
   },
-  /** Reference banner artwork — decorative right-side crops (contain baked mockup text on left) */
   bannerArt: {
     dashboardHero: "/branding/banners/dashboard-glam-hero-art.png",
     pageHeader: "/branding/banners/page-glam-header-art.png",
-    /** Future: text-free ribbon/logo-only PNGs can replace the above for full-bleed art */
-  },
-  /** Official detailed PNGs — reference/fallback only */
-  officialLogo: {
-    primary: "/branding/official/arbroath-logo.png",
-    transparent: "/branding/official/arbroath-logo-transparent.png",
-    whiteBg: "/branding/official/arbroath-logo-white-bg.png",
-    medium: "/branding/official/arbroath-logo-512-transparent.png",
   },
 } as const;
 
-/** @deprecated Use brandAssets — kept for WebLogo component paths */
+/** @deprecated Use brandAssets - kept for WebLogo component paths. */
 export const logoPaths = {
   clean: {
     icon: brandAssets.primaryIcon,
@@ -63,7 +49,6 @@ export const logoPaths = {
     icon: brandAssets.glamLogo.icon,
     header: brandAssets.glamLogo.header,
   },
-  official: brandAssets.officialLogo,
 } as const;
 
 export type WebLogoVariant =
