@@ -1,6 +1,61 @@
 # ClubOps
 
-Demo-first, live-ready club management application for volunteer-run sports clubs.
+ClubOps is a **portfolio/demo application for volunteer-run sports clubs**, built to explore how a small organisation could manage members, tasks, communications, finance workflows, safeguarding-related administration and operational reporting in one place.
+
+It is a concept project, not a live club system. All demo records are fictional and the current public/demo branding should not be taken as endorsement by, or affiliation with, any real club.
+
+## What it demonstrates
+
+- Product thinking around a real operational problem
+- Next.js 15 / React / TypeScript application development
+- Role-based user journeys and permission concepts
+- Structured operational dashboards and reporting
+- Data modelling for members, tasks, documents, payments and club administration
+- Supabase architecture planning, schema design and RLS/security considerations
+- Separation between demo data and future live-data providers
+- Mobile/tablet responsive design
+- Accessibility and navigation work
+- Production-readiness thinking, including authentication, storage, audit logging and privacy controls
+
+## Why I built it
+
+The idea came from looking at the amount of admin involved in running a volunteer sports club and thinking about how those separate jobs could be pulled into one simple interface.
+
+Rather than treating it as a static mock-up, I used it to work through the wider questions that appear when a demo starts becoming a real product: data ownership, permissions, secure storage, auditability, role separation, safeguarding-sensitive information, deployment and migration from demo to live data.
+
+## Tech stack
+
+- Next.js 15
+- React
+- TypeScript
+- Tailwind CSS 4
+- Supabase planning/scaffolding
+- Vercel deployment workflow
+
+## Demo architecture
+
+The current application runs with fictional demo data. Pages fetch data through a provider layer so the UI is not tightly coupled to the demo dataset. A future live implementation can replace the demo provider with a secure backend without rewriting the whole application.
+
+The repository includes design work for:
+
+- authentication and role-based access
+- Supabase schema planning
+- row-level security (RLS)
+- private file storage
+- migration from demo to live data
+- production audit logging
+- deployment/security checks
+
+## Useful files
+
+- [`ARCHITECTURE.md`](./ARCHITECTURE.md) — system layers and module map
+- [`DATA_MODEL.md`](./DATA_MODEL.md) — entities and schema outline
+- [`LIVE_MODE_PLAN.md`](./LIVE_MODE_PLAN.md) — demo vs live strategy
+- [`PROVIDER_CONTRACTS.md`](./PROVIDER_CONTRACTS.md) — provider interface
+- [`SECURITY_LIVE_REQUIREMENTS.md`](./SECURITY_LIVE_REQUIREMENTS.md) — production security checklist
+- [`MIGRATION_PLAN.md`](./MIGRATION_PLAN.md) — staged migration plan
+- [`SUPABASE_SCHEMA_PLAN.md`](./SUPABASE_SCHEMA_PLAN.md) — proposed backend schema
+- [`SUPABASE_RLS_PLAN.md`](./SUPABASE_RLS_PLAN.md) — proposed row-level security model
 
 ## Quick start
 
@@ -9,118 +64,18 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) — the app redirects to the dashboard.
-
-## Tech stack
-
-- **Next.js 15** (App Router, React Server Components)
-- **TypeScript**
-- **Tailwind CSS 4**
-
-## Demo mode
-
-**v1.4.5 brands the public demo as Arbroath Gymnastics Club — logo, colours and club naming. Still demo-only.**
-
-**v1.4.4 improves RBAC demo honesty — locked/summary restricted content previews by role. Still demo-only; not real security.**
-
-**v1.4.3 adds breadcrumb navigation on all module pages for easier wayfinding.**
-
-**v1.4.2 improves mobile and tablet use — drawer navigation, bottom nav, touch targets. Still demo-only.**
-
-**v1.4.1 improves clarity and accessibility — grouped navigation, simpler settings, dashboard priorities, and RBAC demo honesty wording. Still demo-only.**
-
-**v1.4.0 adds Supabase foundation prep — scaffold and draft schema only; still demo-only, no keys connected.**
-
-**v1.3.0 adds auth and live stack decision pack — still demo only; Supabase packages installed in v1.4.0 but not connected to the public demo.**
-
-**v1.2.0 adds live-ready data architecture blueprint — still demo only, no database.**
-
-**v1.1.0 adds demo role switching and RBAC preview — not real authentication.**
-
-This application runs in permanent demo mode with **fake data only**. Use the **demo role switcher** in the top bar to preview permissions (session storage — persists on refresh in the same tab).
-
-No real member, financial or safeguarding data is used. Live use requires authentication, RBAC, a secure database, secure file storage, production audit logging and data protection controls.
-
-See [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) before sharing the public demo link.
-
-**Sharing with testers:** [TESTER_BRIEF.md](./TESTER_BRIEF.md) — five tasks and feedback questions.
-
-## Architecture documentation (v1.2.0)
-
-- [ARCHITECTURE.md](./ARCHITECTURE.md) — system layers and module map
-- [DATA_MODEL.md](./DATA_MODEL.md) — entities, classifications, schema outline
-- [LIVE_MODE_PLAN.md](./LIVE_MODE_PLAN.md) — demo vs live strategy
-- [PROVIDER_CONTRACTS.md](./PROVIDER_CONTRACTS.md) — `ClubOpsDataProvider` contract
-- [SECURITY_LIVE_REQUIREMENTS.md](./SECURITY_LIVE_REQUIREMENTS.md) — production security checklist
-- [MIGRATION_PLAN.md](./MIGRATION_PLAN.md) — staged migration stages 1–6
-
-Settings UI: `/settings/live-readiness`, `/settings/data-architecture`, `/settings/provider-model`, `/settings/production-roadmap`, `/settings/auth-decision`, `/settings/live-stack`, `/settings/recommended-stack`
-
-## Supabase prep (v1.4.0)
-
-- [LIVE_PROVIDER_IMPLEMENTATION_PLAN.md](./LIVE_PROVIDER_IMPLEMENTATION_PLAN.md)
-- [SUPABASE_SCHEMA_PLAN.md](./SUPABASE_SCHEMA_PLAN.md)
-- [SUPABASE_RLS_PLAN.md](./SUPABASE_RLS_PLAN.md)
-- [SUPABASE_STORAGE_PLAN.md](./SUPABASE_STORAGE_PLAN.md)
-- [SUPABASE_LOCAL_DEV.md](./SUPABASE_LOCAL_DEV.md)
-- [PRIVATE_DEPLOYMENT_CHECKLIST.md](./PRIVATE_DEPLOYMENT_CHECKLIST.md)
-- `.env.example` — placeholder env vars only
-
-Settings UI: `/settings/supabase-prep`, `/settings/schema-plan`, `/settings/private-deployment`
-
-## Auth & stack decision (v1.3.0)
-
-- [AUTH_DECISION_PACK.md](./AUTH_DECISION_PACK.md) — compare Supabase, Clerk, Auth.js, Firebase
-- [LIVE_STACK_OPTIONS.md](./LIVE_STACK_OPTIONS.md) — decision matrix
-- [RECOMMENDED_LIVE_STACK.md](./RECOMMENDED_LIVE_STACK.md) — provisional Supabase recommendation
-- [AUTH_IMPLEMENTATION_PLAN.md](./AUTH_IMPLEMENTATION_PLAN.md) — future implementation steps
-
-## Project structure
-
-```
-src/
-├── app/              # Next.js pages (one per module)
-├── components/
-│   ├── layout/       # Sidebar, top bar, demo banner
-│   └── ui/           # Shared UI components
-├── config/           # Navigation and app config
-├── data/
-│   ├── demo/         # Fake demo data files
-│   └── providers/    # Data provider interface and implementations
-└── lib/              # Utilities
-```
-
-## Data architecture
-
-All pages fetch data through the provider layer (`src/data/providers/`). To switch from demo to live data, implement `liveProvider` (see `liveProvider.stub.ts`) and update `src/data/providers/index.ts` — **only on a private live deployment**. Public demo must always use `demoProvider`.
+Open `http://localhost:3000`.
 
 ## Scripts
 
-| Command           | Description              |
-| ----------------- | ------------------------ |
-| `npm run dev`     | Start development server |
-| `npm run build`   | Production build         |
-| `npm run start`   | Start production server  |
-| `npm run lint`    | Run ESLint               |
-| `npm run typecheck` | Run TypeScript check   |
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+npm run typecheck
+```
 
-## Documentation
+## Project status
 
-- [ARCHITECTURE.md](./ARCHITECTURE.md) — system architecture
-- [DATA_MODEL.md](./DATA_MODEL.md) — domain model
-- [LIVE_MODE_PLAN.md](./LIVE_MODE_PLAN.md) — live mode strategy
-- [PROVIDER_CONTRACTS.md](./PROVIDER_CONTRACTS.md) — provider interface
-- [SECURITY_LIVE_REQUIREMENTS.md](./SECURITY_LIVE_REQUIREMENTS.md) — live security requirements
-- [MIGRATION_PLAN.md](./MIGRATION_PLAN.md) — migration stages
-- [PROJECT.md](./PROJECT.md) — project overview
-- [FEATURES.md](./FEATURES.md) — feature list
-- [ROADMAP.md](./ROADMAP.md) — development roadmap
-- [SECURITY.md](./SECURITY.md) — security guidelines
-- [DEPLOYMENT.md](./DEPLOYMENT.md) — GitHub and Vercel deployment
-- [BUILD_NOTES.md](./BUILD_NOTES.md) — build history
-- [CHANGELOG.md](./CHANGELOG.md) — change log
-- [DEMO_QA_CHECKLIST.md](./DEMO_QA_CHECKLIST.md) — pre-share QA checklist
-
-## License
-
-Private — not for public distribution without review.
+ClubOps is a personal concept/portfolio project. It is intentionally honest about the difference between a working demo and a production-ready system: demo role switching is **not** real authentication, and any real deployment would require the security controls described in the repository documentation.
